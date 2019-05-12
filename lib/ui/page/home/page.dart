@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,6 +42,9 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               i18n.greetTo("Flutter")
+            ),
+            Text(
+              FlavorConfig.instance.name
             ),
           ],
         ),
