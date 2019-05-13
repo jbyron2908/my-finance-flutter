@@ -15,7 +15,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final i18n = I18n.delegate;
+  final i18n = S.delegate;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       },
       supportedLocales: i18n.supportedLocales,
       localeResolutionCallback:
-          i18n.resolution(fallback: new Locale("en", "US")),
+          i18n.resolution(fallback: new Locale("en"), withCountry: false),
       home: HomePage(title: 'Flutter Demo Home Page'),
     );
   }

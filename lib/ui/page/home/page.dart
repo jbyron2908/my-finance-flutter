@@ -29,21 +29,18 @@ class _HomePageState extends State<HomePage> {
 
   void _insertPost() async {
     var postBean = await Database.instance.getPostBean();
-    postBean
-        .insert(Post.make("Post $_index", 10, true, DateTime.now()));
+    postBean.insert(Post.make("Post $_index", 10, true, DateTime.now()));
   }
 
   void _readPosts() async {
     var postBean = await Database.instance.getPostBean();
     var list = await postBean.getAll();
-    list.forEach(
-      (post) => print(post.toString())
-    );
+    list.forEach((post) => print(post.toString()));
   }
 
   @override
   Widget build(BuildContext context) {
-    I18n i18n = I18n.of(context);
+    S i18n = S.of(context);
 
     return Scaffold(
       appBar: AppBar(

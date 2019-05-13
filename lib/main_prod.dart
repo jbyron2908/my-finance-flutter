@@ -16,7 +16,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final i18n = I18n.delegate;
+  final i18n = S.delegate;
 
   @override
   Widget build(BuildContext context) {
