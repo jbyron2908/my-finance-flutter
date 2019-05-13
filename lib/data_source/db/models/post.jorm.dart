@@ -13,6 +13,7 @@ abstract class _PostBean implements Bean<Post> {
   final stars = DoubleField('stars');
   final at = DateTimeField('at');
   Map<String, Field> _fields;
+
   Map<String, Field> get fields => _fields ??= {
         id.name: id,
         msg.name: msg,
@@ -20,6 +21,7 @@ abstract class _PostBean implements Bean<Post> {
         stars.name: stars,
         at.name: at,
       };
+
   Post fromMap(Map map) {
     Post model = Post();
     model.id = adapter.parseValue(map['id']);

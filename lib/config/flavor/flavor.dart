@@ -28,11 +28,14 @@ class FlavorConfig {
   }
 
   FlavorConfig._internal(this.flavor, this.name, this.color, this.values);
+
   static FlavorConfig get instance {
     return _instance;
   }
 
   static bool isProduction() => _instance.flavor == Flavor.PRODUCTION;
+
   static bool isDevelopment() => _instance.flavor == Flavor.DEV;
+
   static bool isQA() => _instance.flavor == Flavor.QA;
 }
