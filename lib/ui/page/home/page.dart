@@ -3,6 +3,8 @@ import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/data_source/db/config/database.dart';
 import 'package:my_finance_flutter/data_source/db/models/post.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
+import 'package:my_finance_flutter/navigation/route_manager.dart';
+import 'package:my_finance_flutter/ui/inherited/app_scope.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -14,26 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-  int _index = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _setupDatabase() async {
-    Database.instance.setup();
-  }
-
+  Database database;
+  
   void _insertPost() async {
-    var postBean = await Database.instance.getPostBean();
-    postBean.insert(Post.make("Post $_index", 10, true, DateTime.now()));
+    var postBean = await database.getPostBean();
+    postBean.insert(Post.make("Pos", 10, true, DateTime.now()));
   }
 
   void _readPosts() async {
-    var postBean = await Database.instance.getPostBean();
+    var postBean = await database.getPostBean();
     var list = await postBean.getAll();
     list.forEach((post) => print(post.toString()));
   }
@@ -41,28 +32,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     S i18n = S.of(context);
+    database = AppScope.of(context).database;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Home"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
             Text(i18n.greetTo("Flutter")),
             Text(FlavorConfig.instance.name),
-            RaisedButton(
-              child: Text("Setup database"),
-              onPressed: _setupDatabase,
-            ),
             RaisedButton(
               child: Text("Insert post"),
               onPressed: _insertPost,
@@ -73,11 +54,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }

@@ -4,19 +4,8 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Database {
-  static Database _instance;
   SqfliteAdapter _adapter;
   PostBean _postBean;
-
-  Database._internal();
-
-  static Database get instance {
-    if (_instance == null) {
-      _instance = Database._internal();
-    }
-
-    return _instance;
-  }
 
   void setup() async {
     print("setup database - start");
