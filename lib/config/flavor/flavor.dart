@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:my_finance_flutter/util/StringsUtil.dart';
+import 'package:my_finance_flutter/util/strings_util.dart';
 
 enum Flavor { DEV, QA, PRODUCTION }
 
