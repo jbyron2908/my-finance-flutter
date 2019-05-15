@@ -3,8 +3,8 @@ import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/data_source/db/config/database.dart';
 import 'package:my_finance_flutter/data_source/db/models/post.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
-import 'package:my_finance_flutter/navigation/route_manager.dart';
-import 'package:my_finance_flutter/ui/inherited/app_scope.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_finance_flutter/bloc/app/bloc.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     S i18n = S.of(context);
-    database = AppScope.of(context).database;
+    database = BlocProvider.of<AppBloc>(context).database;
 
     return Scaffold(
       appBar: AppBar(

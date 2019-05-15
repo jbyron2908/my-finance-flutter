@@ -7,7 +7,7 @@ class Database {
   SqfliteAdapter _adapter;
   PostBean _postBean;
 
-  void setup() async {
+  Future<void> setup() async {
     print("setup database - start");
     var dbPath = await getDatabasesPath();
     _adapter = new SqfliteAdapter(join(dbPath, "my_finance.db"));

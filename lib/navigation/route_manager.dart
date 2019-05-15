@@ -14,11 +14,7 @@ class RouteManager {
     }
   }
 
-  static void navigateToSplash(BuildContext context) {
-    Navigator.pushNamed(context, _splashPath);
-  }
-
   static void navigateToHome(BuildContext context) {
-    Navigator.pushNamed(context, _homePath);
+    Navigator.pushReplacementNamed(context, _homePath);
   }
 }
