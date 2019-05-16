@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    S i18n = S.of(context);
+    I18n i18n = I18n.of(context);
     var appBloc = BlocProvider.of<AppBloc>(context);
     _databaseClient = appBloc.databaseClient;
     _graphqlClient = appBloc.graphqlClient;

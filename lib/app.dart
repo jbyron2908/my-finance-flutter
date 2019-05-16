@@ -13,7 +13,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final _i18n = S.delegate;
+  final _i18n = I18n.delegate;
   AppBloc _appBloc;
 
   @override
@@ -38,7 +38,7 @@ class _AppState extends State<App> {
           },
           supportedLocales: _i18n.supportedLocales,
           localeResolutionCallback:
-              _i18n.resolution(fallback: new Locale("en"), withCountry: false),
+              _i18n.resolution(fallback: new Locale("en", "US")),
           home: BlocBuilder(
             bloc: _appBloc,
             builder: (BuildContext context, AppState state) {
