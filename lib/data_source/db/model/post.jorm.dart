@@ -72,6 +72,7 @@ abstract class _PostBean implements Bean<Post> {
     final Insert insert = inserter.setMany(toSetColumns(model)).id(id.name);
     var retId = await adapter.insert(insert);
     if (cascade) {
+      // ignore: unused_local_variable
       Post newModel;
     }
     return retId;
@@ -89,6 +90,7 @@ abstract class _PostBean implements Bean<Post> {
     final Upsert upsert = upserter.setMany(toSetColumns(model)).id(id.name);
     var retId = await adapter.upsert(upsert);
     if (cascade) {
+      // ignore: unused_local_variable
       Post newModel;
     }
     return retId;
