@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/config/flavor/flavor.dart';
-import 'package:my_finance_flutter/data_source/db/config/database.dart';
-import 'package:my_finance_flutter/data_source/db/models/post.dart';
+import 'package:my_finance_flutter/data_source/db/client/database.dart';
+import 'package:my_finance_flutter/data_source/db/model/post.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_finance_flutter/bloc/app/bloc.dart';
@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Database database;
+  MyFinanceDatabase database;
   
   void _insertPost() async {
     var postBean = await database.getPostBean();
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     S i18n = S.of(context);
-    database = BlocProvider.of<AppBloc>(context).database;
+    database = BlocProvider.of<AppBloc>(context).databaseClient;
 
     return Scaffold(
       appBar: AppBar(
