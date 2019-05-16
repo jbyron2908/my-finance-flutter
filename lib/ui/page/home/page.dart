@@ -33,10 +33,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _graphqlQuery() async {
-    var queryResult = await _graphqlClient.query();
+    var queryResult = await _graphqlClient.query(2);
     print(queryResult.data);
-    var model = Model.fromJson(queryResult.data["models"][0]["atributes"][0]);
-    print(model.toString());
   }
 
   @override
