@@ -1,8 +1,7 @@
 # myFinance Flutter
 
-# Details
-
 ## File structure
+
     bloc
       feature
     data_source
@@ -13,15 +12,25 @@
       page
       widget
 
-## Internation­alizing
+## Dependencies
 
-#### vscode-flutter-i18n-json
-Generate I18n class to localize strings
+    bloc - Bloc streams
+    flutter_bloc - Bloc widgets
+    graphql_flutter - Client for GraphQL
+    jaguar_orm - ORM for Sqflite
 
-## Database
+## Instructions
 
 #### Jaguar ORM
+
     - Create model
     - Create bean
-    - Generate .jorm file 
+    - Generate .jorm file
     - Command: "flutter packages pub run build_runner build"
+
+#### vscode-flutter-i18n-json
+
+    - Usings vscode-flutter-i18n-json plugin
+    - Add strings to /i18n/*.json
+    - Run command "Flutter I18n Json: Update"
+    - Use generated class I18n
