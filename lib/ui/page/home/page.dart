@@ -4,6 +4,7 @@ import 'package:my_finance_flutter/data_source/db/client/database.dart';
 import 'package:my_finance_flutter/data_source/db/model/post.dart';
 import 'package:my_finance_flutter/data_source/graphql/client/graphql_client.dart';
 import 'package:my_finance_flutter/data_source/graphql/model/model.dart';
+import 'package:my_finance_flutter/data_source/graphql/model/repository.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_finance_flutter/bloc/app/bloc.dart';
@@ -35,6 +36,11 @@ class _HomePageState extends State<HomePage> {
   void _graphqlQuery() async {
     var queryResult = await _graphqlClient.query(2);
     print(queryResult.data);
+    var list = queryResult.data["viewer"]["repositories"]["nodes"] as List;
+    var list2 = List();
+    list.forEach(
+      (item) => list2.add(Repository.fromJson(item))
+    );
   }
 
   @override
