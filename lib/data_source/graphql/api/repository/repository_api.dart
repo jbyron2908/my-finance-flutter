@@ -1,7 +1,7 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_finance_flutter/data_source/graphql/client/graphql_client.dart';
 import 'package:my_finance_flutter/data_source/graphql/model/repository.dart';
-import 'package:my_finance_flutter/data_source/graphql/query/repository/repository_query.dart';
+import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_query.dart';
 
 class RepositoryGraphqlApi {
   MyFinanceGraphqlClient _client;

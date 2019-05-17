@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class MyFinanceGraphqlClient {
+  static final _token =
 
   GraphQLClient get graphqlClient {
     return _clientValueNotifier.value;
@@ -15,8 +16,8 @@ class MyFinanceGraphqlClient {
 
   final AuthLink _authLink = AuthLink(getToken: () => "Bearer $_token");
 
-  Future<void> setup() async {
-    print("setup graphql - start");
+  void setup() {
+    print("Setup GraphqlClient - Start");
 
     var link = _authLink.concat(_httpLink as Link);
 
@@ -25,6 +26,6 @@ class MyFinanceGraphqlClient {
       link: link,
     ));
 
-    print("setup graphql - complete");
+    print("Setup GraphqlClient - Complete");
   }
 }
