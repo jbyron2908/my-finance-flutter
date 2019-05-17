@@ -3,10 +3,10 @@ import 'package:my_finance_flutter/data_source/graphql/client/graphql_client.dar
 import 'package:my_finance_flutter/data_source/graphql/model/repository.dart';
 import 'package:my_finance_flutter/data_source/graphql/query/repository/repository_query.dart';
 
-class RepositoryApi {
+class RepositoryGraphqlApi {
   MyFinanceGraphqlClient _client;
 
-  RepositoryApi(this._client);
+  RepositoryGraphqlApi(this._client);
 
   Future<List<Repository>> getRepositories(int limit) async {
     var queryResult = await _client.graphqlClient.query(QueryOptions(

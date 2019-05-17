@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   MyFinanceDatabase _databaseClient;
-  RepositoryApi _repositoryApi;
+  RepositoryGraphqlApi _repositoryApi;
 
   void _insertPost() async {
     var postBean = await _databaseClient.getPostBean();
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     I18n i18n = I18n.of(context);
     var appBloc = BlocProvider.of<AppBloc>(context);
     _databaseClient = appBloc.databaseClient;
-    _repositoryApi = RepositoryApi(appBloc.graphqlClient);
+    _repositoryApi = RepositoryGraphqlApi(appBloc.graphqlClient);
 
     return Scaffold(
       appBar: AppBar(
