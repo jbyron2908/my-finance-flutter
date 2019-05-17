@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class MyFinanceGraphqlClient {
-  static final _token =
 
   GraphQLClient get graphqlClient {
     return _clientValueNotifier.value;

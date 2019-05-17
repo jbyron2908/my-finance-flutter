@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 
 class MyFinanceRestClient {
-  static final _token =
 
   static final _baseUrl = "https://api.github.com";
 
