@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class MyFinanceGraphqlClient {
-  GraphQLClient get client {
+
+  GraphQLClient get graphqlClient {
     return _clientValueNotifier.value;
   }
 
@@ -12,8 +13,7 @@ class MyFinanceGraphqlClient {
     uri: 'https://api.github.com/graphql',
   );
 
-  final AuthLink _authLink =
-      AuthLink(getToken: () => "Bearer <token>");
+  final AuthLink _authLink = AuthLink(getToken: () => "Bearer $_token");
 
   Future<void> setup() async {
     print("setup graphql - start");
@@ -27,26 +27,4 @@ class MyFinanceGraphqlClient {
 
     print("setup graphql - complete");
   }
-
-  Future<QueryResult> query(int nRepositories) async {
-    return await client.query(QueryOptions(
-      document: countriesQuery,
-      variables: <String, dynamic>{
-        'nRepositories': nRepositories,
-      },
-    ));
-  }
-
-  String countriesQuery = r'''
-  query ReadRepositories($nRepositories: Int!) {
-    viewer {
-      repositories(last: $nRepositories) {
-        nodes {
-          name
-          createdAt
-        }
-      }
-    }
-  }
-  ''';
 }
