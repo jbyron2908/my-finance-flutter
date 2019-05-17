@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/config/flavor/flavor.dart';
-import 'package:my_finance_flutter/data_source/db/client/database.dart';
+import 'package:my_finance_flutter/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/data_source/db/model/post.dart';
-import 'package:my_finance_flutter/data_source/graphql/client/graphql_client.dart';
-import 'package:my_finance_flutter/data_source/graphql/model/repository.dart';
 import 'package:my_finance_flutter/data_source/graphql/query/repository/repository_api.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
