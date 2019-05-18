@@ -48,8 +48,8 @@ class _HomePageState extends State<HomePage> {
     I18n i18n = I18n.of(context);
     var appBloc = BlocProvider.of<AppBloc>(context);
     _databaseClient = appBloc.databaseClient;
-    _repositoryGraphqlApi = RepositoryGraphqlApi(appBloc.graphqlClient);
-    _repositoryRestApi = RepositoryRestApi(appBloc.restClient);
+    _repositoryGraphqlApi = appBloc.graphqlClient.getRepositoryApi();
+    _repositoryRestApi = appBloc.restClient.getRepositoryApi();
 
     return Scaffold(
       appBar: AppBar(

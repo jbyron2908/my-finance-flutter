@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_api.dart';
 
 class MyFinanceGraphqlClient {
+  static var _token = "";
 
   GraphQLClient get graphqlClient {
     return _clientValueNotifier.value;
@@ -26,5 +28,9 @@ class MyFinanceGraphqlClient {
     ));
 
     print("Setup GraphqlClient - Complete");
+  }
+
+  RepositoryGraphqlApi getRepositoryApi() {
+    return RepositoryGraphqlApi(_clientValueNotifier.value);
   }
 }
