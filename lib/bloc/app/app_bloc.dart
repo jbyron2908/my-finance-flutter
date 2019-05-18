@@ -5,11 +5,13 @@ import 'package:my_finance_flutter/bloc/app/bloc.dart';
 import 'package:my_finance_flutter/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/data_source/graphql/client/graphql_client.dart';
 import 'package:my_finance_flutter/data_source/rest/client/rest_client.dart';
+import 'package:my_finance_flutter/repository/repository_provider.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   MyFinanceDatabase databaseClient = MyFinanceDatabase();
   MyFinanceGraphqlClient graphqlClient = MyFinanceGraphqlClient();
   MyFinanceRestClient restClient = MyFinanceRestClient();
+  MyFinanceRepositoryProvider repositoryProvider = MyFinanceRepositoryProvider();
 
   @override
   AppState get initialState => AppInitState();
@@ -26,6 +28,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       await databaseClient.setup();
       graphqlClient.setup();
       restClient.setup();
+      repositoryProvider.setup(graphqlClient, restClient);
       yield AppReadyState();
     }
   }
