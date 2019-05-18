@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_finance_flutter/bloc/app/bloc.dart';
 import 'package:my_finance_flutter/config/flavor/flavor.dart';
-import 'package:my_finance_flutter/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/data_source/db/model/post.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:my_finance_flutter/repository/git_repo/repository.dart';
+import 'package:my_finance_flutter/repository/post/repository.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -17,17 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MyFinanceDatabase _databaseClient;
+  PostRepository _postRepository;
   GitRepoRepository _gitRepoRepository;
 
   void _insertPost() async {
-    var postBean = await _databaseClient.getPostBean();
-    postBean.insert(Post.make("Pos", 10, true, DateTime.now()));
+    await _postRepository.savePost("Pos", 10, true, DateTime.now());
   }
 
   void _readPosts() async {
-    var postBean = await _databaseClient.getPostBean();
-    var list = await postBean.getAll();
+    var list = await _postRepository.readAllPost();
     list.forEach((post) => print(post.toString()));
   }
 
@@ -45,8 +42,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     I18n i18n = I18n.of(context);
     var appBloc = BlocProvider.of<AppBloc>(context);
-    _databaseClient = appBloc.databaseClient;
     _gitRepoRepository = appBloc.repositoryProvider.getGitRepoRepository();
+    _postRepository = appBloc.repositoryProvider.getPostRepository();
 
     return Scaffold(
       appBar: AppBar(

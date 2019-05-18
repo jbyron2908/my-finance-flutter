@@ -8,9 +8,10 @@ import 'package:my_finance_flutter/data_source/rest/client/rest_client.dart';
 import 'package:my_finance_flutter/repository/repository_provider.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  MyFinanceDatabase databaseClient = MyFinanceDatabase();
-  MyFinanceGraphqlClient graphqlClient = MyFinanceGraphqlClient();
-  MyFinanceRestClient restClient = MyFinanceRestClient();
+  MyFinanceDatabase _databaseClient = MyFinanceDatabase();
+  MyFinanceGraphqlClient _graphqlClient = MyFinanceGraphqlClient();
+  MyFinanceRestClient _restClient = MyFinanceRestClient();
+  
   MyFinanceRepositoryProvider repositoryProvider = MyFinanceRepositoryProvider();
 
   @override
@@ -25,10 +26,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     AppEvent event,
   ) async* {
     if (event is AppStartedEvent) {
-      await databaseClient.setup();
-      graphqlClient.setup();
-      restClient.setup();
-      repositoryProvider.setup(graphqlClient, restClient);
+      await _databaseClient.setup();
+      _graphqlClient.setup();
+      _restClient.setup();
+      repositoryProvider.setup(_graphqlClient, _restClient, _databaseClient);
       yield AppReadyState();
     }
   }

@@ -5,23 +5,29 @@ import 'package:sqflite/sqflite.dart';
 
 class MyFinanceDatabase {
   SqfliteAdapter _adapter;
-  PostBean _postBean;
+
+  Map<String, dynamic> _references = {};
+
+  var _postKey = "post";
 
   Future<void> setup() async {
     print("setup database - start");
     var dbPath = await getDatabasesPath();
     _adapter = new SqfliteAdapter(join(dbPath, "my_finance.db"));
     await _adapter.connect();
+    await _initBeans();
     print("setup database - complete");
   }
 
-  Future<PostBean> getPostBean() async {
-    if (_postBean == null) {
-      print("create post table - start");
-      _postBean = PostBean(_adapter);
-      await _postBean.createTable(ifNotExists: true);
-      print("create post table - success");
-    }
-    return _postBean;
+  Future<void> _initBeans() async {
+    print("create post table - start");
+    var postBean = PostBean(_adapter);
+    await postBean.createTable(ifNotExists: true);
+    _references[_postKey] = postBean;
+    print("create post table - success");
+  }
+
+  PostBean getPostBean() {
+    return _references[_postKey] as PostBean;
   }
 }
