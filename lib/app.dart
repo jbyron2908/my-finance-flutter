@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:my_finance_flutter/bloc/app/bloc.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
-import 'package:my_finance_flutter/navigation/route_manager.dart';
+import 'package:my_finance_flutter/navigation/route_manager_contract.dart';
 import 'package:my_finance_flutter/ui/page/home/page.dart';
 import 'package:my_finance_flutter/ui/page/splash/page.dart';
 
@@ -49,7 +49,7 @@ class _AppState extends State<App> {
               }
             },
           ),
-          onGenerateRoute: RouteManager.configureRoutes,
+          onGenerateRoute: RouteManager.instance.configureRoutes,
         ));
   }
 }
