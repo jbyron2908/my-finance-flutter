@@ -1,9 +1,10 @@
 import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
+import 'package:my_finance_flutter/data_source/db/client/database_client_contract.dart';
 import 'package:my_finance_flutter/data_source/db/model/post.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class MyFinanceDatabase {
+class MyFinanceDatabaseClient implements DatabaseClient {
   SqfliteAdapter _adapter;
 
   Map<String, dynamic> _references = {};

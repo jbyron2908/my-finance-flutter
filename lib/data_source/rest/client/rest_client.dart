@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:my_finance_flutter/data_source/rest/api/repository/repository_api.dart';
+import 'package:my_finance_flutter/data_source/rest/api/repository/repository_contract.dart';
+import 'package:my_finance_flutter/data_source/rest/client/rest_client_contract.dart';
 
-class MyFinanceRestClient {
-  static var _token = "";
+class MyFinanceRestClient implements RestClient {
+  static var _token = "a2fd097f071191326903c87c9377068eabe8b584";
 
   static final _baseUrl = "https://api.github.com";
 
@@ -14,6 +16,7 @@ class MyFinanceRestClient {
     return options;
   });
 
+  @override
   void setup() {
     print("Setup RestClient - Start");
 
@@ -27,7 +30,8 @@ class MyFinanceRestClient {
     print("Setup RestClient - Complete");
   }
 
+  @override
   RepositoryRestApi getRepositoryApi() {
-    return RepositoryRestApi(_restClient);
+    return MyFinanceRepositoryRestApi(_restClient);
   }
 }

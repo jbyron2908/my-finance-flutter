@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_finance_flutter/bloc/app/bloc.dart';
 import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
-import 'package:my_finance_flutter/repository/git_repo/repository.dart';
-import 'package:my_finance_flutter/repository/post/repository.dart';
+import 'package:my_finance_flutter/repository/git_repo/repository_contract.dart';
+import 'package:my_finance_flutter/repository/post/repository_contract.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
