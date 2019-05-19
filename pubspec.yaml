@@ -48,6 +48,7 @@ dev_dependencies:
   build_runner: ^1.0.0
   jaguar_orm_gen: ^2.2.0
   json_serializable: ^2.0.0
+  pedantic: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

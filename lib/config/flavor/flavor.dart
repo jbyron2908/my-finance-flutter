@@ -24,7 +24,7 @@ class Flavor {
 
   factory Flavor(
       {@required FlavorEnum flavor,
-      Color color: Colors.blue,
+      Color color = Colors.blue,
       @required FlavorValues values}) {
     _instance ??= Flavor._internal(
         flavor, StringsUtil.enumName(flavor.toString()), color, values);
