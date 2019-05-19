@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_contract.dart';
-import 'package:my_finance_flutter/data_source/graphql/client/graphql_client_contract.dart' as GraphQLClientContract;
+import 'package:my_finance_flutter/data_source/graphql/client/graphql_client_contract.dart'
+    as GraphQLClientContract;
 
 class MyFinanceGraphqlClient implements GraphQLClientContract.GraphQLClient {
-  static var _token = "a2fd097f071191326903c87c9377068eabe8b584";
+  static var _token = "";
 
   GraphQLClient get graphqlClient {
     return _clientValueNotifier.value;

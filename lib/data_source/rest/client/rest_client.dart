@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/data_source/rest/api/repository/repository_co
 import 'package:my_finance_flutter/data_source/rest/client/rest_client_contract.dart';
 
 class MyFinanceRestClient implements RestClient {
-  static var _token = "a2fd097f071191326903c87c9377068eabe8b584";
+  static var _token = "";
 
   static final _baseUrl = "https://api.github.com";
 
