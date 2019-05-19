@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/data_source/rest/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/data_source/rest/api/repository/repository_contract.dart';
 import 'package:my_finance_flutter/data_source/rest/client/rest_client_contract.dart';
 
 class MyFinanceRestClient implements RestClient {
-  static var _token = "";
-
-  static final _baseUrl = "https://api.github.com";
+  static var _token = Flavor.instance.values.githubToken;
 
   Dio _restClient;
 
@@ -21,7 +20,7 @@ class MyFinanceRestClient implements RestClient {
     print("Setup RestClient - Start");
 
     BaseOptions options = new BaseOptions(
-      baseUrl: _baseUrl,
+      baseUrl: Flavor.instance.values.baseUrlRest,
     );
     _restClient = new Dio(options);
 

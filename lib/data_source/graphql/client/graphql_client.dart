@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_contract.dart';
 import 'package:my_finance_flutter/data_source/graphql/client/graphql_client_contract.dart'
     as GraphQLClientContract;
 
 class MyFinanceGraphqlClient implements GraphQLClientContract.GraphQLClient {
-  static var _token = "";
+  static var _token = Flavor.instance.values.githubToken;
 
   GraphQLClient get graphqlClient {
     return _clientValueNotifier.value;
@@ -15,7 +16,7 @@ class MyFinanceGraphqlClient implements GraphQLClientContract.GraphQLClient {
   ValueNotifier<GraphQLClient> _clientValueNotifier;
 
   final HttpLink _httpLink = HttpLink(
-    uri: 'https://api.github.com/graphql',
+    uri: Flavor.instance.values.baseUrlGraphQL,
   );
 
   final AuthLink _authLink = AuthLink(getToken: () => "Bearer $_token");

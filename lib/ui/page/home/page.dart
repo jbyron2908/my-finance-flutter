@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(i18n.greetTo("Flutter")),
-            Text(FlavorConfig.instance.name),
+            Text(Flavor.instance.name),
             RaisedButton(
               child: Text("Insert post"),
               onPressed: _insertPost,
