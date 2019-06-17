@@ -69,3 +69,4 @@
 # Gen files
 *.jorm.dart
 *.g.dart
+lib/generated
