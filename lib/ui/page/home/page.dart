@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_finance_flutter/bloc/app/bloc.dart';
+import 'package:my_finance_flutter/provider/app/app_provider.dart';
 import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:my_finance_flutter/repository/git_repo/repository_contract.dart';
 import 'package:my_finance_flutter/repository/post/repository_contract.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -41,9 +41,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     I18n i18n = I18n.of(context);
-    var appBloc = BlocProvider.of<AppBloc>(context);
-    _gitRepoRepository = appBloc.repositoryProvider.getGitRepoRepository();
-    _postRepository = appBloc.repositoryProvider.getPostRepository();
+    var appState = Provider.of<AppState>(context);
+    _gitRepoRepository = appState.repositoryProvider.getGitRepoRepository();
+    _postRepository = appState.repositoryProvider.getPostRepository();
 
     return Scaffold(
       appBar: AppBar(
