@@ -2,11 +2,11 @@
 
 ## File structure
 
-    bloc
-      feature
     data_source
       database
       api
+    provider
+      feature
     repository
     ui
       page
@@ -14,8 +14,7 @@
 
 ## Dependencies
 
-    bloc - Bloc streams
-    flutter_bloc - Bloc widgets
+    provider - Easy way to handle data for widgets
     graphql_flutter - Client for GraphQL
     jaguar_orm - ORM for Sqflite
     json_serializable - Serialize / Deserialize objects
@@ -23,6 +22,7 @@
 ## Instructions
 
 ### Setup
+
     - Flutter I18n Json: Update
       Generate I18n
     - flutter packages pub run build_runner build --delete-conflicting-outputs
