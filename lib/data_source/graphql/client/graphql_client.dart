@@ -4,9 +4,9 @@ import 'package:my_finance_flutter/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/data_source/graphql/api/repository/repository_contract.dart';
 import 'package:my_finance_flutter/data_source/graphql/client/graphql_client_contract.dart'
-    as GraphQLClientContract;
+    as graphql_client_contract;
 
-class MyFinanceGraphqlClient implements GraphQLClientContract.GraphQLClient {
+class MyFinanceGraphqlClient implements graphql_client_contract.GraphQLClient {
   static var _token = Flavor.instance.values.githubToken;
 
   GraphQLClient get graphqlClient {

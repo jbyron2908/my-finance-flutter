@@ -1,10 +1,10 @@
 import 'package:my_finance_flutter/data_source/graphql/model/repository.dart'
-    as graphqlModel;
+    as graphql_model;
 import 'package:my_finance_flutter/data_source/rest/model/repository.dart'
-    as restModel;
+    as rest_model;
 
 abstract class GitRepoRepository {
-  Future<List<restModel.Repository>> getRepositoryListRest(
+  Future<List<rest_model.Repository>> getRepositoryListRest(
       int page, int perPage);
-  Future<List<graphqlModel.Repository>> getRepositoryListGraphql(int limit);
+  Future<List<graphql_model.Repository>> getRepositoryListGraphql(int limit);
 }
