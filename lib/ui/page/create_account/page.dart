@@ -6,16 +6,16 @@ import 'package:my_finance_flutter/repository/git_repo/repository_contract.dart'
 import 'package:my_finance_flutter/repository/post/repository_contract.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class CreateAccountPage extends StatefulWidget {
+  CreateAccountPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _CreateAccountPageState createState() => _CreateAccountPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CreateAccountPageState extends State<CreateAccountPage> {
   PostRepository _postRepository;
   GitRepoRepository _gitRepoRepository;
 
