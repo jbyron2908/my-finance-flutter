@@ -12,4 +12,5 @@ abstract class RouteManager {
 
   Route configureRoutes(RouteSettings routeSettings);
   void navigateToHome(BuildContext context);
+  void navigateToCreateAccount(BuildContext context);
 }

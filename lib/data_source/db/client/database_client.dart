@@ -14,7 +14,7 @@ class MyFinanceDatabaseClient implements DatabaseClient {
   Future<void> setup() async {
     print("setup database - start");
     var dbPath = await getDatabasesPath();
-    _adapter = new SqfliteAdapter(join(dbPath, "my_finance.db"));
+    _adapter = SqfliteAdapter(join(dbPath, "my_finance.db"));
     await _adapter.connect();
     await _initBeans();
     print("setup database - complete");
