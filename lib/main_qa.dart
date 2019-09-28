@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/ui/app/app.dart';
-import 'package:my_finance_flutter/config/flavor/flavor.dart';
 
 void main() {
   Flavor(
@@ -9,7 +9,7 @@ void main() {
     values: FlavorValues(
       baseUrlRest: "https://api.github.com",
       baseUrlGraphQL: "https://api.github.com/graphql",
-      githubToken: "",
+      githubToken: "eaf44d83e792390d0ae70644052b71867e1591a5",
     ),
   );
 

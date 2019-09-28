@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/app.dart';
-import 'package:my_finance_flutter/config/flavor/flavor.dart';
+import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 
 void main() {
   Flavor(
