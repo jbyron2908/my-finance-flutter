@@ -1,7 +1,7 @@
 import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/provider/app/app_state.dart';
+import 'package:my_finance_flutter/core/provider/app/app_setup.dart';
 import 'package:my_finance_flutter/core/provider/navigation/app_router.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/post/post_repository.dart';
@@ -18,8 +18,8 @@ List<SingleChildCloneableWidget> globalDependencies = [
   Provider.value(value: AppRouter()),
   Provider.value(value: ApiClient()),
   Provider.value(value: DatabaseClient()),
-  ChangeNotifierProxyProvider<DatabaseClient, AppState>(
-    builder: (context, databaseClient, appState) => AppState(databaseClient),
+  ChangeNotifierProxyProvider<DatabaseClient, AppSetup>(
+    builder: (context, databaseClient, appState) => AppSetup(databaseClient),
   )
 ];
 

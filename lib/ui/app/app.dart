@@ -33,7 +33,6 @@ class _AppState extends State<App> {
       },
       supportedLocales: _i18n.supportedLocales,
       localeResolutionCallback: _i18n.resolution(fallback: Locale("en", "US")),
-      initialRoute: AppRouter.splashPath,
       onGenerateRoute: AppRouter.generateRoutes,
     );
   }

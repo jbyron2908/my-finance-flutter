@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 class AppRouter {
   static AppRouter of(BuildContext context) => Provider.of<AppRouter>(context);
 
-  static const splashPath = "/splash";
-  static const homePath = "/";
+  static const splashPath = "/";
+  static const homePath = "/home";
   static const createAccountPath = "/createAccount";
 
   static Route generateRoutes(RouteSettings routeSettings) {
