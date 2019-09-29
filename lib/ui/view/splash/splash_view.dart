@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/app/app_setup.dart';
-import 'package:my_finance_flutter/core/provider/navigation/app_router.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
 
 class SplashView extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class SplashView extends StatelessWidget {
 
     if (appState.initialized) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        AppRouter.of(context).navigateToHome(context);
+        AppRouter.navigateToHome(context);
       });
     }
 

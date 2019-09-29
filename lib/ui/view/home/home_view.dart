@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/core/provider/navigation/app_router.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/post/post_repository.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key, this.title}) : super(key: key);
@@ -20,7 +20,7 @@ class _HomeViewState extends State<HomeView> {
   PostRepository _postRepository;
 
   void _goToCreateAccount() {
-    AppRouter.of(context).navigateToCreateAccount(context);
+    AppRouter.navigateToCreateAccount(context);
   }
 
   void _insertPost() async {
