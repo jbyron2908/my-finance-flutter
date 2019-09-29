@@ -51,7 +51,7 @@ class _HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(i18n.greetTo("Flutter")),
-            Text(Flavor.instance.name),
+            Text(Flavor.flavorType.toString()),
             RaisedButton(
               child: Text("Create Account"),
               onPressed: _goToCreateAccount,

@@ -1,46 +1,40 @@
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:my_finance_flutter/core/util/strings_util.dart';
+import 'models.dart';
 
-enum FlavorEnum { DEV, QA, PRODUCTION }
-
-class FlavorValues {
-  FlavorValues(
-      {@required this.baseUrlRest,
-      @required this.baseUrlGraphQL,
-      @required this.githubToken});
-
-  final String baseUrlRest;
-  final String baseUrlGraphQL;
-  final String githubToken;
-}
+FlavorType currentFlavorType = FlavorType.DEV;
 
 class Flavor {
-  final FlavorEnum flavor;
-  final String name;
-  final Color color;
-  final FlavorValues values;
-  static Flavor _instance;
+  static FlavorType flavorType = currentFlavorType;
+  static FlavorValues values = _getFlavorValues(currentFlavorType);
 
-  factory Flavor(
-      {@required FlavorEnum flavor,
-      Color color = Colors.blue,
-      @required FlavorValues values}) {
-    _instance ??= Flavor._internal(
-        flavor, StringsUtil.enumName(flavor.toString()), color, values);
+  static FlavorValues _getFlavorValues(FlavorType flavorType) {
+    FlavorValues flavorValues;
+    switch (flavorType) {
+      case FlavorType.DEV:
+        flavorValues = _getFlavorDevValues();
+        break;
+      case FlavorType.PRODUCTION:
+        flavorValues = _getFlavorProdValues();
+        break;
+      default:
+        flavorValues = _getFlavorDevValues();
+    }
 
-    return _instance;
+    return flavorValues;
   }
 
-  Flavor._internal(this.flavor, this.name, this.color, this.values);
-
-  static Flavor get instance {
-    return _instance;
+  static FlavorValues _getFlavorDevValues() {
+    return FlavorValues(
+      baseUrlRest: "https://api.github.com",
+      baseUrlGraphQL: "https://api.github.com/graphql",
+      githubToken: "",
+    );
   }
 
-  static bool isProduction() => _instance.flavor == FlavorEnum.PRODUCTION;
-
-  static bool isDevelopment() => _instance.flavor == FlavorEnum.DEV;
-
-  static bool isQA() => _instance.flavor == FlavorEnum.QA;
+  static FlavorValues _getFlavorProdValues() {
+    return FlavorValues(
+      baseUrlRest: "https://api.github.com",
+      baseUrlGraphQL: "https://api.github.com/graphql",
+      githubToken: "",
+    );
+  }
 }
