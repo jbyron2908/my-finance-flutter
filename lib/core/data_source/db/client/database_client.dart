@@ -1,4 +1,5 @@
 import 'package:jaguar_query_sqflite/jaguar_query_sqflite.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/post.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -11,20 +12,20 @@ class DatabaseClient {
   var _postKey = "post";
 
   Future<void> setup() async {
-    print("setup database - start");
+    Log.i("setup database - start");
     var dbPath = await getDatabasesPath();
     _adapter = SqfliteAdapter(join(dbPath, "my_finance.db"));
     await _adapter.connect();
     await _initBeans();
-    print("setup database - complete");
+    Log.i("setup database - complete");
   }
 
   Future<void> _initBeans() async {
-    print("create post table - start");
+    Log.i("create post table - start");
     var postBean = PostBean(_adapter);
     await postBean.createTable(ifNotExists: true);
     _references[_postKey] = postBean;
-    print("create post table - success");
+    Log.i("create post table - success");
   }
 
   PostBean getPostBean() {

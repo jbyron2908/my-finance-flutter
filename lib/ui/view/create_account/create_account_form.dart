@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
 
 class CreateAccountForm extends StatefulWidget {
   @override
@@ -54,7 +55,7 @@ class CreateAccountFormState extends State<CreateAccountForm> {
                   onPressed: () {
                     _formKey.currentState.save();
                     FocusScope.of(context).requestFocus(FocusNode());
-                    print(accountFormModel);
+                    Log.i(accountFormModel);
                   },
                   color: Colors.green,
                 ),
@@ -88,13 +89,13 @@ class CreateAccountFormState extends State<CreateAccountForm> {
         border: OutlineInputBorder(),
       ),
       onEditingComplete: () {
-        print("onEditingComplete");
+        Log.i("onEditingComplete");
         if (this._focusNodeMap.containsKey(nextFocus)) {
           focusNode.unfocus();
           FocusScope.of(context).requestFocus(this._focusNodeMap[nextFocus]);
         }
       },
-      onFieldSubmitted: (value) => print("onFieldSubmitted - value = $value"),
+      onFieldSubmitted: (value) => Log.i("onFieldSubmitted - value = $value"),
       // onFieldSubmitted: (value) {
       //   if (this._focusNodeMap.containsKey(nextFocus)) {
       //     this._focusNodeMap[nextFocus].requestFocus();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
 
 class ApiClient {
   static var _token = Flavor.values.githubToken;
@@ -21,7 +22,7 @@ class ApiClient {
   final AuthLink _authLink = AuthLink(getToken: () => "Bearer $_token");
 
   void _setup() {
-    print("Setup GraphqlClient - Start");
+    Log.i("Setup GraphqlClient - Start");
 
     var link = _authLink.concat(_httpLink as Link);
     _clientValueNotifier = ValueNotifier(GraphQLClient(
@@ -29,6 +30,6 @@ class ApiClient {
       link: link,
     ));
 
-    print("Setup GraphqlClient - Complete");
+    Log.i("Setup GraphqlClient - Complete");
   }
 }

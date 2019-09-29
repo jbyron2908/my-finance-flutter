@@ -3,7 +3,7 @@ import 'models.dart';
 FlavorType currentFlavorType = FlavorType.DEV;
 
 class Flavor {
-  static FlavorType flavorType = currentFlavorType;
+  static FlavorType type = currentFlavorType;
   static FlavorValues values = _getFlavorValues(currentFlavorType);
 
   static FlavorValues _getFlavorValues(FlavorType flavorType) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/provider/navigation/app_router.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/post/post_repository.dart';
@@ -28,12 +29,12 @@ class _HomeViewState extends State<HomeView> {
 
   void _readPosts() async {
     var list = await _postRepository.readAllPost();
-    list.forEach((post) => print(post.toString()));
+    list.forEach((post) => Log.i(post.toString()));
   }
 
   void _getRepositoriesGraphqlQuery() async {
     var repositoryList = await _gitRepoRepository.getRepositoryList(2);
-    repositoryList.forEach((item) => print(item.toJson()));
+    repositoryList.forEach((item) => Log.i(item.toJson()));
   }
 
   @override
@@ -51,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(i18n.greetTo("Flutter")),
-            Text(Flavor.flavorType.toString()),
+            Text(Flavor.type.toString()),
             RaisedButton(
               child: Text("Create Account"),
               onPressed: _goToCreateAccount,
