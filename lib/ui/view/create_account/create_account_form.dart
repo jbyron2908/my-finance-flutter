@@ -1,18 +1,25 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/config/log/logger.dart';
+import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
+import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class CreateAccountForm extends StatefulWidget {
+  CreateAccountForm({Function(Account account) onSubmit}) : onSubmit = onSubmit;
+
+  final Function(Account account) onSubmit;
+
   @override
-  CreateAccountFormState createState() => CreateAccountFormState();
+  CreateAccountFormState createState() =>
+      CreateAccountFormState(onSubmit: onSubmit);
 }
 
 class CreateAccountFormState extends State<CreateAccountForm> {
+  CreateAccountFormState({Function(Account account) onSubmit})
+      : onSubmit = onSubmit;
+
+  final Function(Account account) onSubmit;
+  final Account account = Account();
   final _formKey = GlobalKey<FormState>();
-  var _focusNodeMap = HashMap<String, FocusNode>();
-  var accountFormModel = AccountFormModel();
 
   @override
   Widget build(BuildContext context) {
@@ -24,29 +31,59 @@ class CreateAccountFormState extends State<CreateAccountForm> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                buildFormField(
-                  id: "name",
-                  label: "Name",
-                  icon: Icon(Icons.title),
-                  hint: "Name",
-                  nextFocus: "type",
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "Name",
+                    labelText: "Name",
+                    prefixIcon: Icon(Icons.title),
+                    border: OutlineInputBorder(),
+                  ),
+                  onSaved: (value) => setState(() => account.name = value),
                 ),
-                SizedBox(
-                  height: 8.0,
+                UIHelper.verticalSpaceSmall,
+                TextFormField(
+                  autofocus: true,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: "Type",
+                    labelText: "Type",
+                    prefixIcon: Icon(Icons.category),
+                    border: OutlineInputBorder(),
+                  ),
+                  onSaved: (value) => setState(() => account.type = value),
                 ),
-                buildFormField(
-                  id: "type",
-                  label: "Type",
-                  icon: Icon(Icons.title),
+                UIHelper.verticalSpaceSmall,
+                TextFormField(
+                  autofocus: true,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    hintText: "Currency",
+                    labelText: "Currency",
+                    prefixIcon: Icon(Icons.monetization_on),
+                    border: OutlineInputBorder(),
+                  ),
+                  onSaved: (value) => setState(() => account.currency = value),
+                ),
+                UIHelper.verticalSpaceSmall,
+                TextFormField(
+                  autofocus: true,
                   keyboardType: TextInputType.number,
-                  nextFocus: "initialValue",
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                    hintText: "Initial value",
+                    labelText: "Initial valuee",
+                    prefixIcon: Icon(Icons.confirmation_number),
+                    border: OutlineInputBorder(),
+                  ),
+                  onSaved: (value) => setState(
+                      () => account.initialValue = double.parse(value)),
                 ),
-                buildFormField(
-                  id: "initialValue",
-                  label: "Initial Value",
-                  icon: Icon(Icons.money_off),
-                  keyboardType: TextInputType.number,
-                ),
+                UIHelper.verticalSpaceSmall,
                 RaisedButton(
                   child: Text(
                     'Save',
@@ -54,8 +91,7 @@ class CreateAccountFormState extends State<CreateAccountForm> {
                   ),
                   onPressed: () {
                     _formKey.currentState.save();
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    Log.i(accountFormModel);
+                    onSubmit(account);
                   },
                   color: Colors.green,
                 ),
@@ -66,51 +102,4 @@ class CreateAccountFormState extends State<CreateAccountForm> {
       ),
     );
   }
-
-  Widget buildFormField(
-      {@required String id,
-      @required String label,
-      @required Icon icon,
-      String hint = "",
-      TextInputType keyboardType = TextInputType.text,
-      String nextFocus}) {
-    var focusNode = FocusNode();
-    _focusNodeMap[id] = focusNode;
-
-    return TextFormField(
-      focusNode: focusNode,
-      keyboardType: keyboardType,
-      autofocus: true,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        hintText: hint,
-        labelText: label,
-        prefixIcon: icon,
-        border: OutlineInputBorder(),
-      ),
-      onEditingComplete: () {
-        Log.i("onEditingComplete");
-        if (this._focusNodeMap.containsKey(nextFocus)) {
-          focusNode.unfocus();
-          FocusScope.of(context).requestFocus(this._focusNodeMap[nextFocus]);
-        }
-      },
-      onFieldSubmitted: (value) => Log.i("onFieldSubmitted - value = $value"),
-      // onFieldSubmitted: (value) {
-      //   if (this._focusNodeMap.containsKey(nextFocus)) {
-      //     this._focusNodeMap[nextFocus].requestFocus();
-      //   }
-      // },
-      onSaved: (value) {
-        accountFormModel.body = value;
-      },
-    );
-  }
-}
-
-class AccountFormModel {
-  String title;
-  String body;
-
-  String toString() => 'AccountFormModel(title: $title, body: $body)';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/ui/view/create_account/create_account_form.dart';
 
 class CreateAccountView extends StatefulWidget {
@@ -15,7 +16,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
       appBar: AppBar(
         title: Text("Create Account"),
       ),
-      body: CreateAccountForm(),
+      body: CreateAccountForm(onSubmit: (model) => Log.i(model)),
     );
   }
 }
