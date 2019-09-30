@@ -31,58 +31,7 @@ class CreateAccountFormState extends State<CreateAccountForm> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                TextFormField(
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  autofocus: true,
-                  decoration: InputDecoration(
-                    hintText: "Name",
-                    labelText: "Name",
-                    prefixIcon: Icon(Icons.title),
-                    border: OutlineInputBorder(),
-                  ),
-                  onSaved: (value) => setState(() => account.name = value),
-                ),
-                UIHelper.verticalSpaceSmall,
-                TextFormField(
-                  autofocus: true,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: "Type",
-                    labelText: "Type",
-                    prefixIcon: Icon(Icons.category),
-                    border: OutlineInputBorder(),
-                  ),
-                  onSaved: (value) => setState(() => account.type = value),
-                ),
-                UIHelper.verticalSpaceSmall,
-                TextFormField(
-                  autofocus: true,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    hintText: "Currency",
-                    labelText: "Currency",
-                    prefixIcon: Icon(Icons.monetization_on),
-                    border: OutlineInputBorder(),
-                  ),
-                  onSaved: (value) => setState(() => account.currency = value),
-                ),
-                UIHelper.verticalSpaceSmall,
-                TextFormField(
-                  autofocus: true,
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(
-                    hintText: "Initial value",
-                    labelText: "Initial valuee",
-                    prefixIcon: Icon(Icons.confirmation_number),
-                    border: OutlineInputBorder(),
-                  ),
-                  onSaved: (value) => setState(
-                      () => account.initialValue = double.parse(value)),
-                ),
+                ...buildFormFields(),
                 UIHelper.verticalSpaceSmall,
                 RaisedButton(
                   child: Text(
@@ -90,8 +39,7 @@ class CreateAccountFormState extends State<CreateAccountForm> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    _formKey.currentState.save();
-                    onSubmit(account);
+                    submit();
                   },
                   color: Colors.green,
                 ),
@@ -101,5 +49,80 @@ class CreateAccountFormState extends State<CreateAccountForm> {
         ),
       ),
     );
+  }
+
+  void submit() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    _formKey.currentState.save();
+    onSubmit(account);
+  }
+
+  List<Widget> buildFormFields() {
+    FocusNode nameNode = FocusNode();
+    FocusNode typeNode = FocusNode();
+    FocusNode currencyNode = FocusNode();
+    FocusNode initialValueNode = FocusNode();
+
+    return <Widget>[
+      TextFormField(
+        focusNode: nameNode,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          hintText: "Name",
+          labelText: "Name",
+          prefixIcon: Icon(Icons.title),
+          border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) =>
+            FocusScope.of(context).requestFocus(typeNode),
+        onSaved: (value) => setState(() => account.name = value),
+      ),
+      UIHelper.verticalSpaceSmall,
+      TextFormField(
+        focusNode: typeNode,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          hintText: "Type",
+          labelText: "Type",
+          prefixIcon: Icon(Icons.category),
+          border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) =>
+            FocusScope.of(context).requestFocus(currencyNode),
+        onSaved: (value) => setState(() => account.type = value),
+      ),
+      UIHelper.verticalSpaceSmall,
+      TextFormField(
+        focusNode: currencyNode,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          hintText: "Currency",
+          labelText: "Currency",
+          prefixIcon: Icon(Icons.monetization_on),
+          border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) =>
+            FocusScope.of(context).requestFocus(initialValueNode),
+        onSaved: (value) => setState(() => account.currency = value),
+      ),
+      UIHelper.verticalSpaceSmall,
+      TextFormField(
+        focusNode: initialValueNode,
+        keyboardType: TextInputType.number,
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          hintText: "Initial value",
+          labelText: "Initial valuee",
+          prefixIcon: Icon(Icons.confirmation_number),
+          border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) => submit(),
+        onSaved: (value) =>
+            setState(() => account.initialValue = double.parse(value)),
+      ),
+    ];
   }
 }
