@@ -21,6 +21,11 @@ class CreateAccountFormState extends State<CreateAccountForm> {
   final Account account = Account();
   final _formKey = GlobalKey<FormState>();
 
+  final FocusNode nameNode = FocusNode();
+  final FocusNode typeNode = FocusNode();
+  final FocusNode currencyNode = FocusNode();
+  final FocusNode initialValueNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -58,14 +63,10 @@ class CreateAccountFormState extends State<CreateAccountForm> {
   }
 
   List<Widget> buildFormFields() {
-    FocusNode nameNode = FocusNode();
-    FocusNode typeNode = FocusNode();
-    FocusNode currencyNode = FocusNode();
-    FocusNode initialValueNode = FocusNode();
-
     return <Widget>[
       TextFormField(
         focusNode: nameNode,
+        autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -112,10 +113,9 @@ class CreateAccountFormState extends State<CreateAccountForm> {
       TextFormField(
         focusNode: initialValueNode,
         keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: "Initial value",
-          labelText: "Initial valuee",
+          labelText: "Initial value",
           prefixIcon: Icon(Icons.confirmation_number),
           border: OutlineInputBorder(),
         ),
