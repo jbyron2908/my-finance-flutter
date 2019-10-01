@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:my_finance_flutter/core/provider/provider_setup.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
-import 'package:my_finance_flutter/ui/app/provider_setup.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatefulWidget {
