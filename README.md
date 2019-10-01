@@ -2,15 +2,18 @@
 
 ## File structure
 
-    data_source
-      database
-      api
-    provider
-      feature
-    repository
+    core
+      data_source
+        database
+        api
+      provider
+        feature
+        repository
+      util
     ui
-      page
-      widget
+      app
+      common
+      view
 
 ## Dependencies
 
@@ -26,17 +29,17 @@
     - Flutter I18n Json: Update
       Generate I18n
     - flutter packages pub run build_runner build --delete-conflicting-outputs
-      Generate .jorm (database) and .g (serializable) files 
+      Generate .jorm (database) and .g (serializable) files
 
 ### Jaguar ORM
 
-    - Create model
+    - Create entity
     - Create bean
     - Generate .jorm file
 
 ### Json Serializable
 
-    - Create model
+    - Create domain
     - Put annotations
     - Generate .g file
 
@@ -46,3 +49,9 @@
     - Add strings to /i18n/*.json
     - Run command "Flutter I18n Json: Update"
     - Use generated class I18n
+
+### Naming
+
+    Model: Ui related data class
+    Entity: Database related data class
+    Domain: Api related data class
