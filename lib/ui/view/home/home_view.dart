@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
+import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/post/post_repository.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key, this.title}) : super(key: key);
@@ -18,6 +20,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   GitRepoRepository _gitRepoRepository;
   PostRepository _postRepository;
+  DatabaseClient _databaseClient;
 
   void _goToCreateAccount() {
     AppRouter.navigateToCreateAccount(context);
@@ -37,11 +40,17 @@ class _HomeViewState extends State<HomeView> {
     repositoryList.forEach((item) => Log.i(item.toJson()));
   }
 
+  void _readUsers() async {
+    var list = await _databaseClient.userBean.getAll();
+    list.forEach((user) => Log.i("${user.name} - ${user.id}"));
+  }
+
   @override
   Widget build(BuildContext context) {
     I18n i18n = I18n.of(context);
     _gitRepoRepository = GitRepoRepository.of(context);
     _postRepository = PostRepository.of(context);
+    _databaseClient = Provider.of<DatabaseClient>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -64,6 +73,10 @@ class _HomeViewState extends State<HomeView> {
             RaisedButton(
               child: Text("Read posts"),
               onPressed: _readPosts,
+            ),
+            RaisedButton(
+              child: Text("Read users"),
+              onPressed: _readUsers,
             ),
             RaisedButton(
               child: Text("GraphQL Query"),

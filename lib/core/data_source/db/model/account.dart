@@ -1,6 +1,6 @@
-// The model
 import 'package:jaguar_orm/jaguar_orm.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/transaction.dart';
+import 'package:my_finance_flutter/core/data_source/db/model/user.dart';
 
 part 'account.jorm.dart';
 
@@ -29,14 +29,20 @@ class Account {
 
   @HasMany(TransactionBean)
   List<Transaction> transactions;
+
+  @BelongsTo(UserBean, isNullable: false)
+  int userId;
 }
 
 @GenBean()
 class AccountBean extends Bean<Account> with _AccountBean {
   AccountBean(Adapter adapter) : super(adapter);
 
-  final String tableName = 'account';
+  final String tableName = 'accounts';
 
   @override
   TransactionBean get transactionBean => TransactionBean(adapter);
+
+  @override
+  UserBean get userBean => UserBean(adapter);
 }

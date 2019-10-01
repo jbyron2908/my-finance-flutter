@@ -11,14 +11,16 @@ class PostRepository {
 
   DatabaseClient _databaseClient;
 
+  PostBean get _postBean {
+    return _databaseClient.postBean;
+  }
+
   Future<void> savePost(
       String msg, double stars, bool read, DateTime at) async {
-    return await _databaseClient
-        .getPostBean()
-        .insert(Post.make(msg, stars, read, at));
+    return _postBean.insert(Post.make(msg, stars, read, at));
   }
 
   Future<List<Post>> readAllPost() async {
-    return await _databaseClient.getPostBean().getAll();
+    return await _postBean.getAll();
   }
 }
