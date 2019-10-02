@@ -8,10 +8,10 @@ part 'transaction.g.dart';
 part 'transaction.jorm.dart';
 
 @JsonSerializable()
-class Transaction {
-  Transaction();
+class TransactionEntity {
+  TransactionEntity();
 
-  Transaction.make(this.title, this.value, this.date);
+  TransactionEntity.make(this.title, this.value, this.date);
 
   @PrimaryKey(auto: true)
   int id;
@@ -37,33 +37,34 @@ class Transaction {
   @Column(isNullable: true)
   String description;
 
-  @BelongsTo(CategoryBean, isNullable: false)
+  @BelongsTo(CategoryEntityBean, isNullable: false)
   int category;
 
-  @BelongsTo(AccountBean, isNullable: false)
+  @BelongsTo(AccountEntityBean, isNullable: false)
   int account;
 
-  @BelongsTo(UserBean, isNullable: false)
+  @BelongsTo(UserEntityBean, isNullable: false)
   int user;
 
-  factory Transaction.fromJson(Map<String, dynamic> json) =>
-      _$TransactionFromJson(json);
+  factory TransactionEntity.fromJson(Map<String, dynamic> json) =>
+      _$TransactionEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TransactionToJson(this);
+  Map<String, dynamic> toJson() => _$TransactionEntityToJson(this);
 }
 
 @GenBean()
-class TransactionBean extends Bean<Transaction> with _TransactionBean {
-  TransactionBean(Adapter adapter) : super(adapter);
+class TransactionEntityBean extends Bean<TransactionEntity>
+    with _TransactionEntityBean {
+  TransactionEntityBean(Adapter adapter) : super(adapter);
 
   final String tableName = 'transactions';
 
   @override
-  AccountBean get accountBean => AccountBean(adapter);
+  AccountEntityBean get accountEntityBean => AccountEntityBean(adapter);
 
   @override
-  CategoryBean get categoryBean => CategoryBean(adapter);
+  CategoryEntityBean get categoryEntityBean => CategoryEntityBean(adapter);
 
   @override
-  UserBean get userBean => UserBean(adapter);
+  UserEntityBean get userEntityBean => UserEntityBean(adapter);
 }

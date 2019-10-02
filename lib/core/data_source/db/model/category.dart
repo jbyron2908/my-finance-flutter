@@ -7,10 +7,10 @@ part 'category.g.dart';
 part 'category.jorm.dart';
 
 @JsonSerializable()
-class Category {
-  Category();
+class CategoryEntity {
+  CategoryEntity();
 
-  Category.make(this.name);
+  CategoryEntity.make(this.name);
 
   @PrimaryKey(auto: true)
   int id;
@@ -21,36 +21,39 @@ class Category {
   @Column(isNullable: false)
   String name;
 
-  @HasOne(CategoryBean)
-  Category child;
+  @HasOne(CategoryEntityBean)
+  @JsonKey(ignore: true)
+  CategoryEntity child;
 
-  @BelongsTo(CategoryBean, isNullable: true)
+  @BelongsTo(CategoryEntityBean, isNullable: true)
   int parentId;
 
-  @HasMany(TransactionBean)
-  List<Transaction> transactions;
+  @HasMany(TransactionEntityBean)
+  @JsonKey(ignore: true)
+  List<TransactionEntity> transactions;
 
-  @BelongsTo(UserBean, isNullable: false)
+  @BelongsTo(UserEntityBean, isNullable: false)
   int user;
 
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+  factory CategoryEntity.fromJson(Map<String, dynamic> json) =>
+      _$CategoryEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CategoryToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryEntityToJson(this);
 }
 
 @GenBean()
-class CategoryBean extends Bean<Category> with _CategoryBean {
-  CategoryBean(Adapter adapter) : super(adapter);
+class CategoryEntityBean extends Bean<CategoryEntity> with _CategoryEntityBean {
+  CategoryEntityBean(Adapter adapter) : super(adapter);
 
   final String tableName = 'categories';
 
   @override
-  CategoryBean get categoryBean => CategoryBean(adapter);
+  CategoryEntityBean get categoryEntityBean => CategoryEntityBean(adapter);
 
   @override
-  TransactionBean get transactionBean => TransactionBean(adapter);
+  TransactionEntityBean get transactionEntityBean =>
+      TransactionEntityBean(adapter);
 
   @override
-  UserBean get userBean => UserBean(adapter);
+  UserEntityBean get userEntityBean => UserEntityBean(adapter);
 }

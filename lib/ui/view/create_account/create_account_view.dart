@@ -16,7 +16,8 @@ class _CreateAccountViewState extends State<CreateAccountView> {
       appBar: AppBar(
         title: Text("Create Account"),
       ),
-      body: CreateAccountForm(onSubmit: (model) => Log.i(model)),
+      body: CreateAccountForm(
+          onSubmit: (model) => Log.i("Account ${model.toJson()}")),
     );
   }
 }

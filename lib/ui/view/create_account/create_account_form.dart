@@ -4,9 +4,10 @@ import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class CreateAccountForm extends StatefulWidget {
-  CreateAccountForm({Function(Account account) onSubmit}) : onSubmit = onSubmit;
+  CreateAccountForm({Function(AccountEntity account) onSubmit})
+      : onSubmit = onSubmit;
 
-  final Function(Account account) onSubmit;
+  final Function(AccountEntity account) onSubmit;
 
   @override
   CreateAccountFormState createState() =>
@@ -14,11 +15,11 @@ class CreateAccountForm extends StatefulWidget {
 }
 
 class CreateAccountFormState extends State<CreateAccountForm> {
-  CreateAccountFormState({Function(Account account) onSubmit})
+  CreateAccountFormState({Function(AccountEntity account) onSubmit})
       : onSubmit = onSubmit;
 
-  final Function(Account account) onSubmit;
-  final Account account = Account();
+  final Function(AccountEntity account) onSubmit;
+  final AccountEntity account = AccountEntity();
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode nameNode = FocusNode();

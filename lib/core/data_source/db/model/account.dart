@@ -7,10 +7,10 @@ part 'account.g.dart';
 part 'account.jorm.dart';
 
 @JsonSerializable()
-class Account {
-  Account();
+class AccountEntity {
+  AccountEntity();
 
-  Account.make(this.name);
+  AccountEntity.make(this.name);
 
   @PrimaryKey(auto: true)
   int id;
@@ -30,27 +30,29 @@ class Account {
   @Column(isNullable: false)
   String currency = "\$";
 
-  @HasMany(TransactionBean)
-  List<Transaction> transactions;
+  @HasMany(TransactionEntityBean)
+  @JsonKey(ignore: true)
+  List<TransactionEntity> transactions;
 
-  @BelongsTo(UserBean, isNullable: false)
+  @BelongsTo(UserEntityBean, isNullable: false)
   int user;
 
-  factory Account.fromJson(Map<String, dynamic> json) =>
-      _$AccountFromJson(json);
+  factory AccountEntity.fromJson(Map<String, dynamic> json) =>
+      _$AccountEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AccountToJson(this);
+  Map<String, dynamic> toJson() => _$AccountEntityToJson(this);
 }
 
 @GenBean()
-class AccountBean extends Bean<Account> with _AccountBean {
-  AccountBean(Adapter adapter) : super(adapter);
+class AccountEntityBean extends Bean<AccountEntity> with _AccountEntityBean {
+  AccountEntityBean(Adapter adapter) : super(adapter);
 
   final String tableName = 'accounts';
 
   @override
-  TransactionBean get transactionBean => TransactionBean(adapter);
+  TransactionEntityBean get transactionEntityBean =>
+      TransactionEntityBean(adapter);
 
   @override
-  UserBean get userBean => UserBean(adapter);
+  UserEntityBean get userEntityBean => UserEntityBean(adapter);
 }

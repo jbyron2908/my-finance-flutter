@@ -11,10 +11,10 @@ class DatabaseClient {
   SqfliteAdapter _adapter;
 
   PostBean postBean;
-  UserBean userBean;
-  CategoryBean categoryBean;
-  TransactionBean transactionBean;
-  AccountBean accountBean;
+  UserEntityBean userBean;
+  CategoryEntityBean categoryBean;
+  TransactionEntityBean transactionBean;
+  AccountEntityBean accountBean;
 
   Future<void> setup() async {
     var dbPath = await getDatabasesPath();
@@ -27,20 +27,20 @@ class DatabaseClient {
     postBean = PostBean(_adapter);
     await postBean.createTable(ifNotExists: true);
 
-    transactionBean = TransactionBean(_adapter);
+    transactionBean = TransactionEntityBean(_adapter);
     await transactionBean.createTable(ifNotExists: true);
 
-    accountBean = AccountBean(_adapter);
+    accountBean = AccountEntityBean(_adapter);
     await accountBean.createTable(ifNotExists: true);
 
-    categoryBean = CategoryBean(_adapter);
+    categoryBean = CategoryEntityBean(_adapter);
     await categoryBean.createTable(ifNotExists: true);
 
-    userBean = UserBean(_adapter);
+    userBean = UserEntityBean(_adapter);
     await userBean.createTable(ifNotExists: true);
     var users = await userBean.getAll();
     if (users.isEmpty) {
-      await userBean.insert(User.make("Byron"));
+      await userBean.insert(UserEntity.make("Byron"));
     }
   }
 }
