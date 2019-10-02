@@ -1,9 +1,12 @@
 import 'package:jaguar_orm/jaguar_orm.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/transaction.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/user.dart';
 
+part 'category.g.dart';
 part 'category.jorm.dart';
 
+@JsonSerializable()
 class Category {
   Category();
 
@@ -28,7 +31,12 @@ class Category {
   List<Transaction> transactions;
 
   @BelongsTo(UserBean, isNullable: false)
-  int userId;
+  int user;
+
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CategoryToJson(this);
 }
 
 @GenBean()

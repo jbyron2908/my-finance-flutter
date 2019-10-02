@@ -42,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
 
   void _readUsers() async {
     var list = await _databaseClient.userBean.getAll();
-    list.forEach((user) => Log.i("${user.name} - ${user.id}"));
+    list.forEach((user) => Log.i("User: ${user.toJson()}"));
   }
 
   @override

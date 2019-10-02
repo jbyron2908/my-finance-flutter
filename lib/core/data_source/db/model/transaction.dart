@@ -1,10 +1,13 @@
 import 'package:jaguar_orm/jaguar_orm.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/category.dart';
 import 'package:my_finance_flutter/core/data_source/db/model/user.dart';
 
+part 'transaction.g.dart';
 part 'transaction.jorm.dart';
 
+@JsonSerializable()
 class Transaction {
   Transaction();
 
@@ -41,7 +44,12 @@ class Transaction {
   int account;
 
   @BelongsTo(UserBean, isNullable: false)
-  int userId;
+  int user;
+
+  factory Transaction.fromJson(Map<String, dynamic> json) =>
+      _$TransactionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TransactionToJson(this);
 }
 
 @GenBean()
