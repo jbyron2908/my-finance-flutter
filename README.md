@@ -55,3 +55,26 @@
     Model: Ui related data class
     Entity: Database related data class
     Domain: Api related data class
+
+### Provider Architecture
+
+    Global
+      DatabaseClient
+      ApiClient
+
+    DataSource
+      UserApi
+      CategoryApi
+      AccountApi
+      TransactionApi
+
+    AppState
+
+    Repository
+      UserRepository
+      CategoryRepository
+      AccountRepository
+      TransactionRepository
+
+    UI
+      CreateAccountViewModel
