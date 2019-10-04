@@ -3,7 +3,6 @@ import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
-import 'package:my_finance_flutter/core/provider/repository/post/post_repository.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:provider/provider.dart';
@@ -19,20 +18,10 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   GitRepoRepository _gitRepoRepository;
-  PostRepository _postRepository;
   DatabaseClient _databaseClient;
 
   void _goToCreateAccount() {
     AppRouter.navigateToCreateAccount(context);
-  }
-
-  void _insertPost() async {
-    await _postRepository.savePost("Pos", 10, true, DateTime.now());
-  }
-
-  void _readPosts() async {
-    var list = await _postRepository.readAllPost();
-    list.forEach((post) => Log.i(post.toString()));
   }
 
   void _getRepositoriesGraphqlQuery() async {
@@ -41,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _readUsers() async {
-    var list = await _databaseClient.userBean.getAll();
+    var list = await _databaseClient.userDao.getAll();
     list.forEach((user) => Log.i("User: ${user.toJson()}"));
   }
 
@@ -49,7 +38,6 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     I18n i18n = I18n.of(context);
     _gitRepoRepository = GitRepoRepository.of(context);
-    _postRepository = PostRepository.of(context);
     _databaseClient = Provider.of<DatabaseClient>(context);
 
     return Scaffold(
@@ -65,14 +53,6 @@ class _HomeViewState extends State<HomeView> {
             RaisedButton(
               child: Text("Create Account"),
               onPressed: _goToCreateAccount,
-            ),
-            RaisedButton(
-              child: Text("Insert post"),
-              onPressed: _insertPost,
-            ),
-            RaisedButton(
-              child: Text("Read posts"),
-              onPressed: _readPosts,
             ),
             RaisedButton(
               child: Text("Read users"),

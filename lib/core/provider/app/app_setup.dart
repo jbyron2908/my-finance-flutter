@@ -6,25 +6,10 @@ import 'package:provider/provider.dart';
 class AppSetup with ChangeNotifier {
   static AppSetup of(BuildContext context) => Provider.of<AppSetup>(context);
 
-  AppSetup(this._databaseClient) {
-    setupApp();
-  }
+  AppSetup(this._databaseClient);
 
   DatabaseClient _databaseClient;
 
-  bool busy = false;
-  bool initialized = false;
-
-  void setupApp() async {
-    if (!initialized) {
-      busy = true;
-      notifyListeners();
-
-      await _databaseClient.setup();
-      initialized = true;
-
-      busy = false;
-      notifyListeners();
-    }
-  }
+  bool busy = true;
+  bool initialized = true;
 }

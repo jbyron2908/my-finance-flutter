@@ -5,8 +5,7 @@ import 'package:my_finance_flutter/core/provider/app/app_setup.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
-import 'package:my_finance_flutter/core/provider/repository/post/post_repository.dart';
-import 'package:my_finance_flutter/core/provider/repository/transaction/transaction_repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/user/user_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -37,10 +36,6 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
     builder: (context, repositoryApi, gitRepoRepository) =>
         GitRepoRepository(repositoryApi),
   ),
-  ProxyProvider<DatabaseClient, PostRepository>(
-    builder: (context, databaseClient, postRepository) =>
-        PostRepository(databaseClient),
-  ),
   ProxyProvider<DatabaseClient, UserRepository>(
     builder: (context, databaseClient, postRepository) =>
         UserRepository(databaseClient),
@@ -53,9 +48,9 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
     builder: (context, databaseClient, postRepository) =>
         AccountRepository(databaseClient),
   ),
-  ProxyProvider<DatabaseClient, TransactionRepository>(
+  ProxyProvider<DatabaseClient, OperationRepository>(
     builder: (context, databaseClient, postRepository) =>
-        TransactionRepository(databaseClient),
+        OperationRepository(databaseClient),
   ),
 ];
 

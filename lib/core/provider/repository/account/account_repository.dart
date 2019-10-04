@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
 import 'package:provider/provider.dart';
 
 class AccountRepository {
@@ -11,15 +10,11 @@ class AccountRepository {
 
   DatabaseClient _databaseClient;
 
-  AccountEntityBean get _accountBean {
-    return _databaseClient.accountBean;
-  }
-
-  Future<AccountEntity> save(AccountEntity account) async {
-    return _accountBean.upsert(account);
+  Future<int> save(AccountEntity account) async {
+    return _databaseClient.accountDao.insert(account);
   }
 
   Future<List<AccountEntity>> readAll() async {
-    return await _accountBean.getAll();
+    return _databaseClient.accountDao.getAll();
   }
 }

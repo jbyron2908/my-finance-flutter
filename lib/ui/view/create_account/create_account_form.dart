@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
+import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class CreateAccountForm extends StatefulWidget {
@@ -19,7 +19,7 @@ class CreateAccountFormState extends State<CreateAccountForm> {
       : onSubmit = onSubmit;
 
   final Function(AccountEntity account) onSubmit;
-  final AccountEntity account = AccountEntity();
+  final AccountEntity account = AccountTableCompanion();
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode nameNode = FocusNode();
