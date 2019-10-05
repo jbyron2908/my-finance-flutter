@@ -19,7 +19,7 @@
 
     provider - Easy way to handle data for widgets
     graphql_flutter - Client for GraphQL
-    jaguar_orm - ORM for Sqflite
+    moor - ORM for Sqflite
     json_serializable - Serialize / Deserialize objects
 
 ## Instructions
@@ -31,11 +31,12 @@
     - flutter packages pub run build_runner build --delete-conflicting-outputs
       Generate .jorm (database) and .g (serializable) files
 
-### Jaguar ORM
+### Moor ORM
 
-    - Create entity
-    - Create bean
-    - Generate .jorm file
+    - Create table
+    - Create dao
+    - Create declare tables and daos in DatabaseClient
+    - Generate .g file
 
 ### Json Serializable
 
