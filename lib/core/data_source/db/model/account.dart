@@ -6,7 +6,6 @@ class AccountTable extends Table {
   IntColumn get remoteId => integer().nullable()();
   TextColumn get name => text()();
   TextColumn get type => text()();
-  IntColumn get initialValue => integer().nullable()();
+  RealColumn get initialValue => real().withDefault(Constant(0))();
   TextColumn get currency => text()();
-  IntColumn get user => integer()();
 }

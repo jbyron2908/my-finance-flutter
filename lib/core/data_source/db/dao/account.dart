@@ -11,8 +11,8 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
   // of this object.
   AccountDao(DatabaseClient db) : super(db);
 
-  Future<int> insert(AccountEntity accountEntity) {
-    return into(accountTable).insert(accountEntity);
+  Future<int> insert(AccountEntity entity) {
+    return into(accountTable).insert(entity);
   }
 
   Future<List<AccountEntity>> getAll() {

@@ -11,8 +11,8 @@ class CategoryDao extends DatabaseAccessor<DatabaseClient>
   // of this object.
   CategoryDao(DatabaseClient db) : super(db);
 
-  Future<int> insert(CategoryEntity categoryEntity) {
-    return into(categoryTable).insert(categoryEntity);
+  Future<int> insert(CategoryEntity entity) {
+    return into(categoryTable).insert(entity);
   }
 
   Future<List<CategoryEntity>> getAll() {

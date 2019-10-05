@@ -11,8 +11,8 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
   // of this object.
   OperationDao(DatabaseClient db) : super(db);
 
-  Future<int> insert(OperationEntity operationEntity) {
-    return into(operationTable).insert(operationEntity);
+  Future<int> insert(OperationEntity entity) {
+    return into(operationTable).insert(entity);
   }
 
   Future<List<OperationEntity>> getAll() {
