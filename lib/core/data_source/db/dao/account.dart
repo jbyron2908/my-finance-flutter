@@ -15,7 +15,7 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
     return into(accountTable).insert(entity);
   }
 
-  Future<List<AccountEntity>> getAll() {
-    return select(accountTable).get();
+  Stream<List<AccountEntity>> getAll() {
+    return select(accountTable).watch();
   }
 }

@@ -34,7 +34,11 @@ class AppRouter {
     Navigator.pushReplacementNamed(context, homePath);
   }
 
-  static void navigateToCreateAccount(BuildContext context) {
+  static void navigateToAccountCreate(BuildContext context) {
     Navigator.pushNamed(context, accountCreatePath);
+  }
+
+  static void navigateToAccountList(BuildContext context) {
+    Navigator.pushNamed(context, accountListPath);
   }
 }
