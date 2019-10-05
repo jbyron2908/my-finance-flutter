@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/view/create_account/create_account_view.dart';
+import 'package:my_finance_flutter/ui/view/account_create/account_create_view.dart';
+import 'package:my_finance_flutter/ui/view/account_list/account_list_view.dart';
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
 import 'package:my_finance_flutter/ui/view/splash/splash_view.dart';
 
 class AppRouter {
   static const splashPath = "/";
   static const homePath = "/home";
-  static const createAccountPath = "/createAccount";
+  static const accountCreatePath = "/accountCreate";
+  static const accountListPath = "/accountList";
 
   static Route generateRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -16,9 +18,12 @@ class AppRouter {
       case homePath:
         return MaterialPageRoute(
             builder: (context) => HomeView(), settings: routeSettings);
-      case createAccountPath:
+      case accountCreatePath:
         return MaterialPageRoute(
-            builder: (context) => CreateAccountView(), settings: routeSettings);
+            builder: (context) => AccountCreateView(), settings: routeSettings);
+      case accountListPath:
+        return MaterialPageRoute(
+            builder: (context) => AccountListView(), settings: routeSettings);
       default:
         return MaterialPageRoute(
             builder: (context) => HomeView(), settings: routeSettings);
@@ -30,6 +35,6 @@ class AppRouter {
   }
 
   static void navigateToCreateAccount(BuildContext context) {
-    Navigator.pushNamed(context, createAccountPath);
+    Navigator.pushNamed(context, accountCreatePath);
   }
 }

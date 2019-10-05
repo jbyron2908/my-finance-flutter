@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/provider/model/account.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
-class CreateAccountForm extends StatefulWidget {
-  CreateAccountForm({Function(AccountEntity account) onSubmit})
+class AccountCreateForm extends StatefulWidget {
+  AccountCreateForm({Function(AccountModel account) onSubmit})
       : onSubmit = onSubmit;
 
-  final Function(AccountEntity account) onSubmit;
+  final Function(AccountModel account) onSubmit;
 
   @override
-  CreateAccountFormState createState() =>
-      CreateAccountFormState(onSubmit: onSubmit);
+  AccountCreateFormState createState() =>
+      AccountCreateFormState(onSubmit: onSubmit);
 }
 
-class CreateAccountFormState extends State<CreateAccountForm> {
-  CreateAccountFormState({Function(AccountEntity account) onSubmit})
+class AccountCreateFormState extends State<AccountCreateForm> {
+  AccountCreateFormState({Function(AccountModel account) onSubmit})
       : onSubmit = onSubmit;
 
-  final Function(AccountEntity account) onSubmit;
-  final AccountEntity account = AccountTableCompanion();
+  final Function(AccountModel account) onSubmit;
+  final AccountModel account = AccountModel();
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode nameNode = FocusNode();
