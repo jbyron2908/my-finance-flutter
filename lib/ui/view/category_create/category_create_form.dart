@@ -78,12 +78,14 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
         ),
         onFieldSubmitted: (value) =>
             FocusScope.of(context).requestFocus(typeNode),
-        onSaved: (value) => setState(() => category.name = value),
+        onSaved: (value) => setState(
+          () => category.name = value,
+        ),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
         focusNode: typeNode,
-        keyboardType: TextInputType.text,
+        keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           hintText: "Parent",
@@ -93,7 +95,9 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
         ),
         onFieldSubmitted: (value) =>
             FocusScope.of(context).requestFocus(currencyNode),
-        // onSaved: (value) => setState(() => category.parent = value),
+        onSaved: (value) => setState(
+          () => category.parent = CategoryModel()..id = int.parse(value),
+        ),
       ),
     ];
   }

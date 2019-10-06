@@ -15,11 +15,11 @@ class CategoryRepository {
 
   Stream<List<CategoryEntity>> _categoryListStream;
   Stream<List<CategoryModel>> get categoryListStream => _categoryListStream.map(
-        (categoryEntityList) => categoryEntityList != null
-            ? categoryEntityList
-                .map((entity) => CategoryConverter.toModel(entity))
-                .toList()
-            : List(),
+        (categoryEntityList) => categoryEntityList
+            .map(
+              (entity) => CategoryConverter.toModel(entity),
+            )
+            .toList(),
       );
 
   Future<int> save(CategoryModel model) async {

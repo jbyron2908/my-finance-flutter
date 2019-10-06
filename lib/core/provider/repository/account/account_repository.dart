@@ -15,11 +15,11 @@ class AccountRepository {
 
   Stream<List<AccountEntity>> _accountListStream;
   Stream<List<AccountModel>> get accountListStream => _accountListStream.map(
-        (accountEntityList) => accountEntityList != null
-            ? accountEntityList
-                .map((entity) => AccountConverter.toModel(entity))
-                .toList()
-            : List(),
+        (accountEntityList) => accountEntityList
+            .map(
+              (entity) => AccountConverter.toModel(entity),
+            )
+            .toList(),
       );
 
   Future<int> save(AccountModel account) async {

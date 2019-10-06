@@ -23,7 +23,7 @@ class CategoryConverter {
     return CategoryEntity(
       id: model.id,
       name: model.name,
-      parent: model.parent ?? model.parent.id,
+      parent: model?.parent?.id,
       remoteId: model.remoteId,
     );
   }
