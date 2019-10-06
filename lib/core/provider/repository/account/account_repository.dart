@@ -23,7 +23,8 @@ class AccountRepository {
       );
 
   Future<int> save(AccountModel account) async {
-    return _databaseClient.accountDao
-        .insert(AccountConverter.toEntity(account));
+    return _databaseClient.accountDao.insert(
+      AccountConverter.toEntity(account),
+    );
   }
 }

@@ -15,7 +15,7 @@ class CategoryDao extends DatabaseAccessor<DatabaseClient>
     return into(categoryTable).insert(entity);
   }
 
-  Future<List<CategoryEntity>> getAll() {
-    return select(categoryTable).get();
+  Stream<List<CategoryEntity>> watchAll() {
+    return select(categoryTable).watch();
   }
 }
