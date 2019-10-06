@@ -13,14 +13,8 @@ class CategoryRepository {
 
   DatabaseClient _databaseClient;
 
-  Stream<List<CategoryEntity>> _categoryListStream;
-  Stream<List<CategoryModel>> get categoryListStream => _categoryListStream.map(
-        (categoryEntityList) => categoryEntityList
-            .map(
-              (entity) => CategoryConverter.toModel(entity),
-            )
-            .toList(),
-      );
+  Stream<List<CategoryModel>> _categoryListStream;
+  Stream<List<CategoryModel>> get categoryListStream => _categoryListStream;
 
   Future<int> save(CategoryModel model) async {
     return _databaseClient.categoryDao.insert(

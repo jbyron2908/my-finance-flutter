@@ -7,8 +7,6 @@ part 'operation_dao.g.dart';
 @UseDao(tables: [OperationTable])
 class OperationDao extends DatabaseAccessor<DatabaseClient>
     with _$OperationDaoMixin {
-  // this constructor is required so that the main database can create an instance
-  // of this object.
   OperationDao(DatabaseClient db) : super(db);
 
   Future<int> insert(OperationEntity entity) {

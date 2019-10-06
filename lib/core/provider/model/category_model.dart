@@ -28,10 +28,11 @@ class CategoryConverter {
     );
   }
 
-  static CategoryModel toModel(CategoryEntity entity) {
+  static CategoryModel toModel(CategoryEntity entity, {CategoryEntity parent}) {
     return CategoryModel()
       ..id = entity.id
       ..name = entity.name
+      ..parent = parent != null ? toModel(parent) : null
       ..remoteId = entity.remoteId;
   }
 }

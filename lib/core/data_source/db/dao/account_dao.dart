@@ -7,8 +7,6 @@ part 'account_dao.g.dart';
 @UseDao(tables: [AccountTable])
 class AccountDao extends DatabaseAccessor<DatabaseClient>
     with _$AccountDaoMixin {
-  // this constructor is required so that the main database can create an instance
-  // of this object.
   AccountDao(DatabaseClient db) : super(db);
 
   Future<int> insert(AccountEntity entity) {
