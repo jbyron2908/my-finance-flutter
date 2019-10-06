@@ -17,10 +17,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   GitRepoRepository _gitRepoRepository;
 
-  void _goToAccountCreate() {
-    AppRouter.navigateToAccountCreate(context);
-  }
-
   void _goToAccountList() {
     AppRouter.navigateToAccountList(context);
   }

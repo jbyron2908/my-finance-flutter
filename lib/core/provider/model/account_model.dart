@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 
-part 'account.g.dart';
+part 'account_model.g.dart';
 
 @JsonSerializable()
 class AccountModel {
@@ -30,5 +30,15 @@ class AccountConverter {
       initialValue: model.initialValue,
       remoteId: model.remoteId,
     );
+  }
+
+  static AccountModel toModel(AccountEntity entity) {
+    return AccountModel()
+      ..id = entity.id
+      ..name = entity.name
+      ..currency = entity.currency
+      ..type = entity.type
+      ..initialValue = entity.initialValue
+      ..remoteId = entity.remoteId;
   }
 }

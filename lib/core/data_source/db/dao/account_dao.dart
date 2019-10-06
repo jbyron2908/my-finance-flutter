@@ -1,8 +1,8 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/account_table.dart';
 
-part 'account.g.dart';
+part 'account_dao.g.dart';
 
 @UseDao(tables: [AccountTable])
 class AccountDao extends DatabaseAccessor<DatabaseClient>
@@ -15,7 +15,7 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
     return into(accountTable).insert(entity);
   }
 
-  Stream<List<AccountEntity>> getAll() {
+  Stream<List<AccountEntity>> watchAll() {
     return select(accountTable).watch();
   }
 }

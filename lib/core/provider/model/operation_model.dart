@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'operation.g.dart';
+part 'operation_model.g.dart';
 
 @JsonSerializable()
 class OperationModel {

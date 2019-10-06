@@ -1,10 +1,10 @@
 import 'package:moor_flutter/moor_flutter.dart';
-import 'package:my_finance_flutter/core/data_source/db/dao/account.dart';
-import 'package:my_finance_flutter/core/data_source/db/dao/category.dart';
-import 'package:my_finance_flutter/core/data_source/db/dao/operation.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/account.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/category.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/operation.dart';
+import 'package:my_finance_flutter/core/data_source/db/dao/account_dao.dart';
+import 'package:my_finance_flutter/core/data_source/db/dao/category_dao.dart';
+import 'package:my_finance_flutter/core/data_source/db/dao/operation_dao.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/category_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/operation_table.dart';
 
 part 'database_client.g.dart';
 

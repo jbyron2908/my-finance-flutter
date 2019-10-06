@@ -1,8 +1,8 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/db/model/category.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/category_table.dart';
 
-part 'category.g.dart';
+part 'category_dao.g.dart';
 
 @UseDao(tables: [CategoryTable])
 class CategoryDao extends DatabaseAccessor<DatabaseClient>
