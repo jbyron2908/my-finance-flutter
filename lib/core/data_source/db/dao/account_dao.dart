@@ -1,6 +1,7 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/db/table/account_table.dart';
+import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 
 part 'account_dao.g.dart';
 
@@ -13,7 +14,13 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
     return into(accountTable).insert(entity);
   }
 
-  Stream<List<AccountEntity>> watchAll() {
-    return select(accountTable).watch();
+  Stream<List<AccountModel>> watchAll() {
+    return select(accountTable).watch().map(
+          (rows) => rows
+              .map(
+                (entity) => AccountConverter.toModel(entity),
+              )
+              .toList(),
+        );
   }
 }

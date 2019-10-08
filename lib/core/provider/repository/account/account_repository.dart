@@ -13,14 +13,8 @@ class AccountRepository {
     _accountListStream = _databaseClient.accountDao.watchAll();
   }
 
-  Stream<List<AccountEntity>> _accountListStream;
-  Stream<List<AccountModel>> get accountListStream => _accountListStream.map(
-        (accountEntityList) => accountEntityList
-            .map(
-              (entity) => AccountConverter.toModel(entity),
-            )
-            .toList(),
-      );
+  Stream<List<AccountModel>> _accountListStream;
+  Stream<List<AccountModel>> get accountListStream => _accountListStream;
 
   Future<int> save(AccountModel account) async {
     return _databaseClient.accountDao.insert(

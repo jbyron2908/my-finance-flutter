@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
-import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:provider/provider.dart';
 
@@ -31,15 +30,10 @@ class CategoryListView extends StatelessWidget {
 class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var categoryRepository = CategoryRepository.of(context);
-    return StreamProvider<List<CategoryModel>>.value(
-      value: categoryRepository.categoryListStream,
-      initialData: List(),
-      child: Consumer<List<CategoryModel>>(
-        builder: (_, categoryList, child) => ListView.builder(
-          itemCount: categoryList.length,
-          itemBuilder: (context, index) => CategoryItem(categoryList[index]),
-        ),
+    return Consumer<List<CategoryModel>>(
+      builder: (_, categoryList, child) => ListView.builder(
+        itemCount: categoryList.length,
+        itemBuilder: (context, index) => CategoryItem(categoryList[index]),
       ),
     );
   }

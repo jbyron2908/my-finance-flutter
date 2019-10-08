@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/provider/app/app_setup.dart';
+import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
@@ -11,8 +14,7 @@ import 'package:provider/provider.dart';
 List<SingleChildCloneableWidget> appProviders = [
   ...globalDependencies,
   ...dataSourceDependecies,
-  ...repositoryDependecies,
-  ...uiConsumableProviders
+  ...repositoryDependecies
 ];
 
 List<SingleChildCloneableWidget> globalDependencies = [
@@ -49,4 +51,13 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
   ),
 ];
 
-List<SingleChildCloneableWidget> uiConsumableProviders = [];
+List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
+      StreamProvider<List<AccountModel>>.value(
+        value: AccountRepository.of(context).accountListStream,
+        initialData: List(),
+      ),
+      StreamProvider<List<CategoryModel>>.value(
+        value: CategoryRepository.of(context).categoryListStream,
+        initialData: List(),
+      ),
+    ];

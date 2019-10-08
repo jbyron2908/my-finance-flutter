@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
-import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:provider/provider.dart';
@@ -32,15 +31,10 @@ class AccountListView extends StatelessWidget {
 class AccountList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var accountRepository = AccountRepository.of(context);
-    return StreamProvider<List<AccountModel>>.value(
-      value: accountRepository.accountListStream,
-      initialData: List(),
-      child: Consumer<List<AccountModel>>(
-        builder: (_, accountList, child) => ListView.builder(
-          itemCount: accountList.length,
-          itemBuilder: (context, index) => AccountItem(accountList[index]),
-        ),
+    return Consumer<List<AccountModel>>(
+      builder: (_, accountList, child) => ListView.builder(
+        itemCount: accountList.length,
+        itemBuilder: (context, index) => AccountItem(accountList[index]),
       ),
     );
   }
