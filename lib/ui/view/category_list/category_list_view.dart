@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/shared/category/category_item.dart';
 import 'package:provider/provider.dart';
 
 class CategoryListView extends StatelessWidget {
@@ -13,7 +14,7 @@ class CategoryListView extends StatelessWidget {
         title: Text("Categories"),
       ),
       body: Container(
-        child: CategoryList(),
+        child: _CategoryList(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -27,35 +28,17 @@ class CategoryListView extends StatelessWidget {
   }
 }
 
-class CategoryList extends StatelessWidget {
+class _CategoryList extends StatelessWidget {
+  _CategoryList({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<List<CategoryModel>>(
       builder: (_, categoryList, child) => ListView.builder(
         itemCount: categoryList.length,
-        itemBuilder: (context, index) => CategoryItem(categoryList[index]),
-      ),
-    );
-  }
-}
-
-class CategoryItem extends StatelessWidget {
-  final CategoryModel category;
-  const CategoryItem(this.category);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            category.name,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
+        itemBuilder: (context, index) => CategoryItem(
+          category: categoryList[index],
+        ),
       ),
     );
   }
