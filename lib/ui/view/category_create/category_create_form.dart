@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class CategoryCreateForm extends StatefulWidget {
@@ -22,10 +23,7 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
   final CategoryModel category = CategoryModel();
   final _formKey = GlobalKey<FormState>();
 
-  final FocusNode nameNode = FocusNode();
-  final FocusNode typeNode = FocusNode();
-  final FocusNode currencyNode = FocusNode();
-  final FocusNode initialValueNode = FocusNode();
+  final TextEditingController _parentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +62,11 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
   }
 
   List<Widget> buildFormFields() {
+    _parentController.text =
+        (category?.parent == null) ? "Unknown" : category.parent.name;
+
     return <Widget>[
       TextFormField(
-        focusNode: nameNode,
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
@@ -76,15 +76,13 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) =>
-            FocusScope.of(context).requestFocus(typeNode),
         onSaved: (value) => setState(
           () => category.name = value,
         ),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
-        focusNode: typeNode,
+        controller: _parentController,
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -93,8 +91,17 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) =>
-            FocusScope.of(context).requestFocus(currencyNode),
+        onTap: () async {
+          CategoryModel categorySelected =
+              await AppRouter.navigateToCategorySelection(context);
+          setState(() {
+            category.parent = categorySelected;
+          });
+          category.parent = categorySelected;
+          if (categorySelected != null) {
+            _parentController.text = categorySelected.name;
+          }
+        },
         onSaved: (value) => setState(
           () => category.parent = CategoryModel()..id = int.parse(value),
         ),
