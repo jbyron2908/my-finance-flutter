@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/ui/view/account_create/account_create_view.dart';
 import 'package:my_finance_flutter/ui/view/account_list/account_list_view.dart';
+import 'package:my_finance_flutter/ui/view/account_selection/account_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/category_create/category_create_view.dart';
 import 'package:my_finance_flutter/ui/view/category_list/category_list_view.dart';
 import 'package:my_finance_flutter/ui/view/category_selection/category_selection_view.dart';
@@ -13,6 +15,7 @@ class AppRouter {
   static const homePath = "/home";
   static const accountCreatePath = "/accountCreate";
   static const accountListPath = "/accountList";
+  static const accountSelectionPath = "/accountSelection";
   static const categoryCreatePath = "/categoryCreate";
   static const categoryListPath = "/categoryList";
   static const categorySelectionPath = "/categorySelection";
@@ -37,6 +40,11 @@ class AppRouter {
       case accountListPath:
         return MaterialPageRoute(
           builder: (context) => AccountListView(),
+          settings: routeSettings,
+        );
+      case accountSelectionPath:
+        return MaterialPageRoute<AccountModel>(
+          builder: (context) => AccountSelectionView(),
           settings: routeSettings,
         );
       case categoryCreatePath:
@@ -72,6 +80,12 @@ class AppRouter {
 
   static void navigateToAccountList(BuildContext context) {
     Navigator.pushNamed(context, accountListPath);
+  }
+
+  static Future<AccountModel> navigateToAccountSelection(
+    BuildContext context,
+  ) {
+    return Navigator.pushNamed(context, accountSelectionPath);
   }
 
   static void navigateToCategoryCreate(BuildContext context) {

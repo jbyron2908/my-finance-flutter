@@ -4,14 +4,14 @@ import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/shared/account/account_item.dart';
 import 'package:provider/provider.dart';
 
-class AccountListView extends StatelessWidget {
-  AccountListView({Key key}) : super(key: key);
+class AccountSelectionView extends StatelessWidget {
+  AccountSelectionView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Accounts"),
+        title: Text("Select accounts"),
       ),
       body: Container(
         child: AccountList(),
@@ -34,7 +34,10 @@ class AccountList extends StatelessWidget {
     return Consumer<List<AccountModel>>(
       builder: (_, accountList, child) => ListView.builder(
         itemCount: accountList.length,
-        itemBuilder: (context, index) => AccountItem(accountList[index]),
+        itemBuilder: (context, index) => InkWell(
+          onTap: () => Navigator.pop(context, accountList[index]),
+          child: AccountItem(accountList[index]),
+        ),
       ),
     );
   }
