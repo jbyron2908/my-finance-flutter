@@ -25,6 +25,10 @@ class _HomeViewState extends State<HomeView> {
     AppRouter.navigateToCategoryList(context);
   }
 
+  void _goToOperationList() {
+    AppRouter.navigateToOperationList(context);
+  }
+
   void _getRepositoriesGraphqlQuery() async {
     var repositoryList = await _gitRepoRepository.getRepositoryList(2);
     repositoryList.forEach((item) => Log.i(item.toJson()));
@@ -52,6 +56,10 @@ class _HomeViewState extends State<HomeView> {
             RaisedButton(
               child: Text("List Categories"),
               onPressed: _goToCategoryList,
+            ),
+            RaisedButton(
+              child: Text("List Operations"),
+              onPressed: _goToOperationList,
             ),
             RaisedButton(
               child: Text("GraphQL Query"),

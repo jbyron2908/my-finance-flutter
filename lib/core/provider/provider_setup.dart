@@ -5,6 +5,7 @@ import 'package:my_finance_flutter/core/data_source/db/client/database_client.da
 import 'package:my_finance_flutter/core/provider/app/app_setup.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
@@ -58,6 +59,10 @@ List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
       ),
       StreamProvider<List<CategoryModel>>.value(
         value: CategoryRepository.of(context).categoryListStream,
+        initialData: List(),
+      ),
+      StreamProvider<List<OperationModel>>.value(
+        value: OperationRepository.of(context).operationListStream,
         initialData: List(),
       ),
     ];

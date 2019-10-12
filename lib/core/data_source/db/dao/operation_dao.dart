@@ -1,10 +1,13 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/table/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/table/operation_table.dart';
+import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 
 part 'operation_dao.g.dart';
 
-@UseDao(tables: [OperationTable])
+@UseDao(tables: [OperationTable, CategoryTable, AccountTable])
 class OperationDao extends DatabaseAccessor<DatabaseClient>
     with _$OperationDaoMixin {
   OperationDao(DatabaseClient db) : super(db);
@@ -13,7 +16,30 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
     return into(operationTable).insert(entity);
   }
 
-  Future<List<OperationEntity>> getAll() {
-    return select(operationTable).get();
+  Stream<List<OperationModel>> watchAll() {
+    final query = select(operationTable).join([
+      leftOuterJoin(
+        categoryTable,
+        categoryTable.id.equalsExp(
+          operationTable.category,
+        ),
+      ),
+      leftOuterJoin(
+        accountTable,
+        accountTable.id.equalsExp(operationTable.account),
+      ),
+    ]);
+
+    return query.watch().map((rows) {
+      return rows.map(
+        (resultRow) {
+          return OperationConverter.toModel(
+            resultRow.readTable(operationTable),
+            category: resultRow.readTable(categoryTable),
+            account: resultRow.readTable(accountTable),
+          );
+        },
+      ).toList();
+    });
   }
 }

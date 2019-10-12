@@ -22,10 +22,10 @@ class AccountCreateFormState extends State<AccountCreateForm> {
   final AccountModel account = AccountModel();
   final _formKey = GlobalKey<FormState>();
 
-  final FocusNode nameNode = FocusNode();
-  final FocusNode typeNode = FocusNode();
-  final FocusNode currencyNode = FocusNode();
-  final FocusNode initialValueNode = FocusNode();
+  final FocusNode _nameNode = FocusNode();
+  final FocusNode _typeNode = FocusNode();
+  final FocusNode _currencyNode = FocusNode();
+  final FocusNode _initialValueNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class AccountCreateFormState extends State<AccountCreateForm> {
   List<Widget> buildFormFields() {
     return <Widget>[
       TextFormField(
-        focusNode: nameNode,
+        focusNode: _nameNode,
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
@@ -76,13 +76,12 @@ class AccountCreateFormState extends State<AccountCreateForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) =>
-            FocusScope.of(context).requestFocus(typeNode),
+        onFieldSubmitted: (value) => _typeNode.requestFocus(),
         onSaved: (value) => setState(() => account.name = value),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
-        focusNode: typeNode,
+        focusNode: _typeNode,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -91,13 +90,12 @@ class AccountCreateFormState extends State<AccountCreateForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) =>
-            FocusScope.of(context).requestFocus(currencyNode),
+        onFieldSubmitted: (value) => _currencyNode.requestFocus(),
         onSaved: (value) => setState(() => account.type = value),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
-        focusNode: currencyNode,
+        focusNode: _currencyNode,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -106,13 +104,12 @@ class AccountCreateFormState extends State<AccountCreateForm> {
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) =>
-            FocusScope.of(context).requestFocus(initialValueNode),
+        onFieldSubmitted: (value) => _initialValueNode.requestFocus(),
         onSaved: (value) => setState(() => account.currency = value),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
-        focusNode: initialValueNode,
+        focusNode: _initialValueNode,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           hintText: "Initial value",
