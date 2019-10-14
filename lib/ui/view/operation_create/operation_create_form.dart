@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class OperationCreateForm extends StatefulWidget {
@@ -35,27 +38,33 @@ class OperationCreateFormState extends State<OperationCreateForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Form(
-          key: this._formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ...buildFormFields(),
-                UIHelper.verticalSpaceSmall,
-                RaisedButton(
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (_) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: SingleChildScrollView(
+        child: Container(
+          child: Form(
+            key: this._formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  ...buildFormFields(),
+                  UIHelper.verticalSpaceSmall,
+                  RaisedButton(
+                    child: Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      submit();
+                    },
+                    color: Colors.green,
                   ),
-                  onPressed: () {
-                    submit();
-                  },
-                  color: Colors.green,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -174,8 +183,10 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       UIHelper.verticalSpaceSmall,
       TextFormField(
         focusNode: _categoryNode,
+        controller: _categoryController,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
+        onTap: _selectCategory,
         decoration: InputDecoration(
           hintText: "Category",
           labelText: "Category",
@@ -186,8 +197,10 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       UIHelper.verticalSpaceSmall,
       TextFormField(
         focusNode: _accountNode,
+        controller: _accountController,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
+        onTap: _selectAccount,
         decoration: InputDecoration(
           hintText: "Account",
           labelText: "Account",
@@ -196,5 +209,21 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         ),
       ),
     ];
+  }
+
+  void _selectCategory() async {
+    CategoryModel categorySelected =
+        await AppRouter.navigateToCategorySelection(context);
+    setState(() {
+      operation.category = categorySelected;
+    });
+  }
+
+  void _selectAccount() async {
+    AccountModel accountSelected =
+        await AppRouter.navigateToAccountSelection(context);
+    setState(() {
+      operation.account = accountSelected;
+    });
   }
 }
