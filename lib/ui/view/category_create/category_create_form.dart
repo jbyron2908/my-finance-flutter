@@ -91,21 +91,16 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        onTap: () async {
-          CategoryModel categorySelected =
-              await AppRouter.navigateToCategorySelection(context);
-          setState(() {
-            category.parent = categorySelected;
-          });
-          category.parent = categorySelected;
-          if (categorySelected != null) {
-            _parentController.text = categorySelected.name;
-          }
-        },
-        onSaved: (value) => setState(
-          () => category.parent = CategoryModel()..id = int.parse(value),
-        ),
+        onTap: _selectCategory,
       ),
     ];
+  }
+
+  void _selectCategory() async {
+    CategoryModel categorySelected =
+        await AppRouter.navigateToCategorySelection(context);
+    setState(() {
+      category.parent = categorySelected;
+    });
   }
 }
