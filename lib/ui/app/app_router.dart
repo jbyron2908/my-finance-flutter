@@ -15,6 +15,9 @@ import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_view.
 import 'package:my_finance_flutter/ui/view/payee/payee_list/payee_list_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_selection/payee_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/splash/splash_view.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_create/tag_create_view.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_view.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_view.dart';
 
 class AppRouter {
   static const splashPath = "/";
@@ -28,6 +31,9 @@ class AppRouter {
   static const payeeCreatePath = "/payeeCreate";
   static const payeeListPath = "/payeeList";
   static const payeeSelectionPath = "/payeeSelection";
+  static const tagCreatePath = "/tagCreate";
+  static const tagListPath = "/tagList";
+  static const tagSelectionPath = "/tagSelection";
   static const operationCreatePath = "/operationCreate";
   static const operationListPath = "/operationList";
   static const operationSelectionPath = "/operationSelection";
@@ -87,6 +93,21 @@ class AppRouter {
       case payeeSelectionPath:
         return MaterialPageRoute<CategoryModel>(
           builder: (context) => PayeeSelectionView(),
+          settings: routeSettings,
+        );
+      case tagCreatePath:
+        return MaterialPageRoute(
+          builder: (context) => TagCreateView(),
+          settings: routeSettings,
+        );
+      case tagListPath:
+        return MaterialPageRoute(
+          builder: (context) => TagListView(),
+          settings: routeSettings,
+        );
+      case tagSelectionPath:
+        return MaterialPageRoute<CategoryModel>(
+          builder: (context) => TagSelectionView(),
           settings: routeSettings,
         );
       case operationCreatePath:
@@ -151,6 +172,20 @@ class AppRouter {
     BuildContext context,
   ) {
     return Navigator.pushNamed(context, payeeSelectionPath);
+  }
+
+  static void navigateToTagCreate(BuildContext context) {
+    Navigator.pushNamed(context, tagCreatePath);
+  }
+
+  static void navigateToTagList(BuildContext context) {
+    Navigator.pushNamed(context, tagListPath);
+  }
+
+  static Future<PayeeModel> navigateToTagSelection(
+    BuildContext context,
+  ) {
+    return Navigator.pushNamed(context, tagSelectionPath);
   }
 
   static void navigateToOperationCreate(BuildContext context) {
