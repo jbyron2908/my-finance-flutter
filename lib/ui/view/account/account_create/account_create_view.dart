@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
-import 'package:my_finance_flutter/ui/view/account_create/account_create_form.dart';
+import 'package:my_finance_flutter/ui/view/account/account_create/account_create_form.dart';
 
 class AccountCreateView extends StatelessWidget {
   AccountCreateView({Key key}) : super(key: key);

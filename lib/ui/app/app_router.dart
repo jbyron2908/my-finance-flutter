@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
-import 'package:my_finance_flutter/ui/view/account_create/account_create_view.dart';
-import 'package:my_finance_flutter/ui/view/account_list/account_list_view.dart';
-import 'package:my_finance_flutter/ui/view/account_selection/account_selection_view.dart';
-import 'package:my_finance_flutter/ui/view/category_create/category_create_view.dart';
-import 'package:my_finance_flutter/ui/view/category_list/category_list_view.dart';
-import 'package:my_finance_flutter/ui/view/category_selection/category_selection_view.dart';
+import 'package:my_finance_flutter/ui/view/account/account_create/account_create_view.dart';
+import 'package:my_finance_flutter/ui/view/account/account_list/account_list_view.dart';
+import 'package:my_finance_flutter/ui/view/account/account_selection/account_selection_view.dart';
+import 'package:my_finance_flutter/ui/view/category/category_create/category_create_view.dart';
+import 'package:my_finance_flutter/ui/view/category/category_list/category_list_view.dart';
+import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
-import 'package:my_finance_flutter/ui/view/operation_create/operation_create_view.dart';
-import 'package:my_finance_flutter/ui/view/operation_list/operation_list_view.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_create/operation_create_view.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_list/payee_list_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_selection/payee_selection_view.dart';
@@ -99,11 +99,6 @@ class AppRouter {
           builder: (context) => OperationListView(),
           settings: routeSettings,
         );
-      // case operationSelectionPath:
-      //   return MaterialPageRoute<OperationModel>(
-      //     builder: (context) => OperationSelectionView(),
-      //     settings: routeSettings,
-      //   );
       default:
         return MaterialPageRoute(
           builder: (context) => HomeView(),
