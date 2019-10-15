@@ -7,11 +7,13 @@ import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
+import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/tag/tag_repository.dart';
 import 'package:provider/provider.dart';
 
 List<SingleChildCloneableWidget> appProviders = [
@@ -56,6 +58,10 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
     builder: (context, databaseClient, postRepository) =>
         PayeeRepository(databaseClient),
   ),
+  ProxyProvider<DatabaseClient, TagRepository>(
+    builder: (context, databaseClient, postRepository) =>
+        TagRepository(databaseClient),
+  ),
 ];
 
 List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
@@ -73,6 +79,10 @@ List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
       ),
       StreamProvider<List<PayeeModel>>.value(
         value: PayeeRepository.of(context).payeeListStream,
+        initialData: List(),
+      ),
+      StreamProvider<List<TagModel>>.value(
+        value: TagRepository.of(context).tagListStream,
         initialData: List(),
       ),
     ];
