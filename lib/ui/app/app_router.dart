@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
 import 'package:my_finance_flutter/ui/view/account_create/account_create_view.dart';
 import 'package:my_finance_flutter/ui/view/account_list/account_list_view.dart';
 import 'package:my_finance_flutter/ui/view/account_selection/account_selection_view.dart';
@@ -10,6 +11,9 @@ import 'package:my_finance_flutter/ui/view/category_selection/category_selection
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
 import 'package:my_finance_flutter/ui/view/operation_create/operation_create_view.dart';
 import 'package:my_finance_flutter/ui/view/operation_list/operation_list_view.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_view.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_list/payee_list_view.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_selection/payee_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/splash/splash_view.dart';
 
 class AppRouter {
@@ -21,6 +25,9 @@ class AppRouter {
   static const categoryCreatePath = "/categoryCreate";
   static const categoryListPath = "/categoryList";
   static const categorySelectionPath = "/categorySelection";
+  static const payeeCreatePath = "/payeeCreate";
+  static const payeeListPath = "/payeeList";
+  static const payeeSelectionPath = "/payeeSelection";
   static const operationCreatePath = "/operationCreate";
   static const operationListPath = "/operationList";
   static const operationSelectionPath = "/operationSelection";
@@ -65,6 +72,21 @@ class AppRouter {
       case categorySelectionPath:
         return MaterialPageRoute<CategoryModel>(
           builder: (context) => CategorySelectionView(),
+          settings: routeSettings,
+        );
+      case payeeCreatePath:
+        return MaterialPageRoute(
+          builder: (context) => PayeeCreateView(),
+          settings: routeSettings,
+        );
+      case payeeListPath:
+        return MaterialPageRoute(
+          builder: (context) => PayeeListView(),
+          settings: routeSettings,
+        );
+      case payeeSelectionPath:
+        return MaterialPageRoute<CategoryModel>(
+          builder: (context) => PayeeSelectionView(),
           settings: routeSettings,
         );
       case operationCreatePath:
@@ -120,6 +142,20 @@ class AppRouter {
     BuildContext context,
   ) {
     return Navigator.pushNamed(context, categorySelectionPath);
+  }
+
+  static void navigateToPayeeCreate(BuildContext context) {
+    Navigator.pushNamed(context, payeeCreatePath);
+  }
+
+  static void navigateToPayeeList(BuildContext context) {
+    Navigator.pushNamed(context, payeeListPath);
+  }
+
+  static Future<PayeeModel> navigateToPayeeSelection(
+    BuildContext context,
+  ) {
+    return Navigator.pushNamed(context, payeeSelectionPath);
   }
 
   static void navigateToOperationCreate(BuildContext context) {
