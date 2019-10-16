@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
+import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
 import 'package:my_finance_flutter/ui/view/account/account_create/account_create_view.dart';
 import 'package:my_finance_flutter/ui/view/account/account_list/account_list_view.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/account_selection_view.dart';
@@ -91,7 +92,7 @@ class AppRouter {
           settings: routeSettings,
         );
       case payeeSelectionPath:
-        return MaterialPageRoute<CategoryModel>(
+        return MaterialPageRoute<PayeeModel>(
           builder: (context) => PayeeSelectionView(),
           settings: routeSettings,
         );
@@ -106,7 +107,7 @@ class AppRouter {
           settings: routeSettings,
         );
       case tagSelectionPath:
-        return MaterialPageRoute<CategoryModel>(
+        return MaterialPageRoute<List<TagModel>>(
           builder: (context) => TagSelectionView(),
           settings: routeSettings,
         );
@@ -182,7 +183,7 @@ class AppRouter {
     Navigator.pushNamed(context, tagListPath);
   }
 
-  static Future<PayeeModel> navigateToTagSelection(
+  static Future<List<TagModel>> navigateToTagSelection(
     BuildContext context,
   ) {
     return Navigator.pushNamed(context, tagSelectionPath);
