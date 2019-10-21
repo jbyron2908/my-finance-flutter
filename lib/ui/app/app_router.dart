@@ -10,6 +10,7 @@ import 'package:my_finance_flutter/ui/view/category/category_create/category_cre
 import 'package:my_finance_flutter/ui/view/category/category_list/category_list_view.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/import_csv_view.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/operation_create_view.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_view.dart';
@@ -38,6 +39,7 @@ class AppRouter {
   static const operationCreatePath = "/operationCreate";
   static const operationListPath = "/operationList";
   static const operationSelectionPath = "/operationSelection";
+  static const importCsvSelectionPath = "/importCsv";
 
   static Route generateRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -121,6 +123,11 @@ class AppRouter {
           builder: (context) => OperationListView(),
           settings: routeSettings,
         );
+      case importCsvSelectionPath:
+        return MaterialPageRoute(
+          builder: (context) => ImportCsvView(),
+          settings: routeSettings,
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => HomeView(),
@@ -195,5 +202,9 @@ class AppRouter {
 
   static void navigateToOperationList(BuildContext context) {
     Navigator.pushNamed(context, operationListPath);
+  }
+
+  static void navigateToImportCsv(BuildContext context) {
+    Navigator.pushNamed(context, importCsvSelectionPath);
   }
 }

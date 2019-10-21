@@ -42,6 +42,10 @@ class _HomeViewState extends State<HomeView> {
     Log.i(tagList);
   }
 
+  void _goToImportCsv() {
+    AppRouter.navigateToImportCsv(context);
+  }
+
   void _getRepositoriesGraphqlQuery() async {
     var repositoryList = await _gitRepoRepository.getRepositoryList(2);
     repositoryList.forEach((item) => Log.i(item.toJson()));
@@ -85,6 +89,10 @@ class _HomeViewState extends State<HomeView> {
             RaisedButton(
               child: Text("Select Tags"),
               onPressed: _goToTagListSelection,
+            ),
+            RaisedButton(
+              child: Text("Import CSV"),
+              onPressed: _goToImportCsv,
             ),
             RaisedButton(
               child: Text("GraphQL Query"),
