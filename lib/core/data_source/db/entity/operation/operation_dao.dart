@@ -1,8 +1,8 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/db/table/account_table.dart';
-import 'package:my_finance_flutter/core/data_source/db/table/category_table.dart';
-import 'package:my_finance_flutter/core/data_source/db/table/operation_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/account/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/category/category_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/operation/operation_table.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 
 part 'operation_dao.g.dart';

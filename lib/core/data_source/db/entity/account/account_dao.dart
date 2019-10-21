@@ -1,6 +1,6 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/db/table/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/account/account_table.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 
 part 'account_dao.g.dart';
