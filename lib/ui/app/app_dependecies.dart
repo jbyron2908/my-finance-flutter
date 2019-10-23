@@ -11,8 +11,8 @@ class AppDependencies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GlobalDependencies(
+    return GlobalDependencies(
+      child: DataDependencies(
         child: child,
       ),
     );
@@ -30,9 +30,7 @@ class GlobalDependencies extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: appProviders,
-      child: DataDependencies(
-        child: child,
-      ),
+      child: child,
     );
   }
 }
