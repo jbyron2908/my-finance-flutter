@@ -10,7 +10,7 @@ import 'package:my_finance_flutter/ui/view/category/category_create/category_cre
 import 'package:my_finance_flutter/ui/view/category/category_list/category_list_view.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/import_csv_view.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/form/import_form_view.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/operation_create_view.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_view.dart';
@@ -125,7 +125,7 @@ class AppRouter {
         );
       case importCsvSelectionPath:
         return MaterialPageRoute(
-          builder: (context) => ImportCsvView(),
+          builder: (context) => ImportCsvFormView(),
           settings: routeSettings,
         );
       default:
