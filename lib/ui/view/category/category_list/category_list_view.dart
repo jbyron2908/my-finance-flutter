@@ -14,7 +14,7 @@ class CategoryListView extends StatelessWidget {
         title: Text("Categories"),
       ),
       body: Container(
-        child: _CategoryList(),
+        child: CategoryList(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -28,18 +28,22 @@ class CategoryListView extends StatelessWidget {
   }
 }
 
-class _CategoryList extends StatelessWidget {
-  _CategoryList({Key key}) : super(key: key);
+class CategoryList extends StatelessWidget {
+  CategoryList({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Consumer<List<CategoryModel>>(
-      builder: (_, categoryList, child) => ListView.builder(
-        itemCount: categoryList.length,
-        itemBuilder: (context, index) => CategoryItem(
-          category: categoryList[index],
-        ),
-      ),
+      builder: (_, categoryList, child) {
+        return ListView.builder(
+          itemCount: categoryList.length,
+          itemBuilder: (context, index) {
+            return CategoryItem(
+              category: categoryList[index],
+            );
+          },
+        );
+      },
     );
   }
 }
