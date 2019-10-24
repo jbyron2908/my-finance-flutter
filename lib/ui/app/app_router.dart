@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
@@ -11,6 +13,8 @@ import 'package:my_finance_flutter/ui/view/category/category_list/category_list_
 import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_view.dart';
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/form/import_form_view.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/preview/import_preview_view.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/result/import_result_view.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/operation_create_view.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_view.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_view.dart';
@@ -39,7 +43,9 @@ class AppRouter {
   static const operationCreatePath = "/operationCreate";
   static const operationListPath = "/operationList";
   static const operationSelectionPath = "/operationSelection";
-  static const importCsvSelectionPath = "/importCsv";
+  static const importCsvFormPath = "/importCsv/form";
+  static const importCsvPreviewPath = "/importCsv/preview";
+  static const importCsvResultPath = "/importCsv/result";
 
   static Route generateRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -123,9 +129,26 @@ class AppRouter {
           builder: (context) => OperationListView(),
           settings: routeSettings,
         );
-      case importCsvSelectionPath:
+      case importCsvFormPath:
         return MaterialPageRoute(
           builder: (context) => ImportCsvFormView(),
+          settings: routeSettings,
+        );
+      case importCsvPreviewPath:
+        var arguments = routeSettings.arguments as Map;
+        File file = arguments['file'];
+        AccountModel account = arguments['account'];
+
+        return MaterialPageRoute(
+          builder: (context) => ImportCsvPreviewView(
+            account: account,
+            csvFile: file,
+          ),
+          settings: routeSettings,
+        );
+      case importCsvResultPath:
+        return MaterialPageRoute(
+          builder: (context) => ImportCsvResultView(),
           settings: routeSettings,
         );
       default:
@@ -204,7 +227,23 @@ class AppRouter {
     Navigator.pushNamed(context, operationListPath);
   }
 
-  static void navigateToImportCsv(BuildContext context) {
-    Navigator.pushNamed(context, importCsvSelectionPath);
+  static void navigateToImportCsvForm(BuildContext context) {
+    Navigator.pushNamed(context, importCsvFormPath);
+  }
+
+  static void navigateToImportCsvPreview(
+      BuildContext context, AccountModel account, File file) {
+    Navigator.pushNamed(
+      context,
+      importCsvPreviewPath,
+      arguments: {
+        'account': account,
+        'file': file,
+      },
+    );
+  }
+
+  static void navigateToImportCsvResult(BuildContext context) {
+    Navigator.pushNamed(context, importCsvResultPath);
   }
 }

@@ -1,19 +1,30 @@
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/csv_importer.dart';
+import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/preview/operation_preview_model.dart';
 
 class ImportCsvPreviewView extends StatefulWidget {
-  ImportCsvPreviewView({Key key}) : super(key: key);
+  ImportCsvPreviewView({Key key, this.csvFile, this.account}) : super(key: key);
+
+  final File csvFile;
+  final AccountModel account;
 
   @override
   _ImportCsvPreviewViewState createState() => _ImportCsvPreviewViewState();
 }
 
 class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
-  CsvImporter csvImporter = CsvImporter();
-  bool hasFile = false;
+  OperationPreviewModel operationPreview;
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    getPreview();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,58 +33,70 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
         title: Text("Import CSV"),
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            RaisedButton(
-              child: Text("Pick file"),
-              onPressed: _openFilePicker,
-            ),
-            ..._buildFileContainer(),
-          ],
-        ),
+        child: loading
+            ? Column(
+                children: <Widget>[
+                  CircularProgressIndicator(),
+                  Text("Loading"),
+                ],
+              )
+            : Column(
+                children: <Widget>[
+                  _buildFileContainer(),
+                  RaisedButton(
+                    child: Text("Submit"),
+                    onPressed: _submit,
+                  ),
+                ],
+              ),
       ),
     );
   }
 
-  List<Widget> _buildFileContainer() {
-    if (hasFile == true) {
-      final csvFile = csvImporter.csvFile;
-      final operationPreview = csvImporter.getPreview();
-
-      return [
-        Text("File: ${csvFile.path}"),
-        ListView(
-          children: [
-            Text("Title : ${operationPreview.title}"),
-            Text("Date : ${operationPreview.date}"),
-            Text("Value : ${operationPreview.value}"),
-            Text("Payee : ${operationPreview.payee}"),
-            Text("Category : ${operationPreview.parentCategory}"),
-            Text("Subcategory : ${operationPreview.subCategory}"),
-          ],
-        ),
-      ];
-    } else {
-      return List();
-    }
+  Widget _buildFileContainer() {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        Text("Title : ${operationPreview.title}"),
+        Text("Date : ${operationPreview.date}"),
+        Text("Value : ${operationPreview.value}"),
+        Text("Payee : ${operationPreview.payee}"),
+        Text("Category : ${operationPreview.parentCategory}"),
+        Text("Subcategory : ${operationPreview.subCategory}"),
+      ],
+    );
   }
 
-  void _openFilePicker() async {
-    final file = await FilePicker.getFile(fileExtension: "csv");
-    _setResultFile(file);
+  final dateColumn = 0;
+  final payeeColumn = 1;
+  final valueColumn = 2;
+  final parentCategoryColumn = 3;
+  final subCategoryColumn = 4;
+  final titleColumn = 6;
+
+  void getPreview() async {
+    var csvFields = await widget.csvFile
+        .openRead()
+        .transform(utf8.decoder)
+        .transform(CsvToListConverter(fieldDelimiter: ",", eol: "\n"))
+        .toList();
+
+    List<dynamic> firstRow = csvFields.first;
+
+    var preview = OperationPreviewModel(
+      date: firstRow[dateColumn],
+      value: firstRow[valueColumn],
+      title: firstRow[titleColumn],
+      payee: firstRow[payeeColumn],
+      parentCategory: firstRow[parentCategoryColumn],
+      subCategory: firstRow[subCategoryColumn],
+    );
+
+    setState(() {
+      loading = false;
+      operationPreview = preview;
+    });
   }
 
-  void _setResultFile(File file) {
-    if (file != null) {
-      setState(() {
-        csvImporter.setCsvFile(file);
-        hasFile = true;
-      });
-    } else {
-      setState(() {
-        csvImporter.setCsvFile(null);
-        hasFile = false;
-      });
-    }
-  }
+  void _submit() {}
 }

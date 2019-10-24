@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _goToImportCsv() {
-    AppRouter.navigateToImportCsv(context);
+    AppRouter.navigateToImportCsvForm(context);
   }
 
   void _getRepositoriesGraphqlQuery() async {

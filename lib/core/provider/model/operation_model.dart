@@ -18,7 +18,16 @@ class OperationModel {
   CategoryModel category;
   AccountModel account;
 
-  OperationModel();
+  OperationModel({
+    this.id,
+    this.remoteId,
+    this.title,
+    this.value,
+    this.type,
+    this.date,
+    this.state,
+    this.description,
+  });
 
   factory OperationModel.fromJson(Map<String, dynamic> json) =>
       _$OperationModelFromJson(json);

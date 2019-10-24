@@ -11,7 +11,7 @@ import 'package:path/path.dart' as path;
 class ImportCsvForm extends StatefulWidget {
   ImportCsvForm({this.onSubmit});
 
-  final Function(AccountModel account) onSubmit;
+  final Function(AccountModel account, File csvFile) onSubmit;
 
   @override
   ImportCsvFormState createState() => ImportCsvFormState(onSubmit: onSubmit);
@@ -20,7 +20,7 @@ class ImportCsvForm extends StatefulWidget {
 class ImportCsvFormState extends State<ImportCsvForm> {
   ImportCsvFormState({this.onSubmit});
 
-  final Function(AccountModel category) onSubmit;
+  final Function(AccountModel category, File csvFile) onSubmit;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -47,9 +47,7 @@ class ImportCsvFormState extends State<ImportCsvForm> {
                     'Submit',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {
-                    submit();
-                  },
+                  onPressed: submit,
                 ),
               ],
             ),
@@ -57,12 +55,6 @@ class ImportCsvFormState extends State<ImportCsvForm> {
         ),
       ),
     );
-  }
-
-  void submit() {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _formKey.currentState.save();
-    onSubmit(_account);
   }
 
   List<Widget> buildFormFields() {
@@ -112,5 +104,11 @@ class ImportCsvFormState extends State<ImportCsvForm> {
     setState(() {
       _account = accountSelected;
     });
+  }
+
+  void submit() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    _formKey.currentState.save();
+    onSubmit(_account, _file);
   }
 }
