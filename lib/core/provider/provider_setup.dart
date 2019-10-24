@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/provider/app/app_setup.dart';
+import 'package:my_finance_flutter/core/provider/app/app_state.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
@@ -25,8 +25,8 @@ List<SingleChildCloneableWidget> appProviders = [
 List<SingleChildCloneableWidget> globalDependencies = [
   Provider.value(value: ApiClient()),
   Provider.value(value: DatabaseClient()),
-  ChangeNotifierProxyProvider<DatabaseClient, AppSetup>(
-    builder: (context, databaseClient, appState) => AppSetup(databaseClient),
+  ChangeNotifierProxyProvider<DatabaseClient, AppState>(
+    builder: (context, databaseClient, appState) => AppState(databaseClient),
   )
 ];
 

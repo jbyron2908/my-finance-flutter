@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:provider/provider.dart';
 
-class AppSetup with ChangeNotifier {
-  static AppSetup of(BuildContext context) => Provider.of<AppSetup>(context);
+class AppState with ChangeNotifier {
+  static AppState of(BuildContext context) => Provider.of<AppState>(context);
 
-  AppSetup(this._databaseClient);
+  AppState(this._databaseClient);
 
   DatabaseClient _databaseClient;
 
