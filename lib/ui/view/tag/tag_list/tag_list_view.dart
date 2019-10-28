@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_create/tag_create_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/widgets/tag_item.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class TagListView extends StatelessWidget {
   }
 
   void _navigateToTagCreate(BuildContext context) {
-    AppRouter.navigateToTagCreate(context);
+    TagCreateRoute.navigateTo(context);
   }
 }
 

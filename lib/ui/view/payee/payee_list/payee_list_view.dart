@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/widgets/payee_item.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class PayeeListView extends StatelessWidget {
   }
 
   void _navigateToPayeeCreate(BuildContext context) {
-    AppRouter.navigateToPayeeCreate(context);
+    PayeeCreateRoute.navigateTo(context);
   }
 }
 

@@ -3,7 +3,13 @@ import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/view/account/account_list/account_list_route.dart';
+import 'package:my_finance_flutter/ui/view/category/category_list/category_list_route.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/form/import_form_route.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_route.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_list/payee_list_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_route.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key, this.title}) : super(key: key);
@@ -18,32 +24,32 @@ class _HomeViewState extends State<HomeView> {
   GitRepoRepository _gitRepoRepository;
 
   void _goToAccountList() {
-    AppRouter.navigateToAccountList(context);
+    AccountListRoute.navigateTo(context);
   }
 
   void _goToCategoryList() {
-    AppRouter.navigateToCategoryList(context);
+    CategoryListRoute.navigateTo(context);
   }
 
   void _goToOperationList() {
-    AppRouter.navigateToOperationList(context);
+    OperationListRoute.navigateTo(context);
   }
 
   void _goToPayeeList() {
-    AppRouter.navigateToPayeeList(context);
+    PayeeListRoute.navigateTo(context);
   }
 
   void _goToTagList() {
-    AppRouter.navigateToTagList(context);
+    TagListRoute.navigateTo(context);
   }
 
   Future _goToTagListSelection() async {
-    var tagList = await AppRouter.navigateToTagSelection(context);
+    var tagList = await TagSelectionRoute.navigateTo(context);
     Log.i(tagList);
   }
 
   void _goToImportCsv() {
-    AppRouter.navigateToImportCsvForm(context);
+    ImportCsvFormRoute.navigateTo(context);
   }
 
   void _getRepositoriesGraphqlQuery() async {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
+import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_route.dart';
 
 class CategoryCreateForm extends StatefulWidget {
   CategoryCreateForm({Function(CategoryModel category) onSubmit})
@@ -98,7 +98,7 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
 
   void _selectCategory() async {
     CategoryModel categorySelected =
-        await AppRouter.navigateToCategorySelection(context);
+        await CategorySelectionRoute.navigateTo(context);
     setState(() {
       category.parent = categorySelected;
     });

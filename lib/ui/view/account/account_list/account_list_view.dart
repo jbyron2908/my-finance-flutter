@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/view/account/account_create/account_create_route.dart';
 import 'package:my_finance_flutter/ui/view/account/widget/account_item.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class AccountListView extends StatelessWidget {
   }
 
   void _navigateToAccountCreate(BuildContext context) {
-    AppRouter.navigateToAccountCreate(context);
+    AccountCreateRoute.navigateTo(context);
   }
 }
 

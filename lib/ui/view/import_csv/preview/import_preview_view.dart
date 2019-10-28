@@ -9,6 +9,20 @@ import 'package:my_finance_flutter/ui/view/import_csv/preview/operation_preview_
 class ImportCsvPreviewView extends StatefulWidget {
   ImportCsvPreviewView({Key key, this.csvFile, this.account}) : super(key: key);
 
+  static MaterialPageRoute getRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as Map;
+    File file = arguments['file'];
+    AccountModel account = arguments['account'];
+
+    return MaterialPageRoute(
+      builder: (context) => ImportCsvPreviewView(
+        account: account,
+        csvFile: file,
+      ),
+      settings: routeSettings,
+    );
+  }
+
   final File csvFile;
   final AccountModel account;
 
