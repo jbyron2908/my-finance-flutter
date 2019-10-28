@@ -9,7 +9,11 @@ class PayeeModel {
   int remoteId;
   String name;
 
-  PayeeModel();
+  PayeeModel({
+    this.id,
+    this.remoteId,
+    this.name,
+  });
 
   factory PayeeModel.fromJson(Map<String, dynamic> json) =>
       _$PayeeModelFromJson(json);

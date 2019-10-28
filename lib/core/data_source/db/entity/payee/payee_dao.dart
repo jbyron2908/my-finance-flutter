@@ -13,6 +13,37 @@ class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
     return into(payeeTable).insert(entity);
   }
 
+  Future<List<PayeeModel>> getAll() async {
+    var payeeEntityList = await select(payeeTable).get();
+    return payeeEntityList.map((entity) {
+      return PayeeConverter.toModel(
+        entity,
+      );
+    }).toList();
+  }
+
+  Future<PayeeModel> getOrAdd(String payeeName) async {
+    var payeeEntity = await (select(payeeTable)
+          ..where(
+            (payee) => payee.name.equals(payeeName),
+          ))
+        .getSingle();
+
+    var payeeModel;
+    if (payeeEntity == null) {
+      payeeEntity = PayeeEntity(
+        id: null,
+        name: payeeName,
+      );
+
+      var id = await insert(payeeEntity);
+      payeeModel = PayeeModel(id: id, name: payeeName);
+    } else {
+      payeeModel = PayeeConverter.toModel(payeeEntity);
+    }
+    return payeeModel;
+  }
+
   Stream<List<PayeeModel>> watchAll() {
     return select(payeeTable).watch().map((rows) {
       return rows.map(

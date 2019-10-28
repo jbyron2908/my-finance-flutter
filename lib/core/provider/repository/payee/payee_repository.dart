@@ -16,6 +16,14 @@ class PayeeRepository {
   Stream<List<PayeeModel>> _payeeListStream;
   Stream<List<PayeeModel>> get payeeListStream => _payeeListStream;
 
+  Future<List<PayeeModel>> getAll() async {
+    return _databaseClient.payeeDao.getAll();
+  }
+
+  Future<PayeeModel> getOrAdd(String payeeName) async {
+    return _databaseClient.payeeDao.getOrAdd(payeeName);
+  }
+
   Future<int> save(PayeeModel model) async {
     return _databaseClient.payeeDao.insert(
       PayeeConverter.toEntity(model),

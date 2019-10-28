@@ -4,24 +4,12 @@ import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
+import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/operation_preview_model.dart';
 
 class ImportCsvPreviewView extends StatefulWidget {
   ImportCsvPreviewView({Key key, this.csvFile, this.account}) : super(key: key);
-
-  static MaterialPageRoute getRoute(RouteSettings routeSettings) {
-    var arguments = routeSettings.arguments as Map;
-    File file = arguments['file'];
-    AccountModel account = arguments['account'];
-
-    return MaterialPageRoute(
-      builder: (context) => ImportCsvPreviewView(
-        account: account,
-        csvFile: file,
-      ),
-      settings: routeSettings,
-    );
-  }
 
   final File csvFile;
   final AccountModel account;
@@ -33,6 +21,7 @@ class ImportCsvPreviewView extends StatefulWidget {
 class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
   OperationPreviewModel operationPreview;
   bool loading = true;
+  List<List<dynamic>> csvFields;
 
   @override
   void initState() {
@@ -89,7 +78,7 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
   final titleColumn = 6;
 
   void getPreview() async {
-    var csvFields = await widget.csvFile
+    csvFields = await widget.csvFile
         .openRead()
         .transform(utf8.decoder)
         .transform(CsvToListConverter(fieldDelimiter: ",", eol: "\n"))
@@ -97,14 +86,7 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
 
     List<dynamic> firstRow = csvFields.first;
 
-    var preview = OperationPreviewModel(
-      date: firstRow[dateColumn],
-      value: firstRow[valueColumn],
-      title: firstRow[titleColumn],
-      payee: firstRow[payeeColumn],
-      parentCategory: firstRow[parentCategoryColumn],
-      subCategory: firstRow[subCategoryColumn],
-    );
+    OperationPreviewModel preview = createPreview(firstRow);
 
     setState(() {
       loading = false;
@@ -112,5 +94,24 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
     });
   }
 
-  void _submit() {}
+  OperationPreviewModel createPreview(List row) {
+    var preview = OperationPreviewModel(
+      date: row[dateColumn],
+      value: row[valueColumn],
+      title: row[titleColumn],
+      payee: row[payeeColumn],
+      parentCategory: row[parentCategoryColumn],
+      subCategory: row[subCategoryColumn],
+    );
+    return preview;
+  }
+
+  void _submit() async {
+    var payeeRepository = PayeeRepository.of(context);
+
+    for (var row in csvFields) {
+      var preview = createPreview(row);
+      PayeeModel payee = await payeeRepository.getOrAdd(preview.payee);
+    }
+  }
 }
