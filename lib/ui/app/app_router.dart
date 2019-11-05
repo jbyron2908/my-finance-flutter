@@ -22,27 +22,6 @@ import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_route.dart';
 
 class AppRouter {
-  static const splashPath = "/";
-  static const homePath = "/home";
-  static const accountCreatePath = "/accountCreate";
-  static const accountListPath = "/accountList";
-  static const accountSelectionPath = "/accountSelection";
-  static const categoryCreatePath = "/categoryCreate";
-  static const categoryListPath = "/categoryList";
-  static const categorySelectionPath = "/categorySelection";
-  static const payeeCreatePath = "/payeeCreate";
-  static const payeeListPath = "/payeeList";
-  static const payeeSelectionPath = "/payeeSelection";
-  static const tagCreatePath = "/tagCreate";
-  static const tagListPath = "/tagList";
-  static const tagSelectionPath = "/tagSelection";
-  static const operationCreatePath = "/operationCreate";
-  static const operationListPath = "/operationList";
-  static const operationSelectionPath = "/operationSelection";
-  static const importCsvFormPath = "/importCsv/form";
-  static const importCsvPreviewPath = "/importCsv/preview";
-  static const importCsvResultPath = "/importCsv/result";
-
   static Map routes = HashMap.fromEntries(
     [
       SplashRoute.route,
