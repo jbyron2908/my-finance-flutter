@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/account/account_create/account_create_route.dart';
 import 'package:my_finance_flutter/ui/view/account/account_list/account_list_route.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/account_selection_route.dart';
@@ -26,9 +27,9 @@ class AppRouter {
     [
       SplashRoute.route,
       HomeRoute.route,
-      AccountCreateRoute.route,
-      AccountListRoute.route,
-      AccountSelectionRoute.route,
+      AccountCreateRoute().route,
+      AccountListRoute().route,
+      AccountSelectionRoute().route,
       CategoryCreateRoute.route,
       CategoryListRoute.route,
       CategorySelectionRoute.route,
@@ -49,5 +50,13 @@ class AppRouter {
   static Route generateRoutes(RouteSettings routeSettings) {
     Function(RouteSettings) routeGenerator = routes[routeSettings.name];
     return routeGenerator(routeSettings);
+  }
+
+  static Future<T> navigateTo<T>(BuildContext context, BaseRoute route) async {
+    return Navigator.pushNamed<T>(
+      context,
+      route.routePath,
+      arguments: route.arguments,
+    );
   }
 }

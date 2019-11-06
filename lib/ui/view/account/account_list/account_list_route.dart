@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/account/account_list/account_list_view.dart';
 
-class AccountListRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class AccountListRoute extends BaseRoute {
+  @override
+  String get routePath => "/account/list";
 
-  static String _routePath = "/account/list";
-
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (context) => AccountListView(),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-    );
-  }
+  @override
+  Object get arguments => null;
 }
