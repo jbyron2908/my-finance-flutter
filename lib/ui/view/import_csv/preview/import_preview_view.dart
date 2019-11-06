@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
@@ -112,6 +113,7 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
     for (var row in csvFields) {
       var preview = createPreview(row);
       PayeeModel payee = await payeeRepository.getOrAdd(preview.payee);
+      Log.i(payee.toJson());
     }
   }
 }

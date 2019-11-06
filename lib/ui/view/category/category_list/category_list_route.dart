@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/category/category_list/category_list_view.dart';
 
-class CategoryListRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class CategoryListRoute extends BaseRoute {
+  @override
+  String get routePath => "/category/list";
 
-  static String _routePath = "/category/list";
-
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (context) => CategoryListView(),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-    );
-  }
+  @override
+  Object get arguments => null;
 }

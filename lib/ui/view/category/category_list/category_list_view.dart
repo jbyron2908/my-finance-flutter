@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/view/category/category_create/category_create_route.dart';
 import 'package:my_finance_flutter/ui/view/category/widget/category_item.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class CategoryListView extends StatelessWidget {
   }
 
   void _navigateToCategoryCreate(BuildContext context) {
-    CategoryCreateRoute.navigateTo(context);
+    AppRouter.navigateTo(context, CategoryCreateRoute());
   }
 }
 

@@ -215,7 +215,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
 
   void _selectCategory() async {
     CategoryModel categorySelected =
-        await CategorySelectionRoute.navigateTo(context);
+        await AppRouter.navigateTo(context, CategorySelectionRoute());
     setState(() {
       operation.category = categorySelected;
     });

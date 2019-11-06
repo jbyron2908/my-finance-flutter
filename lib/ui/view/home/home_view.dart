@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _goToCategoryList() {
-    CategoryListRoute.navigateTo(context);
+    AppRouter.navigateTo(context, CategoryListRoute());
   }
 
   void _goToOperationList() {
