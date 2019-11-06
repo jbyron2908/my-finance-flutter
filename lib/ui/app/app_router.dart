@@ -26,7 +26,7 @@ class AppRouter {
   static Map routes = HashMap.fromEntries(
     [
       SplashRoute.route,
-      HomeRoute.route,
+      HomeRoute().route,
       AccountCreateRoute().route,
       AccountListRoute().route,
       AccountSelectionRoute().route,
@@ -52,8 +52,16 @@ class AppRouter {
     return routeGenerator(routeSettings);
   }
 
-  static Future<T> navigateTo<T>(BuildContext context, BaseRoute route) async {
+  static Future<T> navigateTo<T>(BuildContext context, BaseRoute route) {
     return Navigator.pushNamed<T>(
+      context,
+      route.routePath,
+      arguments: route.arguments,
+    );
+  }
+
+  static Future<T> replaceTo<T>(BuildContext context, BaseRoute route) {
+    return Navigator.pushReplacementNamed(
       context,
       route.routePath,
       arguments: route.arguments,

@@ -1,29 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/home/home_view.dart';
 
-class HomeRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class HomeRoute extends BaseRoute {
+  @override
+  String get routePath => "/home";
 
-  static String _routePath = "/home";
-
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (context) => HomeView(),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-    );
-  }
-
-  static void replaceTo(BuildContext context) {
-    Navigator.pushReplacementNamed(
-      context,
-      _routePath,
-    );
-  }
+  @override
+  Object get arguments => null;
 }
