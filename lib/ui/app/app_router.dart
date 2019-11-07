@@ -67,4 +67,8 @@ class AppRouter {
       arguments: route.arguments,
     );
   }
+
+  static void pop(BuildContext context) {
+    Navigator.of(context).pop();
+  }
 }
