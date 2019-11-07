@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_view.dart';
 
-class TagListRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class TagListRoute extends BaseRoute {
+  @override
+  String get routePath => "/tag/list";
 
-  static String _routePath = "/tag/list";
-
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (context) => TagListView(),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-    );
-  }
+  @override
+  Object get arguments => null;
 }

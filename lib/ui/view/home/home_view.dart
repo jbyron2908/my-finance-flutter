@@ -41,11 +41,11 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _goToTagList() {
-    TagListRoute.navigateTo(context);
+    AppRouter.navigateTo(context, TagListRoute());
   }
 
   Future _goToTagListSelection() async {
-    var tagList = await TagSelectionRoute.navigateTo(context);
+    var tagList = await AppRouter.navigateTo(context, TagSelectionRoute());
     Log.i(tagList);
   }
 
