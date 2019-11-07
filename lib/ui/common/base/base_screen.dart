@@ -23,7 +23,7 @@ class _BaseScreenState<T extends BaseBloc> extends State<BaseScreen> {
     return MultiProvider(
       providers: [
         Provider.value(value: bloc),
-        ...bloc.stateDependencies,
+        ...bloc.dependencies,
       ],
       child: widget.build(context),
     );
