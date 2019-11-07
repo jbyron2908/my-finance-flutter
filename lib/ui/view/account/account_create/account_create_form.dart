@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
+import 'package:my_finance_flutter/ui/view/account/account_create/account_create_bloc.dart';
 
 class AccountCreateForm extends StatefulWidget {
-  AccountCreateForm({Function(AccountModel account) onSubmit})
-      : onSubmit = onSubmit;
-
-  final Function(AccountModel account) onSubmit;
-
   @override
-  AccountCreateFormState createState() =>
-      AccountCreateFormState(onSubmit: onSubmit);
+  AccountCreateFormState createState() => AccountCreateFormState();
 }
 
 class AccountCreateFormState extends State<AccountCreateForm> {
-  AccountCreateFormState({Function(AccountModel account) onSubmit})
-      : onSubmit = onSubmit;
-
-  final Function(AccountModel account) onSubmit;
   final AccountModel account = AccountModel();
   final _formKey = GlobalKey<FormState>();
 
@@ -57,10 +49,11 @@ class AccountCreateFormState extends State<AccountCreateForm> {
     );
   }
 
-  void submit() {
+  void submit() async {
     FocusScope.of(context).requestFocus(FocusNode());
     _formKey.currentState.save();
-    onSubmit(account);
+    await AccountCreateBloc.of(context).saveAccount(account);
+    AppRouter.pop(context);
   }
 
   List<Widget> buildFormFields() {
