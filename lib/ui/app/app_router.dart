@@ -2,9 +2,9 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/base_router.dart';
-import 'package:my_finance_flutter/ui/view/account/account_create/account_create_route.dart';
-import 'package:my_finance_flutter/ui/view/account/account_list/account_list_route.dart';
-import 'package:my_finance_flutter/ui/view/account/account_selection/account_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/account/account_create/screen/account_create_route.dart';
+import 'package:my_finance_flutter/ui/view/account/account_list/screen/account_list_route.dart';
+import 'package:my_finance_flutter/ui/view/account/account_selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_create/category_create_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_list/category_list_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_route.dart';

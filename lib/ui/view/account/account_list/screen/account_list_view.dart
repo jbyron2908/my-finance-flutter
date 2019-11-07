@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
-import 'package:my_finance_flutter/ui/view/account/account_create/account_create_route.dart';
-import 'package:my_finance_flutter/ui/view/account/widget/account_item.dart';
-import 'package:provider/provider.dart';
+import 'package:my_finance_flutter/ui/common/base/base_screen.dart';
+import 'package:my_finance_flutter/ui/view/account/account_create/screen/account_create_route.dart';
+import 'package:my_finance_flutter/ui/view/account/account_list/screen/account_list_bloc.dart';
+import 'package:my_finance_flutter/ui/view/account/account_list/widget/account_list.dart';
 
-class AccountListView extends StatelessWidget {
+class AccountListView extends BaseScreen<AccountListBloc> {
   AccountListView({Key key}) : super(key: key);
 
   @override
@@ -27,16 +28,11 @@ class AccountListView extends StatelessWidget {
   void _navigateToAccountCreate(BuildContext context) {
     AppRouter.navigateTo(context, AccountCreateRoute());
   }
-}
 
-class AccountList extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Consumer<List<AccountModel>>(
-      builder: (_, accountList, child) => ListView.builder(
-        itemCount: accountList.length,
-        itemBuilder: (context, index) => AccountItem(accountList[index]),
-      ),
+  AccountListBloc buildBloc(BuildContext context) {
+    return AccountListBloc(
+      accountRepository: AccountRepository.of(context),
     );
   }
 }
