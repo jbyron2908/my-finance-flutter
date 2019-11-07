@@ -4,6 +4,12 @@ import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 import 'package:provider/provider.dart';
 
 class OperationRepository {
+  static SingleChildCloneableWidget buildProvider() =>
+      ProxyProvider<DatabaseClient, OperationRepository>(
+        builder: (context, databaseClient, postRepository) =>
+            OperationRepository(databaseClient),
+      );
+
   static OperationRepository of(BuildContext context) =>
       Provider.of<OperationRepository>(context);
 

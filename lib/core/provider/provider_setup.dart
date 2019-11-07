@@ -23,45 +23,22 @@ List<SingleChildCloneableWidget> appProviders = [
 ];
 
 List<SingleChildCloneableWidget> globalDependencies = [
-  Provider.value(value: ApiClient()),
-  Provider.value(value: DatabaseClient()),
-  ChangeNotifierProxyProvider<DatabaseClient, AppState>(
-    builder: (context, databaseClient, appState) => AppState(databaseClient),
-  )
+  ApiClient.buildProvider(),
+  DatabaseClient.buildProvider(),
+  AppState.buildProvider(),
 ];
 
 List<SingleChildCloneableWidget> dataSourceDependecies = [
-  ProxyProvider<ApiClient, RepositoryApi>(
-    builder: (context, apiClient, repositoryApi) =>
-        RepositoryApi(apiClient.graphqlClient),
-  ),
+  RepositoryApi.buildProvider(),
 ];
 
 List<SingleChildCloneableWidget> repositoryDependecies = [
-  ProxyProvider<RepositoryApi, GitRepoRepository>(
-    builder: (context, repositoryApi, gitRepoRepository) =>
-        GitRepoRepository(repositoryApi),
-  ),
-  ProxyProvider<DatabaseClient, CategoryRepository>(
-    builder: (context, databaseClient, postRepository) =>
-        CategoryRepository(databaseClient),
-  ),
-  ProxyProvider<DatabaseClient, AccountRepository>(
-    builder: (context, databaseClient, postRepository) =>
-        AccountRepository(databaseClient),
-  ),
-  ProxyProvider<DatabaseClient, OperationRepository>(
-    builder: (context, databaseClient, postRepository) =>
-        OperationRepository(databaseClient),
-  ),
-  ProxyProvider<DatabaseClient, PayeeRepository>(
-    builder: (context, databaseClient, postRepository) =>
-        PayeeRepository(databaseClient),
-  ),
-  ProxyProvider<DatabaseClient, TagRepository>(
-    builder: (context, databaseClient, postRepository) =>
-        TagRepository(databaseClient),
-  ),
+  GitRepoRepository.buildProvider(),
+  CategoryRepository.buildProvider(),
+  AccountRepository.buildProvider(),
+  OperationRepository.buildProvider(),
+  PayeeRepository.buildProvider(),
+  TagRepository.buildProvider(),
 ];
 
 List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [

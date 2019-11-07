@@ -4,6 +4,12 @@ import 'package:my_finance_flutter/core/data_source/api/repository/repository_ap
 import 'package:provider/provider.dart';
 
 class GitRepoRepository {
+  static SingleChildCloneableWidget buildProvider() =>
+      ProxyProvider<RepositoryApi, GitRepoRepository>(
+        builder: (context, repositoryApi, gitRepoRepository) =>
+            GitRepoRepository(repositoryApi),
+      );
+
   static GitRepoRepository of(BuildContext context) =>
       Provider.of<GitRepoRepository>(context);
 

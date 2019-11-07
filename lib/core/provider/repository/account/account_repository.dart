@@ -4,14 +4,14 @@ import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:provider/provider.dart';
 
 class AccountRepository {
-  static AccountRepository of(BuildContext context) =>
-      Provider.of<AccountRepository>(context);
-
   static SingleChildCloneableWidget buildProvider() =>
       ProxyProvider<DatabaseClient, AccountRepository>(
-        builder: (context, databaseClient, accountRepository) =>
+        builder: (context, databaseClient, postRepository) =>
             AccountRepository(databaseClient),
       );
+
+  static AccountRepository of(BuildContext context) =>
+      Provider.of<AccountRepository>(context);
 
   DatabaseClient _databaseClient;
 

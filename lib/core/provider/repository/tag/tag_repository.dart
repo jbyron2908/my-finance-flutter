@@ -4,6 +4,12 @@ import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
 import 'package:provider/provider.dart';
 
 class TagRepository {
+  static SingleChildCloneableWidget buildProvider() =>
+      ProxyProvider<DatabaseClient, TagRepository>(
+        builder: (context, databaseClient, postRepository) =>
+            TagRepository(databaseClient),
+      );
+
   static TagRepository of(BuildContext context) =>
       Provider.of<TagRepository>(context);
 

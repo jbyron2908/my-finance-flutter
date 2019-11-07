@@ -9,6 +9,7 @@ import 'package:my_finance_flutter/core/data_source/db/entity/payee/payee_dao.da
 import 'package:my_finance_flutter/core/data_source/db/entity/payee/payee_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/tag/tag_dao.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/tag/tag_table.dart';
+import 'package:provider/provider.dart';
 
 part 'database_client.g.dart';
 
@@ -17,6 +18,9 @@ part 'database_client.g.dart';
   daos: [CategoryDao, AccountDao, OperationDao, PayeeDao, TagDao],
 )
 class DatabaseClient extends _$DatabaseClient {
+  static SingleChildCloneableWidget buildProvider() =>
+      Provider.value(value: DatabaseClient());
+
   DatabaseClient()
       : super(FlutterQueryExecutor.inDatabaseFolder(path: 'db.sqlite'));
 

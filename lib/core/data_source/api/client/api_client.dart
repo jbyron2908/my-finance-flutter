@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
+import 'package:provider/provider.dart';
 
 class ApiClient {
+  static SingleChildCloneableWidget buildProvider() =>
+      Provider.value(value: ApiClient());
+
   static var _token = Flavor.values.githubToken;
 
   GraphQLClient get graphqlClient {

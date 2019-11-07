@@ -4,6 +4,12 @@ import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
 import 'package:provider/provider.dart';
 
 class PayeeRepository {
+  static SingleChildCloneableWidget buildProvider() =>
+      ProxyProvider<DatabaseClient, PayeeRepository>(
+        builder: (context, databaseClient, postRepository) =>
+            PayeeRepository(databaseClient),
+      );
+
   static PayeeRepository of(BuildContext context) =>
       Provider.of<PayeeRepository>(context);
 
