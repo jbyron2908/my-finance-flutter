@@ -37,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _goToPayeeList() {
-    PayeeListRoute.navigateTo(context);
+    AppRouter.navigateTo(context, PayeeListRoute());
   }
 
   void _goToTagList() {
