@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_view.dart';
 
-class OperationListRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class OperationListRoute extends BaseRoute {
+  @override
+  String get routePath => "/operation/list";
 
-  static String _routePath = "/operation/list";
-
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (context) => OperationListView(),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-    );
-  }
+  @override
+  Object get arguments => null;
 }
