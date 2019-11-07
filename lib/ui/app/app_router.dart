@@ -25,7 +25,7 @@ import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_route
 class AppRouter {
   static Map routes = HashMap.fromEntries(
     [
-      SplashRoute.route,
+      SplashRoute().route,
       HomeRoute().route,
       AccountCreateRoute().route,
       AccountListRoute().route,
