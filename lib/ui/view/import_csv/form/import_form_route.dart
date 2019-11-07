@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/form/import_form_view.dart';
 
-class ImportCsvFormRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class ImportCsvFormRoute extends BaseRoute {
+  @override
+  String get routePath => "/importCsv/form";
 
-  static String _routePath = "/importCsv/form";
-
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
       builder: (context) => ImportCsvFormView(),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(BuildContext context) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-    );
-  }
+  @override
+  Object get arguments => null;
 }

@@ -41,9 +41,9 @@ class AppRouter {
       TagSelectionRoute.route,
       OperationCreateRoute.route,
       OperationListRoute.route,
-      ImportCsvFormRoute.route,
-      ImportCsvPreviewRoute.route,
-      ImportCsvResultRoute.route,
+      ImportCsvFormRoute().route,
+      ImportCsvPreviewRoute().route,
+      ImportCsvResultRoute().route,
     ],
   );
 

@@ -2,40 +2,40 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/ui/common/base/base_router.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/import_preview_view.dart';
 
-class ImportCsvPreviewRoute {
-  static MapEntry get route => MapEntry(_routePath, _generateRoute);
+class ImportCsvPreviewRoute extends BaseRoute {
+  ImportCsvPreviewRouteArgs routeArguments;
 
-  static String _routePath = "/importCsv/preview";
+  ImportCsvPreviewRoute({this.routeArguments});
 
-  static String _accountArgument = 'account';
-  static String _fileArgument = 'file';
+  @override
+  String get routePath => "/importCsv/preview";
 
-  static MaterialPageRoute _generateRoute(RouteSettings routeSettings) {
-    var arguments = routeSettings.arguments as Map;
-
-    AccountModel account = arguments[_accountArgument];
-    File file = arguments[_fileArgument];
+  @override
+  MaterialPageRoute generateRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as ImportCsvPreviewRouteArgs;
 
     return MaterialPageRoute(
       builder: (context) => ImportCsvPreviewView(
-        account: account,
-        csvFile: file,
+        account: arguments.account,
+        csvFile: arguments.file,
       ),
       settings: routeSettings,
     );
   }
 
-  static void navigateTo(
-      BuildContext context, AccountModel account, File file) {
-    Navigator.pushNamed(
-      context,
-      _routePath,
-      arguments: {
-        _accountArgument: account,
-        _fileArgument: file,
-      },
-    );
-  }
+  @override
+  Object get arguments => this.routeArguments;
+}
+
+class ImportCsvPreviewRouteArgs {
+  ImportCsvPreviewRouteArgs({
+    this.account,
+    this.file,
+  });
+
+  AccountModel account;
+  File file;
 }

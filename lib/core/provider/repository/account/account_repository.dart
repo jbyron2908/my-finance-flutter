@@ -7,6 +7,12 @@ class AccountRepository {
   static AccountRepository of(BuildContext context) =>
       Provider.of<AccountRepository>(context);
 
+  static SingleChildCloneableWidget buildProvider() =>
+      ProxyProvider<DatabaseClient, AccountRepository>(
+        builder: (context, databaseClient, accountRepository) =>
+            AccountRepository(databaseClient),
+      );
+
   DatabaseClient _databaseClient;
 
   AccountRepository(this._databaseClient) {
