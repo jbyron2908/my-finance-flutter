@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/core/provider/repository/git_repo/git_reposit
 import 'package:my_finance_flutter/generated/i18n.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/view/account/account_list/screen/account_list_route.dart';
-import 'package:my_finance_flutter/ui/view/category/category_list/category_list_route.dart';
+import 'package:my_finance_flutter/ui/view/category/category_list/screen/category_list_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/form/import_form_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_list/payee_list_route.dart';

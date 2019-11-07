@@ -6,7 +6,7 @@ import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/screen/account_selection_route.dart';
-import 'package:my_finance_flutter/ui/view/category/category_selection/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
 
 class OperationCreateForm extends StatefulWidget {
   OperationCreateForm({Function(OperationModel operation) onSubmit})

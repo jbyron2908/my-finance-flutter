@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/base_router.dart';
-import 'package:my_finance_flutter/ui/view/category/category_list/category_list_view.dart';
+import 'package:my_finance_flutter/ui/view/category/category_create/screen/category_create_view.dart';
 
-class CategoryListRoute extends BaseRoute {
+class CategoryCreateRoute extends BaseRoute {
   @override
-  String get routePath => "/category/list";
+  String get routePath => "/category/create";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => CategoryListView(),
+      builder: (context) => CategoryCreateView(),
       settings: routeSettings,
     );
   }
