@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
-import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_form.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_create/widget/payee_create_form.dart';
 
 class PayeeCreateView extends StatelessWidget {
   PayeeCreateView({Key key}) : super(key: key);

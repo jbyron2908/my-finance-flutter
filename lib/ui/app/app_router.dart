@@ -14,9 +14,9 @@ import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_prev
 import 'package:my_finance_flutter/ui/view/import_csv/result/screen/import_result_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/screen/operation_list_route.dart';
-import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_route.dart';
-import 'package:my_finance_flutter/ui/view/payee/payee_list/payee_list_route.dart';
-import 'package:my_finance_flutter/ui/view/payee/payee_selection/payee_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_create/screen/payee_create_route.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_route.dart';
+import 'package:my_finance_flutter/ui/view/payee/payee_selection/screen/payee_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/splash/splash_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_create/tag_create_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_route.dart';
@@ -68,7 +68,7 @@ class AppRouter {
     );
   }
 
-  static void pop(BuildContext context) {
-    Navigator.of(context).pop();
+  static void pop(BuildContext context, {Object result}) {
+    Navigator.of(context).pop(result);
   }
 }
