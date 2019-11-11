@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
-import 'package:my_finance_flutter/ui/view/home/home_route.dart';
+import 'package:my_finance_flutter/ui/view/home/screen/home_route.dart';
 
 class SplashView extends StatelessWidget {
   @override
