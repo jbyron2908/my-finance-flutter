@@ -6,7 +6,7 @@ import 'package:my_finance_flutter/ui/common/base/base_screen.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_preview_bloc.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/widget/import_preview_view.dart';
 
-class ImportCsvPreviewScreen extends BaseScreen<ImportPreviewBloc> {
+class ImportCsvPreviewScreen extends BaseScreen<ImportCsvPreviewBloc> {
   ImportCsvPreviewScreen({Key key, this.csvFile, this.account})
       : super(key: key);
 
@@ -23,7 +23,7 @@ class ImportCsvPreviewScreen extends BaseScreen<ImportPreviewBloc> {
   }
 
   @override
-  ImportPreviewBloc buildBloc(BuildContext context) {
-    return ImportPreviewBloc();
+  ImportCsvPreviewBloc buildBloc(BuildContext context) {
+    return ImportCsvPreviewBloc();
   }
 }

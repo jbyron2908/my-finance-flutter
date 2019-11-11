@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/base_bloc.dart';
 import 'package:provider/src/provider.dart';
 
-class ImportFormBloc extends BaseBloc {
-  static ImportFormBloc of(BuildContext context) =>
-      Provider.of<ImportFormBloc>(context);
+class ImportCsvFormBloc extends BaseBloc {
+  static ImportCsvFormBloc of(BuildContext context) =>
+      Provider.of<ImportCsvFormBloc>(context);
 
-  ImportFormBloc();
+  ImportCsvFormBloc();
 
   @override
   List<SingleChildCloneableWidget> get dependencies => [];
