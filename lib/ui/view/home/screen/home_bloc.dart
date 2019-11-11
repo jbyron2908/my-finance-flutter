@@ -8,8 +8,8 @@ import 'package:my_finance_flutter/ui/view/category/category_list/screen/categor
 import 'package:my_finance_flutter/ui/view/import_csv/form/screen/import_form_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/screen/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_route.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_route.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_list/screen/tag_list_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_selection/screen/tag_selection_route.dart';
 import 'package:provider/src/provider.dart';
 
 class HomeBloc extends BaseBloc {

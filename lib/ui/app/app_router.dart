@@ -18,9 +18,9 @@ import 'package:my_finance_flutter/ui/view/payee/payee_create/screen/payee_creat
 import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_selection/screen/payee_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/splash/screen/splash_route.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_create/tag_create_route.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_list/tag_list_route.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_create/screen/tag_create_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_list/screen/tag_list_route.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_selection/screen/tag_selection_route.dart';
 
 class AppRouter {
   static Map routes = HashMap.fromEntries(

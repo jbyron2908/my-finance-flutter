@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/base_router.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_create/tag_create_view.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_create/screen/tag_create_screen.dart';
 
 class TagCreateRoute extends BaseRoute {
   @override
@@ -9,7 +9,7 @@ class TagCreateRoute extends BaseRoute {
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => TagCreateView(),
+      builder: (context) => TagCreateScreen(),
       settings: routeSettings,
     );
   }

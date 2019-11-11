@@ -5,30 +5,12 @@ import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/tag/widgets/tag_item.dart';
 import 'package:provider/provider.dart';
 
-class TagSelectionView extends StatelessWidget {
-  TagSelectionView({Key key}) : super(key: key);
-
+class TagSelection extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Select Tag"),
-      ),
-      body: Container(
-        child: _TagList(),
-      ),
-    );
-  }
+  _TagSelectionState createState() => _TagSelectionState();
 }
 
-class _TagList extends StatefulWidget {
-  _TagList({Key key}) : super(key: key);
-
-  @override
-  __TagListState createState() => __TagListState();
-}
-
-class __TagListState extends State<_TagList> {
+class _TagSelectionState extends State<TagSelection> {
   List<TagModel> selectedTagList = List();
 
   @override

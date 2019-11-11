@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
 import 'package:my_finance_flutter/ui/common/base/base_router.dart';
-import 'package:my_finance_flutter/ui/view/tag/tag_selection/tag_selection_view.dart';
+import 'package:my_finance_flutter/ui/view/tag/tag_selection/screen/tag_selection_screen.dart';
 
 class TagSelectionRoute extends BaseRoute {
   @override
@@ -10,7 +10,7 @@ class TagSelectionRoute extends BaseRoute {
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute<List<TagModel>>(
-      builder: (context) => TagSelectionView(),
+      builder: (context) => TagSelectionScreen(),
       settings: routeSettings,
     );
   }
