@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/ui/common/base/base_router.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/preview/import_preview_view.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_preview_screen.dart';
 
 class ImportCsvPreviewRoute extends BaseRoute {
   ImportCsvPreviewRouteArgs routeArguments;
@@ -18,7 +18,7 @@ class ImportCsvPreviewRoute extends BaseRoute {
     var arguments = routeSettings.arguments as ImportCsvPreviewRouteArgs;
 
     return MaterialPageRoute(
-      builder: (context) => ImportCsvPreviewView(
+      builder: (context) => ImportCsvPreviewScreen(
         account: arguments.account,
         csvFile: arguments.file,
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/form/widget/import_form.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/preview/import_preview_route.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_preview_route.dart';
 
 class ImportCsvFormView extends StatelessWidget {
   @override
