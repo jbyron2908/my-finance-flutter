@@ -9,7 +9,7 @@ import 'package:my_finance_flutter/ui/view/category/category_create/screen/categ
 import 'package:my_finance_flutter/ui/view/category/category_list/screen/category_list_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/home/screen/home_route.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/form/import_form_route.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/form/screen/import_form_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/import_preview_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/result/import_result_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/operation_create_route.dart';
