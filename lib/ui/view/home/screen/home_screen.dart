@@ -5,8 +5,6 @@ import 'package:my_finance_flutter/ui/view/home/screen/home_bloc.dart';
 import 'package:my_finance_flutter/ui/view/home/widget/home_view.dart';
 
 class HomeScreen extends BaseScreen<HomeBloc> {
-  HomeScreen({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return HomeView();
