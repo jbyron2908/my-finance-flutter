@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/base_router.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/result/import_result_view.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/result/screen/import_result_screen.dart';
 
 class ImportCsvResultRoute extends BaseRoute {
   @override
@@ -9,7 +9,7 @@ class ImportCsvResultRoute extends BaseRoute {
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => ImportCsvResultView(),
+      builder: (context) => ImportCsvResultScreen(),
       settings: routeSettings,
     );
   }

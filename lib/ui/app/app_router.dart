@@ -11,7 +11,7 @@ import 'package:my_finance_flutter/ui/view/category/category_selection/screen/ca
 import 'package:my_finance_flutter/ui/view/home/screen/home_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/form/screen/import_form_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_preview_route.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/result/import_result_route.dart';
+import 'package:my_finance_flutter/ui/view/import_csv/result/screen/import_result_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/operation_create_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/payee_create_route.dart';
