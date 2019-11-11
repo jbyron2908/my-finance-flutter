@@ -68,7 +68,7 @@ class AppRouter {
     );
   }
 
-  static void pop(BuildContext context, {Object result}) {
+  static void pop(BuildContext context, [Object result]) {
     Navigator.of(context).pop(result);
   }
 }
