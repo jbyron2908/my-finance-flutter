@@ -26,4 +26,8 @@ class OperationRepository {
     return _databaseClient.operationDao
         .insert(OperationConverter.toEntity(operation));
   }
+
+  Stream<List<OperationModel>> watchFilter(int accountId) {
+    return _databaseClient.operationDao.watchFilter(accountId);
+  }
 }

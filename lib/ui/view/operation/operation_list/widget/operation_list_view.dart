@@ -33,12 +33,18 @@ class _OperationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<List<OperationModel>>(
-      builder: (_, operationList, child) => ListView.builder(
-        itemCount: operationList.length,
-        itemBuilder: (context, index) => OperationItem(
-          operation: operationList[index],
-        ),
-      ),
+      builder: (_, operationList, child) {
+        if (operationList == null) {
+          return CircularProgressIndicator();
+        } else {
+          return ListView.builder(
+            itemCount: operationList.length,
+            itemBuilder: (context, index) => OperationItem(
+              operation: operationList[index],
+            ),
+          );
+        }
+      },
     );
   }
 }

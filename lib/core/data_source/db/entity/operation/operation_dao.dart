@@ -17,7 +17,21 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
   }
 
   Stream<List<OperationModel>> watchAll() {
-    final query = select(operationTable).join([
+    final query = _getOperationBasicQuery();
+
+    return _mapQueryToOperationModel(query);
+  }
+
+  Stream<List<OperationModel>> watchFilter(int accountId) {
+    final query = _getOperationBasicQuery();
+
+    query..where(accountTable.id.equals(accountId));
+
+    return _mapQueryToOperationModel(query);
+  }
+
+  JoinedSelectStatement _getOperationBasicQuery() {
+    return select(operationTable).join([
       leftOuterJoin(
         categoryTable,
         categoryTable.id.equalsExp(
@@ -29,7 +43,10 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
         accountTable.id.equalsExp(operationTable.account),
       ),
     ]);
+  }
 
+  Stream<List<OperationModel>> _mapQueryToOperationModel(
+      JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {
