@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
 
 part 'operation_model.g.dart';
 
@@ -17,6 +18,7 @@ class OperationModel {
   String description;
   CategoryModel category;
   AccountModel account;
+  ProfileModel profile;
 
   OperationModel({
     this.id,
@@ -47,12 +49,13 @@ class OperationConverter {
       description: model.description,
       category: model.category?.id,
       account: model.account?.id,
+      profile: model.profile?.id,
       remoteId: model.remoteId,
     );
   }
 
   static OperationModel toModel(OperationEntity entity,
-      {CategoryEntity category, AccountEntity account}) {
+      {CategoryEntity category, AccountEntity account, ProfileEntity profile}) {
     return OperationModel()
       ..id = entity.id
       ..title = entity.title
@@ -63,6 +66,7 @@ class OperationConverter {
       ..description = entity.description
       ..category = category != null ? CategoryConverter.toModel(category) : null
       ..account = account != null ? AccountConverter.toModel(account) : null
+      ..profile = profile != null ? ProfileConverter.toModel(profile) : null
       ..remoteId = entity.remoteId;
   }
 }

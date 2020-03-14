@@ -7,12 +7,14 @@ import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
+import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
 import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/tag/tag_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -42,6 +44,10 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
 ];
 
 List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
+      StreamProvider<List<ProfileModel>>.value(
+        value: ProfileRepository.of(context).profileListStream,
+        initialData: List(),
+      ),
       StreamProvider<List<AccountModel>>.value(
         value: AccountRepository.of(context).accountListStream,
         initialData: List(),

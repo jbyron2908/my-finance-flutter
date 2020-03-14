@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
 
 part 'account_model.g.dart';
 
@@ -11,6 +12,7 @@ class AccountModel {
   String type;
   double initialValue;
   String currency;
+  ProfileModel profile;
 
   AccountModel();
 
@@ -25,20 +27,20 @@ class AccountConverter {
     return AccountEntity(
       id: model.id,
       name: model.name,
-      currency: model.currency,
       type: model.type,
       initialValue: model.initialValue,
       remoteId: model.remoteId,
+      profile: model.profile?.id,
     );
   }
 
-  static AccountModel toModel(AccountEntity entity) {
+  static AccountModel toModel(AccountEntity entity, {ProfileEntity profile}) {
     return AccountModel()
       ..id = entity.id
       ..name = entity.name
-      ..currency = entity.currency
       ..type = entity.type
       ..initialValue = entity.initialValue
-      ..remoteId = entity.remoteId;
+      ..remoteId = entity.remoteId
+      ..profile = profile != null ? ProfileConverter.toModel(profile) : null;
   }
 }
