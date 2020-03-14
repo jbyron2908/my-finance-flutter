@@ -1,11 +1,12 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/account/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/profile/profile_table.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 
 part 'account_dao.g.dart';
 
-@UseDao(tables: [AccountTable])
+@UseDao(tables: [AccountTable, ProfileTable])
 class AccountDao extends DatabaseAccessor<DatabaseClient>
     with _$AccountDaoMixin {
   AccountDao(DatabaseClient db) : super(db);
@@ -15,12 +16,32 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
   }
 
   Stream<List<AccountModel>> watchAll() {
-    return select(accountTable).watch().map(
-          (rows) => rows
-              .map(
-                (entity) => AccountConverter.toModel(entity),
-              )
-              .toList(),
-        );
+    var query = _getAccountBasicQuery();
+    return _mapQueryToAccountModel(query);
+  }
+
+  JoinedSelectStatement _getAccountBasicQuery() {
+    return select(accountTable).join([
+      leftOuterJoin(
+        profileTable,
+        profileTable.id.equalsExp(
+          accountTable.profile,
+        ),
+      ),
+    ]);
+  }
+
+  Stream<List<AccountModel>> _mapQueryToAccountModel(
+      JoinedSelectStatement query) {
+    return query.watch().map((rows) {
+      return rows.map(
+        (resultRow) {
+          return AccountConverter.toModel(
+            resultRow.readTable(accountTable),
+            profile: resultRow.readTable(profileTable),
+          );
+        },
+      ).toList();
+    });
   }
 }

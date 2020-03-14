@@ -7,5 +7,5 @@ class AccountTable extends Table {
   TextColumn get name => text()();
   TextColumn get type => text()();
   RealColumn get initialValue => real().withDefault(Constant(0))();
-  TextColumn get currency => text()();
+  IntColumn get profile => integer()();
 }

@@ -12,4 +12,5 @@ class OperationTable extends Table {
   TextColumn get description => text()();
   IntColumn get category => integer()();
   IntColumn get account => integer()();
+  IntColumn get profile => integer()();
 }

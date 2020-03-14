@@ -3,11 +3,12 @@ import 'package:my_finance_flutter/core/data_source/db/client/database_client.da
 import 'package:my_finance_flutter/core/data_source/db/entity/account/account_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/operation/operation_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/profile/profile_table.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
 
 part 'operation_dao.g.dart';
 
-@UseDao(tables: [OperationTable, CategoryTable, AccountTable])
+@UseDao(tables: [OperationTable, CategoryTable, AccountTable, ProfileTable])
 class OperationDao extends DatabaseAccessor<DatabaseClient>
     with _$OperationDaoMixin {
   OperationDao(DatabaseClient db) : super(db);
@@ -37,6 +38,10 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
         categoryTable.id.equalsExp(
           operationTable.category,
         ),
+      ),
+      leftOuterJoin(
+        accountTable,
+        accountTable.id.equalsExp(operationTable.account),
       ),
       leftOuterJoin(
         accountTable,

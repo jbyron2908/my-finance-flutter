@@ -7,6 +7,8 @@ import 'package:my_finance_flutter/core/data_source/db/entity/operation/operatio
 import 'package:my_finance_flutter/core/data_source/db/entity/operation/operation_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/payee/payee_dao.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/payee/payee_table.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/profile/profile_dao.dart';
+import 'package:my_finance_flutter/core/data_source/db/entity/profile/profile_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/tag/tag_dao.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/tag/tag_table.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +16,22 @@ import 'package:provider/provider.dart';
 part 'database_client.g.dart';
 
 @UseMoor(
-  tables: [CategoryTable, AccountTable, OperationTable, PayeeTable, TagTable],
-  daos: [CategoryDao, AccountDao, OperationDao, PayeeDao, TagDao],
+  tables: [
+    ProfileTable,
+    AccountTable,
+    CategoryTable,
+    OperationTable,
+    PayeeTable,
+    TagTable,
+  ],
+  daos: [
+    ProfileDao,
+    AccountDao,
+    CategoryDao,
+    OperationDao,
+    PayeeDao,
+    TagDao,
+  ],
 )
 class DatabaseClient extends _$DatabaseClient {
   static SingleChildCloneableWidget buildProvider() =>
