@@ -44,8 +44,8 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
         accountTable.id.equalsExp(operationTable.account),
       ),
       leftOuterJoin(
-        accountTable,
-        accountTable.id.equalsExp(operationTable.account),
+        profileTable,
+        profileTable.id.equalsExp(operationTable.profile),
       ),
     ]);
   }

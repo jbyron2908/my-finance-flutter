@@ -20,6 +20,10 @@ class HomeView extends StatelessWidget {
             Text(i18n.greetTo("Flutter")),
             Text(Flavor.type.toString()),
             RaisedButton(
+              child: Text("List Profiles"),
+              onPressed: () => bloc.goToProfileList(context),
+            ),
+            RaisedButton(
               child: Text("List Accounts"),
               onPressed: () => bloc.goToAccountList(context),
             ),

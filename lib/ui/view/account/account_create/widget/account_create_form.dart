@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/account/account_create/screen/account_create_bloc.dart';
+import 'package:my_finance_flutter/ui/view/profile/profile_selection/screen/profile_selection_route.dart';
 
 class AccountCreateForm extends StatefulWidget {
   @override
@@ -16,8 +18,10 @@ class AccountCreateFormState extends State<AccountCreateForm> {
 
   final FocusNode _nameNode = FocusNode();
   final FocusNode _typeNode = FocusNode();
-  final FocusNode _currencyNode = FocusNode();
   final FocusNode _initialValueNode = FocusNode();
+
+  FocusNode _profileNode = FocusNode();
+  TextEditingController _profileController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,9 @@ class AccountCreateFormState extends State<AccountCreateForm> {
   }
 
   List<Widget> buildFormFields() {
+    _profileController.text =
+        (account?.profile == null) ? "Unknown" : account.profile.name;
+
     return <Widget>[
       TextFormField(
         focusNode: _nameNode,
@@ -83,22 +90,8 @@ class AccountCreateFormState extends State<AccountCreateForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => _currencyNode.requestFocus(),
-        onSaved: (value) => setState(() => account.type = value),
-      ),
-      UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _currencyNode,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText: "Currency",
-          labelText: "Currency",
-          prefixIcon: Icon(Icons.monetization_on),
-          border: OutlineInputBorder(),
-        ),
         onFieldSubmitted: (value) => _initialValueNode.requestFocus(),
-        onSaved: (value) => setState(() => account.currency = value),
+        onSaved: (value) => setState(() => account.type = value),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -114,6 +107,28 @@ class AccountCreateFormState extends State<AccountCreateForm> {
         onSaved: (value) =>
             setState(() => account.initialValue = double.parse(value)),
       ),
+      UIHelper.verticalSpaceSmall,
+      TextFormField(
+        focusNode: _profileNode,
+        controller: _profileController,
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
+        onTap: _selectProfile,
+        decoration: InputDecoration(
+          hintText: "Profile",
+          labelText: "Profile",
+          prefixIcon: Icon(Icons.person),
+          border: OutlineInputBorder(),
+        ),
+      ),
     ];
+  }
+
+  void _selectProfile() async {
+    ProfileModel profileSelected =
+        await AppRouter.navigateTo(context, ProfileSelectionRoute());
+    setState(() {
+      account.profile = profileSelected;
+    });
   }
 }

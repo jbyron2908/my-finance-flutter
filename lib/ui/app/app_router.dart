@@ -17,6 +17,9 @@ import 'package:my_finance_flutter/ui/view/operation/operation_list/screen/opera
 import 'package:my_finance_flutter/ui/view/payee/payee_create/screen/payee_create_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_selection/screen/payee_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/profile/profile_create/screen/profile_create_route.dart';
+import 'package:my_finance_flutter/ui/view/profile/profile_list/screen/profile_list_route.dart';
+import 'package:my_finance_flutter/ui/view/profile/profile_selection/screen/profile_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/splash/screen/splash_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_create/screen/tag_create_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_list/screen/tag_list_route.dart';
@@ -27,6 +30,9 @@ class AppRouter {
     [
       SplashRoute().route,
       HomeRoute().route,
+      ProfileCreateRoute().route,
+      ProfileListRoute().route,
+      ProfileSelectionRoute().route,
       AccountCreateRoute().route,
       AccountListRoute().route,
       AccountSelectionRoute().route,

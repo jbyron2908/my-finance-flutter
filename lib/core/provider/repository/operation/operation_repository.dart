@@ -23,6 +23,7 @@ class OperationRepository {
   DatabaseClient _databaseClient;
 
   Future<int> save(OperationModel operation) async {
+    operation.profile = operation.account.profile;
     return _databaseClient.operationDao
         .insert(OperationConverter.toEntity(operation));
   }

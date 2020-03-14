@@ -8,6 +8,7 @@ import 'package:my_finance_flutter/ui/view/category/category_list/screen/categor
 import 'package:my_finance_flutter/ui/view/import_csv/form/screen/import_form_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/screen/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_route.dart';
+import 'package:my_finance_flutter/ui/view/profile/profile_list/screen/profile_list_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_list/screen/tag_list_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_selection/screen/tag_selection_route.dart';
 import 'package:provider/src/provider.dart';
@@ -20,6 +21,10 @@ class HomeBloc extends BaseBloc {
   });
 
   final GitRepoRepository gitRepoRepository;
+
+  void goToProfileList(BuildContext context) {
+    AppRouter.navigateTo(context, ProfileListRoute());
+  }
 
   void goToAccountList(BuildContext context) {
     AppRouter.navigateTo(context, AccountListRoute());

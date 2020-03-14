@@ -36,8 +36,9 @@ List<SingleChildCloneableWidget> dataSourceDependecies = [
 
 List<SingleChildCloneableWidget> repositoryDependecies = [
   GitRepoRepository.buildProvider(),
-  CategoryRepository.buildProvider(),
+  ProfileRepository.buildProvider(),
   AccountRepository.buildProvider(),
+  CategoryRepository.buildProvider(),
   OperationRepository.buildProvider(),
   PayeeRepository.buildProvider(),
   TagRepository.buildProvider(),
