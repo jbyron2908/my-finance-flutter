@@ -7,6 +7,7 @@ class TabItem {
     this.iconData,
     this.activeColor = Colors.blue,
     this.rootPath,
+    this.defaultTab = false,
   });
 
   final String id;
@@ -14,6 +15,7 @@ class TabItem {
   final String rootPath;
   final IconData iconData;
   final Color activeColor;
+  final bool defaultTab;
   final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
 }
 
