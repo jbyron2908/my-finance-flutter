@@ -13,9 +13,5 @@ class OperationListBloc extends BaseBloc {
   OperationListBloc({this.operationRepository});
 
   @override
-  List<SingleChildCloneableWidget> get dependencies => [
-        StreamProvider.value(
-          value: operationRepository.watchFilter(1),
-        )
-      ];
+  List<SingleChildCloneableWidget> get dependencies => [];
 }

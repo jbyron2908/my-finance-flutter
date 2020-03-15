@@ -60,12 +60,15 @@ class TagCreateFormState extends State<TagCreateForm> {
       TextFormField(
         autofocus: true,
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: "Name",
           labelText: "Name",
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
+          FocusNode(),
         ),
         onSaved: (value) => setState(
           () => tag.name = value,

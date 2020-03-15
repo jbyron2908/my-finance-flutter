@@ -62,12 +62,15 @@ class PayeeCreateFormState extends State<PayeeCreateForm> {
       TextFormField(
         autofocus: true,
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: "Name",
           labelText: "Name",
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
+          FocusNode(),
         ),
         onSaved: (value) => setState(
           () => payee.name = value,

@@ -4,6 +4,7 @@ import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
 class CategoryCreateForm extends StatefulWidget {
   CategoryCreateForm({Function(CategoryModel category) onSubmit})
@@ -23,8 +24,6 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
   final Function(CategoryModel category) onSubmit;
   final CategoryModel category = CategoryModel();
   final _formKey = GlobalKey<FormState>();
-
-  final TextEditingController _parentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,35 +62,31 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
   }
 
   List<Widget> buildFormFields() {
-    _parentController.text =
-        (category?.parent == null) ? "Unknown" : category.parent.name;
-
     return <Widget>[
       TextFormField(
         autofocus: true,
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: "Name",
           labelText: "Name",
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
+        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
+          FocusNode(),
+        ),
         onSaved: (value) => setState(
           () => category.name = value,
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        controller: _parentController,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText: "Parent",
-          labelText: "Parent",
-          prefixIcon: Icon(Icons.category),
-          border: OutlineInputBorder(),
+      FormFieldDecorator(
+        text: Text(
+          (category?.parent == null) ? "Unknown" : category.parent.name,
         ),
+        labelText: "Parent",
+        prefixIcon: Icon(Icons.category),
         onTap: _selectCategory,
       ),
     ];

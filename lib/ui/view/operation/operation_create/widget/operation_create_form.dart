@@ -7,6 +7,7 @@ import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
 class OperationCreateForm extends StatefulWidget {
   OperationCreateForm({Function(OperationModel operation) onSubmit})
@@ -32,11 +33,6 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   final FocusNode _dateNode = FocusNode();
   final FocusNode _stateNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
-  final FocusNode _categoryNode = FocusNode();
-  final FocusNode _accountNode = FocusNode();
-
-  final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _accountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +77,6 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   }
 
   List<Widget> buildFormFields() {
-    _categoryController.text =
-        (operation?.category == null) ? "Unknown" : operation.category.name;
-    _accountController.text =
-        (operation?.account == null) ? "Unknown" : operation.account.name;
-
     return <Widget>[
       TextFormField(
         autofocus: true,
@@ -170,45 +161,37 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       TextFormField(
         focusNode: _descriptionNode,
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: "Description",
           labelText: "Description",
           prefixIcon: Icon(Icons.calendar_today),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => _categoryNode.requestFocus(),
+        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
+          FocusNode(),
+        ),
         onSaved: (value) => setState(
           () => operation.description = value,
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _categoryNode,
-        controller: _categoryController,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        onTap: _selectCategory,
-        decoration: InputDecoration(
-          hintText: "Category",
-          labelText: "Category",
-          prefixIcon: Icon(Icons.calendar_today),
-          border: OutlineInputBorder(),
+      FormFieldDecorator(
+        text: Text(
+          (operation?.category == null) ? "Unknown" : operation.category.name,
         ),
+        labelText: "Category",
+        prefixIcon: Icon(Icons.category),
+        onTap: _selectCategory,
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _accountNode,
-        controller: _accountController,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        onTap: _selectAccount,
-        decoration: InputDecoration(
-          hintText: "Account",
-          labelText: "Account",
-          prefixIcon: Icon(Icons.calendar_today),
-          border: OutlineInputBorder(),
+      FormFieldDecorator(
+        text: Text(
+          (operation?.account == null) ? "Unknown" : operation.account.name,
         ),
+        labelText: "Account",
+        prefixIcon: Icon(Icons.category),
+        onTap: _selectAccount,
       ),
     ];
   }
