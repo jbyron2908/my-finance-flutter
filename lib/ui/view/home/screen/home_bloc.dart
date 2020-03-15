@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/base_bloc.dart';
 import 'package:my_finance_flutter/ui/view/account/account_list/screen/account_list_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_list/screen/category_list_route.dart';

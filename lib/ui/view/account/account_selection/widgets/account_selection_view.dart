@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/view/account/account_create/screen/account_create_route.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/widgets/account_selection.dart';
 

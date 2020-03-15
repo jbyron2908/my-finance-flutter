@@ -12,6 +12,7 @@ import 'package:my_finance_flutter/ui/view/home/screen/home_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/form/screen/import_form_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_preview_route.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/result/screen/import_result_route.dart';
+import 'package:my_finance_flutter/ui/view/main/screen/main_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/screen/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/screen/payee_create_route.dart';
@@ -30,6 +31,7 @@ class AppRouter {
     [
       SplashRoute().route,
       HomeRoute().route,
+      MainRoute().route,
       ProfileCreateRoute().route,
       ProfileListRoute().route,
       ProfileSelectionRoute().route,
@@ -55,7 +57,11 @@ class AppRouter {
 
   static Route generateRoutes(RouteSettings routeSettings) {
     Function(RouteSettings) routeGenerator = routes[routeSettings.name];
-    return routeGenerator(routeSettings);
+    if (routeGenerator != null) {
+      return routeGenerator(routeSettings);
+    } else {
+      return null;
+    }
   }
 
   static Future<T> navigateTo<T>(BuildContext context, BaseRoute route) {

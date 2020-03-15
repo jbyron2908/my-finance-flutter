@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/view/category/category_create/screen/category_create_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_list/widget/category_list.dart';
 
