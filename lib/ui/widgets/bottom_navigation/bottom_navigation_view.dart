@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/bottom_navigation/bottom_navigation.dart';
+import 'package:my_finance_flutter/ui/widgets/bottom_navigation/bottom_navigation.dart';
 
 class BottomNavigationView extends StatefulWidget {
   BottomNavigationView({

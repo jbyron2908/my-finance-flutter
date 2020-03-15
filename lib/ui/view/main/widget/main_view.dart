@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
-import 'package:my_finance_flutter/ui/common/bottom_navigation/bottom_navigation.dart';
-import 'package:my_finance_flutter/ui/common/bottom_navigation/bottom_navigation_view.dart';
 import 'package:my_finance_flutter/ui/view/home/screen/home_route.dart';
 import 'package:my_finance_flutter/ui/view/profile/profile_list/screen/profile_list_route.dart';
+import 'package:my_finance_flutter/ui/widgets/bottom_navigation/bottom_navigation.dart';
+import 'package:my_finance_flutter/ui/widgets/bottom_navigation/bottom_navigation_view.dart';
 
 class MainView extends StatelessWidget {
   @override
