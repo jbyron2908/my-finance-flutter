@@ -7,25 +7,17 @@ import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_bloc.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
 class OperationCreateForm extends StatefulWidget {
-  OperationCreateForm({Function(OperationModel operation) onSubmit})
-      : onSubmit = onSubmit;
-
-  final Function(OperationModel operation) onSubmit;
-
   @override
-  OperationCreateFormState createState() =>
-      OperationCreateFormState(onSubmit: onSubmit);
+  OperationCreateFormState createState() => OperationCreateFormState();
 }
 
 class OperationCreateFormState extends State<OperationCreateForm> {
-  OperationCreateFormState({Function(OperationModel operation) onSubmit})
-      : onSubmit = onSubmit;
+  OperationModel get operation => OperationCreateBloc.of(context).operation;
 
-  final Function(OperationModel operation) onSubmit;
-  final OperationModel operation = OperationModel();
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode _valueNode = FocusNode();
@@ -36,44 +28,28 @@ class OperationCreateFormState extends State<OperationCreateForm> {
 
   @override
   Widget build(BuildContext context) {
+    OperationCreateBloc.of(context).formKey = _formKey;
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
+        // Hide keyboard when scroll
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: SingleChildScrollView(
-        child: Container(
-          child: Form(
-            key: this._formKey,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  ...buildFormFields(),
-                  UIHelper.verticalSpaceSmall,
-                  RaisedButton(
-                    child: Text(
-                      'Save',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      submit();
-                    },
-                    color: Colors.green,
-                  ),
-                ],
-              ),
+        child: Form(
+          key: this._formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                ...buildFormFields(),
+              ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  void submit() {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _formKey.currentState.save();
-    onSubmit(operation);
   }
 
   List<Widget> buildFormFields() {
