@@ -11,26 +11,22 @@ class BottomNavigationView extends StatefulWidget {
   final Route Function(RouteSettings routeSettings) routeGenerator;
 
   @override
-  State<StatefulWidget> createState() => _BottomNavigationViewState(
-        tabList: tabList,
-        routeGenerator: routeGenerator,
-      );
+  State<StatefulWidget> createState() => _BottomNavigationViewState();
 }
 
 class _BottomNavigationViewState extends State<BottomNavigationView> {
-  _BottomNavigationViewState({
-    this.tabList,
-    this.routeGenerator,
-  });
+  _BottomNavigationViewState();
 
-  final List<TabItem> tabList;
-  final Route Function(RouteSettings routeSettings) routeGenerator;
+  List<TabItem> tabList;
+  Route Function(RouteSettings routeSettings) routeGenerator;
 
   TabItem _defaultTab;
   TabItem _currentTab;
 
   @override
   void initState() {
+    tabList = widget.tabList;
+    routeGenerator = widget.routeGenerator;
     _defaultTab = tabList.firstWhere(
       (tabItem) => tabItem.defaultTab,
       orElse: () => tabList.first,
