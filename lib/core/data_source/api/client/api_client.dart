@@ -25,7 +25,7 @@ class ApiClient {
   final AuthLink _authLink = AuthLink(getToken: () => "Bearer $_token");
 
   void _setup() {
-    var link = _authLink.concat(_httpLink as Link);
+    var link = _authLink.concat(_httpLink);
     _clientValueNotifier = ValueNotifier(GraphQLClient(
       cache: InMemoryCache(),
       link: link,

@@ -17,10 +17,11 @@ class RepositoryApi {
 
   Future<List<Repository>> getRepositories(int limit) async {
     var queryResult = await _client.query(QueryOptions(
-        document: getRepositoriesQuery,
-        variables: <String, dynamic>{
-          'limit': limit,
-        }));
+      documentNode: gql(getRepositoriesQuery),
+      variables: <String, dynamic>{
+        'limit': limit,
+      },
+    ));
 
     var list = queryResult.data["viewer"]["repositories"]["nodes"] as List;
     return list.map((item) => Repository.fromJson(item)).toList();

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation_type_model.dart';
+import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_bloc.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
@@ -18,8 +21,6 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode _valueNode = FocusNode();
-  final FocusNode _typeNode = FocusNode();
-  final FocusNode _dateNode = FocusNode();
   final FocusNode _stateNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
 
@@ -80,42 +81,29 @@ class OperationCreateFormState extends State<OperationCreateForm> {
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => _typeNode.requestFocus(),
         onSaved: (value) => setState(
           () => operation.value = double.parse(value),
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _typeNode,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText: "Type",
-          labelText: "Type",
-          prefixIcon: Icon(Icons.menu),
-          border: OutlineInputBorder(),
+      FormFieldDecorator(
+        text: Text(
+          (operation?.type == null) ? "Unknown" : operation.type.title,
         ),
-        onFieldSubmitted: (value) => _dateNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => operation.type = value,
-        ),
+        labelText: "Type",
+        prefixIcon: Icon(Icons.menu),
+        onTap: _selectOperationType,
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _dateNode,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText: "Date",
-          labelText: "Date",
-          prefixIcon: Icon(Icons.calendar_today),
-          border: OutlineInputBorder(),
+      FormFieldDecorator(
+        text: Text(
+          (operation?.date == null)
+              ? "Unknown"
+              : DateFormat("dd/MM/yyy mm:ss").format(operation.date),
         ),
-        onFieldSubmitted: (value) => _stateNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => operation.date = value,
-        ),
+        labelText: "Date",
+        prefixIcon: Icon(Icons.calendar_today),
+        onTap: _selectDate,
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -170,6 +158,27 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         onTap: _selectAccount,
       ),
     ];
+  }
+
+  _selectDate() async {
+    var date = await showDatePicker(
+      context: context,
+      initialDate: DateUtil.today(),
+      firstDate: DateTime(1990),
+      lastDate: DateTime(2050),
+    );
+    if (date != null) {
+      setState(() {
+        operation.date = date;
+      });
+    }
+  }
+
+  void _selectOperationType() async {
+    OperationTypeModel operationType = await bloc.selectOperationType();
+    setState(() {
+      operation.type = operationType;
+    });
   }
 
   void _selectCategory() async {

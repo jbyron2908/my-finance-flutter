@@ -1,4 +1,4 @@
-class StringsUtil {
+class StringUtil {
   static enumName(String value) {
     return value.toString().substring(value.toString().indexOf('.') + 1);
   }

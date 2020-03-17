@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation_type_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/base_bloc.dart';
 import 'package:my_finance_flutter/ui/view/account/account_selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_type_selection/screen/operation_type_selection_route.dart';
 import 'package:provider/src/provider.dart';
 
 class OperationCreateBloc extends BaseBloc {
@@ -24,6 +26,10 @@ class OperationCreateBloc extends BaseBloc {
     @required this.operationRepository,
     @required this.operation,
   });
+
+  Future<OperationTypeModel> selectOperationType() async {
+    return await AppRouter.navigateTo(context, OperationTypeSelectionRoute());
+  }
 
   Future<CategoryModel> selectCategory() async {
     return await AppRouter.navigateTo(context, CategorySelectionRoute());

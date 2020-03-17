@@ -1,8 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/provider/constants/operation_type/operation_type_constants.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation_type_model.dart';
 import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
+import 'package:my_finance_flutter/core/util/date_util.dart';
 
 part 'operation_model.g.dart';
 
@@ -12,8 +15,8 @@ class OperationModel {
   int remoteId;
   String title;
   double value;
-  String type;
-  String date;
+  OperationTypeModel type;
+  DateTime date;
   String state;
   String description;
   CategoryModel category;
@@ -31,6 +34,11 @@ class OperationModel {
     this.description,
   });
 
+  OperationModel.empty() {
+    this.date = DateUtil.today();
+    this.type = OperationTypeConstants.getDefault();
+  }
+
   factory OperationModel.fromJson(Map<String, dynamic> json) =>
       _$OperationModelFromJson(json);
 
@@ -43,8 +51,8 @@ class OperationConverter {
       id: model.id,
       title: model.title,
       value: model.value,
-      type: model.type,
-      date: model.date,
+      type: model.type.id,
+      date: model.date.toIso8601String(),
       state: model.state,
       description: model.description,
       category: model.category?.id,
@@ -60,8 +68,8 @@ class OperationConverter {
       ..id = entity.id
       ..title = entity.title
       ..value = entity.value
-      ..type = entity.type
-      ..date = entity.date
+      ..type = OperationTypeConstants.getById(entity.type)
+      ..date = DateTime.parse(entity.date)
       ..state = entity.state
       ..description = entity.description
       ..category = category != null ? CategoryConverter.toModel(category) : null

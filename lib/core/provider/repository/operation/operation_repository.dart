@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class OperationRepository {
   static SingleChildCloneableWidget buildProvider() =>
       ProxyProvider<DatabaseClient, OperationRepository>(
-        builder: (context, databaseClient, postRepository) =>
+        builder: (context, databaseClient, operationRepository) =>
             OperationRepository(databaseClient),
       );
 
