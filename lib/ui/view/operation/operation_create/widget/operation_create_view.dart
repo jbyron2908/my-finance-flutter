@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_bloc.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_create/widget/operation_create_action_bar.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/widget/operation_create_form.dart';
 
 class OperationCreateView extends StatelessWidget {
@@ -14,16 +14,7 @@ class OperationCreateView extends StatelessWidget {
           Expanded(
             child: OperationCreateForm(),
           ),
-          RaisedButton(
-            child: Text(
-              'Save',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {
-              OperationCreateBloc.of(context).submit();
-            },
-            color: Colors.green,
-          ),
+          OperationCreateActionBar()
         ],
       ),
     );

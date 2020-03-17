@@ -3,10 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/view/account/account_selection/screen/account_selection_route.dart';
-import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_bloc.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
@@ -16,7 +13,7 @@ class OperationCreateForm extends StatefulWidget {
 }
 
 class OperationCreateFormState extends State<OperationCreateForm> {
-  OperationModel get operation => OperationCreateBloc.of(context).operation;
+  OperationModel get operation => bloc.operation;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -26,9 +23,12 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   final FocusNode _stateNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
 
+  OperationCreateBloc bloc;
+
   @override
   Widget build(BuildContext context) {
-    OperationCreateBloc.of(context).formKey = _formKey;
+    bloc = OperationCreateBloc.of(context);
+    bloc.formKey = _formKey;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -173,16 +173,14 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   }
 
   void _selectCategory() async {
-    CategoryModel categorySelected =
-        await AppRouter.navigateTo(context, CategorySelectionRoute());
+    CategoryModel categorySelected = await bloc.selectCategory();
     setState(() {
       operation.category = categorySelected;
     });
   }
 
   void _selectAccount() async {
-    AccountModel accountSelected =
-        await AppRouter.navigateTo(context, AccountSelectionRoute());
+    AccountModel accountSelected = await bloc.selectAccount();
     setState(() {
       operation.account = accountSelected;
     });
