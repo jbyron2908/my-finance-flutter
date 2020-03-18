@@ -56,7 +56,7 @@ class OperationModel {
   }
 
   String getTimeString() {
-    return date == null ? "Unknown" : DateFormat("mm:ss").format(date);
+    return date == null ? "Unknown" : DateFormat("HH:mm").format(date);
   }
 
   OperationModel copyWith({

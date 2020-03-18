@@ -169,7 +169,11 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     );
     if (date != null) {
       setState(() {
-        operation.date = date;
+        operation.date = DateUtil.setDateTime(
+          date,
+          operation.date.hour,
+          operation.date.minute,
+        );
       });
     }
   }
