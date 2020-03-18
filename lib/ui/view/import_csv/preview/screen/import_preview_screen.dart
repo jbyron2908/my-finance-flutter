@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/common/base/base_screen.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/import_preview_bloc.dart';
 import 'package:my_finance_flutter/ui/view/import_csv/preview/widget/import_preview_view.dart';

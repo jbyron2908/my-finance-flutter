@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
-import 'package:my_finance_flutter/core/provider/constants/operation_state/operation_state_constants.dart';
-import 'package:my_finance_flutter/core/provider/constants/operation_type/operation_type_constants.dart';
-import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
-import 'package:my_finance_flutter/core/provider/model/category/category_model.dart';
-import 'package:my_finance_flutter/core/provider/model/operation/operation_state_model.dart';
-import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
-import 'package:my_finance_flutter/core/provider/model/profile/profile_model.dart';
+import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
+import 'package:my_finance_flutter/core/constants/operation_type/operation_type_constants.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/category/category_model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 
 class OperationModel {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/constants/operation_state/operation_state_constants.dart';
-import 'package:my_finance_flutter/core/provider/model/operation/operation_state_model.dart';
+import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:provider/provider.dart';
 
 class OperationStateRepository {

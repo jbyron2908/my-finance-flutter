@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/provider/model/tag/tag_model.dart';
+import 'package:my_finance_flutter/core/model/tag/tag_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class TagCreateForm extends StatefulWidget {

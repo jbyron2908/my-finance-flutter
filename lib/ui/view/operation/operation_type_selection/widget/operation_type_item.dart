@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 
 class OperationTypeItem extends StatelessWidget {
   OperationTypeItem({
