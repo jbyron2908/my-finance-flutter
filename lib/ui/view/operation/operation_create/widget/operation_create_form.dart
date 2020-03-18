@@ -95,15 +95,28 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         onTap: _selectOperationType,
       ),
       UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(
-          (operation?.date == null)
-              ? "Unknown"
-              : DateFormat("dd/MM/yyy mm:ss").format(operation.date),
-        ),
-        labelText: "Date",
-        prefixIcon: Icon(Icons.calendar_today),
-        onTap: _selectDate,
+      Row(
+        children: <Widget>[
+          FormFieldDecorator(
+            text: Text(
+              DateFormat("dd/MM/yyy").format(operation.date) ?? "Unknown",
+            ),
+            labelText: "Date",
+            prefixIcon: Icon(Icons.calendar_today),
+            onTap: _selectDate,
+          ),
+          UIHelper.horizontalSpaceSmall,
+          FormFieldDecorator(
+            text: Text(
+              (operation?.date == null)
+                  ? "Unknown"
+                  : DateFormat("mm:ss").format(operation.date),
+            ),
+            labelText: "Time",
+            prefixIcon: Icon(Icons.calendar_today),
+            onTap: _selectTime,
+          ),
+        ],
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -163,13 +176,25 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   _selectDate() async {
     var date = await showDatePicker(
       context: context,
-      initialDate: DateUtil.today(),
+      initialDate: operation.date,
       firstDate: DateTime(1990),
       lastDate: DateTime(2050),
     );
     if (date != null) {
       setState(() {
         operation.date = date;
+      });
+    }
+  }
+
+  _selectTime() async {
+    var time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(operation.date),
+    );
+    if (time != null) {
+      setState(() {
+        operation.date = DateUtil.mergeDateAndTime(operation.date, time);
       });
     }
   }
