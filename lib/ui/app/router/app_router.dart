@@ -15,6 +15,7 @@ import 'package:my_finance_flutter/ui/view/import_csv/result/screen/import_resul
 import 'package:my_finance_flutter/ui/view/main/screen/main_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_list/screen/operation_list_route.dart';
+import 'package:my_finance_flutter/ui/view/operation/operation_state_selection/screen/operation_state_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_type_selection/screen/operation_type_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_create/screen/payee_create_route.dart';
 import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_route.dart';
@@ -51,6 +52,7 @@ class AppRouter {
       OperationCreateRoute().route,
       OperationListRoute().route,
       OperationTypeSelectionRoute().route,
+      OperationStateSelectionRoute().route,
       ImportCsvFormRoute().route,
       ImportCsvPreviewRoute().route,
       ImportCsvResultRoute().route,

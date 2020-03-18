@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation/operation_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
@@ -20,7 +21,6 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode _valueNode = FocusNode();
-  final FocusNode _stateNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
 
   OperationCreateBloc bloc;
@@ -86,9 +86,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       ),
       UIHelper.verticalSpaceSmall,
       FormFieldDecorator(
-        text: Text(
-          (operation?.type == null) ? "Unknown" : operation.type.title,
-        ),
+        text: Text(operation.getTypeString()),
         labelText: "Type",
         prefixIcon: Icon(Icons.menu),
         onTap: _selectOperationType,
@@ -117,20 +115,11 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         ],
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _stateNode,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText: "State",
-          labelText: "State",
-          prefixIcon: Icon(Icons.calendar_today),
-          border: OutlineInputBorder(),
-        ),
-        onFieldSubmitted: (value) => _descriptionNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => operation.state = value,
-        ),
+      FormFieldDecorator(
+        text: Text(operation.getStateString()),
+        labelText: "State",
+        prefixIcon: Icon(Icons.menu),
+        onTap: _selectOperationState,
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -201,6 +190,13 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     OperationTypeModel operationType = await bloc.selectOperationType();
     setState(() {
       operation.type = operationType;
+    });
+  }
+
+  void _selectOperationState() async {
+    OperationStateModel operationState = await bloc.selectOperationState();
+    setState(() {
+      operation.state = operationState;
     });
   }
 

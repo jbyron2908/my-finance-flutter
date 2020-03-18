@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
+import 'package:my_finance_flutter/core/provider/constants/operation_state/operation_state_constants.dart';
 import 'package:my_finance_flutter/core/provider/constants/operation_type/operation_type_constants.dart';
 import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/provider/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
@@ -15,7 +17,7 @@ class OperationModel {
   double value;
   OperationTypeModel type;
   DateTime date;
-  String state;
+  OperationStateModel state;
   String description;
   CategoryModel category;
   AccountModel account;
@@ -38,6 +40,15 @@ class OperationModel {
   OperationModel.empty() {
     this.date = DateUtil.today();
     this.type = OperationTypeConstants.getDefault();
+    this.state = OperationStateConstants.getDefault();
+  }
+
+  String getTypeString() {
+    return (type == null) ? "Unknown" : type.title;
+  }
+
+  String getStateString() {
+    return (state == null) ? "Unknown" : state.title;
   }
 
   String getDateString() {
@@ -55,7 +66,7 @@ class OperationModel {
     double value,
     OperationTypeModel type,
     DateTime date,
-    String state,
+    OperationStateModel state,
     String description,
     CategoryModel category,
     AccountModel account,
@@ -84,7 +95,7 @@ class OperationModel {
       'value': value,
       'type': type.toMap(),
       'date': date.millisecondsSinceEpoch,
-      'state': state,
+      'state': state.toMap(),
       'description': description,
       'category': category.toMap(),
       'account': account.toMap(),
@@ -102,7 +113,7 @@ class OperationModel {
       value: map['value'],
       type: OperationTypeModel.fromMap(map['type']),
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
-      state: map['state'],
+      state: OperationStateModel.fromMap(map['state']),
       description: map['description'],
       category: CategoryModel.fromMap(map['category']),
       account: AccountModel.fromMap(map['account']),

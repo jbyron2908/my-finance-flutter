@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/provider/constants/operation_state/operation_state_constants.dart';
 import 'package:my_finance_flutter/core/provider/constants/operation_type/operation_type_constants.dart';
 import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation/operation_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/provider/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/core/provider/model/profile/profile_model.dart';
@@ -14,6 +16,7 @@ import 'package:my_finance_flutter/core/provider/repository/account/account_repo
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/operation_state/operation_state_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation_type/operation_type_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/profile/profile_repository.dart';
@@ -42,6 +45,7 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
   CategoryRepository.buildProvider(),
   OperationRepository.buildProvider(),
   OperationTypeRepository.buildProvider(),
+  OperationStateRepository.buildProvider(),
   PayeeRepository.buildProvider(),
   TagRepository.buildProvider(),
 ];
@@ -65,6 +69,9 @@ List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
       ),
       Provider<List<OperationTypeModel>>.value(
         value: OperationTypeConstants.operationTypeList,
+      ),
+      Provider<List<OperationStateModel>>.value(
+        value: OperationStateConstants.operationStateList,
       ),
       StreamProvider<List<PayeeModel>>.value(
         value: PayeeRepository.of(context).payeeListStream,
