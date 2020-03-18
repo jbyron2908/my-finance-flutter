@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_finance_flutter/core/config/flavor/flavor.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 class ApiClient {
-  static SingleChildCloneableWidget buildProvider() =>
+  static SingleChildWidget buildProvider() =>
       Provider.value(value: ApiClient());
 
   static var _token = Flavor.values.githubToken;

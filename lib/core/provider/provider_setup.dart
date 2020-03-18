@@ -22,23 +22,24 @@ import 'package:my_finance_flutter/core/provider/repository/payee/payee_reposito
 import 'package:my_finance_flutter/core/provider/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/tag/tag_repository.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
-List<SingleChildCloneableWidget> appProviders = [
+List<SingleChildWidget> appProviders = [
   ...globalDependencies,
   ...dataSourceDependecies,
   ...repositoryDependecies
 ];
 
-List<SingleChildCloneableWidget> globalDependencies = [
+List<SingleChildWidget> globalDependencies = [
   ApiClient.buildProvider(),
   DatabaseClient.buildProvider(),
 ];
 
-List<SingleChildCloneableWidget> dataSourceDependecies = [
+List<SingleChildWidget> dataSourceDependecies = [
   RepositoryApi.buildProvider(),
 ];
 
-List<SingleChildCloneableWidget> repositoryDependecies = [
+List<SingleChildWidget> repositoryDependecies = [
   GitRepoRepository.buildProvider(),
   ProfileRepository.buildProvider(),
   AccountRepository.buildProvider(),
@@ -50,7 +51,7 @@ List<SingleChildCloneableWidget> repositoryDependecies = [
   TagRepository.buildProvider(),
 ];
 
-List<SingleChildCloneableWidget> dataProviders(BuildContext context) => [
+List<SingleChildWidget> dataProviders(BuildContext context) => [
       StreamProvider<List<ProfileModel>>.value(
         value: ProfileRepository.of(context).profileListStream,
         initialData: List(),

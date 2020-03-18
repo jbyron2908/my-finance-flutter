@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/base_bloc.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class AccountSelectionBloc extends BaseBloc {
@@ -14,5 +15,5 @@ class AccountSelectionBloc extends BaseBloc {
   });
 
   @override
-  List<SingleChildCloneableWidget> get dependencies => [];
+  List<SingleChildWidget> get dependencies => [];
 }

@@ -24,7 +24,7 @@ dependencies:
     sdk: flutter
   # Provider
   equatable: ^1.1.1
-  provider: ^3.1.0
+  provider: ^4.0.4
   # Database
   sqflite: "any"
   # Graphql

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/base_bloc.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class ProfileListBloc extends BaseBloc {
@@ -9,6 +10,5 @@ class ProfileListBloc extends BaseBloc {
   ProfileListBloc();
 
   @override
-  List<SingleChildCloneableWidget> get dependencies => [];
-
+  List<SingleChildWidget> get dependencies => [];
 }

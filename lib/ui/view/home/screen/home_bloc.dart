@@ -11,6 +11,7 @@ import 'package:my_finance_flutter/ui/view/payee/payee_list/screen/payee_list_ro
 import 'package:my_finance_flutter/ui/view/profile/profile_list/screen/profile_list_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_list/screen/tag_list_route.dart';
 import 'package:my_finance_flutter/ui/view/tag/tag_selection/screen/tag_selection_route.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class HomeBloc extends BaseBloc {
@@ -61,5 +62,5 @@ class HomeBloc extends BaseBloc {
   }
 
   @override
-  List<SingleChildCloneableWidget> get dependencies => [];
+  List<SingleChildWidget> get dependencies => [];
 }

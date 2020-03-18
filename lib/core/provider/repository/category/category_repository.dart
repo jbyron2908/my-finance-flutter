@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 class CategoryRepository {
-  static SingleChildCloneableWidget buildProvider() =>
+  static SingleChildWidget buildProvider() =>
       ProxyProvider<DatabaseClient, CategoryRepository>(
-        builder: (context, databaseClient, postRepository) =>
+        update: (context, databaseClient, postRepository) =>
             CategoryRepository(databaseClient),
       );
 

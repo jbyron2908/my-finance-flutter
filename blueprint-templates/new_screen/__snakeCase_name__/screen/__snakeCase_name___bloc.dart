@@ -9,6 +9,6 @@ class {{pascalCase name}}Bloc extends BaseBloc {
   {{pascalCase name}}Bloc();
 
   @override
-  List<SingleChildCloneableWidget> get dependencies => [];
+  List<SingleChildWidget> get dependencies => [];
 
 }

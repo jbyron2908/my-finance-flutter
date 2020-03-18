@@ -1,5 +1,5 @@
-import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 abstract class BaseBloc {
-  List<SingleChildCloneableWidget> get dependencies;
+  List<SingleChildWidget> get dependencies;
 }

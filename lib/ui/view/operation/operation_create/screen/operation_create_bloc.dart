@@ -11,6 +11,7 @@ import 'package:my_finance_flutter/ui/view/account/account_selection/screen/acco
 import 'package:my_finance_flutter/ui/view/category/category_selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_state_selection/screen/operation_state_selection_route.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_type_selection/screen/operation_type_selection_route.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class OperationCreateBloc extends BaseBloc {
@@ -57,5 +58,5 @@ class OperationCreateBloc extends BaseBloc {
   }
 
   @override
-  List<SingleChildCloneableWidget> get dependencies => [];
+  List<SingleChildWidget> get dependencies => [];
 }

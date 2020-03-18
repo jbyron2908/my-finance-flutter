@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/data_source/api/entity/repository.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 class GitRepoRepository {
-  static SingleChildCloneableWidget buildProvider() =>
+  static SingleChildWidget buildProvider() =>
       ProxyProvider<RepositoryApi, GitRepoRepository>(
-        builder: (context, repositoryApi, gitRepoRepository) =>
+        update: (context, repositoryApi, gitRepoRepository) =>
             GitRepoRepository(repositoryApi),
       );
 

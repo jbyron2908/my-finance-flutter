@@ -12,6 +12,7 @@ import 'package:my_finance_flutter/core/data_source/database/entity/profile/prof
 import 'package:my_finance_flutter/core/data_source/database/entity/tag/tag_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/tag/tag_table.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 part 'database_client.g.dart';
 
@@ -34,7 +35,7 @@ part 'database_client.g.dart';
   ],
 )
 class DatabaseClient extends _$DatabaseClient {
-  static SingleChildCloneableWidget buildProvider() =>
+  static SingleChildWidget buildProvider() =>
       Provider.value(value: DatabaseClient());
 
   DatabaseClient()
