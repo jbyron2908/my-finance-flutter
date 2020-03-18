@@ -10,7 +10,7 @@ part 'account_dao.g.dart';
 @UseDao(tables: [AccountTable, ProfileTable])
 class AccountDao extends DatabaseAccessor<DatabaseClient>
     with _$AccountDaoMixin {
-  AccountDao(DatabaseClient db) : super(db);
+  AccountDao(DatabaseClient database) : super(database);
 
   Future<int> insert(AccountEntity entity) {
     return into(accountTable).insert(entity);

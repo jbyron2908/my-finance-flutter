@@ -9,7 +9,7 @@ part 'profile_dao.g.dart';
 @UseDao(tables: [ProfileTable])
 class ProfileDao extends DatabaseAccessor<DatabaseClient>
     with _$ProfileDaoMixin {
-  ProfileDao(DatabaseClient db) : super(db);
+  ProfileDao(DatabaseClient database) : super(database);
 
   Future<int> insert(ProfileEntity entity) {
     return into(profileTable).insert(entity);

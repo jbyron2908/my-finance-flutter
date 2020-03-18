@@ -12,7 +12,7 @@ part 'operation_dao.g.dart';
 @UseDao(tables: [OperationTable, CategoryTable, AccountTable, ProfileTable])
 class OperationDao extends DatabaseAccessor<DatabaseClient>
     with _$OperationDaoMixin {
-  OperationDao(DatabaseClient db) : super(db);
+  OperationDao(DatabaseClient database) : super(database);
 
   Future<int> insert(OperationEntity entity) {
     return into(operationTable).insert(entity);

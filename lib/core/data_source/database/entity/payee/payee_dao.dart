@@ -8,7 +8,7 @@ part 'payee_dao.g.dart';
 
 @UseDao(tables: [PayeeTable])
 class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
-  PayeeDao(DatabaseClient db) : super(db);
+  PayeeDao(DatabaseClient database) : super(database);
 
   Future<int> insert(PayeeEntity entity) {
     return into(payeeTable).insert(entity);

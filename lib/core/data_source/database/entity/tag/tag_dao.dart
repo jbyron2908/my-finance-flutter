@@ -8,7 +8,7 @@ part 'tag_dao.g.dart';
 
 @UseDao(tables: [TagTable])
 class TagDao extends DatabaseAccessor<DatabaseClient> with _$TagDaoMixin {
-  TagDao(DatabaseClient db) : super(db);
+  TagDao(DatabaseClient database) : super(database);
 
   Future<int> insert(TagEntity entity) {
     return into(tagTable).insert(entity);

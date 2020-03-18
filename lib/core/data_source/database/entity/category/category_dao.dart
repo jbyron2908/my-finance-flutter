@@ -8,7 +8,7 @@ part 'category_dao.g.dart';
 @UseDao(tables: [CategoryTable])
 class CategoryDao extends DatabaseAccessor<DatabaseClient>
     with _$CategoryDaoMixin {
-  CategoryDao(DatabaseClient db) : super(db);
+  CategoryDao(DatabaseClient database) : super(database);
 
   Future<int> insert(CategoryEntity entity) {
     return into(categoryTable).insert(entity);
