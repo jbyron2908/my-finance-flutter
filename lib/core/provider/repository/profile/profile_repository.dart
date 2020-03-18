@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
+import 'package:my_finance_flutter/core/provider/model/profile/profile_converter.dart';
+import 'package:my_finance_flutter/core/provider/model/profile/profile_model.dart';
 import 'package:provider/provider.dart';
 
 class ProfileRepository {

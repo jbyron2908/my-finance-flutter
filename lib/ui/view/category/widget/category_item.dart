@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/category/category_model.dart';
 
 class CategoryItem extends StatelessWidget {
   CategoryItem({Key key, this.category}) : super(key: key);

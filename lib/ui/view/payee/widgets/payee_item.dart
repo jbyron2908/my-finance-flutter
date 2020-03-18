@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/payee_model.dart';
+import 'package:my_finance_flutter/core/provider/model/payee/payee_model.dart';
 
 class PayeeItem extends StatelessWidget {
   PayeeItem({Key key, this.payee}) : super(key: key);

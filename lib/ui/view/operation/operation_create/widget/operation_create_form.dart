@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/provider/model/account_model.dart';
-import 'package:my_finance_flutter/core/provider/model/category_model.dart';
-import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
-import 'package:my_finance_flutter/core/provider/model/operation_type_model.dart';
+import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/provider/model/category/category_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/view/operation/operation_create/screen/operation_create_bloc.dart';

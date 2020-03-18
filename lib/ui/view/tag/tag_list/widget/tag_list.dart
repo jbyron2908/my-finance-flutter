@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/tag_model.dart';
+import 'package:my_finance_flutter/core/provider/model/tag/tag_model.dart';
 import 'package:my_finance_flutter/ui/view/tag/widgets/tag_item.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/account_model.dart';
+import 'package:my_finance_flutter/core/provider/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class AccountItem extends StatelessWidget {

@@ -4,7 +4,8 @@ import 'package:my_finance_flutter/core/data_source/db/entity/account/account_ta
 import 'package:my_finance_flutter/core/data_source/db/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/operation/operation_table.dart';
 import 'package:my_finance_flutter/core/data_source/db/entity/profile/profile_table.dart';
-import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_converter.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_model.dart';
 
 part 'operation_dao.g.dart';
 

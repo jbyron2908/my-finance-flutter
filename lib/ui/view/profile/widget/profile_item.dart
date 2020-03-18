@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/model/profile_model.dart';
+import 'package:my_finance_flutter/core/provider/model/profile/profile_model.dart';
 
 class ProfileItem extends StatelessWidget {
   ProfileItem({Key key, this.profile}) : super(key: key);

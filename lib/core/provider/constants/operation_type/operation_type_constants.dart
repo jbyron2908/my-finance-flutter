@@ -1,4 +1,4 @@
-import 'package:my_finance_flutter/core/provider/model/operation_type_model.dart';
+import 'package:my_finance_flutter/core/provider/model/operation/operation_type_model.dart';
 
 class OperationTypeConstants {
   static List<OperationTypeModel> operationTypeList = [
