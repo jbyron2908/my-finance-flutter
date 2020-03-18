@@ -1,7 +1,7 @@
 import 'package:moor_flutter/moor_flutter.dart';
-import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/db/entity/account/account_table.dart';
-import 'package:my_finance_flutter/core/data_source/db/entity/profile/profile_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/account/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_table.dart';
 import 'package:my_finance_flutter/core/model/account/account_converter.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 

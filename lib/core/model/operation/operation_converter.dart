@@ -1,6 +1,6 @@
 import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
 import 'package:my_finance_flutter/core/constants/operation_type/operation_type_constants.dart';
-import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/account/account_converter.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';

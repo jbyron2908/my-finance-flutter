@@ -1,4 +1,4 @@
-import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/tag/tag_model.dart';
 
 class TagConverter {

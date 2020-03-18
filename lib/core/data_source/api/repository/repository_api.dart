@@ -1,6 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
-import 'package:my_finance_flutter/core/data_source/api/model/repository.dart';
+import 'package:my_finance_flutter/core/data_source/api/entity/repository.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_query.dart';
 import 'package:provider/provider.dart';
 
