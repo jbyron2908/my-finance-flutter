@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:my_finance_flutter/core/data_source/db/client/database_client.dart';
 import 'package:my_finance_flutter/core/provider/constants/operation_type/operation_type_constants.dart';
@@ -37,6 +38,14 @@ class OperationModel {
   OperationModel.empty() {
     this.date = DateUtil.today();
     this.type = OperationTypeConstants.getDefault();
+  }
+
+  String getDateString() {
+    return date == null ? "Unknown" : DateFormat("dd/MM/yyyy").format(date);
+  }
+
+  String getTimeString() {
+    return date == null ? "Unknown" : DateFormat("mm:ss").format(date);
   }
 
   factory OperationModel.fromJson(Map<String, dynamic> json) =>

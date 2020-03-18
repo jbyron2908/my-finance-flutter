@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/provider/model/account_model.dart';
 import 'package:my_finance_flutter/core/provider/model/category_model.dart';
 import 'package:my_finance_flutter/core/provider/model/operation_model.dart';
@@ -97,24 +96,23 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       UIHelper.verticalSpaceSmall,
       Row(
         children: <Widget>[
-          FormFieldDecorator(
-            text: Text(
-              DateFormat("dd/MM/yyy").format(operation.date) ?? "Unknown",
+          Expanded(
+            flex: 2,
+            child: FormFieldDecorator(
+              text: Text(operation.getDateString()),
+              labelText: "Date",
+              prefixIcon: Icon(Icons.calendar_today),
+              onTap: _selectDate,
             ),
-            labelText: "Date",
-            prefixIcon: Icon(Icons.calendar_today),
-            onTap: _selectDate,
           ),
           UIHelper.horizontalSpaceSmall,
-          FormFieldDecorator(
-            text: Text(
-              (operation?.date == null)
-                  ? "Unknown"
-                  : DateFormat("mm:ss").format(operation.date),
+          Expanded(
+            flex: 1,
+            child: FormFieldDecorator(
+              text: Text(operation.getTimeString()),
+              labelText: "Time",
+              onTap: _selectTime,
             ),
-            labelText: "Time",
-            prefixIcon: Icon(Icons.calendar_today),
-            onTap: _selectTime,
           ),
         ],
       ),
