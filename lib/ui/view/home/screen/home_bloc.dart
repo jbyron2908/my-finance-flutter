@@ -15,7 +15,8 @@ import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class HomeBloc extends BaseBloc {
-  static HomeBloc of(BuildContext context) => Provider.of<HomeBloc>(context);
+  static HomeBloc of(BuildContext context) =>
+      Provider.of<HomeBloc>(context, listen: false);
 
   HomeBloc({
     this.gitRepoRepository,

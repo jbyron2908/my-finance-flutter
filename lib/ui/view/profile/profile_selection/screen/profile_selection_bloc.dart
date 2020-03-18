@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class ProfileSelectionBloc extends BaseBloc {
   static ProfileSelectionBloc of(BuildContext context) =>
-      Provider.of<ProfileSelectionBloc>(context);
+      Provider.of<ProfileSelectionBloc>(context, listen: false);
 
   ProfileSelectionBloc();
 

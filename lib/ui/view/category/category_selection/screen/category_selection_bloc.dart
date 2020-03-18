@@ -6,7 +6,7 @@ import 'package:provider/src/provider.dart';
 
 class CategorySelectionBloc extends BaseBloc {
   static CategorySelectionBloc of(BuildContext context) =>
-      Provider.of<CategorySelectionBloc>(context);
+      Provider.of<CategorySelectionBloc>(context, listen: false);
 
   final CategoryRepository categoryRepository;
 

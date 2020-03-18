@@ -13,7 +13,7 @@ class TagRepository {
       );
 
   static TagRepository of(BuildContext context) =>
-      Provider.of<TagRepository>(context);
+      Provider.of<TagRepository>(context, listen: false);
 
   TagRepository(this._databaseClient) {
     _tagListStream = _databaseClient.tagDao.watchAll();

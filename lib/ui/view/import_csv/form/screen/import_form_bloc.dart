@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class ImportCsvFormBloc extends BaseBloc {
   static ImportCsvFormBloc of(BuildContext context) =>
-      Provider.of<ImportCsvFormBloc>(context);
+      Provider.of<ImportCsvFormBloc>(context, listen: false);
 
   ImportCsvFormBloc();
 

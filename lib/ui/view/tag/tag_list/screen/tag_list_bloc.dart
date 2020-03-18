@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class TagListBloc extends BaseBloc {
   static TagListBloc of(BuildContext context) =>
-      Provider.of<TagListBloc>(context);
+      Provider.of<TagListBloc>(context, listen: false);
 
   TagListBloc();
 

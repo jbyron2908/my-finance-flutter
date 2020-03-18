@@ -7,7 +7,7 @@ import 'package:provider/src/provider.dart';
 
 class AccountCreateBloc extends BaseBloc {
   static AccountCreateBloc of(BuildContext context) =>
-      Provider.of<AccountCreateBloc>(context);
+      Provider.of<AccountCreateBloc>(context, listen: false);
 
   final AccountRepository accountRepository;
 

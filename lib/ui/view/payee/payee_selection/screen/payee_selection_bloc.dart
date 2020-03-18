@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class PayeeSelectionBloc extends BaseBloc {
   static PayeeSelectionBloc of(BuildContext context) =>
-      Provider.of<PayeeSelectionBloc>(context);
+      Provider.of<PayeeSelectionBloc>(context, listen: false);
 
   PayeeSelectionBloc();
 

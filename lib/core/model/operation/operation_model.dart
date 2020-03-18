@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
-import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
-import 'package:my_finance_flutter/core/constants/operation_type/operation_type_constants.dart';
+import 'package:my_finance_flutter/core/data_source/storage/client/storage_client.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
@@ -39,8 +38,8 @@ class OperationModel {
 
   OperationModel.empty() {
     this.date = DateUtil.today();
-    this.type = OperationTypeConstants.getDefault();
-    this.state = OperationStateConstants.getDefault();
+    this.type = StorageClient.instance.operationTypeDao.getLastUsed();
+    this.state = StorageClient.instance.operationStateDao.getLastUsed();
   }
 
   String getTypeString() {

@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class OperationStateSelectionBloc extends BaseBloc {
   static OperationStateSelectionBloc of(BuildContext context) =>
-      Provider.of<OperationStateSelectionBloc>(context);
+      Provider.of<OperationStateSelectionBloc>(context, listen: false);
 
   OperationStateSelectionBloc();
 

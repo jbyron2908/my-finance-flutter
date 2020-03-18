@@ -13,7 +13,7 @@ class ProfileRepository {
       );
 
   static ProfileRepository of(BuildContext context) =>
-      Provider.of<ProfileRepository>(context);
+      Provider.of<ProfileRepository>(context, listen: false);
 
   DatabaseClient _databaseClient;
 

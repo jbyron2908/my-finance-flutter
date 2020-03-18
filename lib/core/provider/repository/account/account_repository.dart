@@ -13,7 +13,7 @@ class AccountRepository {
       );
 
   static AccountRepository of(BuildContext context) =>
-      Provider.of<AccountRepository>(context);
+      Provider.of<AccountRepository>(context, listen: false);
 
   DatabaseClient _databaseClient;
 

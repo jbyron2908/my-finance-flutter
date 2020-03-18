@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class ProfileListBloc extends BaseBloc {
   static ProfileListBloc of(BuildContext context) =>
-      Provider.of<ProfileListBloc>(context);
+      Provider.of<ProfileListBloc>(context, listen: false);
 
   ProfileListBloc();
 

@@ -7,7 +7,7 @@ import 'package:provider/src/provider.dart';
 
 class CategoryCreateBloc extends BaseBloc {
   static CategoryCreateBloc of(BuildContext context) =>
-      Provider.of<CategoryCreateBloc>(context);
+      Provider.of<CategoryCreateBloc>(context, listen: false);
 
   final CategoryRepository categoryRepository;
 

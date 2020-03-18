@@ -4,7 +4,8 @@ import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
 class MainBloc extends BaseBloc {
-  static MainBloc of(BuildContext context) => Provider.of<MainBloc>(context);
+  static MainBloc of(BuildContext context) =>
+      Provider.of<MainBloc>(context, listen: false);
 
   MainBloc();
 

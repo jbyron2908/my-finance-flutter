@@ -12,7 +12,7 @@ class CategoryRepository {
       );
 
   static CategoryRepository of(BuildContext context) =>
-      Provider.of<CategoryRepository>(context);
+      Provider.of<CategoryRepository>(context, listen: false);
 
   CategoryRepository(this._databaseClient) {
     _categoryListStream = _databaseClient.categoryDao.watchAll();

@@ -16,7 +16,7 @@ import 'package:provider/src/provider.dart';
 
 class OperationCreateBloc extends BaseBloc {
   static OperationCreateBloc of(BuildContext context) =>
-      Provider.of<OperationCreateBloc>(context);
+      Provider.of<OperationCreateBloc>(context, listen: false);
 
   final BuildContext context;
   final OperationRepository operationRepository;

@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class PayeeListBloc extends BaseBloc {
   static PayeeListBloc of(BuildContext context) =>
-      Provider.of<PayeeListBloc>(context);
+      Provider.of<PayeeListBloc>(context, listen: false);
 
   PayeeListBloc();
 

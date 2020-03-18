@@ -10,7 +10,7 @@ class OperationStateRepository {
       );
 
   static OperationStateRepository of(BuildContext context) =>
-      Provider.of<OperationStateRepository>(context);
+      Provider.of<OperationStateRepository>(context, listen: false);
 
   OperationStateModel getDefault() {
     return OperationStateConstants.getDefault();

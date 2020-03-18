@@ -4,7 +4,7 @@ import 'package:provider/src/provider.dart';
 
 class {{pascalCase name}}Bloc extends BaseBloc {
   static {{pascalCase name}}Bloc of(BuildContext context) =>
-      Provider.of<{{pascalCase name}}Bloc>(context);
+      Provider.of<{{pascalCase name}}Bloc>(context, listen: false);
 
   {{pascalCase name}}Bloc();
 

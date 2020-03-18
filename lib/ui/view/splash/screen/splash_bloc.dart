@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class SplashBloc extends BaseBloc {
   static SplashBloc of(BuildContext context) =>
-      Provider.of<SplashBloc>(context);
+      Provider.of<SplashBloc>(context, listen: false);
 
   SplashBloc();
 

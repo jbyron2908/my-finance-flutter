@@ -13,7 +13,7 @@ class PayeeRepository {
       );
 
   static PayeeRepository of(BuildContext context) =>
-      Provider.of<PayeeRepository>(context);
+      Provider.of<PayeeRepository>(context, listen: false);
 
   PayeeRepository(this._databaseClient) {
     _payeeListStream = _databaseClient.payeeDao.watchAll();

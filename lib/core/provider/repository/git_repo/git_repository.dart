@@ -12,7 +12,7 @@ class GitRepoRepository {
       );
 
   static GitRepoRepository of(BuildContext context) =>
-      Provider.of<GitRepoRepository>(context);
+      Provider.of<GitRepoRepository>(context, listen: false);
 
   GitRepoRepository(this._repositoryApi);
 

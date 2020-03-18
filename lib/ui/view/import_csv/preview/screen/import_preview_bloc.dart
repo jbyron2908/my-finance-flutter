@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class ImportCsvPreviewBloc extends BaseBloc {
   static ImportCsvPreviewBloc of(BuildContext context) =>
-      Provider.of<ImportCsvPreviewBloc>(context);
+      Provider.of<ImportCsvPreviewBloc>(context, listen: false);
 
   ImportCsvPreviewBloc();
 

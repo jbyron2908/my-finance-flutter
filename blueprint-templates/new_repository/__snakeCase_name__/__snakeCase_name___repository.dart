@@ -11,7 +11,7 @@ class {{pascalCase name}}Repository {
       );
 
   static {{pascalCase name}}Repository of(BuildContext context) =>
-      Provider.of<{{pascalCase name}}Repository>(context);
+      Provider.of<{{pascalCase name}}Repository>(context, listen: false);
 
   DatabaseClient _databaseClient;
 

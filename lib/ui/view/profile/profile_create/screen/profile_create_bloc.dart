@@ -8,7 +8,7 @@ import 'package:provider/src/provider.dart';
 
 class ProfileCreateBloc extends BaseBloc {
   static ProfileCreateBloc of(BuildContext context) =>
-      Provider.of<ProfileCreateBloc>(context);
+      Provider.of<ProfileCreateBloc>(context, listen: false);
 
   ProfileCreateBloc(BuildContext context,
       {ProfileRepository profileRepository}) {

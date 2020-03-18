@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class ImportCsvResultBloc extends BaseBloc {
   static ImportCsvResultBloc of(BuildContext context) =>
-      Provider.of<ImportCsvResultBloc>(context);
+      Provider.of<ImportCsvResultBloc>(context, listen: false);
 
   ImportCsvResultBloc();
 

@@ -7,7 +7,7 @@ class UserRepository {
       Provider.value(value: UserRepository());
 
   static UserRepository of(BuildContext context) =>
-      Provider.of<UserRepository>(context);
+      Provider.of<UserRepository>(context, listen: false);
 
   UserRepository();
 }

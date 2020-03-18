@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 
 class TagSelectionBloc extends BaseBloc {
   static TagSelectionBloc of(BuildContext context) =>
-      Provider.of<TagSelectionBloc>(context);
+      Provider.of<TagSelectionBloc>(context, listen: false);
 
   TagSelectionBloc();
 
