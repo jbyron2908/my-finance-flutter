@@ -1,4 +1,4 @@
-import 'package:moor_flutter/moor_flutter.dart';
+import 'package:moor/moor.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/tag/tag_table.dart';
 import 'package:my_finance_flutter/core/model/tag/tag_converter.dart';
