@@ -1,29 +1,29 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/view/account/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/account/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/account/selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/category/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/category/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/category/selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/home/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/form/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/preview/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/import_csv/result/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/operation/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/operation/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/operation/state_selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/operation/type_selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/payee/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/payee/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/payee/selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/profile/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/profile/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/profile/selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/tag/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/tag/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/view/tag/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/account/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/account/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/account/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/category/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/category/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/category/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/home/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/state_selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/type_selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/tag/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/tag/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/tag/selection/screen/route.dart';
 
 class TabRouter {
   static Map routes = HashMap.fromEntries(
