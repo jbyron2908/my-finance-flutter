@@ -21,8 +21,7 @@ class OperationCreateBloc extends BaseBloc {
   final BuildContext context;
   final OperationRepository operationRepository;
   final OperationModel operation;
-
-  GlobalKey<FormState> formKey;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   OperationCreateBloc({
     @required this.context,

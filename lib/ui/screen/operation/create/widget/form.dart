@@ -18,8 +18,6 @@ class OperationCreateForm extends StatefulWidget {
 class OperationCreateFormState extends State<OperationCreateForm> {
   OperationModel get operation => bloc.operation;
 
-  final _formKey = GlobalKey<FormState>();
-
   final FocusNode _valueNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
 
@@ -28,7 +26,6 @@ class OperationCreateFormState extends State<OperationCreateForm> {
   @override
   Widget build(BuildContext context) {
     bloc = OperationCreateBloc.of(context);
-    bloc.formKey = _formKey;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -38,7 +35,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       },
       child: SingleChildScrollView(
         child: Form(
-          key: this._formKey,
+          key: bloc.formKey,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
