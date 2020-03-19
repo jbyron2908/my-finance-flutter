@@ -14,6 +14,7 @@ class {{pascalCase name}}Screen extends BaseScreen<{{pascalCase name}}Bloc> {
   @override
   {{pascalCase name}}Bloc buildBloc(BuildContext context) {
     return {{pascalCase name}}Bloc(
+      context: context,
     );
   }
 }

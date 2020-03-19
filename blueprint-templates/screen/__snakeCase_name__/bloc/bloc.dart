@@ -6,7 +6,11 @@ class {{pascalCase name}}Bloc extends BaseBloc {
   static {{pascalCase name}}Bloc of(BuildContext context) =>
       Provider.of<{{pascalCase name}}Bloc>(context, listen: false);
 
-  {{pascalCase name}}Bloc();
+  final BuildContext context;
+
+  {{pascalCase name}}Bloc(
+    @required this.context,
+  );
 
   @override
   List<SingleChildWidget> get dependencies => [];
