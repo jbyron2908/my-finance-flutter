@@ -1,7 +1,7 @@
-import 'package:moor_flutter/moor_flutter.dart';
-import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
+import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
 
-part '{{snakeCase name}}_dao.g.dart';
+part 'dao.g.dart';
 
 @UseDao(tables: [{{pascalCase name}}Table])
 class {{pascalCase name}}Dao extends DatabaseAccessor<DatabaseClient>

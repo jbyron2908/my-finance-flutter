@@ -1,4 +1,4 @@
-import 'package:moor_flutter/moor_flutter.dart';
+import 'package:moor/moor.dart';
 
 @DataClassName("{{pascalCase name}}Entity")
 class {{pascalCase name}}Table extends Table {
