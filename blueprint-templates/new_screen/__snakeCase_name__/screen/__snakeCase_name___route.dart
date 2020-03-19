@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/base_router.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/router.dart';
 
 class {{pascalCase name}}Route extends BaseRoute {
   {{pascalCase name}}RouteArgs routeArguments;

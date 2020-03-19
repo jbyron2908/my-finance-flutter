@@ -1,0 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/screen.dart';
+import 'package:my_finance_flutter/ui/view/payee/create/bloc/bloc.dart';
+import 'package:my_finance_flutter/ui/view/payee/create/widget/view.dart';
+
+class PayeeCreateScreen extends BaseScreen<PayeeCreateBloc> {
+  @override
+  Widget build(BuildContext context) {
+    return PayeeCreateView();
+  }
+
+  @override
+  PayeeCreateBloc buildBloc(BuildContext context) {
+    return PayeeCreateBloc();
+  }
+}
