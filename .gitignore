@@ -69,7 +69,6 @@
 # Gen files
 *.jorm.dart
 *.g.dart
-lib/generated
 ios/Flutter/flutter_export_environment.sh
 
 .flutter-plugins-dependencies
