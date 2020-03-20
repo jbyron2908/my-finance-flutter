@@ -5,45 +5,44 @@ class OperationCreateActionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        height: 48,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              child: FlatButton(
-                color: Colors.blue,
-                child: Text(
-                  'Cancel',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+      height: 48,
+      color: Colors.blue,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              color: Colors.transparent,
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-                onPressed: () {
-                  OperationCreateBloc.of(context).cancel();
-                },
               ),
+              onPressed: () {
+                OperationCreateBloc.of(context).cancel();
+              },
             ),
-            VerticalDivider(
-              color: Colors.white,
-              width: 0,
-            ),
-            Expanded(
-              child: FlatButton(
-                color: Colors.blue,
-                child: Text(
-                  'Save',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+          ),
+          VerticalDivider(
+            color: Colors.white,
+            width: 0,
+          ),
+          Expanded(
+            child: FlatButton(
+              color: Colors.blue,
+              child: Text(
+                'Save',
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-                onPressed: () {
-                  OperationCreateBloc.of(context).submit();
-                },
               ),
+              onPressed: () {
+                OperationCreateBloc.of(context).submit();
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
