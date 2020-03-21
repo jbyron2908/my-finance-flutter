@@ -7,14 +7,14 @@ import 'package:my_finance_flutter/core/data_source/database/entity/account/dao.
 import 'package:my_finance_flutter/core/data_source/database/entity/account/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/label/dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/label/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/operation/dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/operation/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/table.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/tag/dao.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/tag/table.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:provider/provider.dart';
@@ -29,7 +29,7 @@ part 'client.g.dart';
     CategoryTable,
     OperationTable,
     PayeeTable,
-    TagTable,
+    LabelTable,
   ],
   daos: [
     ProfileDao,
@@ -37,7 +37,7 @@ part 'client.g.dart';
     CategoryDao,
     OperationDao,
     PayeeDao,
-    TagDao,
+    LabelDao,
   ],
 )
 class DatabaseClient extends _$DatabaseClient {

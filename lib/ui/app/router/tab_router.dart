@@ -11,6 +11,9 @@ import 'package:my_finance_flutter/ui/screen/home/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/label/create/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/label/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/label/selection/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/operation/create/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/operation/list/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/operation/state_selection/screen/route.dart';
@@ -21,9 +24,6 @@ import 'package:my_finance_flutter/ui/screen/payee/selection/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/profile/create/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/profile/list/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/profile/selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/tag/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/tag/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/tag/selection/screen/route.dart';
 
 class TabRouter {
   static Map routes = HashMap.fromEntries(
@@ -41,9 +41,9 @@ class TabRouter {
       PayeeCreateRoute().route,
       PayeeListRoute().route,
       PayeeSelectionRoute().route,
-      TagCreateRoute().route,
-      TagListRoute().route,
-      TagSelectionRoute().route,
+      LabelCreateRoute().route,
+      LabelListRoute().route,
+      LabelSelectionRoute().route,
       OperationCreateRoute().route,
       OperationListRoute().route,
       OperationTypeSelectionRoute().route,

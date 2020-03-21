@@ -6,21 +6,21 @@ import 'package:my_finance_flutter/core/data_source/api/repository/api.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
 import 'package:my_finance_flutter/core/model/account/model.dart';
 import 'package:my_finance_flutter/core/model/category/model.dart';
+import 'package:my_finance_flutter/core/model/label/model.dart';
 import 'package:my_finance_flutter/core/model/operation/model.dart';
 import 'package:my_finance_flutter/core/model/operation/state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/model.dart';
 import 'package:my_finance_flutter/core/model/profile/model.dart';
-import 'package:my_finance_flutter/core/model/tag/model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/label/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation_state/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation_type/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/profile/repository.dart';
-import 'package:my_finance_flutter/core/provider/repository/tag/repository.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -48,7 +48,7 @@ List<SingleChildWidget> repositoryDependecies = [
   OperationTypeRepository.buildProvider(),
   OperationStateRepository.buildProvider(),
   PayeeRepository.buildProvider(),
-  TagRepository.buildProvider(),
+  LabelRepository.buildProvider(),
 ];
 
 List<SingleChildWidget> dataProviders(BuildContext context) => [
@@ -78,8 +78,8 @@ List<SingleChildWidget> dataProviders(BuildContext context) => [
         value: PayeeRepository.of(context).payeeListStream,
         initialData: List(),
       ),
-      StreamProvider<List<TagModel>>.value(
-        value: TagRepository.of(context).tagListStream,
+      StreamProvider<List<LabelModel>>.value(
+        value: LabelRepository.of(context).labelListStream,
         initialData: List(),
       ),
     ];

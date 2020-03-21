@@ -40,12 +40,12 @@ class HomeView extends StatelessWidget {
               onPressed: () => bloc.goToPayeeList(context),
             ),
             RaisedButton(
-              child: Text("List Tags"),
-              onPressed: () => bloc.goToTagList(context),
+              child: Text("List Labels"),
+              onPressed: () => bloc.goToLabelList(context),
             ),
             RaisedButton(
-              child: Text("Select Tags"),
-              onPressed: () => bloc.goToTagListSelection(context),
+              child: Text("Select Labels"),
+              onPressed: () => bloc.goToLabelListSelection(context),
             ),
             RaisedButton(
               child: Text("Import CSV"),

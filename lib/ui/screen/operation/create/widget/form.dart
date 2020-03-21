@@ -166,8 +166,8 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       ),
       UIHelper.verticalSpaceSmall,
       FormFieldDecorator(
-        text: Text("Tags"),
-        labelText: "Tags",
+        text: Text("Labels"),
+        labelText: "Labels",
         prefixIcon: Icon(Icons.label),
         onTap: _selectCategory,
       ),
