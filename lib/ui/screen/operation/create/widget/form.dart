@@ -5,6 +5,7 @@ import 'package:my_finance_flutter/core/model/category/model.dart';
 import 'package:my_finance_flutter/core/model/operation/model.dart';
 import 'package:my_finance_flutter/core/model/operation/state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/type_model.dart';
+import 'package:my_finance_flutter/core/model/payee/model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/operation/create/bloc/bloc.dart';
@@ -67,32 +68,45 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _valueNode,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-          hintText: "Value",
-          labelText: "Value",
-          prefixIcon: Icon(Icons.monetization_on),
-          border: OutlineInputBorder(),
-        ),
-        onSaved: (value) => setState(
-          () => operation.value = double.parse(value),
-        ),
-      ),
-      UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(operation.getTypeString()),
-        labelText: "Type",
-        prefixIcon: Icon(Icons.menu),
-        onTap: _selectOperationType,
+      Row(
+        children: <Widget>[
+          Expanded(
+            child: TextFormField(
+              focusNode: _valueNode,
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                hintText: "Value",
+                labelText: "Value",
+                prefixText: "R\$ ",
+                prefixIcon: Icon(Icons.monetization_on),
+                border: OutlineInputBorder(),
+              ),
+              onFieldSubmitted: (value) {
+                FocusScope.of(context).requestFocus(FocusNode());
+                _selectOperationType();
+              },
+              onSaved: (value) => setState(
+                () => operation.value = double.parse(value),
+              ),
+            ),
+          ),
+          UIHelper.horizontalSpaceSmall,
+          Expanded(
+            child: FormFieldDecorator(
+              text: Text(operation.getTypeString()),
+              labelText: "Type",
+              prefixIcon: Icon(Icons.menu),
+              onTap: _selectOperationType,
+            ),
+          ),
+        ],
       ),
       UIHelper.verticalSpaceSmall,
       Row(
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 1,
             child: FormFieldDecorator(
               text: Text(operation.getDateString()),
               labelText: "Date",
@@ -104,6 +118,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
           Expanded(
             flex: 1,
             child: FormFieldDecorator(
+              prefixIcon: Icon(Icons.access_time),
               text: Text(operation.getTimeString()),
               labelText: "Time",
               onTap: _selectTime,
@@ -112,35 +127,30 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         ],
       ),
       UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(operation.getStateString()),
-        labelText: "State",
-        prefixIcon: Icon(Icons.menu),
-        onTap: _selectOperationState,
-      ),
-      UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _descriptionNode,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.done,
-        decoration: InputDecoration(
-          hintText: "Description",
-          labelText: "Description",
-          prefixIcon: Icon(Icons.calendar_today),
-          border: OutlineInputBorder(),
-        ),
-        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
-          FocusNode(),
-        ),
-        onSaved: (value) => setState(
-          () => operation.description = value,
-        ),
+      Row(
+        children: <Widget>[
+          Expanded(
+            child: FormFieldDecorator(
+              text: Text(operation.getPayeeString()),
+              labelText: "Payee",
+              prefixIcon: Icon(Icons.check_circle),
+              onTap: _selectPayee,
+            ),
+          ),
+          UIHelper.horizontalSpaceSmall,
+          Expanded(
+            child: FormFieldDecorator(
+              text: Text(operation.getStateString()),
+              labelText: "State",
+              prefixIcon: Icon(Icons.check_circle),
+              onTap: _selectOperationState,
+            ),
+          ),
+        ],
       ),
       UIHelper.verticalSpaceSmall,
       FormFieldDecorator(
-        text: Text(
-          (operation?.category == null) ? "Unknown" : operation.category.name,
-        ),
+        text: Text(operation.getCategoryString()),
         labelText: "Category",
         prefixIcon: Icon(Icons.category),
         onTap: _selectCategory,
@@ -151,13 +161,50 @@ class OperationCreateFormState extends State<OperationCreateForm> {
           (operation?.account == null) ? "Unknown" : operation.account.name,
         ),
         labelText: "Account",
-        prefixIcon: Icon(Icons.category),
+        prefixIcon: Icon(Icons.account_balance),
         onTap: _selectAccount,
+      ),
+      UIHelper.verticalSpaceSmall,
+      FormFieldDecorator(
+        text: Text("Tags"),
+        labelText: "Tags",
+        prefixIcon: Icon(Icons.label),
+        onTap: _selectCategory,
+      ),
+      UIHelper.verticalSpaceSmall,
+      TextFormField(
+        focusNode: _descriptionNode,
+        keyboardType: TextInputType.text,
+        maxLines: 3,
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          hintText: "Note",
+          labelText: "Note",
+          alignLabelWithHint: true,
+          border: OutlineInputBorder(),
+        ),
+        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
+          FocusNode(),
+        ),
+        onSaved: (value) => setState(
+          () => operation.description = value,
+        ),
       ),
     ];
   }
 
-  _selectDate() async {
+  void _selectOperationType() async {
+    OperationTypeModel operationType = await bloc.selectOperationType();
+    if (operationType != null) {
+      setState(() {
+        operation.type = operationType;
+      });
+
+      _selectDate();
+    }
+  }
+
+  void _selectDate() async {
     var date = await showDatePicker(
       context: context,
       initialDate: operation.date,
@@ -172,10 +219,12 @@ class OperationCreateFormState extends State<OperationCreateForm> {
           operation.date.minute,
         );
       });
+
+      _selectTime();
     }
   }
 
-  _selectTime() async {
+  void _selectTime() async {
     var time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(operation.date),
@@ -184,34 +233,52 @@ class OperationCreateFormState extends State<OperationCreateForm> {
       setState(() {
         operation.date = DateUtil.mergeDateAndTime(operation.date, time);
       });
+
+      _selectPayee();
     }
   }
 
-  void _selectOperationType() async {
-    OperationTypeModel operationType = await bloc.selectOperationType();
-    setState(() {
-      operation.type = operationType;
-    });
+  void _selectPayee() async {
+    PayeeModel payeeSelected = await bloc.selectPayee();
+    if (payeeSelected != null) {
+      setState(() {
+        operation.payee = payeeSelected;
+      });
+
+      _selectOperationState();
+    }
   }
 
   void _selectOperationState() async {
     OperationStateModel operationState = await bloc.selectOperationState();
-    setState(() {
-      operation.state = operationState;
-    });
+    if (operationState != null) {
+      setState(() {
+        operation.state = operationState;
+      });
+
+      _selectCategory();
+    }
   }
 
   void _selectCategory() async {
     CategoryModel categorySelected = await bloc.selectCategory();
-    setState(() {
-      operation.category = categorySelected;
-    });
+    if (categorySelected != null) {
+      setState(() {
+        operation.category = categorySelected;
+      });
+
+      FocusScope.of(context).requestFocus(FocusNode());
+    }
   }
 
   void _selectAccount() async {
     AccountModel accountSelected = await bloc.selectAccount();
-    setState(() {
-      operation.account = accountSelected;
-    });
+    if (accountSelected != null) {
+      setState(() {
+        operation.account = accountSelected;
+      });
+
+      FocusScope.of(context).requestFocus(FocusNode());
+    }
   }
 }

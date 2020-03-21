@@ -3,13 +3,20 @@ import 'package:my_finance_flutter/core/data_source/database/client/client.dart'
 import 'package:my_finance_flutter/core/data_source/database/entity/account/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/operation/table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/payee/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/table.dart';
 import 'package:my_finance_flutter/core/model/operation/converter.dart';
 import 'package:my_finance_flutter/core/model/operation/model.dart';
 
 part 'dao.g.dart';
 
-@UseDao(tables: [OperationTable, CategoryTable, AccountTable, ProfileTable])
+@UseDao(tables: [
+  OperationTable,
+  PayeeTable,
+  CategoryTable,
+  AccountTable,
+  ProfileTable,
+])
 class OperationDao extends DatabaseAccessor<DatabaseClient>
     with _$OperationDaoMixin {
   OperationDao(DatabaseClient database) : super(database);
@@ -35,6 +42,10 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
   JoinedSelectStatement _getOperationBasicQuery() {
     return select(operationTable).join([
       leftOuterJoin(
+        payeeTable,
+        payeeTable.id.equalsExp(operationTable.payee),
+      ),
+      leftOuterJoin(
         categoryTable,
         categoryTable.id.equalsExp(
           operationTable.category,
@@ -58,6 +69,7 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
         (resultRow) {
           return OperationConverter.toModel(
             resultRow.readTable(operationTable),
+            payee: resultRow.readTable(payeeTable),
             category: resultRow.readTable(categoryTable),
             account: resultRow.readTable(accountTable),
           );

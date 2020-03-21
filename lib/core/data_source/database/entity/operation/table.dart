@@ -10,6 +10,7 @@ class OperationTable extends Table {
   TextColumn get date => text()();
   TextColumn get state => text()();
   TextColumn get description => text()();
+  IntColumn get payee => integer()();
   IntColumn get category => integer()();
   IntColumn get account => integer()();
   IntColumn get profile => integer()();

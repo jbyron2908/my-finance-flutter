@@ -6,6 +6,7 @@ import 'package:my_finance_flutter/core/model/account/model.dart';
 import 'package:my_finance_flutter/core/model/category/model.dart';
 import 'package:my_finance_flutter/core/model/operation/state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/type_model.dart';
+import 'package:my_finance_flutter/core/model/payee/model.dart';
 import 'package:my_finance_flutter/core/model/profile/model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 
@@ -18,6 +19,7 @@ class OperationModel {
   DateTime date;
   OperationStateModel state;
   String description;
+  PayeeModel payee;
   CategoryModel category;
   AccountModel account;
   ProfileModel profile;
@@ -31,6 +33,7 @@ class OperationModel {
     this.date,
     this.state,
     this.description,
+    this.payee,
     this.category,
     this.account,
     this.profile,
@@ -58,6 +61,18 @@ class OperationModel {
     return date == null ? "Unknown" : DateFormat("HH:mm").format(date);
   }
 
+  String getAccountString() {
+    return account == null ? "Unknown" : account.name;
+  }
+
+  String getCategoryString() {
+    return category == null ? "Unknown" : category.name;
+  }
+
+  String getPayeeString() {
+    return payee == null ? "Unknown" : payee.name;
+  }
+
   OperationModel copyWith({
     int id,
     int remoteId,
@@ -67,6 +82,7 @@ class OperationModel {
     DateTime date,
     OperationStateModel state,
     String description,
+    PayeeModel payee,
     CategoryModel category,
     AccountModel account,
     ProfileModel profile,
@@ -80,6 +96,7 @@ class OperationModel {
       date: date ?? this.date,
       state: state ?? this.state,
       description: description ?? this.description,
+      payee: payee ?? this.payee,
       category: category ?? this.category,
       account: account ?? this.account,
       profile: profile ?? this.profile,
@@ -96,6 +113,7 @@ class OperationModel {
       'date': date.millisecondsSinceEpoch,
       'state': state.toMap(),
       'description': description,
+      'payee': payee.toMap(),
       'category': category.toMap(),
       'account': account.toMap(),
       'profile': profile.toMap(),
@@ -114,6 +132,7 @@ class OperationModel {
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       state: OperationStateModel.fromMap(map['state']),
       description: map['description'],
+      payee: PayeeModel.fromMap(map['payee']),
       category: CategoryModel.fromMap(map['category']),
       account: AccountModel.fromMap(map['account']),
       profile: ProfileModel.fromMap(map['profile']),
@@ -126,7 +145,7 @@ class OperationModel {
 
   @override
   String toString() {
-    return 'OperationModel(id: $id, remoteId: $remoteId, title: $title, value: $value, type: $type, date: $date, state: $state, description: $description, category: $category, account: $account, profile: $profile)';
+    return 'OperationModel(id: $id, remoteId: $remoteId, title: $title, value: $value, type: $type, date: $date, state: $state, description: $description, payee: $payee, category: $category, account: $account, profile: $profile)';
   }
 
   @override
@@ -142,6 +161,7 @@ class OperationModel {
         o.date == date &&
         o.state == state &&
         o.description == description &&
+        o.payee == payee &&
         o.category == category &&
         o.account == account &&
         o.profile == profile;
@@ -157,6 +177,7 @@ class OperationModel {
         date.hashCode ^
         state.hashCode ^
         description.hashCode ^
+        payee.hashCode ^
         category.hashCode ^
         account.hashCode ^
         profile.hashCode;
