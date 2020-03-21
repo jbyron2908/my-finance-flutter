@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/payee/create/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/payee/selection/widget/selection.dart';
 
 class PayeeSelectionView extends StatelessWidget {
@@ -11,6 +13,14 @@ class PayeeSelectionView extends StatelessWidget {
       body: Container(
         child: PayeeSelection(),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _navigateToPayeeCreate(context),
+      ),
     );
+  }
+
+  _navigateToPayeeCreate(BuildContext context) {
+    AppRouter.navigateTo(context, PayeeCreateRoute());
   }
 }
