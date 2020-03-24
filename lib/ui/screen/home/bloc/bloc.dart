@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repo_re
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/account/list/screen/account_list_route.dart';
-import 'package:my_finance_flutter/ui/screen/category/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/category/list/screen/category_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/label/list/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/label/selection/screen/route.dart';

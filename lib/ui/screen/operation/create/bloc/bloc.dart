@@ -9,7 +9,7 @@ import 'package:my_finance_flutter/core/provider/repository/operation/operation_
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/account/selection/screen/account_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/category/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/category/selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/operation/state_selection/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/operation/type_selection/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/payee/selection/screen/route.dart';

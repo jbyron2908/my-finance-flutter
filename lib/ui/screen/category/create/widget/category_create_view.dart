@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
-import 'package:my_finance_flutter/ui/screen/category/create/widget/form.dart';
+import 'package:my_finance_flutter/ui/screen/category/create/widget/category_create_form.dart';
 
 class CategoryCreateView extends StatelessWidget {
   @override

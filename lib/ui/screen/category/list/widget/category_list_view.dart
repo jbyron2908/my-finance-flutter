@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
-import 'package:my_finance_flutter/ui/screen/category/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/category/list/widget/list.dart';
+import 'package:my_finance_flutter/ui/screen/category/create/screen/category_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/category/list/widget/category_list.dart';
 
 class CategoryListView extends StatelessWidget {
   @override
