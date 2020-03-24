@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/core/model/operation/model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/core/provider/repository/operation/repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/bloc.dart';
 import 'package:my_finance_flutter/ui/screen/account/selection/screen/route.dart';
