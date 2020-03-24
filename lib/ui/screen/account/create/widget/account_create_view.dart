@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/account/create/widget/form.dart';
+import 'package:my_finance_flutter/ui/screen/account/create/widget/account_create_form.dart';
 
 class AccountCreateView extends StatelessWidget {
   @override

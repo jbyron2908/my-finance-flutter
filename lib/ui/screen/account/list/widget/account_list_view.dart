@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
-import 'package:my_finance_flutter/ui/screen/account/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/account/list/widget/list.dart';
+import 'package:my_finance_flutter/ui/screen/account/create/screen/account_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/account/list/widget/account_list.dart';
 
 class AccountListView extends StatelessWidget {
   @override

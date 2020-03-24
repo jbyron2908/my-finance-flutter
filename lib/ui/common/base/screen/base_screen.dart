@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:provider/provider.dart';
-
-import '../bloc/bloc.dart';
 
 abstract class BaseScreen<T extends BaseBloc> extends StatefulWidget {
   BaseScreen({Key key}) : super(key: key);

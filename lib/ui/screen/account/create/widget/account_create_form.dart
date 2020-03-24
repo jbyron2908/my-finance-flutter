@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/account/create/bloc/bloc.dart';
+import 'package:my_finance_flutter/ui/screen/account/create/bloc/account_create_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/profile/selection/screen/route.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 

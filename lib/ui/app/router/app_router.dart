@@ -1,10 +1,10 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/router.dart';
-import 'package:my_finance_flutter/ui/screen/account/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/account/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/account/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
+import 'package:my_finance_flutter/ui/screen/account/create/screen/account_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/account/list/screen/account_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/account/selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/category/create/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/category/list/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/category/selection/screen/route.dart';

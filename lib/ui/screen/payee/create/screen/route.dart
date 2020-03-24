@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/router.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
 import 'package:my_finance_flutter/ui/screen/payee/create/screen/screen.dart';
 
 class PayeeCreateRoute extends BaseRoute {

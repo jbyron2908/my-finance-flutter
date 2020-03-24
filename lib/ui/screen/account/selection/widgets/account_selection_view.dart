@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
-import 'package:my_finance_flutter/ui/screen/account/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/account/selection/widgets/selection.dart';
+import 'package:my_finance_flutter/ui/screen/account/create/screen/account_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/account/selection/widgets/account_selection.dart';
 
 class AccountSelectionView extends StatelessWidget {
   @override

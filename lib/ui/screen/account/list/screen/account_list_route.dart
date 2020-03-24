@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/router.dart';
-import 'package:my_finance_flutter/ui/screen/account/list/screen/screen.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
+import 'package:my_finance_flutter/ui/screen/account/list/screen/account_list_screen.dart';
 
 class AccountListRoute extends BaseRoute {
   @override

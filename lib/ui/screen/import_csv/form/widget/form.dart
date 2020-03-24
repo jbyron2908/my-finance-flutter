@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/account/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/account/selection/screen/account_selection_route.dart';
 import 'package:path/path.dart' as path;
 
 class ImportCsvForm extends StatefulWidget {

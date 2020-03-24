@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/screen.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/splash/bloc/bloc.dart';
 import 'package:my_finance_flutter/ui/screen/splash/widget/view.dart';
 

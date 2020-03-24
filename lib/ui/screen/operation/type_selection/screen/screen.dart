@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/screen.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/operation/type_selection/bloc/bloc.dart';
 import 'package:my_finance_flutter/ui/screen/operation/type_selection/screen/route.dart';
 import 'package:my_finance_flutter/ui/screen/operation/type_selection/widget/view.dart';
