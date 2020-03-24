@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/profile/model.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/router.dart';
 import 'package:my_finance_flutter/ui/screen/profile/selection/screen/screen.dart';
 

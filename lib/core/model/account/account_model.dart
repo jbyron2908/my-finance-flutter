@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:my_finance_flutter/core/model/profile/model.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 
 class AccountModel {
   int id;

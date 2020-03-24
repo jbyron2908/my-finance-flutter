@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/account/model.dart';
-import 'package:my_finance_flutter/core/model/category/model.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/model.dart';
-import 'package:my_finance_flutter/core/model/operation/state_model.dart';
-import 'package:my_finance_flutter/core/model/operation/type_model.dart';
-import 'package:my_finance_flutter/core/model/payee/model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/repository.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/bloc.dart';

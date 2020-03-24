@@ -1,8 +1,8 @@
 import 'package:moor/moor.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/table.dart';
-import 'package:my_finance_flutter/core/model/payee/converter.dart';
-import 'package:my_finance_flutter/core/model/payee/model.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_converter.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 
 part 'dao.g.dart';
 

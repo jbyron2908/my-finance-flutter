@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/model/account/model.dart';
-import 'package:my_finance_flutter/core/model/category/model.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/model.dart';
-import 'package:my_finance_flutter/core/model/operation/state_model.dart';
-import 'package:my_finance_flutter/core/model/operation/type_model.dart';
-import 'package:my_finance_flutter/core/model/payee/model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/operation/create/bloc/bloc.dart';

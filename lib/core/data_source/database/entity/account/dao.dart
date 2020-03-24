@@ -2,8 +2,8 @@ import 'package:moor/moor.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/table.dart';
-import 'package:my_finance_flutter/core/model/account/converter.dart';
-import 'package:my_finance_flutter/core/model/account/model.dart';
+import 'package:my_finance_flutter/core/model/account/account_converter.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
 
 part 'dao.g.dart';
 

@@ -1,10 +1,10 @@
-import 'package:my_finance_flutter/core/constants/operation_state/constants.dart';
-import 'package:my_finance_flutter/core/constants/operation_type/constants.dart';
+import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
+import 'package:my_finance_flutter/core/constants/operation_type/operation_type_constants.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
-import 'package:my_finance_flutter/core/model/account/converter.dart';
-import 'package:my_finance_flutter/core/model/category/model.dart';
-import 'package:my_finance_flutter/core/model/payee/converter.dart';
-import 'package:my_finance_flutter/core/model/profile/converter.dart';
+import 'package:my_finance_flutter/core/model/account/account_converter.dart';
+import 'package:my_finance_flutter/core/model/category/category_converter.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_converter.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_converter.dart';
 
 import 'model.dart';
 

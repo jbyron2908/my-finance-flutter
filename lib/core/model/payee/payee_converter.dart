@@ -1,17 +1,17 @@
 import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
-import 'package:my_finance_flutter/core/model/label/model.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 
-class LabelConverter {
-  static LabelEntity toEntity(LabelModel model) {
-    return LabelEntity(
+class PayeeConverter {
+  static PayeeEntity toEntity(PayeeModel model) {
+    return PayeeEntity(
       id: model.id,
       name: model.name,
       remoteId: model.remoteId,
     );
   }
 
-  static LabelModel toModel(LabelEntity entity) {
-    return LabelModel(
+  static PayeeModel toModel(PayeeEntity entity) {
+    return PayeeModel(
       id: entity.id,
       name: entity.name,
       remoteId: entity.remoteId,

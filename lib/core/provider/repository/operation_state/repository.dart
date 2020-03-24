@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/constants/operation_state/constants.dart';
-import 'package:my_finance_flutter/core/model/operation/state_model.dart';
+import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
