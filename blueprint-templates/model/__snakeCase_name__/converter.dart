@@ -1,4 +1,4 @@
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 
 class {{pascalCase name}}Converter {
   static {{pascalCase name}}Entity toEntity({{pascalCase name}}Model model) {

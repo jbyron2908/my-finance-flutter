@@ -1,14 +1,14 @@
 import 'package:moor/moor.dart';
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/account/table.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/category/table.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/operation/table.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/payee/table.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/profile/table.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/account/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/operation/operation_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_table.dart';
 import 'package:my_finance_flutter/core/model/operation/model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_converter.dart';
 
-part 'dao.g.dart';
+part 'operation_dao.g.dart';
 
 @UseDao(tables: [
   OperationTable,

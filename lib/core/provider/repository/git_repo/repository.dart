@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/data_source/api/entity/repository.dart';
-import 'package:my_finance_flutter/core/data_source/api/repository/api.dart';
+import 'package:my_finance_flutter/core/data_source/api/entity/repository_entity.dart';
+import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 

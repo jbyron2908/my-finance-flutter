@@ -1,4 +1,4 @@
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 
 class ProfileConverter {

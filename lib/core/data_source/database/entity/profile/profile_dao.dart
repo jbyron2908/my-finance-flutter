@@ -1,10 +1,10 @@
 import 'package:moor/moor.dart';
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/profile/table.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_table.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_converter.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 
-part 'dao.g.dart';
+part 'profile_dao.g.dart';
 
 @UseDao(tables: [ProfileTable])
 class ProfileDao extends DatabaseAccessor<DatabaseClient>

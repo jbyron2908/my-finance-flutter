@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 
 part 'dao.g.dart';
 

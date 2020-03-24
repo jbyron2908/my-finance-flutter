@@ -1,10 +1,10 @@
 import 'package:moor/moor.dart';
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/payee/table.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_converter.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 
-part 'dao.g.dart';
+part 'payee_dao.g.dart';
 
 @UseDao(tables: [PayeeTable])
 class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {

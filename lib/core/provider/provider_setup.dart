@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
 import 'package:my_finance_flutter/core/constants/operation_type/operation_type_constants.dart';
-import 'package:my_finance_flutter/core/data_source/api/client/client.dart';
-import 'package:my_finance_flutter/core/data_source/api/repository/api.dart';
-import 'package:my_finance_flutter/core/data_source/database/client/client.dart';
+import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
+import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
+import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';

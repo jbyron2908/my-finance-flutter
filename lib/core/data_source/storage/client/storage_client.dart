@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_finance_flutter/core/data_source/storage/dao/operation/state/dao.dart';
-import 'package:my_finance_flutter/core/data_source/storage/dao/operation/type/dao.dart';
+import 'package:my_finance_flutter/core/data_source/storage/dao/operation/operation_state_dao.dart';
+import 'package:my_finance_flutter/core/data_source/storage/dao/operation/operation_type_dao.dart';
 
 class StorageClient {
   static StorageClient _instance;
