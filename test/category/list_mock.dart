@@ -11,7 +11,7 @@ class CategoryListMock extends StatelessWidget {
     return Container(
       child: Provider.value(
         value: List<CategoryModel>.generate(10, (index) {
-          var categoryModel = CategoryModel()..name = "$index";
+          var categoryModel = CategoryModel(name: "$index");
           return categoryModel;
         }),
         child: CategoryList(),

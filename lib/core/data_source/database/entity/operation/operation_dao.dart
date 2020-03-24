@@ -5,8 +5,8 @@ import 'package:my_finance_flutter/core/data_source/database/entity/category/cat
 import 'package:my_finance_flutter/core/data_source/database/entity/operation/operation_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_table.dart';
-import 'package:my_finance_flutter/core/model/operation/model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_converter.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 
 part 'operation_dao.g.dart';
 

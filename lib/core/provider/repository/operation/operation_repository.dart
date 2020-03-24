@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/storage/client/storage_client.dart';
-import 'package:my_finance_flutter/core/model/operation/model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_converter.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -26,7 +26,7 @@ class OperationRepository {
   DatabaseClient _databaseClient;
 
   Future<int> save(OperationModel operation) async {
-    operation.profile = operation.account.profile;
+    operation.copyWith(profile: operation.account.profile);
     await _saveDefaultValues(operation);
     return _databaseClient.operationDao
         .insert(OperationConverter.toEntity(operation));

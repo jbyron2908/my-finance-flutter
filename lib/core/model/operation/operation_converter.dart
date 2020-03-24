@@ -3,10 +3,9 @@ import 'package:my_finance_flutter/core/constants/operation_type/operation_type_
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/account/account_converter.dart';
 import 'package:my_finance_flutter/core/model/category/category_converter.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_converter.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_converter.dart';
-
-import 'model.dart';
 
 class OperationConverter {
   static OperationEntity toEntity(OperationModel model) {

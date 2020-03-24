@@ -7,7 +7,7 @@ import 'package:my_finance_flutter/core/data_source/database/client/database_cli
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
-import 'package:my_finance_flutter/core/model/operation/model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';

@@ -18,7 +18,7 @@ class LabelCreateFormState extends State<LabelCreateForm> {
       : onSubmit = onSubmit;
 
   final Function(LabelModel label) onSubmit;
-  final LabelModel label = LabelModel();
+  LabelModel label = LabelModel();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -73,7 +73,7 @@ class LabelCreateFormState extends State<LabelCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => label.name = value,
+          () => label = label.copyWith(name: value),
         ),
       ),
     ];

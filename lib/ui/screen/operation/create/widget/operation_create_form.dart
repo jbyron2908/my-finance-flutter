@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
-import 'package:my_finance_flutter/core/model/operation/model.dart';
+import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
@@ -64,7 +64,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         ),
         onFieldSubmitted: (value) => _valueNode.requestFocus(),
         onSaved: (value) => setState(
-          () => operation.title = value,
+          () => operation.copyWith(title: value),
         ),
       ),
       UIHelper.verticalSpaceSmall,
@@ -87,7 +87,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
                 _selectOperationType();
               },
               onSaved: (value) => setState(
-                () => operation.value = double.parse(value),
+                () => operation.copyWith(value: double.parse(value)),
               ),
             ),
           ),
@@ -187,7 +187,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => operation.description = value,
+          () => operation.copyWith(description: value),
         ),
       ),
     ];
@@ -197,7 +197,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     OperationTypeModel operationType = await bloc.selectOperationType();
     if (operationType != null) {
       setState(() {
-        operation.type = operationType;
+        operation.copyWith(type: operationType);
       });
 
       _selectDate();
@@ -213,10 +213,12 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     );
     if (date != null) {
       setState(() {
-        operation.date = DateUtil.setDateTime(
-          date,
-          operation.date.hour,
-          operation.date.minute,
+        operation.copyWith(
+          date: DateUtil.setDateTime(
+            date,
+            operation.date.hour,
+            operation.date.minute,
+          ),
         );
       });
 
@@ -231,7 +233,8 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     );
     if (time != null) {
       setState(() {
-        operation.date = DateUtil.mergeDateAndTime(operation.date, time);
+        operation.copyWith(
+            date: DateUtil.mergeDateAndTime(operation.date, time));
       });
 
       _selectPayee();
@@ -242,7 +245,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     PayeeModel payeeSelected = await bloc.selectPayee();
     if (payeeSelected != null) {
       setState(() {
-        operation.payee = payeeSelected;
+        operation.copyWith(payee: payeeSelected);
       });
 
       _selectOperationState();
@@ -253,7 +256,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     OperationStateModel operationState = await bloc.selectOperationState();
     if (operationState != null) {
       setState(() {
-        operation.state = operationState;
+        operation.copyWith(state: operationState);
       });
 
       _selectCategory();
@@ -264,7 +267,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     CategoryModel categorySelected = await bloc.selectCategory();
     if (categorySelected != null) {
       setState(() {
-        operation.category = categorySelected;
+        operation.copyWith(category: categorySelected);
       });
 
       FocusScope.of(context).requestFocus(FocusNode());
@@ -275,7 +278,7 @@ class OperationCreateFormState extends State<OperationCreateForm> {
     AccountModel accountSelected = await bloc.selectAccount();
     if (accountSelected != null) {
       setState(() {
-        operation.account = accountSelected;
+        operation.copyWith(account: accountSelected);
       });
 
       FocusScope.of(context).requestFocus(FocusNode());

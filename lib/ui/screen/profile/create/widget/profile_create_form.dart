@@ -64,7 +64,9 @@ class ProfileCreateFormState extends State<ProfileCreateForm> {
           border: OutlineInputBorder(),
         ),
         onFieldSubmitted: (value) => _currencyNode.requestFocus(),
-        onSaved: (value) => setState(() => profile.name = value),
+        onSaved: (value) => setState(
+          () => profile.copyWith(name: value),
+        ),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -80,7 +82,9 @@ class ProfileCreateFormState extends State<ProfileCreateForm> {
         onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
           FocusNode(),
         ),
-        onSaved: (value) => setState(() => profile.currency = value),
+        onSaved: (value) => setState(
+          () => profile.copyWith(currency: value),
+        ),
       )
     ];
   }

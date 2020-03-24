@@ -1,66 +1,18 @@
 import 'dart:convert';
 
-class CategoryModel {
+import 'package:auto_data/auto_data.dart';
+import 'package:meta/meta.dart';
+
+part 'category_model.g.dart';
+
+@data
+class $CategoryModel {
+  @nullable
   int id;
+  @nullable
   int remoteId;
+  @nullable
   String name;
-  CategoryModel parent;
-
-  CategoryModel({
-    this.id,
-    this.remoteId,
-    this.name,
-    this.parent,
-  });
-
-  CategoryModel copyWith({
-    int id,
-    int remoteId,
-    String name,
-  }) {
-    return CategoryModel(
-      id: id ?? this.id,
-      remoteId: remoteId ?? this.remoteId,
-      name: name ?? this.name,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'remoteId': remoteId,
-      'name': name,
-    };
-  }
-
-  static CategoryModel fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return CategoryModel(
-      id: map['id'],
-      remoteId: map['remoteId'],
-      name: map['name'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  static CategoryModel fromJson(String source) => fromMap(json.decode(source));
-
-  @override
-  String toString() =>
-      'CategoryModel(id: $id, remoteId: $remoteId, name: $name)';
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is CategoryModel &&
-        o.id == id &&
-        o.remoteId == remoteId &&
-        o.name == name;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ remoteId.hashCode ^ name.hashCode;
+  @nullable
+  $CategoryModel parent;
 }

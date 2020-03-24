@@ -73,7 +73,7 @@ class PayeeCreateFormState extends State<PayeeCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => payee.name = value,
+          () => payee.copyWith(name: value),
         ),
       ),
     ];

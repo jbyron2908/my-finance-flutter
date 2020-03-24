@@ -77,7 +77,7 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => category.name = value,
+          () => category.copyWith(name: value),
         ),
       ),
       UIHelper.verticalSpaceSmall,
@@ -95,8 +95,8 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
   void _selectCategory() async {
     CategoryModel categorySelected =
         await AppRouter.navigateTo(context, CategorySelectionRoute());
-    setState(() {
-      category.parent = categorySelected;
-    });
+    setState(
+      () => category.copyWith(parent: categorySelected),
+    );
   }
 }

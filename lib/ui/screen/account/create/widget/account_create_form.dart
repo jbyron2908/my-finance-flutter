@@ -14,7 +14,7 @@ class AccountCreateForm extends StatefulWidget {
 }
 
 class AccountCreateFormState extends State<AccountCreateForm> {
-  final AccountModel account = AccountModel();
+  AccountModel account = AccountModel();
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode _nameNode = FocusNode();
@@ -72,7 +72,9 @@ class AccountCreateFormState extends State<AccountCreateForm> {
           border: OutlineInputBorder(),
         ),
         onFieldSubmitted: (value) => _typeNode.requestFocus(),
-        onSaved: (value) => setState(() => account.name = value),
+        onSaved: (value) => setState(
+          () => account = account.copyWith(name: value),
+        ),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -86,7 +88,9 @@ class AccountCreateFormState extends State<AccountCreateForm> {
           border: OutlineInputBorder(),
         ),
         onFieldSubmitted: (value) => _initialValueNode.requestFocus(),
-        onSaved: (value) => setState(() => account.type = value),
+        onSaved: (value) => setState(
+          () => account = account.copyWith(type: value),
+        ),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -102,8 +106,9 @@ class AccountCreateFormState extends State<AccountCreateForm> {
         onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
           FocusNode(),
         ),
-        onSaved: (value) =>
-            setState(() => account.initialValue = double.parse(value)),
+        onSaved: (value) => setState(
+          () => account = account.copyWith(initialValue: double.parse(value)),
+        ),
       ),
       UIHelper.verticalSpaceSmall,
       FormFieldDecorator(
@@ -121,7 +126,7 @@ class AccountCreateFormState extends State<AccountCreateForm> {
     ProfileModel profileSelected =
         await AppRouter.navigateTo(context, ProfileSelectionRoute());
     setState(() {
-      account.profile = profileSelected;
+      account = account.copyWith(profile: profileSelected);
     });
   }
 }

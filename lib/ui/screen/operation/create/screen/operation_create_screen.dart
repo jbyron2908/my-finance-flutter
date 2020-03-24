@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/operation/model.dart';
+import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/operation/create/bloc/operation_create_bloc.dart';
@@ -21,7 +21,7 @@ class OperationCreateScreen extends BaseScreen<OperationCreateBloc> {
     return OperationCreateBloc(
       context: context,
       operationRepository: OperationRepository.of(context),
-      operation: OperationModel.empty(),
+      operation: OperationModelExtra.buildEmpty(),
     );
   }
 }
