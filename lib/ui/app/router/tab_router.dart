@@ -14,16 +14,16 @@ import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv
 import 'package:my_finance_flutter/ui/screen/label/create/screen/label_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/label/list/screen/label_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/label/selection/screen/label_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/operation/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/operation/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/operation/state_selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/operation/type_selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/payee/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/payee/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/payee/selection/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/profile/create/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/profile/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/profile/selection/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/create/screen/operation_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/list/screen/operation_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/state_selection/screen/operation_state_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/type_selection/screen/operation_type_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/create/screen/payee_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/list/screen/payee_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/selection/screen/payee_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/create/screen/profile_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/list/screen/profile_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/selection/screen/profile_selection_route.dart';
 
 class TabRouter {
   static Map routes = HashMap.fromEntries(

@@ -8,9 +8,9 @@ import 'package:my_finance_flutter/ui/screen/category/list/screen/category_list_
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/label/list/screen/label_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/label/selection/screen/label_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/operation/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/payee/list/screen/route.dart';
-import 'package:my_finance_flutter/ui/screen/profile/list/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/operation/list/screen/operation_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/payee/list/screen/payee_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/profile/list/screen/profile_list_route.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
