@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
-import 'package:my_finance_flutter/ui/screen/home/screen/screen.dart';
+import 'package:my_finance_flutter/ui/screen/label/list/screen/label_list_screen.dart';
 
-class HomeRoute extends BaseRoute {
+class LabelListRoute extends BaseRoute {
   @override
-  String get routePath => "/home";
+  String get routePath => "/label/list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => HomeScreen(),
+      builder: (context) => LabelListScreen(),
       settings: routeSettings,
     );
   }

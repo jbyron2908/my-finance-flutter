@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
-import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/screen.dart';
+import 'package:my_finance_flutter/ui/screen/home/screen/home_screen.dart';
 
-class ImportCsvResultRoute extends BaseRoute {
+class HomeRoute extends BaseRoute {
   @override
-  String get routePath => "/importCsv/result";
+  String get routePath => "/home";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => ImportCsvResultScreen(),
+      builder: (context) => HomeScreen(),
       settings: routeSettings,
     );
   }

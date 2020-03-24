@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/label/widgets/item.dart';
+import 'package:my_finance_flutter/ui/screen/label/selection/bloc/label_selection_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/label/selection/widget/label_selection_view.dart';
+import 'package:my_finance_flutter/ui/screen/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
 
-class LabelSelection extends StatefulWidget {
+class LabelSelectionScreen extends BaseScreen<LabelSelectionBloc> {
+  LabelSelectionScreen({Key key}) : super(key: key);
+
   @override
-  _LabelSelectionState createState() => _LabelSelectionState();
+  Widget build(BuildContext context) {
+    return LabelSelectionView();
+  }
+
+  @override
+  LabelSelectionBloc buildBloc(BuildContext context) {
+    return LabelSelectionBloc();
+  }
 }
 
-class _LabelSelectionState extends State<LabelSelection> {
+class _LabelList extends StatefulWidget {
+  _LabelList({Key key}) : super(key: key);
+
+  @override
+  __LabelListState createState() => __LabelListState();
+}
+
+class __LabelListState extends State<_LabelList> {
   List<LabelModel> selectedLabelList = List();
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/home/screen/route.dart';
+import 'package:my_finance_flutter/ui/screen/home/screen/home_route.dart';
 import 'package:my_finance_flutter/ui/screen/profile/list/screen/route.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/view.dart';

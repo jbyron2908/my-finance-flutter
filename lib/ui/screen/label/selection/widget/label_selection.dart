@@ -1,35 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/label/selection/bloc/bloc.dart';
-import 'package:my_finance_flutter/ui/screen/label/selection/widget/view.dart';
-import 'package:my_finance_flutter/ui/screen/label/widgets/item.dart';
+import 'package:my_finance_flutter/ui/screen/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
 
-class LabelSelectionScreen extends BaseScreen<LabelSelectionBloc> {
-  LabelSelectionScreen({Key key}) : super(key: key);
-
+class LabelSelection extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return LabelSelectionView();
-  }
-
-  @override
-  LabelSelectionBloc buildBloc(BuildContext context) {
-    return LabelSelectionBloc();
-  }
+  _LabelSelectionState createState() => _LabelSelectionState();
 }
 
-class _LabelList extends StatefulWidget {
-  _LabelList({Key key}) : super(key: key);
-
-  @override
-  __LabelListState createState() => __LabelListState();
-}
-
-class __LabelListState extends State<_LabelList> {
+class _LabelSelectionState extends State<LabelSelection> {
   List<LabelModel> selectedLabelList = List();
 
   @override

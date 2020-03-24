@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
-import 'package:my_finance_flutter/ui/screen/label/list/screen/screen.dart';
+import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_screen.dart';
 
-class LabelListRoute extends BaseRoute {
+class ImportCsvResultRoute extends BaseRoute {
   @override
-  String get routePath => "/label/list";
+  String get routePath => "/importCsv/result";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => LabelListScreen(),
+      builder: (context) => ImportCsvResultScreen(),
       settings: routeSettings,
     );
   }

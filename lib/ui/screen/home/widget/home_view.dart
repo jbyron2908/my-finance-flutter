@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/flavor/index.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
-import 'package:my_finance_flutter/ui/screen/home/bloc/bloc.dart';
+import 'package:my_finance_flutter/ui/screen/home/bloc/home_bloc.dart';
 
 class HomeView extends StatelessWidget {
   @override
