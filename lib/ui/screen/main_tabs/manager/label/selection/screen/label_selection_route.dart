@@ -9,12 +9,22 @@ class LabelSelectionRoute extends BaseRoute {
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as LabelSelectionRouteArgs;
+
     return MaterialPageRoute<List<LabelModel>>(
-      builder: (context) => LabelSelectionScreen(),
+      builder: (context) => LabelSelectionScreen(arguments),
       settings: routeSettings,
     );
   }
 
   @override
   Object get arguments => null;
+}
+
+class LabelSelectionRouteArgs {
+  int field1;
+
+  LabelSelectionRouteArgs({
+    this.field1,
+  });
 }

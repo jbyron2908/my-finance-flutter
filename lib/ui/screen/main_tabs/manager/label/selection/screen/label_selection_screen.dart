@@ -4,12 +4,15 @@ import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/bloc/label_selection_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/screen/label_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/widget/label_selection_view.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
 
 class LabelSelectionScreen extends BaseScreen<LabelSelectionBloc> {
-  LabelSelectionScreen({Key key}) : super(key: key);
+  LabelSelectionScreen(this.arguments);
+
+  final LabelSelectionRouteArgs arguments;
 
   @override
   Widget build(BuildContext context) {

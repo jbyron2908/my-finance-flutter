@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/bloc/category_create_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/screen/category_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/widget/category_create_view.dart';
 
 class CategoryCreateScreen extends BaseScreen<CategoryCreateBloc> {
+  CategoryCreateScreen(this.arguments);
+
+  final CategoryCreateRouteArgs arguments;
+
   @override
   Widget build(BuildContext context) {
     return CategoryCreateView();

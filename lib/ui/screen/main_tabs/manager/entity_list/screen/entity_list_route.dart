@@ -8,12 +8,22 @@ class EntityListRoute extends BaseRoute {
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as EntityListRouteArgs;
+
     return MaterialPageRoute(
-      builder: (context) => EntityListScreen(),
+      builder: (context) => EntityListScreen(arguments),
       settings: routeSettings,
     );
   }
 
   @override
   Object get arguments => null;
+}
+
+class EntityListRouteArgs {
+  int field1;
+
+  EntityListRouteArgs({
+    this.field1,
+  });
 }

@@ -8,12 +8,22 @@ class CategoryCreateRoute extends BaseRoute {
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as CategoryCreateRouteArgs;
+
     return MaterialPageRoute(
-      builder: (context) => CategoryCreateScreen(),
+      builder: (context) => CategoryCreateScreen(arguments),
       settings: routeSettings,
     );
   }
 
   @override
   Object get arguments => null;
+}
+
+class CategoryCreateRouteArgs {
+  int field1;
+
+  CategoryCreateRouteArgs({
+    this.field1,
+  });
 }

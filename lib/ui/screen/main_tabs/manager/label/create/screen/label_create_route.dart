@@ -8,12 +8,22 @@ class LabelCreateRoute extends BaseRoute {
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as LabelCreateRouteArgs;
+
     return MaterialPageRoute(
-      builder: (context) => LabelCreateScreen(),
+      builder: (context) => LabelCreateScreen(arguments),
       settings: routeSettings,
     );
   }
 
   @override
   Object get arguments => null;
+}
+
+class LabelCreateRouteArgs {
+  int field1;
+
+  LabelCreateRouteArgs({
+    this.field1,
+  });
 }
