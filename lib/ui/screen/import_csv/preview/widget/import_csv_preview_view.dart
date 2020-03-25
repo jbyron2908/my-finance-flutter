@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
+import 'package:my_finance_flutter/core/model/account/index.dart';
+import 'package:my_finance_flutter/core/model/payee/index.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/bloc/import_csv_preview_model.dart';
 

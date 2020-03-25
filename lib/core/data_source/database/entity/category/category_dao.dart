@@ -1,8 +1,7 @@
 import 'package:moor/moor.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
-import 'package:my_finance_flutter/core/model/category/category_converter.dart';
-import 'package:my_finance_flutter/core/model/category/category_model.dart';
+import 'package:my_finance_flutter/core/model/category/index.dart';
 
 part 'category_dao.g.dart';
 
