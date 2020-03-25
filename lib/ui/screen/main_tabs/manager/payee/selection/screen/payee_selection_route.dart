@@ -3,7 +3,10 @@ import 'package:my_finance_flutter/core/model/payee/index.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/screen/payee_selection_screen.dart';
 
-class PayeeSelectionRoute extends BaseRoute {
+class PayeeSelectionRoute extends BaseRoute<PayeeSelectionScreenArgs> {
+  PayeeSelectionRoute({PayeeSelectionScreenArgs argument})
+      : super(argument: argument);
+
   @override
   String get routePath => "/manager/payee/selection";
 
@@ -14,7 +17,4 @@ class PayeeSelectionRoute extends BaseRoute {
       settings: routeSettings,
     );
   }
-
-  @override
-  Object get arguments => null;
 }

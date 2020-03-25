@@ -22,7 +22,7 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
       : onSubmit = onSubmit;
 
   final Function(CategoryModel category) onSubmit;
-  final CategoryModel category = CategoryModel();
+  CategoryModel category = CategoryModel();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -77,7 +77,7 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => category.copyWith(name: value),
+          () => category = category.copyWith(name: value),
         ),
       ),
       UIHelper.verticalSpaceSmall,
@@ -96,7 +96,7 @@ class CategoryCreateFormState extends State<CategoryCreateForm> {
     CategoryModel categorySelected =
         await AppRouter.navigateTo(context, CategorySelectionRoute());
     setState(
-      () => category.copyWith(parent: categorySelected),
+      () => category = category.copyWith(parent: categorySelected),
     );
   }
 }

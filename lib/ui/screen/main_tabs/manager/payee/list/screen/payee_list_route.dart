@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/list/screen/payee_list_screen.dart';
 
-class PayeeListRoute extends BaseRoute {
+class PayeeListRoute extends BaseRoute<PayeeListRoute> {
+  PayeeListRoute({PayeeListRoute argument}) : super(argument: argument);
+
   @override
   String get routePath => "/manager/payee/list";
 
@@ -13,7 +15,4 @@ class PayeeListRoute extends BaseRoute {
       settings: routeSettings,
     );
   }
-
-  @override
-  Object get arguments => null;
 }

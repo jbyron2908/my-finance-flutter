@@ -4,32 +4,19 @@ import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 
 import 'operation_state_selection_screen.dart';
 
-class OperationStateSelectionRoute extends BaseRoute {
-  OperationStateSelectionRouteArgs routeArguments;
-
-  OperationStateSelectionRoute({this.routeArguments});
+class OperationStateSelectionRoute
+    extends BaseRoute<OperationStateSelectionScreenArgs> {
+  OperationStateSelectionRoute({OperationStateSelectionScreenArgs argument})
+      : super(argument: argument);
 
   @override
   String get routePath => "/manager/operation/state_selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
-    var arguments = routeSettings.arguments as OperationStateSelectionRouteArgs;
-
     return MaterialPageRoute<OperationStateModel>(
-      builder: (context) => OperationStateSelectionScreen(arguments),
+      builder: (context) => OperationStateSelectionScreen(),
       settings: routeSettings,
     );
   }
-
-  @override
-  Object get arguments => this.routeArguments;
-}
-
-class OperationStateSelectionRouteArgs {
-  int field1;
-
-  OperationStateSelectionRouteArgs({
-    this.field1,
-  });
 }

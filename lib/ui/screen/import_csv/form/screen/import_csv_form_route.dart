@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_screen.dart';
 
-class ImportCsvFormRoute extends BaseRoute {
+class ImportCsvFormRoute extends BaseRoute<ImportCsvFormScreenArgs> {
   @override
   String get routePath => "/importCsv/form";
 
@@ -13,7 +13,4 @@ class ImportCsvFormRoute extends BaseRoute {
       settings: routeSettings,
     );
   }
-
-  @override
-  Object get arguments => null;
 }

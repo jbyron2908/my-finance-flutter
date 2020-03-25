@@ -18,7 +18,7 @@ class PayeeCreateFormState extends State<PayeeCreateForm> {
       : onSubmit = onSubmit;
 
   final Function(PayeeModel payee) onSubmit;
-  final PayeeModel payee = PayeeModel();
+  PayeeModel payee = PayeeModel();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -73,7 +73,7 @@ class PayeeCreateFormState extends State<PayeeCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => payee.copyWith(name: value),
+          () => payee = payee.copyWith(name: value),
         ),
       ),
     ];

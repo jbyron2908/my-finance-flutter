@@ -2,28 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/screen/category_list_screen.dart';
 
-class CategoryListRoute extends BaseRoute {
+class CategoryListRoute extends BaseRoute<CategoryListScreenArgs> {
+  CategoryListRoute({CategoryListScreenArgs argument})
+      : super(argument: argument);
+
   @override
   String get routePath => "/manager/category/list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
-    var arguments = routeSettings.arguments as CategoryListRouteArgs;
-
     return MaterialPageRoute(
-      builder: (context) => CategoryListScreen(arguments),
+      builder: (context) => CategoryListScreen(),
       settings: routeSettings,
     );
   }
-
-  @override
-  Object get arguments => null;
-}
-
-class CategoryListRouteArgs {
-  int field1;
-
-  CategoryListRouteArgs({
-    this.field1,
-  });
 }

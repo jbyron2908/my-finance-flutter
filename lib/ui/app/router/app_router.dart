@@ -74,7 +74,7 @@ class AppRouter {
     return Navigator.pushNamed<T>(
       context,
       route.routePath,
-      arguments: route.arguments,
+      arguments: route.argument,
     );
   }
 
@@ -82,7 +82,7 @@ class AppRouter {
     return Navigator.pushReplacementNamed(
       context,
       route.routePath,
-      arguments: route.arguments,
+      arguments: route.argument,
     );
   }
 

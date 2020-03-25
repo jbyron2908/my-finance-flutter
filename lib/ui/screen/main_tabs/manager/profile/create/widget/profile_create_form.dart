@@ -10,7 +10,7 @@ class ProfileCreateForm extends StatefulWidget {
 }
 
 class ProfileCreateFormState extends State<ProfileCreateForm> {
-  final ProfileModel profile = ProfileModel();
+  ProfileModel profile = ProfileModel();
   final _formKey = GlobalKey<FormState>();
 
   final FocusNode _currencyNode = FocusNode();
@@ -65,7 +65,7 @@ class ProfileCreateFormState extends State<ProfileCreateForm> {
         ),
         onFieldSubmitted: (value) => _currencyNode.requestFocus(),
         onSaved: (value) => setState(
-          () => profile.copyWith(name: value),
+          () => profile = profile.copyWith(name: value),
         ),
       ),
       UIHelper.verticalSpaceSmall,
@@ -83,7 +83,7 @@ class ProfileCreateFormState extends State<ProfileCreateForm> {
           FocusNode(),
         ),
         onSaved: (value) => setState(
-          () => profile.copyWith(currency: value),
+          () => profile = profile.copyWith(currency: value),
         ),
       )
     ];
