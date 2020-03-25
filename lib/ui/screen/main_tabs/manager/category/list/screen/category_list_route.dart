@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/scr
 
 class CategoryListRoute extends BaseRoute {
   @override
-  String get routePath => "/category/list";
+  String get routePath => "/manager/category/list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

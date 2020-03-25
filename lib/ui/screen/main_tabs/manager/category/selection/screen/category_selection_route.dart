@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selectio
 
 class CategorySelectionRoute extends BaseRoute {
   @override
-  String get routePath => "/category/selection";
+  String get routePath => "/manager/category/selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

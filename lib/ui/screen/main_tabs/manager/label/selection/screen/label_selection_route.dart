@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/s
 
 class LabelSelectionRoute extends BaseRoute {
   @override
-  String get routePath => "/label/selection";
+  String get routePath => "/manager/label/selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

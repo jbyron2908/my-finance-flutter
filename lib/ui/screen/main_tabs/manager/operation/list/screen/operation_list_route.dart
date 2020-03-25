@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/list/sc
 
 class OperationListRoute extends BaseRoute {
   @override
-  String get routePath => "/operation/list";
+  String get routePath => "/manager/operation/list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

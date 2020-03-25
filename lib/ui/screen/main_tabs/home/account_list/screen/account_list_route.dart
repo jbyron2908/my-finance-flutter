@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_list/screen/account_list_screen.dart';
 
 class AccountListRoute extends BaseRoute {
+  AccountListRouteArgs routeArguments;
+
+  AccountListRoute({this.routeArguments});
+
   @override
-  String get routePath => "/manager/account/list";
+  String get routePath => "/home/account_list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
@@ -17,7 +21,7 @@ class AccountListRoute extends BaseRoute {
   }
 
   @override
-  Object get arguments => null;
+  Object get arguments => this.routeArguments;
 }
 
 class AccountListRouteArgs {

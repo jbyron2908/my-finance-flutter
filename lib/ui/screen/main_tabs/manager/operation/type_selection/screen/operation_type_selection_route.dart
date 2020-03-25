@@ -9,7 +9,7 @@ class OperationTypeSelectionRoute extends BaseRoute {
   OperationTypeSelectionRoute({this.routeArguments});
 
   @override
-  String get routePath => "/operation/type_selection";
+  String get routePath => "/manager/operation/type_selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

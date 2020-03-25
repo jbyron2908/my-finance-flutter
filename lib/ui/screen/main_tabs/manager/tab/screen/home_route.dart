@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/tab/screen/home_s
 
 class HomeRoute extends BaseRoute {
   @override
-  String get routePath => "/home";
+  String get routePath => "/manager/tab";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

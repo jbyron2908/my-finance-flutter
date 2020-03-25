@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/sc
 
 class AccountCreateRoute extends BaseRoute {
   @override
-  String get routePath => "/account/create";
+  String get routePath => "/manager/account/create";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

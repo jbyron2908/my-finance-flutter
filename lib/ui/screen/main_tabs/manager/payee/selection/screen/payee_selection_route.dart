@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/s
 
 class PayeeSelectionRoute extends BaseRoute {
   @override
-  String get routePath => "/payee/selection";
+  String get routePath => "/manager/payee/selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

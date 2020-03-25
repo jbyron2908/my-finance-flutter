@@ -3,11 +3,11 @@ import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
-class ProfileListBloc extends BaseBloc {
-  static ProfileListBloc of(BuildContext context) =>
-      Provider.of<ProfileListBloc>(context, listen: false);
+class AccountListBloc extends BaseBloc {
+  static AccountListBloc of(BuildContext context) =>
+      Provider.of<AccountListBloc>(context, listen: false);
 
-  ProfileListBloc();
+  AccountListBloc();
 
   @override
   List<SingleChildWidget> get dependencies => [];

@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection
 
 class AccountSelectionRoute extends BaseRoute {
   @override
-  String get routePath => "/account/selection";
+  String get routePath => "/manager/account/selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

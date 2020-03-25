@@ -8,7 +8,7 @@ class OperationCreateRoute extends BaseRoute {
   OperationCreateRoute({this.routeArguments});
 
   @override
-  String get routePath => "/operation/create";
+  String get routePath => "/manager/operation/create";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

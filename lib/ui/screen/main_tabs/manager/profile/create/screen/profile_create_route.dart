@@ -8,7 +8,7 @@ class ProfileCreateRoute extends BaseRoute {
   ProfileCreateRoute({this.routeArguments});
 
   @override
-  String get routePath => "/profile/create";
+  String get routePath => "/manager/profile/create";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

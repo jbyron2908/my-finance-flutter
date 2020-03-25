@@ -8,7 +8,7 @@ class ProfileListRoute extends BaseRoute {
   ProfileListRoute({this.routeArguments});
 
   @override
-  String get routePath => "/profile/list";
+  String get routePath => "/manager/profile/list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

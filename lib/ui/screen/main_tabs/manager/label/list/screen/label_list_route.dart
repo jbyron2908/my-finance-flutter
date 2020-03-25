@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/list/screen
 
 class LabelListRoute extends BaseRoute {
   @override
-  String get routePath => "/label/list";
+  String get routePath => "/manager/label/list";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

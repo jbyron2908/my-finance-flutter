@@ -10,7 +10,7 @@ class OperationStateSelectionRoute extends BaseRoute {
   OperationStateSelectionRoute({this.routeArguments});
 
   @override
-  String get routePath => "/operation/state_selection";
+  String get routePath => "/manager/operation/state_selection";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

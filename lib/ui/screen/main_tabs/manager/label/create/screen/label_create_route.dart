@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/create/scre
 
 class LabelCreateRoute extends BaseRoute {
   @override
-  String get routePath => "/label/create";
+  String get routePath => "/manager/label/create";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
