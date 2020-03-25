@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/category/index.dart';
-import 'package:my_finance_flutter/ui/screen/category/list/widget/category_list.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/widget/category_list.dart';
 import 'package:provider/provider.dart';
 
 class CategoryListMock extends StatelessWidget {
