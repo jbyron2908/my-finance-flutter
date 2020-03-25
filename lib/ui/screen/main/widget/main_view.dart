@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/tab/screen/home_route.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/view.dart';
@@ -14,7 +14,7 @@ class MainView extends StatelessWidget {
           id: "home",
           title: "Home",
           iconData: Icons.home,
-          rootPath: ProfileListRoute().routePath,
+          rootPath: BalanceRoute().routePath,
           defaultTab: true,
         ),
         TabItem(

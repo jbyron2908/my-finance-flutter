@@ -6,6 +6,7 @@ import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_f
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_route.dart';
 import 'package:my_finance_flutter/ui/screen/main/screen/main_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/screen/account_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
@@ -33,6 +34,7 @@ class AppRouter {
     [
       SplashRoute().route,
       HomeRoute().route,
+      BalanceRoute().route,
       MainRoute().route,
       ProfileCreateRoute().route,
       ProfileListRoute().route,

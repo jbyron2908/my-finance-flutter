@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/screen/account_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
@@ -29,6 +30,7 @@ class TabRouter {
   static Map routes = HashMap.fromEntries(
     [
       HomeRoute().route,
+      BalanceRoute().route,
       ProfileCreateRoute().route,
       ProfileListRoute().route,
       ProfileSelectionRoute().route,
