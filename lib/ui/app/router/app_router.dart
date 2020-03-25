@@ -13,6 +13,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/screen/category_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/screen/category_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/screen/entity_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/create/screen/label_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/list/screen/label_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/screen/label_selection_route.dart';
@@ -26,14 +27,13 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/s
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/create/screen/profile_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/tab/screen/home_route.dart';
 import 'package:my_finance_flutter/ui/screen/splash/screen/splash_route.dart';
 
 class AppRouter {
   static Map routes = HashMap.fromEntries(
     [
       SplashRoute().route,
-      HomeRoute().route,
+      EntityListRoute().route,
       BalanceRoute().route,
       MainRoute().route,
       ProfileCreateRoute().route,

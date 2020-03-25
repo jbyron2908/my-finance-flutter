@@ -14,11 +14,11 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/scre
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
-class HomeBloc extends BaseBloc {
-  static HomeBloc of(BuildContext context) =>
-      Provider.of<HomeBloc>(context, listen: false);
+class EntityListBloc extends BaseBloc {
+  static EntityListBloc of(BuildContext context) =>
+      Provider.of<EntityListBloc>(context, listen: false);
 
-  HomeBloc({
+  EntityListBloc({
     this.gitRepoRepository,
   });
 

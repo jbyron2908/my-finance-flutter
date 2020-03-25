@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/flavor/index.dart';
 import 'package:my_finance_flutter/generated/i18n.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/tab/bloc/home_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/bloc/entity_list_bloc.dart';
 
-class HomeView extends StatelessWidget {
+class EntityListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     I18n i18n = I18n.of(context);
-    var bloc = HomeBloc.of(context);
+    var bloc = EntityListBloc.of(context);
 
     return Scaffold(
       appBar: AppBar(
