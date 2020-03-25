@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 
 import 'operation_state_selection_screen.dart';
 

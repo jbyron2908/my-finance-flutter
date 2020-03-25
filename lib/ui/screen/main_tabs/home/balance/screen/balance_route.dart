@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_router.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_screen.dart';
 
 class BalanceRoute extends BaseRoute {
