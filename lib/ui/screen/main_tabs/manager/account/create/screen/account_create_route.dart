@@ -8,12 +8,22 @@ class AccountCreateRoute extends BaseRoute {
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
+    var arguments = routeSettings.arguments as AccountCreateRouteArgs;
+
     return MaterialPageRoute(
-      builder: (context) => AccountCreateScreen(),
+      builder: (context) => AccountCreateScreen(arguments),
       settings: routeSettings,
     );
   }
 
   @override
   Object get arguments => null;
+}
+
+class AccountCreateRouteArgs {
+  int field1;
+
+  AccountCreateRouteArgs({
+    this.field1,
+  });
 }
