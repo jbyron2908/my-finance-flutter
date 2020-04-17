@@ -15,5 +15,8 @@
     "statusBar.border": "#2f4f4f",
     "titleBar.border": "#2f4f4f"
   },
-  "peacock.color": "#2f4f4f"
+  "peacock.color": "#2f4f4f",
+  "dart.analysisExcludedFolders": [
+    "blueprint-templates"
+  ]
 }
