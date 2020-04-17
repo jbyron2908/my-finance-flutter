@@ -24,7 +24,7 @@ class MainView extends StatelessWidget {
           rootPath: EntityListRoute().routePath,
         ),
       ],
-      routeGenerator: TabRouter.generateRoutes,
+      routeGenerator: TabRouter().generateRoutes,
     );
   }
 }

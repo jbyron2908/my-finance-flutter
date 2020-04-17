@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/index.dart';
 import 'package:my_finance_flutter/core/model/profile/index.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/bloc/account_create_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
@@ -55,7 +55,7 @@ class AccountCreateFormState extends State<AccountCreateForm> {
     FocusScope.of(context).requestFocus(FocusNode());
     _formKey.currentState.save();
     await AccountCreateBloc.of(context).saveAccount(account);
-    AppRouter.pop(context);
+    TabRouter.of(context).pop();
   }
 
   List<Widget> buildFormFields() {
@@ -124,7 +124,7 @@ class AccountCreateFormState extends State<AccountCreateForm> {
 
   void _selectProfile() async {
     ProfileModel profileSelected =
-        await AppRouter.navigateTo(context, ProfileSelectionRoute());
+        await TabRouter.of(context).navigateTo(ProfileSelectionRoute());
     setState(() {
       account = account.copyWith(profile: profileSelected);
     });

@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         supportedLocales: _i18n.supportedLocales,
         localeResolutionCallback:
             _i18n.resolution(fallback: Locale("en", "US")),
-        onGenerateRoute: AppRouter.generateRoutes,
+        onGenerateRoute: AppRouter().generateRoutes,
       ),
     );
   }

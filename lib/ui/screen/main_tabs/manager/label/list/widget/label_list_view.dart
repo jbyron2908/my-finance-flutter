@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/label/index.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/create/screen/label_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +25,7 @@ class LabelListView extends StatelessWidget {
   }
 
   void _navigateToLabelCreate(BuildContext context) {
-    AppRouter.navigateTo(context, LabelCreateRoute());
+    TabRouter.of(context).navigateTo(LabelCreateRoute());
   }
 }
 

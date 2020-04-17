@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavigationView extends StatefulWidget {
   BottomNavigationView({
@@ -77,12 +79,15 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   }
 
   Widget _buildOffstageNavigator(TabItem tabItem) {
-    return Offstage(
-      offstage: _currentTab != tabItem,
-      child: Navigator(
-        key: tabItem.navigator,
-        initialRoute: tabItem.rootPath,
-        onGenerateRoute: routeGenerator,
+    return Provider.value(
+      value: TabRouter(tabItem: tabItem),
+      child: Offstage(
+        offstage: _currentTab != tabItem,
+        child: Navigator(
+          key: tabItem.navigator,
+          initialRoute: tabItem.rootPath,
+          onGenerateRoute: routeGenerator,
+        ),
       ),
     );
   }

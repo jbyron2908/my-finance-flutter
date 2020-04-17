@@ -29,7 +29,9 @@ class GlobalDependencies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: appProviders,
+      providers: [
+        ...appProviders,
+      ],
       child: child,
     );
   }

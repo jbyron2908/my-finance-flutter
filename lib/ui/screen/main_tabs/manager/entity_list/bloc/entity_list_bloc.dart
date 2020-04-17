@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repo_repository.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
@@ -25,36 +25,37 @@ class EntityListBloc extends BaseBloc {
   final GitRepoRepository gitRepoRepository;
 
   void goToProfileList(BuildContext context) {
-    AppRouter.navigateTo(context, ProfileListRoute());
+    TabRouter.of(context).navigateTo(ProfileListRoute());
   }
 
   void goToAccountList(BuildContext context) {
-    AppRouter.navigateTo(context, AccountListRoute());
+    TabRouter.of(context).navigateTo(AccountListRoute());
   }
 
   void goToCategoryList(BuildContext context) {
-    AppRouter.navigateTo(context, CategoryListRoute());
+    TabRouter.of(context).navigateTo(CategoryListRoute());
   }
 
   void goToOperationList(BuildContext context) {
-    AppRouter.navigateTo(context, OperationListRoute());
+    TabRouter.of(context).navigateTo(OperationListRoute());
   }
 
   void goToPayeeList(BuildContext context) {
-    AppRouter.navigateTo(context, PayeeListRoute());
+    TabRouter.of(context).navigateTo(PayeeListRoute());
   }
 
   void goToLabelList(BuildContext context) {
-    AppRouter.navigateTo(context, LabelListRoute());
+    TabRouter.of(context).navigateTo(LabelListRoute());
   }
 
   Future goToLabelListSelection(BuildContext context) async {
-    var labelList = await AppRouter.navigateTo(context, LabelSelectionRoute());
+    var labelList =
+        await TabRouter.of(context).navigateTo(LabelSelectionRoute());
     Log.i(labelList);
   }
 
   void goToImportCsv(BuildContext context) {
-    AppRouter.navigateTo(context, ImportCsvFormRoute());
+    TabRouter.of(context).navigateTo(ImportCsvFormRoute());
   }
 
   void getRepositoriesGraphqlQuery() async {

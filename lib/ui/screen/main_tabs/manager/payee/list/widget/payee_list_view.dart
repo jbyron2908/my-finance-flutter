@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/create/screen/payee_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/list/widget/payee_list.dart';
 
@@ -21,6 +21,6 @@ class PayeeListView extends StatelessWidget {
   }
 
   void _navigateToPayeeCreate(BuildContext context) {
-    AppRouter.navigateTo(context, PayeeCreateRoute());
+    TabRouter.of(context).navigateTo(PayeeCreateRoute());
   }
 }

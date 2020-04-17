@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/router/base_router.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_route.dart';
@@ -29,8 +30,9 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/scre
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/splash/screen/splash_route.dart';
 
-class AppRouter {
-  static Map routes = HashMap.fromEntries(
+class AppRouter extends BaseRouter {
+  Map<String, MaterialPageRoute Function(RouteSettings routeSettings)>
+      _routeMap = HashMap.fromEntries(
     [
       SplashRoute().route,
       EntityListRoute().route,
@@ -61,32 +63,25 @@ class AppRouter {
     ],
   );
 
-  static Route generateRoutes(RouteSettings routeSettings) {
-    Function(RouteSettings) routeGenerator = routes[routeSettings.name];
-    if (routeGenerator != null) {
-      return routeGenerator(routeSettings);
-    } else {
-      return null;
-    }
-  }
+  @override
+  Map<String, MaterialPageRoute Function(RouteSettings routeSettings)>
+      get routeMap => _routeMap;
 
   static Future<T> navigateTo<T>(BuildContext context, BaseRoute route) {
-    return Navigator.pushNamed<T>(
-      context,
+    return Navigator.of(context, rootNavigator: true).pushNamed<T>(
       route.routePath,
       arguments: route.argument,
     );
   }
 
   static Future<T> replaceTo<T>(BuildContext context, BaseRoute route) {
-    return Navigator.pushReplacementNamed(
-      context,
+    return Navigator.of(context, rootNavigator: true).pushReplacementNamed(
       route.routePath,
       arguments: route.argument,
     );
   }
 
   static void pop(BuildContext context, [Object result]) {
-    Navigator.of(context).pop(result);
+    Navigator.of(context, rootNavigator: true).pop(result);
   }
 }

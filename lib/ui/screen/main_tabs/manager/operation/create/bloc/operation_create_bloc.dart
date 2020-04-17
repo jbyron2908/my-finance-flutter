@@ -6,7 +6,7 @@ import 'package:my_finance_flutter/core/model/operation/operation_state_model.da
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/index.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
@@ -32,23 +32,25 @@ class OperationCreateBloc extends BaseBloc {
   });
 
   Future<OperationTypeModel> selectOperationType() async {
-    return await AppRouter.navigateTo(context, OperationTypeSelectionRoute());
+    return await TabRouter.of(context)
+        .navigateTo(OperationTypeSelectionRoute());
   }
 
   Future<OperationStateModel> selectOperationState() async {
-    return await AppRouter.navigateTo(context, OperationStateSelectionRoute());
+    return await TabRouter.of(context)
+        .navigateTo(OperationStateSelectionRoute());
   }
 
   Future<PayeeModel> selectPayee() async {
-    return await AppRouter.navigateTo(context, PayeeSelectionRoute());
+    return await TabRouter.of(context).navigateTo(PayeeSelectionRoute());
   }
 
   Future<CategoryModel> selectCategory() async {
-    return await AppRouter.navigateTo(context, CategorySelectionRoute());
+    return await TabRouter.of(context).navigateTo(CategorySelectionRoute());
   }
 
   Future<AccountModel> selectAccount() async {
-    return await AppRouter.navigateTo(context, AccountSelectionRoute());
+    return await TabRouter.of(context).navigateTo(AccountSelectionRoute());
   }
 
   void submit() async {

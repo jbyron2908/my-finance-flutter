@@ -1,6 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/ui/common/base/router/base_router.dart';
+import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_route.dart';
@@ -25,9 +27,21 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/s
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/create/screen/profile_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
+import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
+import 'package:provider/provider.dart';
 
-class TabRouter {
-  static Map routes = HashMap.fromEntries(
+class TabRouter extends BaseRouter {
+  static TabRouter of(BuildContext context) =>
+      Provider.of<TabRouter>(context, listen: false);
+
+  TabRouter({
+    this.tabItem,
+  });
+
+  final TabItem tabItem;
+
+  Map<String, MaterialPageRoute Function(RouteSettings routeSettings)>
+      _routeMap = HashMap.fromEntries(
     [
       EntityListRoute().route,
       BalanceRoute().route,
@@ -56,12 +70,25 @@ class TabRouter {
     ],
   );
 
-  static Route generateRoutes(RouteSettings routeSettings) {
-    Function(RouteSettings) routeGenerator = routes[routeSettings.name];
-    if (routeGenerator != null) {
-      return routeGenerator(routeSettings);
-    } else {
-      return null;
-    }
+  @override
+  Map<String, MaterialPageRoute Function(RouteSettings routeSettings)>
+      get routeMap => _routeMap;
+
+  Future<T> navigateTo<T>(BaseRoute route) {
+    return tabItem.navigator.currentState.pushNamed<T>(
+      route.routePath,
+      arguments: route.argument,
+    );
+  }
+
+  Future<T> replaceTo<T>(BaseRoute route) {
+    return tabItem.navigator.currentState.pushReplacementNamed(
+      route.routePath,
+      arguments: route.argument,
+    );
+  }
+
+  void pop([Object result]) {
+    tabItem.navigator.currentState.pop(result);
   }
 }

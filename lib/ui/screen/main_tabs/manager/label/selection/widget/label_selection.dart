@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/label/index.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +43,7 @@ class _LabelSelectionState extends State<LabelSelection> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              AppRouter.pop(context, selectedLabelList);
+              TabRouter.of(context).pop(selectedLabelList);
             },
             color: Colors.green,
           ),

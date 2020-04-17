@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/category/index.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_item.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ class CategorySelection extends StatelessWidget {
       builder: (_, categoryList, child) => ListView.builder(
         itemCount: categoryList.length,
         itemBuilder: (context, index) => InkWell(
-          onTap: () => AppRouter.pop(context, categoryList[index]),
+          onTap: () => TabRouter.of(context).pop(categoryList[index]),
           child: CategoryItem(
             category: categoryList[index],
           ),

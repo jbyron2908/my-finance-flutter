@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/router/app_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/create/screen/profile_create_route.dart';
+import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/screen/account_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/widget/profile_list.dart';
 
 class BalanceView extends StatelessWidget {
@@ -15,12 +15,12 @@ class BalanceView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToProfileCreate(context),
+        onPressed: () => _navigateToAccountCreate(context),
       ),
     );
   }
 
-  void _navigateToProfileCreate(BuildContext context) {
-    AppRouter.navigateTo(context, ProfileCreateRoute());
+  void _navigateToAccountCreate(BuildContext context) {
+    TabRouter.of(context).navigateTo(AccountCreateRoute());
   }
 }
