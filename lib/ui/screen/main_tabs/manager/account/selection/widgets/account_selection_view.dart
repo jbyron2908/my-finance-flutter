@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/screen/account_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/widgets/account_selection.dart';
 
@@ -21,6 +21,6 @@ class AccountSelectionView extends StatelessWidget {
   }
 
   void _navigateToAccountCreate(BuildContext context) {
-    TabRouter.of(context).navigateTo(AccountCreateRoute());
+    MainTabRouter.of(context).navigateTo(AccountCreateRoute());
   }
 }

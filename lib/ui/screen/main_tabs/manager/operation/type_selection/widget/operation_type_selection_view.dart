@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/type_selection/widget/operation_type_item.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class _OperationTypeList extends StatelessWidget {
       builder: (_, operationTypeList, child) => ListView.builder(
         itemCount: operationTypeList.length,
         itemBuilder: (context, index) => InkWell(
-          onTap: () => TabRouter.of(context).pop(operationTypeList[index]),
+          onTap: () => MainTabRouter.of(context).pop(operationTypeList[index]),
           child: OperationTypeItem(
             operationType: operationTypeList[index],
           ),

@@ -6,8 +6,8 @@ import 'package:my_finance_flutter/core/model/operation/operation_state_model.da
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/index.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/state_selection/screen/operation_state_selection_route.dart';
@@ -32,25 +32,25 @@ class OperationCreateBloc extends BaseBloc {
   });
 
   Future<OperationTypeModel> selectOperationType() async {
-    return await TabRouter.of(context)
+    return await MainTabRouter.of(context)
         .navigateTo(OperationTypeSelectionRoute());
   }
 
   Future<OperationStateModel> selectOperationState() async {
-    return await TabRouter.of(context)
+    return await MainTabRouter.of(context)
         .navigateTo(OperationStateSelectionRoute());
   }
 
   Future<PayeeModel> selectPayee() async {
-    return await TabRouter.of(context).navigateTo(PayeeSelectionRoute());
+    return await MainTabRouter.of(context).navigateTo(PayeeSelectionRoute());
   }
 
   Future<CategoryModel> selectCategory() async {
-    return await TabRouter.of(context).navigateTo(CategorySelectionRoute());
+    return await MainTabRouter.of(context).navigateTo(CategorySelectionRoute());
   }
 
   Future<AccountModel> selectAccount() async {
-    return await TabRouter.of(context).navigateTo(AccountSelectionRoute());
+    return await MainTabRouter.of(context).navigateTo(AccountSelectionRoute());
   }
 
   void submit() async {

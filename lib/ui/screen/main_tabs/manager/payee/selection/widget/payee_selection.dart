@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/payee/index.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/widgets/payee_item.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ class PayeeSelection extends StatelessWidget {
       builder: (_, payeeList, child) => ListView.builder(
         itemCount: payeeList.length,
         itemBuilder: (context, index) => InkWell(
-          onTap: () => TabRouter.of(context).pop(payeeList[index]),
+          onTap: () => MainTabRouter.of(context).pop(payeeList[index]),
           child: PayeeItem(
             payee: payeeList[index],
           ),

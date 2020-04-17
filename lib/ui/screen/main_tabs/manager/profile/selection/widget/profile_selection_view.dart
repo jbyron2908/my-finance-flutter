@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/create/screen/profile_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/widget/profile_selection.dart';
 
@@ -21,6 +21,6 @@ class ProfileSelectionView extends StatelessWidget {
   }
 
   void _navigateToProfileCreate(BuildContext context) {
-    TabRouter.of(context).navigateTo(ProfileCreateRoute());
+    MainTabRouter.of(context).navigateTo(ProfileCreateRoute());
   }
 }

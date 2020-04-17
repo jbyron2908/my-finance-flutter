@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
 import 'package:provider/provider.dart';
 
@@ -80,7 +80,7 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
 
   Widget _buildOffstageNavigator(TabItem tabItem) {
     return Provider.value(
-      value: TabRouter(tabItem: tabItem),
+      value: MainTabRouter(tabItem: tabItem),
       child: Offstage(
         offstage: _currentTab != tabItem,
         child: Navigator(

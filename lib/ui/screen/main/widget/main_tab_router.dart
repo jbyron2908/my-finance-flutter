@@ -30,11 +30,11 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
 import 'package:provider/provider.dart';
 
-class TabRouter extends BaseRouter {
-  static TabRouter of(BuildContext context) =>
-      Provider.of<TabRouter>(context, listen: false);
+class MainTabRouter extends BaseRouter {
+  static MainTabRouter of(BuildContext context) =>
+      Provider.of<MainTabRouter>(context, listen: false);
 
-  TabRouter({
+  MainTabRouter({
     this.tabItem,
   });
 

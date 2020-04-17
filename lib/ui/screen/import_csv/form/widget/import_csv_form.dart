@@ -4,8 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/index.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
 import 'package:path/path.dart' as path;
 
@@ -101,7 +101,7 @@ class ImportCsvFormState extends State<ImportCsvForm> {
 
   void _selectAccount() async {
     AccountModel accountSelected =
-        await TabRouter.of(context).navigateTo(AccountSelectionRoute());
+        await MainTabRouter.of(context).navigateTo(AccountSelectionRoute());
     setState(() {
       _account = accountSelected;
     });

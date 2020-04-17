@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/app/router/tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/screen/entity_list_route.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
@@ -24,7 +24,7 @@ class MainView extends StatelessWidget {
           rootPath: EntityListRoute().routePath,
         ),
       ],
-      routeGenerator: TabRouter().generateRoutes,
+      routeGenerator: MainTabRouter().generateRoutes,
     );
   }
 }
