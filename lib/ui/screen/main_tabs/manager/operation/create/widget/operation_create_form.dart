@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_finance_flutter/core/model/account/index.dart';
-import 'package:my_finance_flutter/core/model/category/index.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
-import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
-import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
-import 'package:my_finance_flutter/core/model/payee/index.dart';
-import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/bloc/operation_create_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/bloc/operation_create_view_model.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
 class OperationCreateForm extends StatefulWidget {
@@ -17,17 +12,18 @@ class OperationCreateForm extends StatefulWidget {
 }
 
 class OperationCreateFormState extends State<OperationCreateForm> {
-  OperationModel operation;
-
   final FocusNode _valueNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
 
   OperationCreateBloc bloc;
+  OperationCreateViewModel viewModel;
+  OperationModel operation;
 
   @override
   Widget build(BuildContext context) {
     bloc = OperationCreateBloc.of(context);
-    operation = bloc.operation;
+    viewModel = OperationCreateViewModel.of(context);
+    operation = viewModel.operation;
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -64,9 +60,11 @@ class OperationCreateFormState extends State<OperationCreateForm> {
           border: OutlineInputBorder(),
         ),
         onFieldSubmitted: (value) => _valueNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => operation = operation.copyWith(title: value),
-        ),
+        onSaved: (value) {
+          bloc.updateOperation(
+            viewModel.operation.copyWith(title: value),
+          );
+        },
       ),
       UIHelper.verticalSpaceSmall,
       Row(
@@ -87,10 +85,11 @@ class OperationCreateFormState extends State<OperationCreateForm> {
                 FocusScope.of(context).requestFocus(FocusNode());
                 _selectOperationType();
               },
-              onSaved: (value) => setState(
-                () =>
-                    operation = operation.copyWith(value: double.parse(value)),
-              ),
+              onSaved: (value) {
+                bloc.updateOperation(
+                  viewModel.operation.copyWith(value: double.parse(value)),
+                );
+              },
             ),
           ),
           UIHelper.horizontalSpaceSmall,
@@ -188,101 +187,63 @@ class OperationCreateFormState extends State<OperationCreateForm> {
         onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
           FocusNode(),
         ),
-        onSaved: (value) => setState(
-          () => operation = operation.copyWith(description: value),
-        ),
+        onSaved: (value) {
+          bloc.updateOperation(
+            viewModel.operation.copyWith(description: value),
+          );
+        },
       ),
     ];
   }
 
   void _selectOperationType() async {
-    OperationTypeModel operationType = await bloc.selectOperationType();
-    if (operationType != null) {
-      setState(() {
-        operation = operation.copyWith(type: operationType);
-      });
+    bool result = await bloc.selectOperationType();
 
+    if (result) {
       _selectDate();
     }
   }
 
   void _selectDate() async {
-    var date = await showDatePicker(
-      context: context,
-      initialDate: operation.date,
-      firstDate: DateTime(1990),
-      lastDate: DateTime(2050),
-    );
-    if (date != null) {
-      setState(() {
-        operation = operation.copyWith(
-          date: DateUtil.setDateTime(
-            date,
-            operation.date.hour,
-            operation.date.minute,
-          ),
-        );
-      });
+    bool result = await bloc.selectDate();
 
+    if (result) {
       _selectTime();
     }
   }
 
   void _selectTime() async {
-    var time = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.fromDateTime(operation.date),
-    );
-    if (time != null) {
-      setState(() {
-        operation = operation.copyWith(
-            date: DateUtil.mergeDateAndTime(operation.date, time));
-      });
+    bool result = await bloc.selectTime();
 
+    if (result) {
       _selectPayee();
     }
   }
 
   void _selectPayee() async {
-    PayeeModel payeeSelected = await bloc.selectPayee();
-    if (payeeSelected != null) {
-      setState(() {
-        operation = operation.copyWith(payee: payeeSelected);
-      });
-
+    bool result = await bloc.selectPayee();
+    if (result) {
       _selectOperationState();
     }
   }
 
   void _selectOperationState() async {
-    OperationStateModel operationState = await bloc.selectOperationState();
-    if (operationState != null) {
-      setState(() {
-        operation = operation.copyWith(state: operationState);
-      });
-
+    bool result = await bloc.selectOperationState();
+    if (result) {
       _selectCategory();
     }
   }
 
   void _selectCategory() async {
-    CategoryModel categorySelected = await bloc.selectCategory();
-    if (categorySelected != null) {
-      setState(() {
-        operation = operation.copyWith(category: categorySelected);
-      });
-
-      FocusScope.of(context).requestFocus(FocusNode());
+    bool result = await bloc.selectCategory();
+    if (result) {
+      _selectAccount();
     }
   }
 
   void _selectAccount() async {
-    AccountModel accountSelected = await bloc.selectAccount();
-    if (accountSelected != null) {
-      setState(() {
-        operation = operation.copyWith(account: accountSelected);
-      });
-
+    bool result = await bloc.selectAccount();
+    if (result) {
       FocusScope.of(context).requestFocus(FocusNode());
     }
   }

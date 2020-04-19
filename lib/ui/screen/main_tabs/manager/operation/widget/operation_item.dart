@@ -15,8 +15,10 @@ class OperationItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            operation.title,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            "Title: ${operation.title}",
+          ),
+          Text(
+            "Account: ${operation.account.name}",
           ),
         ],
       ),
