@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/index.dart';
+import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/bloc/account_viewer_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/account_viewer_view.dart';
@@ -16,6 +17,8 @@ class AccountViewerScreen
   AccountViewerBloc buildBloc(BuildContext context) {
     return AccountViewerBloc(
       context: context,
+      account: getArgument(context).account,
+      operationRepository: OperationRepository.of(context),
     );
   }
 }

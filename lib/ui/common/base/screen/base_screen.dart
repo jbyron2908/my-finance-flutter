@@ -8,6 +8,9 @@ abstract class BaseScreen<BB extends BaseBloc, BA> extends StatefulWidget {
   BB buildBloc(BuildContext context);
   Widget build(BuildContext context);
 
+  BA getArgument(BuildContext context) =>
+      ModalRoute.of(context).settings.arguments;
+
   @override
   _BaseScreenState createState() => _BaseScreenState<BB, BA>();
 }
