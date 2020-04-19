@@ -6,7 +6,7 @@ class BalanceRoute extends BaseRoute<BalanceScreenArgs> {
   BalanceRoute({BalanceScreenArgs argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/home/account_list";
+  String get routePath => "/home/main";
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
