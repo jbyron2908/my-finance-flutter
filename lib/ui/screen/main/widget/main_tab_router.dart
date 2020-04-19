@@ -6,6 +6,7 @@ import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/screen/account_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
@@ -45,6 +46,7 @@ class MainTabRouter extends BaseRouter {
     [
       EntityListRoute().route,
       BalanceRoute().route,
+      AccountViewerRoute().route,
       ProfileCreateRoute().route,
       ProfileListRoute().route,
       ProfileSelectionRoute().route,
