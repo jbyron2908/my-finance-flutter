@@ -25,7 +25,7 @@ class OperationRepository {
   DatabaseClient _databaseClient;
 
   Future<int> save(OperationModel operation) async {
-    operation.copyWith(profile: operation.account.profile);
+    operation = operation.copyWith(profile: operation.account.profile);
     await _saveDefaultValues(operation);
     return _databaseClient.operationDao
         .insert(OperationConverter.toEntity(operation));

@@ -20,6 +20,9 @@ class OperationItem extends StatelessWidget {
           Text(
             "Account: ${operation.account.name}",
           ),
+          Text(
+            "Profile: ${operation.profile.name}",
+          ),
         ],
       ),
     );

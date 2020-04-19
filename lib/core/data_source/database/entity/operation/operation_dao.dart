@@ -71,6 +71,7 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
             payee: resultRow.readTable(payeeTable),
             category: resultRow.readTable(categoryTable),
             account: resultRow.readTable(accountTable),
+            profile: resultRow.readTable(profileTable),
           );
         },
       ).toList();
