@@ -23,7 +23,7 @@ class _BaseScreenState<BB extends BaseBloc, BA> extends State<BaseScreen> {
 
     return MultiProvider(
       providers: [
-        Provider.value(value: bloc),
+        ChangeNotifierProvider.value(value: bloc),
         if (argument != null) Provider.value(value: argument),
         ...bloc.dependencies,
       ],
