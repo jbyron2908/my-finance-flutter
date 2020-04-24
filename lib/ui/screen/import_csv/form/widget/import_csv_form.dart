@@ -93,7 +93,10 @@ class ImportCsvFormState extends State<ImportCsvForm> {
   }
 
   void _selectFile() async {
-    final fileSelected = await FilePicker.getFile(fileExtension: "csv");
+    final fileSelected = await FilePicker.getFile(
+      type: FileType.custom,
+      allowedExtensions: ["csv"],
+    );
     setState(() {
       _file = fileSelected;
     });
