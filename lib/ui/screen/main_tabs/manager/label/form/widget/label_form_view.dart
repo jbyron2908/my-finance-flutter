@@ -11,7 +11,7 @@ class LabelFormView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Label"),
+        title: Text("Form Label"),
       ),
       body: LabelForm(onSubmit: (LabelModel label) async {
         await labelRepository.save(label);

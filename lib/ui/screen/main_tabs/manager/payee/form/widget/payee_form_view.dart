@@ -12,7 +12,7 @@ class PayeeFormView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Payee"),
+        title: Text("Form Payee"),
       ),
       body: PayeeForm(onSubmit: (PayeeModel payee) async {
         await payeeRepository.save(payee);

@@ -10,7 +10,7 @@ class CategoryFormView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Category"),
+        title: Text("Form Category"),
       ),
       body: CategoryForm(onSubmit: (CategoryModel category) async {
         await categoryRepository.save(category);
