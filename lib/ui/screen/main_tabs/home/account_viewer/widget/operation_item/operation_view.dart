@@ -31,7 +31,7 @@ class OperationView extends StatelessWidget {
           ),
           OperationRow(
             rightText: operation.getPayeeWithStatus(),
-            leftText: operation.getValue(),
+            leftText: operation.getValueWithCurrency(),
           ),
           Divider(
             color: Colors.grey,

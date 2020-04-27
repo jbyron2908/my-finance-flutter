@@ -15,10 +15,28 @@ class OperationFormScreen
 
   @override
   OperationFormBloc buildBloc(BuildContext context) {
+    var argument = getArgument(context);
+
+    OperationModel operation;
+
+    switch (argument.type) {
+      case OperationFormType.CREATE:
+        operation = OperationModelExtra.buildEmpty();
+        break;
+      case OperationFormType.EDIT:
+        operation = argument.operation;
+        break;
+      case OperationFormType.COPY:
+        operation = argument.operation.buildCopy();
+        break;
+      default:
+        operation = OperationModelExtra.buildEmpty();
+    }
+
     return OperationFormBloc(
       context: context,
       operationRepository: OperationRepository.of(context),
-      operation: OperationModelExtra.buildEmpty(),
+      operation: operation,
     );
   }
 }
@@ -27,9 +45,17 @@ class OperationFormScreenArgs {
   static OperationFormScreenArgs of(BuildContext context) =>
       Provider.of<OperationFormScreenArgs>(context, listen: false);
 
+  OperationFormType type;
   OperationModel operation;
 
   OperationFormScreenArgs({
+    @required this.type,
     this.operation,
   });
+}
+
+enum OperationFormType {
+  CREATE,
+  EDIT,
+  COPY,
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/widget/operation_item.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,13 @@ class OperationListView extends StatelessWidget {
   }
 
   void _navigateToOperationForm(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(OperationFormRoute());
+    MainTabRouter.of(context).navigateTo(
+      OperationFormRoute(
+        argument: OperationFormScreenArgs(
+          type: OperationFormType.CREATE,
+        ),
+      ),
+    );
   }
 }
 

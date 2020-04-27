@@ -35,7 +35,6 @@ class OperationFormBloc extends BaseBloc {
     @required OperationModel operation,
   }) {
     viewModel = OperationFormViewModel(operation);
-    viewModel.operation = operation;
   }
 
   void updateOperation(OperationModel operationUpdate) async {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/bloc/account_viewer_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
 class OperationActions extends StatelessWidget {
   const OperationActions({
@@ -50,8 +53,8 @@ class OperationActionRight extends StatelessWidget {
               color: Colors.white70,
             ),
             onPressed: () {
-              _showSnackBar(context, "Copy");
               Slidable.of(context).close();
+              _copy(context);
             },
           ),
         ),
@@ -67,8 +70,8 @@ class OperationActionRight extends StatelessWidget {
               color: Colors.white70,
             ),
             onPressed: () {
-              _showSnackBar(context, "Edit");
               Slidable.of(context).close();
+              _edit(context);
             },
           ),
         ),
@@ -76,9 +79,28 @@ class OperationActionRight extends StatelessWidget {
     );
   }
 
-  _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
+  _edit(BuildContext context) {
+    var operation = OperationItem.operationOf(context);
+    MainTabRouter.of(context).navigateTo(
+      OperationFormRoute(
+        argument: OperationFormScreenArgs(
+          type: OperationFormType.EDIT,
+          operation: operation,
+        ),
+      ),
+    );
+  }
+
+  _copy(BuildContext context) {
+    var operation = OperationItem.operationOf(context);
+    MainTabRouter.of(context).navigateTo(
+      OperationFormRoute(
+        argument: OperationFormScreenArgs(
+          type: OperationFormType.COPY,
+          operation: operation,
+        ),
+      ),
+    );
   }
 }
 

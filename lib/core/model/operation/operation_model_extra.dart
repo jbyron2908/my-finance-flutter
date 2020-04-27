@@ -10,6 +10,22 @@ extension OperationModelExtra on OperationModel {
         state: StorageClient.instance.operationStateDao.getLastUsed(),
       );
 
+  OperationModel buildCopy() => OperationModel(
+        id: null,
+        remoteId: null,
+        date: DateUtil.today(),
+        deleted: deleted ?? this.deleted,
+        title: title ?? this.title,
+        value: value ?? this.value,
+        type: type ?? this.type,
+        state: state ?? this.state,
+        description: description ?? this.description,
+        payee: payee ?? this.payee,
+        category: category ?? this.category,
+        account: account ?? this.account,
+        profile: profile ?? this.profile,
+      );
+
   String getTypeString() {
     return (type == null) ? "Unknown" : type.title;
   }
@@ -52,6 +68,10 @@ extension OperationModelExtra on OperationModel {
   }
 
   String getValue() {
+    return value.toStringAsFixed(2);
+  }
+
+  String getValueWithCurrency() {
     String currency = profile.currency;
     String valueString = value.toStringAsFixed(2);
     return "$currency $valueString";

@@ -53,6 +53,7 @@ class OperationFormState extends State<OperationForm> {
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
+        initialValue: operation.title,
         decoration: InputDecoration(
           hintText: "Title",
           labelText: "Title",
@@ -74,6 +75,7 @@ class OperationFormState extends State<OperationForm> {
               focusNode: _valueNode,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
+              initialValue: operation.getValue(),
               decoration: InputDecoration(
                 hintText: "Value",
                 labelText: "Value",

@@ -53,7 +53,7 @@ class AppRouter extends BaseRouter {
       LabelFormRoute().route,
       LabelListRoute().route,
       LabelSelectionRoute().route,
-      OperationFormRoute().route,
+      OperationFormRoute.buildRoute().route,
       OperationListRoute().route,
       OperationTypeSelectionRoute().route,
       OperationStateSelectionRoute().route,
