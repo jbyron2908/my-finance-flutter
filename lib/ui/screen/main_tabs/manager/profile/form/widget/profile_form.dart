@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/profile/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/create/bloc/profile_create_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_bloc.dart';
 
-class ProfileCreateForm extends StatefulWidget {
+class ProfileForm extends StatefulWidget {
   @override
-  ProfileCreateFormState createState() => ProfileCreateFormState();
+  ProfileFormState createState() => ProfileFormState();
 }
 
-class ProfileCreateFormState extends State<ProfileCreateForm> {
+class ProfileFormState extends State<ProfileForm> {
   ProfileModel profile = ProfileModel();
   final _formKey = GlobalKey<FormState>();
 
@@ -48,7 +48,7 @@ class ProfileCreateFormState extends State<ProfileCreateForm> {
   void submit() async {
     FocusScope.of(context).requestFocus(FocusNode());
     _formKey.currentState.save();
-    await ProfileCreateBloc.of(context).saveProfile(profile);
+    await ProfileFormBloc.of(context).saveProfile(profile);
   }
 
   List<Widget> buildFormFields() {

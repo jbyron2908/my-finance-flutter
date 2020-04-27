@@ -6,12 +6,11 @@ import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
-class ProfileCreateBloc extends BaseBloc {
-  static ProfileCreateBloc of(BuildContext context) =>
-      Provider.of<ProfileCreateBloc>(context, listen: false);
+class ProfileFormBloc extends BaseBloc {
+  static ProfileFormBloc of(BuildContext context) =>
+      Provider.of<ProfileFormBloc>(context, listen: false);
 
-  ProfileCreateBloc(BuildContext context,
-      {ProfileRepository profileRepository}) {
+  ProfileFormBloc(BuildContext context, {ProfileRepository profileRepository}) {
     _context = context;
     _profileRepository = profileRepository;
   }
