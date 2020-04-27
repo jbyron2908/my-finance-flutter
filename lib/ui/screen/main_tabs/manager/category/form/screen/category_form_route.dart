@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/screen/category_create_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
 
-class CategoryCreateRoute extends BaseRoute<CategoryCreateScreenArgs> {
-  CategoryCreateRoute({CategoryCreateScreenArgs argument})
+class CategoryFormRoute extends BaseRoute<CategoryFormScreenArgs> {
+  CategoryFormRoute({CategoryFormScreenArgs argument})
       : super(argument: argument);
 
   @override
@@ -12,7 +12,7 @@ class CategoryCreateRoute extends BaseRoute<CategoryCreateScreenArgs> {
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => CategoryCreateScreen(),
+      builder: (context) => CategoryFormScreen(),
       settings: routeSettings,
     );
   }

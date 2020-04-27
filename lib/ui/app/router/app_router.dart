@@ -11,7 +11,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balan
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/screen/category_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/screen/category_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/screen/entity_list_route.dart';
@@ -44,7 +44,7 @@ class AppRouter extends BaseRouter {
       AccountFormRoute().route,
       AccountListRoute().route,
       AccountSelectionRoute().route,
-      CategoryCreateRoute().route,
+      CategoryFormRoute().route,
       CategoryListRoute().route,
       CategorySelectionRoute().route,
       PayeeCreateRoute().route,

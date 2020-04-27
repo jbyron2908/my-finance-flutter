@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/create/screen/category_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/widget/category_list.dart';
 
 class CategoryListView extends StatelessWidget {
@@ -15,12 +15,12 @@ class CategoryListView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToCategoryCreate(context),
+        onPressed: () => _navigateToCategoryForm(context),
       ),
     );
   }
 
-  void _navigateToCategoryCreate(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(CategoryCreateRoute());
+  void _navigateToCategoryForm(BuildContext context) {
+    MainTabRouter.of(context).navigateTo(CategoryFormRoute());
   }
 }

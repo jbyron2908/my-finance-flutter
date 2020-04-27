@@ -6,19 +6,18 @@ import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
-class CategoryCreateForm extends StatefulWidget {
-  CategoryCreateForm({Function(CategoryModel category) onSubmit})
+class CategoryForm extends StatefulWidget {
+  CategoryForm({Function(CategoryModel category) onSubmit})
       : onSubmit = onSubmit;
 
   final Function(CategoryModel category) onSubmit;
 
   @override
-  CategoryCreateFormState createState() =>
-      CategoryCreateFormState(onSubmit: onSubmit);
+  CategoryFormState createState() => CategoryFormState(onSubmit: onSubmit);
 }
 
-class CategoryCreateFormState extends State<CategoryCreateForm> {
-  CategoryCreateFormState({Function(CategoryModel category) onSubmit})
+class CategoryFormState extends State<CategoryForm> {
+  CategoryFormState({Function(CategoryModel category) onSubmit})
       : onSubmit = onSubmit;
 
   final Function(CategoryModel category) onSubmit;

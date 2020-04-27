@@ -5,13 +5,13 @@ import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
-class CategoryCreateBloc extends BaseBloc {
-  static CategoryCreateBloc of(BuildContext context) =>
-      Provider.of<CategoryCreateBloc>(context, listen: false);
+class CategoryFormBloc extends BaseBloc {
+  static CategoryFormBloc of(BuildContext context) =>
+      Provider.of<CategoryFormBloc>(context, listen: false);
 
   final CategoryRepository categoryRepository;
 
-  CategoryCreateBloc({
+  CategoryFormBloc({
     this.categoryRepository,
   });
 
