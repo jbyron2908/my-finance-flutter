@@ -6,10 +6,11 @@ class AccountConverter {
   static AccountEntity toEntity(AccountModel model) {
     return AccountEntity(
       id: model.id,
+      remoteId: model.remoteId,
+      deleted: model.deleted,
       name: model.name,
       type: model.type,
       initialValue: model.initialValue,
-      remoteId: model.remoteId,
       profile: model.profile?.id,
     );
   }
@@ -18,6 +19,7 @@ class AccountConverter {
     return AccountModel(
       id: entity.id,
       remoteId: entity.remoteId,
+      deleted: entity.deleted,
       name: entity.name,
       type: entity.type,
       initialValue: entity.initialValue,

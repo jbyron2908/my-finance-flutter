@@ -4,17 +4,20 @@ import 'package:my_finance_flutter/core/model/profile/index.dart';
 class ProfileConverter {
   static ProfileEntity toEntity(ProfileModel model) {
     return ProfileEntity(
-        id: model.id,
-        name: model.name,
-        remoteId: model.remoteId,
-        currency: model.currency);
+      id: model.id,
+      remoteId: model.remoteId,
+      deleted: model.deleted,
+      name: model.name,
+      currency: model.currency,
+    );
   }
 
   static ProfileModel toModel(ProfileEntity entity) {
     return ProfileModel(
       id: entity.id,
-      name: entity.name,
       remoteId: entity.remoteId,
+      deleted: entity.deleted,
+      name: entity.name,
       currency: entity.currency,
     );
   }

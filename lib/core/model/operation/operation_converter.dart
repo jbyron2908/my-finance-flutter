@@ -11,6 +11,8 @@ class OperationConverter {
   static OperationEntity toEntity(OperationModel model) {
     return OperationEntity(
       id: model.id,
+      remoteId: model.remoteId,
+      deleted: model.deleted,
       title: model.title,
       value: model.value,
       type: model.type.id,
@@ -21,7 +23,6 @@ class OperationConverter {
       category: model.category?.id,
       account: model.account?.id,
       profile: model.profile?.id,
-      remoteId: model.remoteId,
     );
   }
 
@@ -29,12 +30,14 @@ class OperationConverter {
     OperationEntity entity, {
     PayeeEntity payee,
     CategoryEntity category,
+    CategoryEntity parentCategory,
     AccountEntity account,
     ProfileEntity profile,
   }) {
     return OperationModel(
       id: entity.id,
       remoteId: entity.remoteId,
+      deleted: entity.deleted,
       title: entity.title,
       value: entity.value,
       type: OperationTypeConstants.getById(entity.type),
@@ -42,7 +45,9 @@ class OperationConverter {
       state: OperationStateConstants.getById(entity.state),
       description: entity.description,
       payee: payee != null ? PayeeConverter.toModel(payee) : null,
-      category: category != null ? CategoryConverter.toModel(category) : null,
+      category: category != null
+          ? CategoryConverter.toModel(category, parent: parentCategory)
+          : null,
       account: account != null ? AccountConverter.toModel(account) : null,
       profile: profile != null ? ProfileConverter.toModel(profile) : null,
     );

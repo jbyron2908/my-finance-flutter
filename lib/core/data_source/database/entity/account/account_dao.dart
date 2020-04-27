@@ -11,28 +11,52 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
     with _$AccountDaoMixin {
   AccountDao(DatabaseClient database) : super(database);
 
-  Future<int> insert(AccountEntity entity) {
-    return into(accountTable).insert(entity);
+  // Write
+
+  Future save(AccountEntity entity) {
+    if (entity.id == null) {
+      return into(accountTable).insert(entity);
+    } else {
+      return update(accountTable).replace(entity);
+    }
   }
+
+  Future markDelete(AccountEntity entity) {
+    var deletedAccount = entity.copyWith(
+      deleted: true,
+    );
+    return update(accountTable).replace(deletedAccount);
+  }
+
+  // Read
 
   Stream<List<AccountModel>> watchAll() {
-    var query = _getAccountBasicQuery();
-    return _mapQueryToAccountModel(query);
+    var query = _getBaseQuery();
+
+    query
+      ..where(
+        accountTable.deleted.equals(false),
+      );
+
+    return _mapQuery(query);
   }
 
-  JoinedSelectStatement _getAccountBasicQuery() {
-    return select(accountTable).join([
-      leftOuterJoin(
-        profileTable,
-        profileTable.id.equalsExp(
-          accountTable.profile,
+  // Base
+
+  JoinedSelectStatement _getBaseQuery() {
+    return select(accountTable).join(
+      [
+        leftOuterJoin(
+          profileTable,
+          profileTable.id.equalsExp(
+            accountTable.profile,
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 
-  Stream<List<AccountModel>> _mapQueryToAccountModel(
-      JoinedSelectStatement query) {
+  Stream<List<AccountModel>> _mapQuery(JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {

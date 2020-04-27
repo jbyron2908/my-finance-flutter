@@ -20,49 +20,78 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
     with _$OperationDaoMixin {
   OperationDao(DatabaseClient database) : super(database);
 
-  Future<int> insert(OperationEntity entity) {
-    return into(operationTable).insert(entity);
+  Future save(OperationEntity entity) {
+    if (entity.id == null) {
+      return into(operationTable).insert(entity);
+    } else {
+      return update(operationTable).replace(entity);
+    }
+  }
+
+  Future markDelete(OperationEntity entity) {
+    var deletedOperation = entity.copyWith(
+      deleted: true,
+    );
+    return update(operationTable).replace(deletedOperation);
   }
 
   Stream<List<OperationModel>> watchAll() {
-    final query = _getOperationBasicQuery();
+    final query = _getBaseQuery();
 
-    return _mapQueryToOperationModel(query);
+    query
+      ..where(
+        operationTable.deleted.equals(false),
+      );
+
+    return _mapQuery(query);
   }
 
   Stream<List<OperationModel>> watchFilter(int accountId) {
-    final query = _getOperationBasicQuery();
+    final query = _getBaseQuery();
 
-    query..where(accountTable.id.equals(accountId));
+    query
+      ..where(
+        accountTable.id.equals(accountId) &
+            operationTable.deleted.equals(false),
+      );
 
-    return _mapQueryToOperationModel(query);
+    return _mapQuery(query);
   }
 
-  JoinedSelectStatement _getOperationBasicQuery() {
-    return select(operationTable).join([
-      leftOuterJoin(
-        payeeTable,
-        payeeTable.id.equalsExp(operationTable.payee),
-      ),
-      leftOuterJoin(
-        categoryTable,
-        categoryTable.id.equalsExp(
-          operationTable.category,
+  // Base
+
+  $CategoryTableTable get parentCategoryAlias => alias(categoryTable, 'parent');
+
+  JoinedSelectStatement _getBaseQuery() {
+    return select(operationTable).join(
+      [
+        leftOuterJoin(
+          payeeTable,
+          payeeTable.id.equalsExp(operationTable.payee),
         ),
-      ),
-      leftOuterJoin(
-        accountTable,
-        accountTable.id.equalsExp(operationTable.account),
-      ),
-      leftOuterJoin(
-        profileTable,
-        profileTable.id.equalsExp(operationTable.profile),
-      ),
-    ]);
+        leftOuterJoin(
+          categoryTable,
+          categoryTable.id.equalsExp(
+            operationTable.category,
+          ),
+        ),
+        leftOuterJoin(
+          accountTable,
+          accountTable.id.equalsExp(operationTable.account),
+        ),
+        leftOuterJoin(
+          parentCategoryAlias,
+          parentCategoryAlias.id.equalsExp(categoryTable.parent),
+        ),
+        leftOuterJoin(
+          profileTable,
+          profileTable.id.equalsExp(operationTable.profile),
+        ),
+      ],
+    );
   }
 
-  Stream<List<OperationModel>> _mapQueryToOperationModel(
-      JoinedSelectStatement query) {
+  Stream<List<OperationModel>> _mapQuery(JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {
@@ -70,6 +99,7 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
             resultRow.readTable(operationTable),
             payee: resultRow.readTable(payeeTable),
             category: resultRow.readTable(categoryTable),
+            parentCategory: resultRow.readTable(parentCategoryAlias),
             account: resultRow.readTable(accountTable),
             profile: resultRow.readTable(profileTable),
           );

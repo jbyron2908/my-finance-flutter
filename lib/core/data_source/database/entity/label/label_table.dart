@@ -4,5 +4,6 @@ import 'package:moor/moor.dart';
 class LabelTable extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get remoteId => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get name => text()();
 }

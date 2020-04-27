@@ -5,16 +5,18 @@ class LabelConverter {
   static LabelEntity toEntity(LabelModel model) {
     return LabelEntity(
       id: model.id,
-      name: model.name,
       remoteId: model.remoteId,
+      deleted: model.deleted,
+      name: model.name,
     );
   }
 
   static LabelModel toModel(LabelEntity entity) {
     return LabelModel(
       id: entity.id,
-      name: entity.name,
       remoteId: entity.remoteId,
+      deleted: entity.deleted,
+      name: entity.name,
     );
   }
 }

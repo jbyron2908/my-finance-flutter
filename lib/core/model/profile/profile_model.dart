@@ -12,6 +12,8 @@ class $ProfileModel {
   @nullable
   int remoteId;
   @nullable
+  bool deleted;
+  @nullable
   String name;
   @nullable
   String currency;

@@ -9,18 +9,24 @@ part 'payee_dao.g.dart';
 class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
   PayeeDao(DatabaseClient database) : super(database);
 
-  Future<int> insert(PayeeEntity entity) {
-    return into(payeeTable).insert(entity);
+  // Write
+
+  Future save(PayeeEntity entity) {
+    if (entity.id == null) {
+      return into(payeeTable).insert(entity);
+    } else {
+      return update(payeeTable).replace(entity);
+    }
   }
 
-  Future<List<PayeeModel>> getAll() async {
-    var payeeEntityList = await select(payeeTable).get();
-    return payeeEntityList.map((entity) {
-      return PayeeConverter.toModel(
-        entity,
-      );
-    }).toList();
+  Future markDelete(PayeeEntity entity) {
+    var deletedPayee = entity.copyWith(
+      deleted: true,
+    );
+    return update(payeeTable).replace(deletedPayee);
   }
+
+  // Read
 
   Future<PayeeModel> getOrAdd(String payeeName) async {
     var payeeEntity = await (select(payeeTable)
@@ -33,10 +39,11 @@ class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
     if (payeeEntity == null) {
       payeeEntity = PayeeEntity(
         id: null,
+        deleted: false,
         name: payeeName,
       );
 
-      var id = await insert(payeeEntity);
+      var id = await save(payeeEntity);
       payeeModel = PayeeModel(id: id, name: payeeName);
     } else {
       payeeModel = PayeeConverter.toModel(payeeEntity);
@@ -45,14 +52,34 @@ class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
   }
 
   Stream<List<PayeeModel>> watchAll() {
-    return select(payeeTable).watch().map((rows) {
-      return rows.map(
-        (resultRow) {
-          return PayeeConverter.toModel(
-            resultRow,
-          );
-        },
-      ).toList();
-    });
+    var query = _getBaseQuery();
+
+    query
+      ..where(
+        (payee) => payee.deleted.equals(false),
+      );
+
+    return _mapQuery(query);
+  }
+
+  // Base
+
+  SimpleSelectStatement<$PayeeTableTable, PayeeEntity> _getBaseQuery() {
+    return select(payeeTable);
+  }
+
+  Stream<List<PayeeModel>> _mapQuery(
+      SimpleSelectStatement<$PayeeTableTable, PayeeEntity> query) {
+    return query.watch().map(
+      (rows) {
+        return rows.map(
+          (resultRow) {
+            return PayeeConverter.toModel(
+              resultRow,
+            );
+          },
+        ).toList();
+      },
+    );
   }
 }

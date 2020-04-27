@@ -18,6 +18,8 @@ class $OperationModel {
   @nullable
   int remoteId;
   @nullable
+  bool deleted;
+  @nullable
   String title;
   @nullable
   double value;

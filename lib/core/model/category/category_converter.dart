@@ -5,9 +5,10 @@ class CategoryConverter {
   static CategoryEntity toEntity(CategoryModel model) {
     return CategoryEntity(
       id: model.id,
+      remoteId: model.remoteId,
+      deleted: model.deleted,
       name: model.name,
       parent: model?.parent?.id,
-      remoteId: model.remoteId,
     );
   }
 
@@ -15,6 +16,7 @@ class CategoryConverter {
     return CategoryModel(
       id: entity.id,
       remoteId: entity.remoteId,
+      deleted: entity.deleted,
       name: entity.name,
       parent: parent != null ? toModel(parent) : null,
     );

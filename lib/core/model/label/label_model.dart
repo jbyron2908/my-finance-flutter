@@ -12,5 +12,7 @@ class $LabelModel {
   @nullable
   int remoteId;
   @nullable
+  bool deleted;
+  @nullable
   String name;
 }

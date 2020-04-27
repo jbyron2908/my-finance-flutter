@@ -12,6 +12,8 @@ class $CategoryModel {
   @nullable
   int remoteId;
   @nullable
+  bool deleted;
+  @nullable
   String name;
   @nullable
   $CategoryModel parent;

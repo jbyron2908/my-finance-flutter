@@ -9,19 +9,54 @@ part 'label_dao.g.dart';
 class LabelDao extends DatabaseAccessor<DatabaseClient> with _$LabelDaoMixin {
   LabelDao(DatabaseClient database) : super(database);
 
-  Future<int> insert(LabelEntity entity) {
-    return into(labelTable).insert(entity);
+  // Write
+
+  Future save(LabelEntity entity) {
+    if (entity.id == null) {
+      return into(labelTable).insert(entity);
+    } else {
+      return update(labelTable).replace(entity);
+    }
   }
 
+  Future markDelete(LabelEntity entity) {
+    var deletedLabel = entity.copyWith(
+      deleted: true,
+    );
+    return update(labelTable).replace(deletedLabel);
+  }
+
+  // Read
+
   Stream<List<LabelModel>> watchAll() {
-    return select(labelTable).watch().map((rows) {
-      return rows.map(
-        (resultRow) {
-          return LabelConverter.toModel(
-            resultRow,
-          );
-        },
-      ).toList();
-    });
+    var query = _getBaseQuery();
+
+    query
+      ..where(
+        (label) => label.deleted.equals(false),
+      );
+
+    return _mapQuery(query);
+  }
+
+  // Base
+
+  SimpleSelectStatement<$LabelTableTable, LabelEntity> _getBaseQuery() {
+    return select(labelTable);
+  }
+
+  Stream<List<LabelModel>> _mapQuery(
+      SimpleSelectStatement<$LabelTableTable, LabelEntity> query) {
+    return query.watch().map(
+      (rows) {
+        return rows.map(
+          (resultRow) {
+            return LabelConverter.toModel(
+              resultRow,
+            );
+          },
+        ).toList();
+      },
+    );
   }
 }

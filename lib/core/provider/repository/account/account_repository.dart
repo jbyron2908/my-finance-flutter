@@ -24,7 +24,7 @@ class AccountRepository {
   Stream<List<AccountModel>> get accountListStream => _accountListStream;
 
   Future<int> save(AccountModel account) async {
-    return _databaseClient.accountDao.insert(
+    return _databaseClient.accountDao.save(
       AccountConverter.toEntity(account),
     );
   }

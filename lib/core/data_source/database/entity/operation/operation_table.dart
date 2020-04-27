@@ -4,6 +4,7 @@ import 'package:moor/moor.dart';
 class OperationTable extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get remoteId => integer().nullable()();
+  BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get title => text()();
   RealColumn get value => real()();
   TextColumn get type => text()();

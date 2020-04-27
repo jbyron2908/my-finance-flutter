@@ -5,16 +5,18 @@ class PayeeConverter {
   static PayeeEntity toEntity(PayeeModel model) {
     return PayeeEntity(
       id: model.id,
-      name: model.name,
       remoteId: model.remoteId,
+      deleted: model.deleted,
+      name: model.name,
     );
   }
 
   static PayeeModel toModel(PayeeEntity entity) {
     return PayeeModel(
       id: entity.id,
-      name: entity.name,
       remoteId: entity.remoteId,
+      deleted: entity.deleted,
+      name: entity.name,
     );
   }
 }

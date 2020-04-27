@@ -24,7 +24,7 @@ class LabelRepository {
   Stream<List<LabelModel>> get labelListStream => _labelListStream;
 
   Future<int> save(LabelModel model) async {
-    return _databaseClient.labelDao.insert(
+    return _databaseClient.labelDao.save(
       LabelConverter.toEntity(model),
     );
   }

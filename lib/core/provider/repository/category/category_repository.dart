@@ -24,7 +24,7 @@ class CategoryRepository {
   Stream<List<CategoryModel>> get categoryListStream => _categoryListStream;
 
   Future<int> save(CategoryModel model) async {
-    return _databaseClient.categoryDao.insert(
+    return _databaseClient.categoryDao.save(
       CategoryConverter.toEntity(model),
     );
   }

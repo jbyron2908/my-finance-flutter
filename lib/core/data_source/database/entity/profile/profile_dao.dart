@@ -10,12 +10,45 @@ class ProfileDao extends DatabaseAccessor<DatabaseClient>
     with _$ProfileDaoMixin {
   ProfileDao(DatabaseClient database) : super(database);
 
-  Future<int> insert(ProfileEntity entity) {
-    return into(profileTable).insert(entity);
+  // Write
+
+  Future save(ProfileEntity entity) {
+    if (entity.id == null) {
+      return into(profileTable).insert(entity);
+    } else {
+      return update(profileTable).replace(entity);
+    }
   }
 
+  Future markDelete(ProfileEntity entity) {
+    var deletedProfile = entity.copyWith(
+      deleted: true,
+    );
+    return update(profileTable).replace(deletedProfile);
+  }
+
+  // Read
+
   Stream<List<ProfileModel>> watchAll() {
-    return select(profileTable).watch().map(
+    var query = _getBaseQuery();
+
+    query
+      ..where(
+        (profile) => profile.deleted.equals(false),
+      );
+
+    return _mapQuery(query);
+  }
+
+  // Base
+
+  SimpleSelectStatement<$ProfileTableTable, ProfileEntity> _getBaseQuery() {
+    return select(profileTable);
+  }
+
+  Stream<List<ProfileModel>> _mapQuery(
+      SimpleSelectStatement<$ProfileTableTable, ProfileEntity> query) {
+    return query.watch().map(
           (rows) => rows
               .map(
                 (entity) => ProfileConverter.toModel(entity),

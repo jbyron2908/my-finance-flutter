@@ -12,5 +12,7 @@ class $PayeeModel {
   @nullable
   int remoteId;
   @nullable
+  bool deleted;
+  @nullable
   String name;
 }
