@@ -3,7 +3,7 @@ import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/screen/operation_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
 import 'package:provider/provider.dart';
 
 class AccountViewerView extends StatelessWidget {
@@ -26,7 +26,7 @@ class AccountViewerView extends StatelessWidget {
   }
 
   void _navigateToOperationCreate(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(OperationCreateRoute());
+    MainTabRouter.of(context).navigateTo(OperationFormRoute());
   }
 }
 

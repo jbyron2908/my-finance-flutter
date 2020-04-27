@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/bloc/operation_create_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/bloc/operation_create_view_model.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
-class OperationCreateForm extends StatefulWidget {
+class OperationForm extends StatefulWidget {
   @override
-  OperationCreateFormState createState() => OperationCreateFormState();
+  OperationFormState createState() => OperationFormState();
 }
 
-class OperationCreateFormState extends State<OperationCreateForm> {
+class OperationFormState extends State<OperationForm> {
   final FocusNode _valueNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
 
-  OperationCreateBloc bloc;
-  OperationCreateViewModel viewModel;
+  OperationFormBloc bloc;
+  OperationFormViewModel viewModel;
   OperationModel operation;
 
   @override
   Widget build(BuildContext context) {
-    bloc = OperationCreateBloc.of(context);
-    viewModel = OperationCreateViewModel.of(context);
+    bloc = OperationFormBloc.of(context);
+    viewModel = OperationFormViewModel.of(context);
     operation = viewModel.operation;
 
     return GestureDetector(

@@ -11,7 +11,7 @@ import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/bloc/operation_create_view_model.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_create_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/state_selection/screen/operation_state_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/type_selection/screen/operation_type_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/screen/payee_selection_route.dart';
@@ -19,22 +19,22 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
-class OperationCreateBloc extends BaseBloc {
-  static OperationCreateBloc of(BuildContext context) =>
-      Provider.of<OperationCreateBloc>(context, listen: false);
+class OperationFormBloc extends BaseBloc {
+  static OperationFormBloc of(BuildContext context) =>
+      Provider.of<OperationFormBloc>(context, listen: false);
 
-  OperationCreateViewModel viewModel;
+  OperationFormViewModel viewModel;
 
   final BuildContext context;
   final OperationRepository operationRepository;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  OperationCreateBloc({
+  OperationFormBloc({
     @required this.context,
     @required this.operationRepository,
     @required OperationModel operation,
   }) {
-    viewModel = OperationCreateViewModel(operation);
+    viewModel = OperationFormViewModel(operation);
     viewModel.operation = operation;
   }
 

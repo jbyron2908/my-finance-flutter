@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/bloc/operation_create_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
 
-class OperationCreateActionBar extends StatelessWidget {
+class OperationFormActionBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +20,7 @@ class OperationCreateActionBar extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                OperationCreateBloc.of(context).cancel();
+                OperationFormBloc.of(context).cancel();
               },
             ),
           ),
@@ -38,7 +38,7 @@ class OperationCreateActionBar extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                OperationCreateBloc.of(context).submit();
+                OperationFormBloc.of(context).submit();
               },
             ),
           ),

@@ -18,7 +18,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/scree
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/create/screen/label_create_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/list/screen/label_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/screen/label_selection_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/screen/operation_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/list/screen/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/state_selection/screen/operation_state_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/type_selection/screen/operation_type_selection_route.dart';
@@ -53,7 +53,7 @@ class AppRouter extends BaseRouter {
       LabelCreateRoute().route,
       LabelListRoute().route,
       LabelSelectionRoute().route,
-      OperationCreateRoute().route,
+      OperationFormRoute().route,
       OperationListRoute().route,
       OperationTypeSelectionRoute().route,
       OperationStateSelectionRoute().route,

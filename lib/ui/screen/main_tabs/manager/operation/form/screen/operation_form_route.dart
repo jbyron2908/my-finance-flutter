@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/create/screen/operation_create_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
-class OperationCreateRoute extends BaseRoute<OperationCreateScreenArgs> {
-  OperationCreateRoute({OperationCreateScreenArgs argument})
+class OperationFormRoute extends BaseRoute<OperationCreateScreenArgs> {
+  OperationFormRoute({OperationCreateScreenArgs argument})
       : super(argument: argument);
 
   @override
@@ -12,7 +12,7 @@ class OperationCreateRoute extends BaseRoute<OperationCreateScreenArgs> {
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
     return MaterialPageRoute(
-      builder: (context) => OperationCreateScreen(),
+      builder: (context) => OperationFormScreen(),
       settings: routeSettings,
     );
   }
