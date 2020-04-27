@@ -27,9 +27,13 @@ class PayeeRepository {
     return _databaseClient.payeeDao.getOrAdd(payeeName);
   }
 
-  Future<int> save(PayeeModel model) async {
+  Future save(PayeeModel model) async {
     return _databaseClient.payeeDao.save(
       PayeeConverter.toEntity(model),
     );
+  }
+
+  Future delete(PayeeModel payee) async {
+    return _databaseClient.payeeDao.markDelete(PayeeConverter.toEntity(payee));
   }
 }

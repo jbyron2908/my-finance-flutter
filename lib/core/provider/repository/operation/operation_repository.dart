@@ -24,18 +24,16 @@ class OperationRepository {
 
   DatabaseClient _databaseClient;
 
-  Future<int> insert(OperationModel operation) async {
+  Future save(OperationModel operation) async {
     operation = operation.copyWith(profile: operation.account.profile);
     await _saveDefaultValues(operation);
     return _databaseClient.operationDao
         .save(OperationConverter.toEntity(operation));
   }
 
-  Future<int> update(OperationModel operation) async {
-    operation = operation.copyWith(profile: operation.account.profile);
-    await _saveDefaultValues(operation);
+  Future delete(OperationModel operation) async {
     return _databaseClient.operationDao
-        .save(OperationConverter.toEntity(operation));
+        .markDelete(OperationConverter.toEntity(operation));
   }
 
   Future _saveDefaultValues(OperationModel operation) async {

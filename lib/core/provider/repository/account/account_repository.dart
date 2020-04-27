@@ -23,9 +23,14 @@ class AccountRepository {
   Stream<List<AccountModel>> _accountListStream;
   Stream<List<AccountModel>> get accountListStream => _accountListStream;
 
-  Future<int> save(AccountModel account) async {
+  Future save(AccountModel account) async {
     return _databaseClient.accountDao.save(
       AccountConverter.toEntity(account),
     );
+  }
+
+  Future delete(AccountModel account) async {
+    return _databaseClient.accountDao
+        .markDelete(AccountConverter.toEntity(account));
   }
 }

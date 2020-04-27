@@ -23,9 +23,13 @@ class LabelRepository {
   Stream<List<LabelModel>> _labelListStream;
   Stream<List<LabelModel>> get labelListStream => _labelListStream;
 
-  Future<int> save(LabelModel model) async {
+  Future save(LabelModel model) async {
     return _databaseClient.labelDao.save(
       LabelConverter.toEntity(model),
     );
+  }
+
+  Future delete(LabelModel label) async {
+    return _databaseClient.labelDao.markDelete(LabelConverter.toEntity(label));
   }
 }

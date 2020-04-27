@@ -23,9 +23,14 @@ class ProfileRepository {
   Stream<List<ProfileModel>> _profileListStream;
   Stream<List<ProfileModel>> get profileListStream => _profileListStream;
 
-  Future<int> save(ProfileModel profile) async {
+  Future save(ProfileModel profile) async {
     return _databaseClient.profileDao.save(
       ProfileConverter.toEntity(profile),
     );
+  }
+
+  Future delete(ProfileModel profile) async {
+    return _databaseClient.profileDao
+        .markDelete(ProfileConverter.toEntity(profile));
   }
 }

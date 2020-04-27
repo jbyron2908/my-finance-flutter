@@ -161,7 +161,7 @@ class OperationCreateBloc extends BaseBloc {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await operationRepository.insert(viewModel.operation);
+      await operationRepository.save(viewModel.operation);
       Navigator.of(context).pop();
     }
   }
