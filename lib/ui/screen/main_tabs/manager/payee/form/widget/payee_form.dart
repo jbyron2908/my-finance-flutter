@@ -3,19 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/payee/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
-class PayeeCreateForm extends StatefulWidget {
-  PayeeCreateForm({Function(PayeeModel payee) onSubmit}) : onSubmit = onSubmit;
+class PayeeForm extends StatefulWidget {
+  PayeeForm({Function(PayeeModel payee) onSubmit}) : onSubmit = onSubmit;
 
   final Function(PayeeModel payee) onSubmit;
 
   @override
-  PayeeCreateFormState createState() =>
-      PayeeCreateFormState(onSubmit: onSubmit);
+  PayeeFormState createState() => PayeeFormState(onSubmit: onSubmit);
 }
 
-class PayeeCreateFormState extends State<PayeeCreateForm> {
-  PayeeCreateFormState({Function(PayeeModel payee) onSubmit})
-      : onSubmit = onSubmit;
+class PayeeFormState extends State<PayeeForm> {
+  PayeeFormState({Function(PayeeModel payee) onSubmit}) : onSubmit = onSubmit;
 
   final Function(PayeeModel payee) onSubmit;
   PayeeModel payee = PayeeModel();

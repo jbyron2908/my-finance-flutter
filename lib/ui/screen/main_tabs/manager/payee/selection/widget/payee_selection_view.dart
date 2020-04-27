@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/create/screen/payee_create_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/widget/payee_selection.dart';
 
 class PayeeSelectionView extends StatelessWidget {
@@ -15,12 +15,12 @@ class PayeeSelectionView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToPayeeCreate(context),
+        onPressed: () => _navigateToPayeeForm(context),
       ),
     );
   }
 
-  _navigateToPayeeCreate(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(PayeeCreateRoute());
+  _navigateToPayeeForm(BuildContext context) {
+    MainTabRouter.of(context).navigateTo(PayeeFormRoute());
   }
 }
