@@ -3,19 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/label/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
-class LabelCreateForm extends StatefulWidget {
-  LabelCreateForm({Function(LabelModel label) onSubmit}) : onSubmit = onSubmit;
+class LabelForm extends StatefulWidget {
+  LabelForm({Function(LabelModel label) onSubmit}) : onSubmit = onSubmit;
 
   final Function(LabelModel label) onSubmit;
 
   @override
-  LabelCreateFormState createState() =>
-      LabelCreateFormState(onSubmit: onSubmit);
+  LabelFormState createState() => LabelFormState(onSubmit: onSubmit);
 }
 
-class LabelCreateFormState extends State<LabelCreateForm> {
-  LabelCreateFormState({Function(LabelModel label) onSubmit})
-      : onSubmit = onSubmit;
+class LabelFormState extends State<LabelForm> {
+  LabelFormState({Function(LabelModel label) onSubmit}) : onSubmit = onSubmit;
 
   final Function(LabelModel label) onSubmit;
   LabelModel label = LabelModel();
