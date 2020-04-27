@@ -4,16 +4,16 @@ import 'package:my_finance_flutter/core/model/account/index.dart';
 import 'package:my_finance_flutter/core/model/profile/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/create/bloc/account_create_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/bloc/account_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
-class AccountCreateForm extends StatefulWidget {
+class AccountForm extends StatefulWidget {
   @override
-  AccountCreateFormState createState() => AccountCreateFormState();
+  AccountFormState createState() => AccountFormState();
 }
 
-class AccountCreateFormState extends State<AccountCreateForm> {
+class AccountFormState extends State<AccountForm> {
   AccountModel account = AccountModel();
   final _formKey = GlobalKey<FormState>();
 
@@ -54,7 +54,7 @@ class AccountCreateFormState extends State<AccountCreateForm> {
   void submit() async {
     FocusScope.of(context).requestFocus(FocusNode());
     _formKey.currentState.save();
-    await AccountCreateBloc.of(context).saveAccount(account);
+    await AccountFormBloc.of(context).saveAccount(account);
     MainTabRouter.of(context).pop();
   }
 
