@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/bloc/account_viewer_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
 
 class OperationActions extends StatelessWidget {
   const OperationActions({
@@ -109,14 +112,30 @@ class OperationActionLeft extends StatelessWidget {
               Icons.delete,
               color: Colors.white70,
             ),
-            onPressed: () {
-              _showSnackBar(context, "Delete");
+            onPressed: () async {
+              await _delete(context);
               Slidable.of(context).close();
             },
           ),
         ),
       ],
     );
+  }
+
+  Future _delete(BuildContext context) async {
+    var confirmation = await DialogHelper.showAlertDialog(
+      context,
+      title: "Delete operation",
+      content: "Do you want to delete this operation?",
+      confirmText: "Yes",
+      cancelText: "No",
+    );
+
+    if (confirmation == true) {
+      final operation = OperationItem.operationOf(context);
+      final bloc = AccountViewerBloc.of(context);
+      await bloc.deleteOperation(operation);
+    }
   }
 
   _showSnackBar(BuildContext context, String message) {

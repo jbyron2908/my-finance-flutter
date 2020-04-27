@@ -21,6 +21,10 @@ class AccountViewerBloc extends BaseBloc {
     @required this.operationRepository,
   });
 
+  Future deleteOperation(OperationModel operation) async {
+    return operationRepository.delete(operation);
+  }
+
   @override
   List<SingleChildWidget> get dependencies => [
         StreamProvider<List<OperationModel>>.value(

@@ -55,9 +55,8 @@ class _OperationList extends StatelessWidget {
                   height: 10,
                 ),
                 itemCount: operationList.length,
-                itemBuilder: (context, index) => Provider.value(
-                  value: operationList[index],
-                  child: OperationItem(),
+                itemBuilder: (context, index) => OperationItem(
+                  operation: operationList[index],
                 ),
               ),
             ],
