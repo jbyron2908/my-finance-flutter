@@ -34,7 +34,26 @@ extension OperationModelExtra on OperationModel {
     return category == null ? "Unknown" : category.name;
   }
 
+  String getCategoryWithParent() {
+    final parentName =
+        category.parent == null ? "Unknown" : category.parent.name;
+    final categoryName = category.name;
+    return "$parentName: $categoryName";
+  }
+
   String getPayeeString() {
     return payee == null ? "Unknown" : payee.name;
+  }
+
+  String getPayeeWithStatus() {
+    final payeeName = payee.name;
+    final stateTitle = state.title;
+    return "$payeeName: $stateTitle";
+  }
+
+  String getValue() {
+    String currency = profile.currency;
+    String valueString = value.toStringAsFixed(2);
+    return "$currency $valueString";
   }
 }
