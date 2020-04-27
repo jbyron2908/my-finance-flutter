@@ -7,7 +7,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/wi
 import 'package:provider/provider.dart';
 
 class OperationFormScreen
-    extends BaseScreen<OperationFormBloc, OperationCreateScreenArgs> {
+    extends BaseScreen<OperationFormBloc, OperationFormScreenArgs> {
   @override
   Widget build(BuildContext context) {
     return OperationFormView();
@@ -23,13 +23,13 @@ class OperationFormScreen
   }
 }
 
-class OperationCreateScreenArgs {
-  static OperationCreateScreenArgs of(BuildContext context) =>
-      Provider.of<OperationCreateScreenArgs>(context, listen: false);
+class OperationFormScreenArgs {
+  static OperationFormScreenArgs of(BuildContext context) =>
+      Provider.of<OperationFormScreenArgs>(context, listen: false);
 
-  int field1;
+  OperationModel operation;
 
-  OperationCreateScreenArgs({
-    this.field1,
+  OperationFormScreenArgs({
+    this.operation,
   });
 }

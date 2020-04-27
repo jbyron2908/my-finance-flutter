@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
-class OperationFormRoute extends BaseRoute<OperationCreateScreenArgs> {
-  OperationFormRoute({OperationCreateScreenArgs argument})
+class OperationFormRoute extends BaseRoute<OperationFormScreenArgs> {
+  OperationFormRoute({OperationFormScreenArgs argument})
       : super(argument: argument);
 
   @override

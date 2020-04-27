@@ -17,12 +17,12 @@ class OperationListView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToOperationCreate(context),
+        onPressed: () => _navigateToOperationForm(context),
       ),
     );
   }
 
-  void _navigateToOperationCreate(BuildContext context) {
+  void _navigateToOperationForm(BuildContext context) {
     MainTabRouter.of(context).navigateTo(OperationFormRoute());
   }
 }
