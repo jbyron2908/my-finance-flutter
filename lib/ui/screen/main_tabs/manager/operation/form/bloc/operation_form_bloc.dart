@@ -41,14 +41,16 @@ class OperationFormBloc extends BaseBloc {
     viewModel.operation = operationUpdate;
   }
 
-  Future<bool> selectOperationType() async {
+  Future<bool> selectOperationType(
+      FormFieldState<OperationTypeModel> state) async {
     OperationTypeModel operationType = await MainTabRouter.of(context)
         .navigateTo(OperationTypeSelectionRoute());
 
     if (operationType != null) {
-      viewModel.operation = viewModel.operation.copyWith(
-        type: operationType,
-      );
+      // viewModel.operation = viewModel.operation.copyWith(
+      //   type: operationType,
+      // );
+      state.didChange(operationType);
       return true;
     } else {
       return false;
@@ -140,19 +142,21 @@ class OperationFormBloc extends BaseBloc {
     }
   }
 
-  Future<bool> selectAccount() async {
+  Future<AccountModel> selectAccount() async {
     AccountModel accountSelected =
         await MainTabRouter.of(context).navigateTo(AccountSelectionRoute());
 
-    if (accountSelected != null) {
-      viewModel.operation = viewModel.operation.copyWith(
-        account: accountSelected,
-        profile: accountSelected.profile,
-      );
-      return true;
-    } else {
-      return false;
-    }
+    return accountSelected;
+
+    // if (accountSelected != null) {
+    //   viewModel.operation = viewModel.operation.copyWith(
+    //     account: accountSelected,
+    //     profile: accountSelected.profile,
+    //   );
+    //   return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   void submit() async {

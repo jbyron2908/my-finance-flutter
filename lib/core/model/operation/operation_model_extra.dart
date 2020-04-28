@@ -68,6 +68,7 @@ extension OperationModelExtra on OperationModel {
   }
 
   String getValue() {
+    if (value != null) {}
     return value.toStringAsFixed(2);
   }
 

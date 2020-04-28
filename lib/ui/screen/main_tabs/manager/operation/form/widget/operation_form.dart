@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_finance_flutter/core/model/account/index.dart';
+import 'package:my_finance_flutter/core/model/category/index.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
@@ -54,6 +56,13 @@ class OperationFormState extends State<OperationForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         initialValue: operation.title,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Required";
+          }
+
+          return null;
+        },
         decoration: InputDecoration(
           hintText: "Title",
           labelText: "Title",
@@ -85,7 +94,7 @@ class OperationFormState extends State<OperationForm> {
               ),
               onFieldSubmitted: (value) {
                 FocusScope.of(context).requestFocus(FocusNode());
-                _selectOperationType();
+                // _selectOperationType();
               },
               onSaved: (value) {
                 bloc.updateOperation(
@@ -96,11 +105,30 @@ class OperationFormState extends State<OperationForm> {
           ),
           UIHelper.horizontalSpaceSmall,
           Expanded(
-            child: FormFieldDecorator(
-              text: Text(operation.getTypeString()),
-              labelText: "Type",
-              prefixIcon: Icon(Icons.menu),
-              onTap: _selectOperationType,
+            child: FormField<OperationTypeModel>(
+              initialValue: operation.type,
+              validator: (value) {
+                if (value == null) {
+                  return "Required";
+                }
+
+                return null;
+              },
+              onSaved: (value) {
+                bloc.updateOperation(
+                  viewModel.operation.copyWith(type: value),
+                );
+              },
+              builder: (fieldState) {
+                return FormFieldDecorator(
+                  text: Text((fieldState.value == null)
+                      ? "Unknown"
+                      : fieldState.value.title),
+                  labelText: "Type",
+                  prefixIcon: Icon(Icons.menu),
+                  onTap: () => _selectOperationType(fieldState),
+                );
+              },
             ),
           ),
         ],
@@ -152,28 +180,71 @@ class OperationFormState extends State<OperationForm> {
         ],
       ),
       UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(operation.getCategoryString()),
-        labelText: "Category",
-        prefixIcon: Icon(Icons.category),
-        onTap: _selectCategory,
+      FormField<CategoryModel>(
+        initialValue: operation.category,
+        validator: (value) {
+          if (value == null) {
+            return "Required";
+          }
+
+          return null;
+        },
+        onSaved: (value) {
+          bloc.updateOperation(
+            viewModel.operation.copyWith(category: value),
+          );
+        },
+        builder: (fieldState) {
+          return InkWell(
+            child: InputDecorator(
+              decoration: InputDecoration(
+                labelText: "Category",
+                prefixIcon: Icon(Icons.category),
+                border: OutlineInputBorder(),
+                errorText: fieldState.errorText,
+              ),
+              child: Text(
+                (fieldState.value == null) ? "Unknown" : fieldState.value.name,
+              ),
+              // text: Text(
+              //   (fieldState.value == null) ? "Unknown" : fieldState.value.name,
+              // ),
+            ),
+            onTap: _selectCategory,
+          );
+        },
       ),
       UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(
-          (operation?.account == null) ? "Unknown" : operation.account.name,
-        ),
+      CustomFormField<AccountModel>(
         labelText: "Account",
         prefixIcon: Icon(Icons.account_balance),
-        onTap: _selectAccount,
+        initialValue: operation.account,
+        buildText: (value) => (value == null) ? "Unknown" : value.name,
+        onSaved: (value) => bloc.updateOperation(
+          viewModel.operation.copyWith(account: value),
+        ),
+        validator: (value) {
+          if (value == null || value.name.isEmpty) {
+            return "Required";
+          }
+
+          return null;
+        },
+        onFieldSubmitted: (value) => bloc.updateOperation(
+          viewModel.operation.copyWith(account: value),
+        ),
+        onTap: () async {
+          return await _selectAccount();
+        },
       ),
-      UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text("Labels"),
-        labelText: "Labels",
-        prefixIcon: Icon(Icons.label),
-        onTap: _selectCategory,
-      ),
+      // FormFieldDecorator(
+      //   text: Text(
+      //     (operation?.account == null) ? "Unknown" : operation.account.name,
+      //   ),
+      //   labelText: "Account",
+      //   prefixIcon: Icon(Icons.account_balance),
+      //   onTap: _selectAccount,
+      // ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
         focusNode: _descriptionNode,
@@ -198,8 +269,10 @@ class OperationFormState extends State<OperationForm> {
     ];
   }
 
-  void _selectOperationType() async {
-    bool result = await bloc.selectOperationType();
+  void _selectOperationType(
+    FormFieldState<OperationTypeModel> formState,
+  ) async {
+    bool result = await bloc.selectOperationType(formState);
 
     if (result) {
       _selectDate();
@@ -237,16 +310,90 @@ class OperationFormState extends State<OperationForm> {
   }
 
   void _selectCategory() async {
-    bool result = await bloc.selectCategory();
-    if (result) {
-      _selectAccount();
-    }
+    await bloc.selectCategory();
+    // bool result = await bloc.selectCategory();
+    // if (result) {
+    //   _selectAccount();
+    // }
   }
 
-  void _selectAccount() async {
-    bool result = await bloc.selectAccount();
-    if (result) {
+  Future<AccountModel> _selectAccount() async {
+    var result = await bloc.selectAccount();
+    if (result != null) {
       FocusScope.of(context).requestFocus(FocusNode());
     }
+    return result;
+  }
+}
+
+typedef CustomFormFieldTapCallback<T> = Future<T> Function();
+
+class CustomFormField<T> extends StatefulWidget {
+  final void Function(T) onSaved;
+  final void Function(T) onFieldSubmitted;
+  final String Function(T) validator;
+  final T initialValue;
+  final String labelText;
+  final Icon prefixIcon;
+  final String Function(T) buildText;
+  final CustomFormFieldTapCallback onTap;
+
+  CustomFormField({
+    Key key,
+    this.initialValue,
+    this.onSaved,
+    this.onFieldSubmitted,
+    this.validator,
+    this.labelText,
+    this.prefixIcon,
+    this.buildText,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  _CustomFormFieldState<T> createState() => _CustomFormFieldState<T>();
+}
+
+class _CustomFormFieldState<T> extends State<CustomFormField<T>> {
+  bool isFocused = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: FormField<T>(
+        initialValue: widget.initialValue,
+        validator: widget.validator,
+        onSaved: widget.onSaved,
+        builder: (fieldState) {
+          return InkWell(
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              T result = await widget.onTap();
+              fieldState.didChange(result);
+              if (widget.onFieldSubmitted != null) {
+                widget.onFieldSubmitted(result);
+              }
+            },
+            onHighlightChanged: (value) {
+              setState(() {
+                isFocused = value;
+              });
+            },
+            child: InputDecorator(
+              isFocused: isFocused,
+              decoration: InputDecoration(
+                labelText: widget.labelText,
+                prefixIcon: widget.prefixIcon,
+                border: OutlineInputBorder(),
+                errorText: fieldState.errorText,
+              ),
+              child: Text(
+                widget.buildText(fieldState.value),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

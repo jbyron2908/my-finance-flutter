@@ -22,7 +22,7 @@ class $OperationModel {
   @nullable
   String title;
   @nullable
-  double value;
+  double value = 0;
   @nullable
   $OperationTypeModel type;
   @nullable
