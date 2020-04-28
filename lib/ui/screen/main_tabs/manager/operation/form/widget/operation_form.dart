@@ -16,6 +16,7 @@ class OperationForm extends StatefulWidget {
 class OperationFormState extends State<OperationForm> {
   final FocusNode _valueNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
+  final FocusNode _accountNode = FocusNode();
 
   OperationFormBloc bloc;
   OperationFormViewModel viewModel;
@@ -217,6 +218,7 @@ class OperationFormState extends State<OperationForm> {
       UIHelper.verticalSpaceSmall,
       CustomFormField<AccountModel>(
         labelText: "Account",
+        focusNode: _accountNode,
         prefixIcon: Icon(Icons.account_balance),
         initialValue: operation.account,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
@@ -310,11 +312,10 @@ class OperationFormState extends State<OperationForm> {
   }
 
   void _selectCategory() async {
-    await bloc.selectCategory();
-    // bool result = await bloc.selectCategory();
-    // if (result) {
-    //   _selectAccount();
-    // }
+    bool result = await bloc.selectCategory();
+    if (result) {
+      FocusScope.of(context).requestFocus(_accountNode);
+    }
   }
 
   Future<AccountModel> _selectAccount() async {
@@ -326,9 +327,10 @@ class OperationFormState extends State<OperationForm> {
   }
 }
 
-typedef CustomFormFieldTapCallback<T> = Future<T> Function();
+typedef CustomFormFieldTapCallback<T> = T Function();
 
 class CustomFormField<T> extends StatefulWidget {
+  final FocusNode focusNode;
   final void Function(T) onSaved;
   final void Function(T) onFieldSubmitted;
   final String Function(T) validator;
@@ -340,6 +342,7 @@ class CustomFormField<T> extends StatefulWidget {
 
   CustomFormField({
     Key key,
+    this.focusNode,
     this.initialValue,
     this.onSaved,
     this.onFieldSubmitted,
@@ -366,12 +369,36 @@ class _CustomFormFieldState<T> extends State<CustomFormField<T>> {
         onSaved: widget.onSaved,
         builder: (fieldState) {
           return InkWell(
+            focusNode: widget.focusNode,
             highlightColor: Colors.transparent,
+            onFocusChange: (value) async {
+              if (value == true) {
+                var result = widget.onTap();
+                if (result is Future<T>) {
+                  result = await result;
+                }
+                if (result != null) {
+                  fieldState.didChange(result);
+                  if (widget.onFieldSubmitted != null) {
+                    widget.onFieldSubmitted(result);
+                  }
+                } else {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                }
+              }
+            },
             onTap: () async {
-              T result = await widget.onTap();
-              fieldState.didChange(result);
-              if (widget.onFieldSubmitted != null) {
-                widget.onFieldSubmitted(result);
+              var result = widget.onTap();
+              if (result is Future<T>) {
+                result = await result;
+              }
+              if (result != null) {
+                fieldState.didChange(result);
+                if (widget.onFieldSubmitted != null) {
+                  widget.onFieldSubmitted(result);
+                }
+              } else {
+                FocusScope.of(context).requestFocus(FocusNode());
               }
             },
             onHighlightChanged: (value) {
