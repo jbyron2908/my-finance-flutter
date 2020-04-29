@@ -128,35 +128,12 @@ class OperationFormBloc extends BaseBloc {
     }
   }
 
-  Future<bool> selectCategory() async {
-    CategoryModel categorySelected =
-        await MainTabRouter.of(context).navigateTo(CategorySelectionRoute());
-
-    if (categorySelected != null) {
-      viewModel.operation = viewModel.operation.copyWith(
-        category: categorySelected,
-      );
-      return true;
-    } else {
-      return false;
-    }
+  Future<CategoryModel> selectCategory() async {
+    return MainTabRouter.of(context).navigateTo(CategorySelectionRoute());
   }
 
   Future<AccountModel> selectAccount() async {
-    AccountModel accountSelected =
-        await MainTabRouter.of(context).navigateTo(AccountSelectionRoute());
-
-    return accountSelected;
-
-    // if (accountSelected != null) {
-    //   viewModel.operation = viewModel.operation.copyWith(
-    //     account: accountSelected,
-    //     profile: accountSelected.profile,
-    //   );
-    //   return true;
-    // } else {
-    //   return false;
-    // }
+    return MainTabRouter.of(context).navigateTo(AccountSelectionRoute());
   }
 
   void submit() async {

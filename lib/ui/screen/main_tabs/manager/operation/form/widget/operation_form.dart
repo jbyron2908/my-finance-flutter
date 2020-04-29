@@ -6,6 +6,7 @@ import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
+import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
 class OperationForm extends StatefulWidget {
@@ -17,6 +18,7 @@ class OperationFormState extends State<OperationForm> {
   final FocusNode _valueNode = FocusNode();
   final FocusNode _descriptionNode = FocusNode();
   final FocusNode _accountNode = FocusNode();
+  final FocusNode _categoryNode = FocusNode();
 
   OperationFormBloc bloc;
   OperationFormViewModel viewModel;
@@ -175,45 +177,37 @@ class OperationFormState extends State<OperationForm> {
               text: Text(operation.getStateString()),
               labelText: "State",
               prefixIcon: Icon(Icons.check_circle),
-              onTap: _selectOperationState,
+              onTap: () {
+                _selectOperationState();
+              },
             ),
           ),
         ],
       ),
       UIHelper.verticalSpaceSmall,
-      FormField<CategoryModel>(
+      CustomFormField<CategoryModel>(
+        labelText: "Category",
+        focusNode: _categoryNode,
+        prefixIcon: Icon(Icons.account_balance),
         initialValue: operation.category,
+        buildText: (value) => (value == null) ? "Unknown" : value.name,
+        onSaved: (value) => bloc.updateOperation(
+          viewModel.operation.copyWith(category: value),
+        ),
         validator: (value) {
-          if (value == null) {
+          if (value == null || value.name.isEmpty) {
             return "Required";
           }
 
           return null;
         },
-        onSaved: (value) {
+        onFieldSubmitted: (value) {
           bloc.updateOperation(
             viewModel.operation.copyWith(category: value),
           );
+          FocusScope.of(context).requestFocus(_accountNode);
         },
-        builder: (fieldState) {
-          return InkWell(
-            child: InputDecorator(
-              decoration: InputDecoration(
-                labelText: "Category",
-                prefixIcon: Icon(Icons.category),
-                border: OutlineInputBorder(),
-                errorText: fieldState.errorText,
-              ),
-              child: Text(
-                (fieldState.value == null) ? "Unknown" : fieldState.value.name,
-              ),
-              // text: Text(
-              //   (fieldState.value == null) ? "Unknown" : fieldState.value.name,
-              // ),
-            ),
-            onTap: _selectCategory,
-          );
-        },
+        onTapOrFocus: () => _selectCategory(),
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<AccountModel>(
@@ -232,12 +226,14 @@ class OperationFormState extends State<OperationForm> {
 
           return null;
         },
-        onFieldSubmitted: (value) => bloc.updateOperation(
-          viewModel.operation.copyWith(account: value),
-        ),
-        onTap: () async {
-          return await _selectAccount();
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            bloc.updateOperation(
+              viewModel.operation.copyWith(account: value),
+            );
+          }
         },
+        onTapOrFocus: () => _selectAccount(),
       ),
       // FormFieldDecorator(
       //   text: Text(
@@ -305,122 +301,17 @@ class OperationFormState extends State<OperationForm> {
   }
 
   void _selectOperationState() async {
-    bool result = await bloc.selectOperationState();
+    final result = await bloc.selectOperationState();
     if (result) {
-      _selectCategory();
+      FocusScope.of(context).requestFocus(_categoryNode);
     }
   }
 
-  void _selectCategory() async {
-    bool result = await bloc.selectCategory();
-    if (result) {
-      FocusScope.of(context).requestFocus(_accountNode);
-    }
+  Future<CategoryModel> _selectCategory() {
+    return bloc.selectCategory();
   }
 
-  Future<AccountModel> _selectAccount() async {
-    var result = await bloc.selectAccount();
-    if (result != null) {
-      FocusScope.of(context).requestFocus(FocusNode());
-    }
-    return result;
-  }
-}
-
-typedef CustomFormFieldTapCallback<T> = T Function();
-
-class CustomFormField<T> extends StatefulWidget {
-  final FocusNode focusNode;
-  final void Function(T) onSaved;
-  final void Function(T) onFieldSubmitted;
-  final String Function(T) validator;
-  final T initialValue;
-  final String labelText;
-  final Icon prefixIcon;
-  final String Function(T) buildText;
-  final CustomFormFieldTapCallback onTap;
-
-  CustomFormField({
-    Key key,
-    this.focusNode,
-    this.initialValue,
-    this.onSaved,
-    this.onFieldSubmitted,
-    this.validator,
-    this.labelText,
-    this.prefixIcon,
-    this.buildText,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  _CustomFormFieldState<T> createState() => _CustomFormFieldState<T>();
-}
-
-class _CustomFormFieldState<T> extends State<CustomFormField<T>> {
-  bool isFocused = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: FormField<T>(
-        initialValue: widget.initialValue,
-        validator: widget.validator,
-        onSaved: widget.onSaved,
-        builder: (fieldState) {
-          return InkWell(
-            focusNode: widget.focusNode,
-            highlightColor: Colors.transparent,
-            onFocusChange: (value) async {
-              if (value == true) {
-                var result = widget.onTap();
-                if (result is Future<T>) {
-                  result = await result;
-                }
-                if (result != null) {
-                  fieldState.didChange(result);
-                  if (widget.onFieldSubmitted != null) {
-                    widget.onFieldSubmitted(result);
-                  }
-                } else {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                }
-              }
-            },
-            onTap: () async {
-              var result = widget.onTap();
-              if (result is Future<T>) {
-                result = await result;
-              }
-              if (result != null) {
-                fieldState.didChange(result);
-                if (widget.onFieldSubmitted != null) {
-                  widget.onFieldSubmitted(result);
-                }
-              } else {
-                FocusScope.of(context).requestFocus(FocusNode());
-              }
-            },
-            onHighlightChanged: (value) {
-              setState(() {
-                isFocused = value;
-              });
-            },
-            child: InputDecorator(
-              isFocused: isFocused,
-              decoration: InputDecoration(
-                labelText: widget.labelText,
-                prefixIcon: widget.prefixIcon,
-                border: OutlineInputBorder(),
-                errorText: fieldState.errorText,
-              ),
-              child: Text(
-                widget.buildText(fieldState.value),
-              ),
-            ),
-          );
-        },
-      ),
-    );
+  Future<AccountModel> _selectAccount() {
+    return bloc.selectAccount();
   }
 }
