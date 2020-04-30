@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/index.dart';
 import 'package:my_finance_flutter/core/model/category/index.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
+import 'package:my_finance_flutter/ui/common/text_input_formatter/currency_formatter.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
@@ -87,11 +88,15 @@ class OperationFormState extends State<OperationForm> {
               focusNode: _valueNode,
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
+              inputFormatters: [
+                WhitelistingTextInputFormatter.digitsOnly,
+                CurrencyFormatter.build(),
+              ],
               initialValue: operation.getValue(),
               decoration: InputDecoration(
                 hintText: "Value",
                 labelText: "Value",
-                prefixText: "R\$ ",
+                prefixText: "${operation.profile.currency} ",
                 prefixIcon: Icon(Icons.monetization_on),
                 border: OutlineInputBorder(),
               ),
@@ -203,7 +208,9 @@ class OperationFormState extends State<OperationForm> {
         },
         onFieldSubmitted: (value) {
           bloc.updateOperation(
-            viewModel.operation.copyWith(category: value),
+            viewModel.operation.copyWith(
+              category: value,
+            ),
           );
           FocusScope.of(context).requestFocus(_accountNode);
         },
@@ -229,7 +236,10 @@ class OperationFormState extends State<OperationForm> {
         onFieldSubmitted: (value) {
           if (value != null) {
             bloc.updateOperation(
-              viewModel.operation.copyWith(account: value),
+              viewModel.operation.copyWith(
+                account: value,
+                profile: value.profile,
+              ),
             );
           }
         },
