@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/widget/operation_item.dart';
 import 'package:provider/provider.dart';
 
@@ -18,20 +15,22 @@ class OperationListView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToOperationForm(context),
+        onPressed: null, // () => _navigateToOperationForm(context),
       ),
     );
   }
 
-  void _navigateToOperationForm(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(
-      OperationFormRoute(
-        argument: OperationFormScreenArgs(
-          type: OperationFormType.CREATE,
-        ),
-      ),
-    );
-  }
+  /**
+   * ! To navigate to operation form we need an account
+   * ! Only possible now from the account_viewer
+   */
+  // void _navigateToOperationForm(BuildContext context) {
+  //   MainTabRouter.of(context).navigateTo(
+  //     OperationFormRoute(
+  //       argument: OperationFormScreenArgs.create(),
+  //     ),
+  //   );
+  // }
 }
 
 class _OperationList extends StatelessWidget {

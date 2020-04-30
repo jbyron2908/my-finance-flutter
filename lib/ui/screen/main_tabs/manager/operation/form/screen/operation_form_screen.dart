@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/model/account/index.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
@@ -17,26 +18,10 @@ class OperationFormScreen
   OperationFormBloc buildBloc(BuildContext context) {
     var argument = getArgument(context);
 
-    OperationModel operation;
-
-    switch (argument.type) {
-      case OperationFormType.CREATE:
-        operation = OperationModelExtra.buildEmpty();
-        break;
-      case OperationFormType.EDIT:
-        operation = argument.operation;
-        break;
-      case OperationFormType.COPY:
-        operation = argument.operation.buildCopy();
-        break;
-      default:
-        operation = OperationModelExtra.buildEmpty();
-    }
-
     return OperationFormBloc(
       context: context,
       operationRepository: OperationRepository.of(context),
-      operation: operation,
+      operation: argument.operation,
     );
   }
 }
@@ -45,17 +30,40 @@ class OperationFormScreenArgs {
   static OperationFormScreenArgs of(BuildContext context) =>
       Provider.of<OperationFormScreenArgs>(context, listen: false);
 
-  OperationFormType type;
   OperationModel operation;
 
   OperationFormScreenArgs({
-    @required this.type,
     this.operation,
   });
-}
 
-enum OperationFormType {
-  CREATE,
-  EDIT,
-  COPY,
+  static OperationFormScreenArgs create({
+    AccountModel account,
+  }) {
+    var operation = OperationModelExtra.buildEmpty();
+
+    operation = operation.copyWith(
+      account: account,
+      profile: account.profile,
+    );
+
+    return OperationFormScreenArgs(
+      operation: operation,
+    );
+  }
+
+  static OperationFormScreenArgs edit({
+    OperationModel operation,
+  }) {
+    return OperationFormScreenArgs(
+      operation: operation,
+    );
+  }
+
+  static OperationFormScreenArgs copy({
+    OperationModel operation,
+  }) {
+    return OperationFormScreenArgs(
+      operation: operation.buildCopy(),
+    );
+  }
 }

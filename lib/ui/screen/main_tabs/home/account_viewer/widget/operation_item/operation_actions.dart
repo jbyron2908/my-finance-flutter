@@ -83,8 +83,7 @@ class OperationActionRight extends StatelessWidget {
     var operation = OperationItem.operationOf(context);
     MainTabRouter.of(context).navigateTo(
       OperationFormRoute(
-        argument: OperationFormScreenArgs(
-          type: OperationFormType.EDIT,
+        argument: OperationFormScreenArgs.edit(
           operation: operation,
         ),
       ),
@@ -95,8 +94,7 @@ class OperationActionRight extends StatelessWidget {
     var operation = OperationItem.operationOf(context);
     MainTabRouter.of(context).navigateTo(
       OperationFormRoute(
-        argument: OperationFormScreenArgs(
-          type: OperationFormType.COPY,
+        argument: OperationFormScreenArgs.copy(
           operation: operation,
         ),
       ),
