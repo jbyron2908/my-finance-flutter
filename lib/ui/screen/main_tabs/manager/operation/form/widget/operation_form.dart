@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/model/account/index.dart';
 import 'package:my_finance_flutter/core/model/category/index.dart';
 import 'package:my_finance_flutter/core/model/operation/index.dart';
+import 'package:my_finance_flutter/core/model/payee/index.dart';
 import 'package:my_finance_flutter/ui/common/text_input_formatter/currency_formatter.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
 import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
-import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
 class OperationForm extends StatefulWidget {
   @override
@@ -17,9 +18,14 @@ class OperationForm extends StatefulWidget {
 
 class OperationFormState extends State<OperationForm> {
   final FocusNode _valueNode = FocusNode();
-  final FocusNode _descriptionNode = FocusNode();
-  final FocusNode _accountNode = FocusNode();
+  final FocusNode _typeNode = FocusNode();
+  final FocusNode _dateNode = FocusNode();
+  final FocusNode _timeNode = FocusNode();
+  final FocusNode _payeeNode = FocusNode();
+  final FocusNode _stateNode = FocusNode();
   final FocusNode _categoryNode = FocusNode();
+  final FocusNode _accountNode = FocusNode();
+  final FocusNode _noteNode = FocusNode();
 
   OperationFormBloc bloc;
   OperationFormViewModel viewModel;
@@ -37,17 +43,11 @@ class OperationFormState extends State<OperationForm> {
         // Hide keyboard when scroll
         FocusScope.of(context).requestFocus(FocusNode());
       },
-      child: SingleChildScrollView(
-        child: Form(
-          key: bloc.formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ...buildFormFields(),
-              ],
-            ),
-          ),
+      child: Form(
+        key: bloc.formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: buildFormFields(),
         ),
       ),
     );
@@ -60,6 +60,12 @@ class OperationFormState extends State<OperationForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         initialValue: operation.title,
+        decoration: InputDecoration(
+          hintText: "Title",
+          labelText: "Title",
+          prefixIcon: Icon(Icons.title),
+          border: OutlineInputBorder(),
+        ),
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Required";
@@ -67,17 +73,12 @@ class OperationFormState extends State<OperationForm> {
 
           return null;
         },
-        decoration: InputDecoration(
-          hintText: "Title",
-          labelText: "Title",
-          prefixIcon: Icon(Icons.title),
-          border: OutlineInputBorder(),
-        ),
-        onFieldSubmitted: (value) => _valueNode.requestFocus(),
+        onFieldSubmitted: (value) {
+          bloc.updateOperation(title: value);
+          FocusScope.of(context).requestFocus(_valueNode);
+        },
         onSaved: (value) {
-          bloc.updateOperation(
-            viewModel.operation.copyWith(title: value),
-          );
+          bloc.updateOperation(title: value);
         },
       ),
       UIHelper.verticalSpaceSmall,
@@ -100,21 +101,34 @@ class OperationFormState extends State<OperationForm> {
                 prefixIcon: Icon(Icons.monetization_on),
                 border: OutlineInputBorder(),
               ),
+              validator: (value) {
+                if (value == null || double.parse(value) == 0) {
+                  return "Required";
+                }
+
+                return null;
+              },
               onFieldSubmitted: (value) {
-                FocusScope.of(context).requestFocus(FocusNode());
-                // _selectOperationType();
+                if (value != null) {
+                  bloc.updateOperation(value: double.parse(value));
+                  FocusScope.of(context).requestFocus(_typeNode);
+                }
               },
               onSaved: (value) {
-                bloc.updateOperation(
-                  viewModel.operation.copyWith(value: double.parse(value)),
-                );
+                if (value != null) {
+                  bloc.updateOperation(value: double.parse(value));
+                }
               },
             ),
           ),
           UIHelper.horizontalSpaceSmall,
           Expanded(
-            child: FormField<OperationTypeModel>(
+            child: CustomFormField<OperationTypeModel>(
+              labelText: "Type",
+              focusNode: _typeNode,
+              prefixIcon: Icon(Icons.access_time),
               initialValue: operation.type,
+              buildText: (value) => value.title,
               validator: (value) {
                 if (value == null) {
                   return "Required";
@@ -122,21 +136,18 @@ class OperationFormState extends State<OperationForm> {
 
                 return null;
               },
+              onFieldSubmitted: (value) {
+                if (value != null) {
+                  bloc.updateOperation(type: value);
+                  FocusScope.of(context).requestFocus(_dateNode);
+                }
+              },
               onSaved: (value) {
-                bloc.updateOperation(
-                  viewModel.operation.copyWith(type: value),
-                );
+                if (value != null) {
+                  bloc.updateOperation(type: value);
+                }
               },
-              builder: (fieldState) {
-                return FormFieldDecorator(
-                  text: Text((fieldState.value == null)
-                      ? "Unknown"
-                      : fieldState.value.title),
-                  labelText: "Type",
-                  prefixIcon: Icon(Icons.menu),
-                  onTap: () => _selectOperationType(fieldState),
-                );
-              },
+              onTapOrFocus: () => bloc.selectOperationType(),
             ),
           ),
         ],
@@ -145,22 +156,60 @@ class OperationFormState extends State<OperationForm> {
       Row(
         children: <Widget>[
           Expanded(
-            flex: 1,
-            child: FormFieldDecorator(
-              text: Text(operation.getDateString()),
+            child: CustomFormField<DateTime>(
               labelText: "Date",
-              prefixIcon: Icon(Icons.calendar_today),
-              onTap: _selectDate,
+              focusNode: _dateNode,
+              prefixIcon: Icon(Icons.access_time),
+              initialValue: operation.date,
+              buildText: (value) => _getDateString(value),
+              validator: (value) {
+                if (value == null) {
+                  return "Required";
+                }
+
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                if (value != null) {
+                  bloc.updateOperation(date: value);
+                  FocusScope.of(context).requestFocus(_timeNode);
+                }
+              },
+              onSaved: (value) {
+                if (value != null) {
+                  bloc.updateOperation(date: value);
+                }
+              },
+              onTapOrFocus: () => bloc.selectDate(),
             ),
           ),
           UIHelper.horizontalSpaceSmall,
           Expanded(
-            flex: 1,
-            child: FormFieldDecorator(
-              prefixIcon: Icon(Icons.access_time),
-              text: Text(operation.getTimeString()),
+            child: CustomFormField<DateTime>(
               labelText: "Time",
-              onTap: _selectTime,
+              focusNode: _timeNode,
+              prefixIcon: Icon(Icons.access_time),
+              initialValue: operation.date,
+              buildText: (value) => _getTimeString(value),
+              validator: (value) {
+                if (value == null) {
+                  return "Required";
+                }
+
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                if (value != null) {
+                  bloc.updateOperation(date: value);
+                  FocusScope.of(context).requestFocus(_payeeNode);
+                }
+              },
+              onSaved: (value) {
+                if (value != null) {
+                  bloc.updateOperation(date: value);
+                }
+              },
+              onTapOrFocus: () => bloc.selectTime(),
             ),
           ),
         ],
@@ -169,22 +218,60 @@ class OperationFormState extends State<OperationForm> {
       Row(
         children: <Widget>[
           Expanded(
-            child: FormFieldDecorator(
-              text: Text(operation.getPayeeString()),
+            child: CustomFormField<PayeeModel>(
               labelText: "Payee",
+              focusNode: _payeeNode,
               prefixIcon: Icon(Icons.check_circle),
-              onTap: _selectPayee,
+              initialValue: operation.payee,
+              buildText: (value) => (value == null) ? "Unknown" : value.name,
+              validator: (value) {
+                if (value == null) {
+                  return "Required";
+                }
+
+                return null;
+              },
+              onFieldSubmitted: (value) {
+                if (value != null) {
+                  bloc.updateOperation(payee: value);
+                  FocusScope.of(context).requestFocus(_stateNode);
+                }
+              },
+              onSaved: (value) {
+                if (value != null) {
+                  bloc.updateOperation(payee: value);
+                }
+              },
+              onTapOrFocus: () => bloc.selectPayee(),
             ),
           ),
           UIHelper.horizontalSpaceSmall,
           Expanded(
-            child: FormFieldDecorator(
-              text: Text(operation.getStateString()),
+            child: CustomFormField<OperationStateModel>(
               labelText: "State",
-              prefixIcon: Icon(Icons.check_circle),
-              onTap: () {
-                _selectOperationState();
+              focusNode: _stateNode,
+              prefixIcon: Icon(Icons.account_balance),
+              initialValue: operation.state,
+              buildText: (value) => (value == null) ? "Unknown" : value.title,
+              validator: (value) {
+                if (value == null) {
+                  return "Required";
+                }
+
+                return null;
               },
+              onFieldSubmitted: (value) {
+                if (value != null) {
+                  bloc.updateOperation(state: value);
+                  FocusScope.of(context).requestFocus(_categoryNode);
+                }
+              },
+              onSaved: (value) {
+                if (value != null) {
+                  bloc.updateOperation(state: value);
+                }
+              },
+              onTapOrFocus: () => bloc.selectOperationState(),
             ),
           ),
         ],
@@ -196,25 +283,25 @@ class OperationFormState extends State<OperationForm> {
         prefixIcon: Icon(Icons.account_balance),
         initialValue: operation.category,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
-        onSaved: (value) => bloc.updateOperation(
-          viewModel.operation.copyWith(category: value),
-        ),
         validator: (value) {
-          if (value == null || value.name.isEmpty) {
+          if (value == null) {
             return "Required";
           }
 
           return null;
         },
         onFieldSubmitted: (value) {
-          bloc.updateOperation(
-            viewModel.operation.copyWith(
-              category: value,
-            ),
-          );
-          FocusScope.of(context).requestFocus(_accountNode);
+          if (value != null) {
+            bloc.updateOperation(category: value);
+            FocusScope.of(context).requestFocus(_accountNode);
+          }
         },
-        onTapOrFocus: () => _selectCategory(),
+        onSaved: (value) {
+          if (value != null) {
+            bloc.updateOperation(category: value);
+          }
+        },
+        onTapOrFocus: () => bloc.selectCategory(),
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<AccountModel>(
@@ -223,11 +310,8 @@ class OperationFormState extends State<OperationForm> {
         prefixIcon: Icon(Icons.account_balance),
         initialValue: operation.account,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
-        onSaved: (value) => bloc.updateOperation(
-          viewModel.operation.copyWith(account: value),
-        ),
         validator: (value) {
-          if (value == null || value.name.isEmpty) {
+          if (value == null) {
             return "Required";
           }
 
@@ -236,26 +320,25 @@ class OperationFormState extends State<OperationForm> {
         onFieldSubmitted: (value) {
           if (value != null) {
             bloc.updateOperation(
-              viewModel.operation.copyWith(
-                account: value,
-                profile: value.profile,
-              ),
+              account: value,
+              profile: value.profile,
+            );
+            FocusScope.of(context).requestFocus(_noteNode);
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            bloc.updateOperation(
+              account: value,
+              profile: value.profile,
             );
           }
         },
-        onTapOrFocus: () => _selectAccount(),
+        onTapOrFocus: () => bloc.selectAccount(),
       ),
-      // FormFieldDecorator(
-      //   text: Text(
-      //     (operation?.account == null) ? "Unknown" : operation.account.name,
-      //   ),
-      //   labelText: "Account",
-      //   prefixIcon: Icon(Icons.account_balance),
-      //   onTap: _selectAccount,
-      // ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
-        focusNode: _descriptionNode,
+        focusNode: _noteNode,
         keyboardType: TextInputType.text,
         maxLines: 3,
         textInputAction: TextInputAction.done,
@@ -265,63 +348,26 @@ class OperationFormState extends State<OperationForm> {
           alignLabelWithHint: true,
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
-          FocusNode(),
-        ),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            bloc.updateOperation(description: value);
+            FocusScope.of(context).requestFocus(FocusNode());
+          }
+        },
         onSaved: (value) {
-          bloc.updateOperation(
-            viewModel.operation.copyWith(description: value),
-          );
+          if (value != null) {
+            bloc.updateOperation(description: value);
+          }
         },
       ),
     ];
   }
 
-  void _selectOperationType(
-    FormFieldState<OperationTypeModel> formState,
-  ) async {
-    bool result = await bloc.selectOperationType(formState);
-
-    if (result) {
-      _selectDate();
-    }
+  String _getDateString(DateTime date) {
+    return date == null ? "Unknown" : DateFormat("dd/MM/yyyy").format(date);
   }
 
-  void _selectDate() async {
-    bool result = await bloc.selectDate();
-
-    if (result) {
-      _selectTime();
-    }
-  }
-
-  void _selectTime() async {
-    bool result = await bloc.selectTime();
-
-    if (result) {
-      _selectPayee();
-    }
-  }
-
-  void _selectPayee() async {
-    bool result = await bloc.selectPayee();
-    if (result) {
-      _selectOperationState();
-    }
-  }
-
-  void _selectOperationState() async {
-    final result = await bloc.selectOperationState();
-    if (result) {
-      FocusScope.of(context).requestFocus(_categoryNode);
-    }
-  }
-
-  Future<CategoryModel> _selectCategory() {
-    return bloc.selectCategory();
-  }
-
-  Future<AccountModel> _selectAccount() {
-    return bloc.selectAccount();
+  String _getTimeString(DateTime date) {
+    return date == null ? "Unknown" : DateFormat("HH:mm").format(date);
   }
 }

@@ -68,13 +68,13 @@ extension OperationModelExtra on OperationModel {
   }
 
   String getValue() {
-    if (value != null) {}
-    return value.toStringAsFixed(2);
+    final formarter = NumberFormat("00.00");
+    return formarter.format(value);
   }
 
   String getValueWithCurrency() {
     String currency = profile.currency;
-    String valueString = value.toStringAsFixed(2);
+    String valueString = getValue();
     return "$currency $valueString";
   }
 }

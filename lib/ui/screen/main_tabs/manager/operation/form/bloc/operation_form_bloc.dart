@@ -5,6 +5,7 @@ import 'package:my_finance_flutter/core/model/operation/index.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/index.dart';
+import 'package:my_finance_flutter/core/model/profile/index.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
@@ -37,27 +38,37 @@ class OperationFormBloc extends BaseBloc {
     viewModel = OperationFormViewModel(operation);
   }
 
-  void updateOperation(OperationModel operationUpdate) async {
-    viewModel.operation = operationUpdate;
+  void updateOperation({
+    String title,
+    double value,
+    OperationTypeModel type,
+    DateTime date,
+    OperationStateModel state,
+    String description,
+    PayeeModel payee,
+    CategoryModel category,
+    AccountModel account,
+    ProfileModel profile,
+  }) {
+    viewModel.operation = viewModel.operation.copyWith(
+      title: title,
+      value: value,
+      type: type,
+      date: date,
+      state: state,
+      description: description,
+      payee: payee,
+      category: category,
+      account: account,
+      profile: profile,
+    );
   }
 
-  Future<bool> selectOperationType(
-      FormFieldState<OperationTypeModel> state) async {
-    OperationTypeModel operationType = await MainTabRouter.of(context)
-        .navigateTo(OperationTypeSelectionRoute());
-
-    if (operationType != null) {
-      // viewModel.operation = viewModel.operation.copyWith(
-      //   type: operationType,
-      // );
-      state.didChange(operationType);
-      return true;
-    } else {
-      return false;
-    }
+  Future<OperationTypeModel> selectOperationType() {
+    return MainTabRouter.of(context).navigateTo(OperationTypeSelectionRoute());
   }
 
-  Future<bool> selectDate() async {
+  Future<DateTime> selectDate() async {
     var date = await showDatePicker(
       context: context,
       initialDate: viewModel.operation.date,
@@ -66,66 +77,35 @@ class OperationFormBloc extends BaseBloc {
     );
 
     if (date != null) {
-      var newDate = DateUtil.setDateTime(
+      return DateUtil.setDateTime(
         date,
         viewModel.operation.date.hour,
         viewModel.operation.date.minute,
       );
-
-      viewModel.operation = viewModel.operation.copyWith(
-        date: newDate,
-      );
-      return true;
     } else {
-      return false;
+      return null;
     }
   }
 
-  Future<bool> selectTime() async {
+  Future<DateTime> selectTime() async {
     var time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(viewModel.operation.date),
     );
 
     if (time != null) {
-      var newDate = DateUtil.mergeDateAndTime(viewModel.operation.date, time);
-
-      viewModel.operation = viewModel.operation.copyWith(
-        date: newDate,
-      );
-      return true;
+      return DateUtil.mergeDateAndTime(viewModel.operation.date, time);
     } else {
-      return false;
+      return null;
     }
   }
 
-  Future<bool> selectOperationState() async {
-    OperationStateModel operationState = await MainTabRouter.of(context)
-        .navigateTo(OperationStateSelectionRoute());
-
-    if (operationState != null) {
-      viewModel.operation = viewModel.operation.copyWith(
-        state: operationState,
-      );
-      return true;
-    } else {
-      return false;
-    }
+  Future<OperationStateModel> selectOperationState() async {
+    return MainTabRouter.of(context).navigateTo(OperationStateSelectionRoute());
   }
 
-  Future<bool> selectPayee() async {
-    PayeeModel payeeSelected = await MainTabRouter.of(context).navigateTo(
-      PayeeSelectionRoute(),
-    );
-
-    if (payeeSelected != null) {
-      viewModel.operation = viewModel.operation.copyWith(
-        payee: payeeSelected,
-      );
-      return true;
-    } else {
-      return false;
-    }
+  Future<PayeeModel> selectPayee() async {
+    return MainTabRouter.of(context).navigateTo(PayeeSelectionRoute());
   }
 
   Future<CategoryModel> selectCategory() async {

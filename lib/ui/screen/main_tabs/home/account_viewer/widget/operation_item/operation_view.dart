@@ -24,7 +24,7 @@ class OperationView extends StatelessWidget {
           ),
           OperationRow(
             rightText: operation.getCategoryWithParent(),
-            leftText: DateFormat("dd/MM/yyyy hh:mm").format(operation.date),
+            leftText: DateFormat("dd/MM/yyyy HH:mm").format(operation.date),
           ),
           Divider(
             color: Colors.grey,
