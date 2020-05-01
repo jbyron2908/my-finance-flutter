@@ -4,3 +4,5 @@ analyzer:
   exclude:
     - lib/**.jorm.dart
     - blueprint-templates/**.dart
+  errors:
+    todo: ignore
