@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/index.dart';
 import 'package:my_finance_flutter/core/model/profile/index.dart';
-import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/item/account_item.dart';
 import 'package:provider/provider.dart';
 
@@ -21,19 +20,39 @@ class ProfileItem extends StatelessWidget {
             .toList();
 
         return Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                profile.name,
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                child: Text(
+                  profile.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              UIHelper.verticalSpaceSmall,
-              ListView.builder(
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Divider(
+                  color: Colors.grey,
+                ),
+              ),
+              ListView.separated(
                 shrinkWrap: true,
-                padding: EdgeInsets.symmetric(horizontal: 10),
                 itemCount: profileAccountList.length,
+                separatorBuilder: (context, index) => Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24,
+                  ),
+                  child: Divider(
+                    color: Colors.grey,
+                  ),
+                ),
                 itemBuilder: (context, index) => AccountItem(
                   account: profileAccountList[index],
                 ),

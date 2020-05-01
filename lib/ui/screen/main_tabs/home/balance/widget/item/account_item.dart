@@ -14,8 +14,28 @@ class AccountItem extends StatelessWidget {
     return InkWell(
       onTap: () => _navigateToOperationList(context),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5),
-        child: Text(account.name),
+        padding: EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 16,
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: Text(account.name),
+              ),
+              VerticalDivider(
+                color: Colors.grey,
+              ),
+              // TODO Get total of each account
+              Expanded(
+                flex: 1,
+                child: Text("Total"),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
