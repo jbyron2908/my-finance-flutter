@@ -26,14 +26,14 @@ class OperationFormBloc extends BaseBloc {
   OperationFormViewModel viewModel;
 
   final BuildContext context;
-  final OperationRepository operationRepository;
+  OperationRepository operationRepository;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   OperationFormBloc({
     @required this.context,
-    @required this.operationRepository,
     @required OperationModel operation,
   }) {
+    operationRepository = OperationRepository.of(context);
     viewModel = OperationFormViewModel(operation);
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_bloc.dart';
@@ -25,9 +26,9 @@ class ProfileFormScreenArgs {
   static ProfileFormScreenArgs of(BuildContext context) =>
       Provider.of<ProfileFormScreenArgs>(context, listen: false);
 
-  int field1;
+  ProfileModel profile;
 
   ProfileFormScreenArgs({
-    this.field1,
+    this.profile,
   });
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
-import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/widget/operation_form_view.dart';
@@ -20,7 +19,6 @@ class OperationFormScreen
 
     return OperationFormBloc(
       context: context,
-      operationRepository: OperationRepository.of(context),
       operation: argument.operation,
     );
   }

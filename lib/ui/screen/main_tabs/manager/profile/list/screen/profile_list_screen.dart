@@ -13,7 +13,9 @@ class ProfileListScreen
 
   @override
   ProfileListBloc buildBloc(BuildContext context) {
-    return ProfileListBloc();
+    return ProfileListBloc(
+      context: context,
+    );
   }
 }
 
