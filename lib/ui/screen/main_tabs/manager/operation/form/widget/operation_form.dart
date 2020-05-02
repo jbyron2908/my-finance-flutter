@@ -126,7 +126,7 @@ class OperationFormState extends State<OperationForm> {
             child: CustomFormField<OperationTypeModel>(
               labelText: "Type",
               focusNode: _typeNode,
-              prefixIcon: Icon(Icons.access_time),
+              prefixIcon: Icon(Icons.sort),
               initialValue: operation.type,
               buildText: (value) => value.title,
               validator: (value) {
@@ -221,7 +221,7 @@ class OperationFormState extends State<OperationForm> {
             child: CustomFormField<PayeeModel>(
               labelText: "Payee",
               focusNode: _payeeNode,
-              prefixIcon: Icon(Icons.check_circle),
+              prefixIcon: Icon(Icons.person),
               initialValue: operation.payee,
               buildText: (value) => (value == null) ? "Unknown" : value.name,
               validator: (value) {
@@ -250,7 +250,7 @@ class OperationFormState extends State<OperationForm> {
             child: CustomFormField<OperationStateModel>(
               labelText: "State",
               focusNode: _stateNode,
-              prefixIcon: Icon(Icons.account_balance),
+              prefixIcon: Icon(Icons.check_circle),
               initialValue: operation.state,
               buildText: (value) => (value == null) ? "Unknown" : value.title,
               validator: (value) {
@@ -280,7 +280,7 @@ class OperationFormState extends State<OperationForm> {
       CustomFormField<CategoryModel>(
         labelText: "Category",
         focusNode: _categoryNode,
-        prefixIcon: Icon(Icons.account_balance),
+        prefixIcon: Icon(Icons.category),
         initialValue: operation.category,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
         validator: (value) {
