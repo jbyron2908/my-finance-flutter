@@ -16,15 +16,15 @@ class {{pascalCase name}}Repository {
   DatabaseClient _databaseClient;
 
   {{pascalCase name}}Repository(this._databaseClient) {
-    _{{lowerCase name}}ListStream = _databaseClient.{{lowerCase name}}Dao.watchAll();
+    _{{camelCase name}}ListStream = _databaseClient.{{camelCase name}}Dao.watchAll();
   }
 
-  Stream<List<{{pascalCase name}}Model>> _{{lowerCase name}}ListStream;
-  Stream<List<{{pascalCase name}}Model>> get {{lowerCase name}}ListStream => _{{lowerCase name}}ListStream;
+  Stream<List<{{pascalCase name}}Model>> _{{camelCase name}}ListStream;
+  Stream<List<{{pascalCase name}}Model>> get {{camelCase name}}ListStream => _{{camelCase name}}ListStream;
 
-  Future<int> save({{pascalCase name}}Model {{lowerCase name}}) async {
-    return _databaseClient.{{lowerCase name}}Dao.insert(
-      {{pascalCase name}}Converter.toEntity({{lowerCase name}}),
+  Future<int> save({{pascalCase name}}Model {{camelCase name}}) async {
+    return _databaseClient.{{camelCase name}}Dao.insert(
+      {{pascalCase name}}Converter.toEntity({{camelCase name}}),
     );
   }
 }

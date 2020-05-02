@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 
 class {{pascalCase name}}Route extends BaseRoute<{{pascalCase name}}ScreenArgs> {
+  {{pascalCase name}}Route.forRouter();
+
   {{pascalCase name}}Route({ {{pascalCase name}}ScreenArgs argument })
       : super(argument: argument);
 
