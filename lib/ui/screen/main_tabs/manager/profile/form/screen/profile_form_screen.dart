@@ -15,8 +15,11 @@ class ProfileFormScreen
 
   @override
   ProfileFormBloc buildBloc(BuildContext context) {
+    var argument = getArgument(context);
+
     return ProfileFormBloc(
       context,
+      profile: argument.profile,
       profileRepository: ProfileRepository.of(context),
     );
   }
@@ -31,4 +34,20 @@ class ProfileFormScreenArgs {
   ProfileFormScreenArgs({
     this.profile,
   });
+
+  static ProfileFormScreenArgs create() {
+    var profile = ProfileModel();
+
+    return ProfileFormScreenArgs(
+      profile: profile,
+    );
+  }
+
+  static ProfileFormScreenArgs edit({
+    ProfileModel profile,
+  }) {
+    return ProfileFormScreenArgs(
+      profile: profile,
+    );
+  }
 }

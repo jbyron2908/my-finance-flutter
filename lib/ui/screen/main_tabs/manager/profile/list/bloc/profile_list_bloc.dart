@@ -29,7 +29,7 @@ class ProfileListBloc extends BaseBloc {
 
   void editProfile(ProfileModel profile) {
     ProfileFormRoute(
-      argument: ProfileFormScreenArgs(profile: profile),
+      argument: ProfileFormScreenArgs.edit(profile: profile),
     ).navigateIntoTab(context);
   }
 }

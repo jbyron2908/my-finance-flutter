@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_view_model.dart';
 
 class ProfileForm extends StatefulWidget {
   @override
@@ -10,45 +11,27 @@ class ProfileForm extends StatefulWidget {
 }
 
 class ProfileFormState extends State<ProfileForm> {
-  ProfileModel profile = ProfileModel();
-  final _formKey = GlobalKey<FormState>();
-
   final FocusNode _currencyNode = FocusNode();
+
+  ProfileFormBloc bloc;
+  ProfileFormViewModel viewModel;
+  ProfileModel profile;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Form(
-          key: this._formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ...buildFormFields(),
-                UIHelper.verticalSpaceSmall,
-                RaisedButton(
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    submit();
-                  },
-                  color: Colors.green,
-                ),
-              ],
-            ),
-          ),
-        ),
+    bloc = ProfileFormBloc.of(context);
+    viewModel = ProfileFormViewModel.of(context);
+    profile = viewModel.profile;
+
+    return Form(
+      key: bloc.formKey,
+      child: ListView(
+        padding: const EdgeInsets.all(8.0),
+        children: <Widget>[
+          ...buildFormFields(),
+        ],
       ),
     );
-  }
-
-  void submit() async {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _formKey.currentState.save();
-    await ProfileFormBloc.of(context).saveProfile(profile);
   }
 
   List<Widget> buildFormFields() {
@@ -57,12 +40,20 @@ class ProfileFormState extends State<ProfileForm> {
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
+        initialValue: profile.name,
         decoration: InputDecoration(
           hintText: "Name",
           labelText: "Name",
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Required";
+          }
+
+          return null;
+        },
         onFieldSubmitted: (value) => _currencyNode.requestFocus(),
         onSaved: (value) => setState(
           () => profile = profile.copyWith(name: value),
@@ -73,12 +64,20 @@ class ProfileFormState extends State<ProfileForm> {
         focusNode: _currencyNode,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
+        initialValue: profile.currency,
         decoration: InputDecoration(
           hintText: "Currency",
           labelText: "Currency",
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Required";
+          }
+
+          return null;
+        },
         onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
           FocusNode(),
         ),
