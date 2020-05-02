@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/bloc/account_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
@@ -124,7 +124,7 @@ class AccountFormState extends State<AccountForm> {
 
   void _selectProfile() async {
     ProfileModel profileSelected =
-        await MainTabRouter.of(context).navigateTo(ProfileSelectionRoute());
+        await ProfileSelectionRoute().navigateIntoTab(context);
     setState(() {
       account = account.copyWith(profile: profileSelected);
     });

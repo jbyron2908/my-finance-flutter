@@ -9,7 +9,6 @@ import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
@@ -65,7 +64,7 @@ class OperationFormBloc extends BaseBloc {
   }
 
   Future<OperationTypeModel> selectOperationType() {
-    return MainTabRouter.of(context).navigateTo(OperationTypeSelectionRoute());
+    return OperationTypeSelectionRoute().navigateIntoTab(context);
   }
 
   Future<DateTime> selectDate() async {
@@ -101,19 +100,19 @@ class OperationFormBloc extends BaseBloc {
   }
 
   Future<OperationStateModel> selectOperationState() async {
-    return MainTabRouter.of(context).navigateTo(OperationStateSelectionRoute());
+    return OperationStateSelectionRoute().navigateIntoTab(context);
   }
 
   Future<PayeeModel> selectPayee() async {
-    return MainTabRouter.of(context).navigateTo(PayeeSelectionRoute());
+    return PayeeSelectionRoute().navigateIntoTab(context);
   }
 
   Future<CategoryModel> selectCategory() async {
-    return MainTabRouter.of(context).navigateTo(CategorySelectionRoute());
+    return CategorySelectionRoute().navigateIntoTab(context);
   }
 
   Future<AccountModel> selectAccount() async {
-    return MainTabRouter.of(context).navigateTo(AccountSelectionRoute());
+    return AccountSelectionRoute().navigateIntoTab(context);
   }
 
   void submit() async {

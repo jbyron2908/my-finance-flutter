@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/bloc/account_viewer_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
@@ -81,24 +80,22 @@ class OperationActionRight extends StatelessWidget {
 
   _edit(BuildContext context) {
     var operation = OperationItem.operationOf(context);
-    MainTabRouter.of(context).navigateTo(
-      OperationFormRoute(
-        argument: OperationFormScreenArgs.edit(
-          operation: operation,
-        ),
+
+    OperationFormRoute(
+      argument: OperationFormScreenArgs.edit(
+        operation: operation,
       ),
-    );
+    ).navigateIntoTab(context);
   }
 
   _copy(BuildContext context) {
     var operation = OperationItem.operationOf(context);
-    MainTabRouter.of(context).navigateTo(
-      OperationFormRoute(
-        argument: OperationFormScreenArgs.copy(
-          operation: operation,
-        ),
+
+    OperationFormRoute(
+      argument: OperationFormScreenArgs.copy(
+        operation: operation,
       ),
-    );
+    ).navigateIntoTab(context);
   }
 }
 

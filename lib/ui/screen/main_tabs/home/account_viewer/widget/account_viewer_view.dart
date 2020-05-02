@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_list/operation_list_view.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
@@ -26,12 +25,10 @@ class AccountViewerView extends StatelessWidget {
   }
 
   void _navigateToOperationForm(BuildContext context, AccountModel account) {
-    MainTabRouter.of(context).navigateTo(
-      OperationFormRoute(
-        argument: OperationFormScreenArgs.create(
-          account: account,
-        ),
+    OperationFormRoute(
+      argument: OperationFormScreenArgs.create(
+        account: account,
       ),
-    );
+    ).navigateIntoTab(context);
   }
 }

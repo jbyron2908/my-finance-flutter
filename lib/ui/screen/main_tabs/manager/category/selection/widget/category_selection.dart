@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_item.dart';
 import 'package:provider/provider.dart';
 

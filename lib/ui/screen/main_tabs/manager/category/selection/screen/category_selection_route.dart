@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_route_mixin.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_screen.dart';
 
-class CategorySelectionRoute extends BaseRoute<CategorySelectionScreenArgs> {
+class CategorySelectionRoute extends BaseRoute<CategorySelectionScreenArgs>
+    with MainTabRoute {
+  CategorySelectionRoute.forRouter();
+
   CategorySelectionRoute({CategorySelectionScreenArgs argument})
       : super(argument: argument);
 

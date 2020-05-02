@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
 import 'package:provider/provider.dart';
 

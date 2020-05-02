@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/ui/app/app_dependecies.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  final router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class App extends StatelessWidget {
           supportedLocales: [
             const Locale('en', "US"),
           ],
-          onGenerateRoute: AppRouter().generateRoutes,
+          onGenerateRoute: router.generateRoutes,
         ),
       ),
     );

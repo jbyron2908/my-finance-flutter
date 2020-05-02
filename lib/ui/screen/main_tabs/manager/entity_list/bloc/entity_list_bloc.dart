@@ -3,7 +3,6 @@ import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repo_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/screen/category_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/list/screen/label_list_route.dart';
@@ -25,37 +24,36 @@ class EntityListBloc extends BaseBloc {
   final GitRepoRepository gitRepoRepository;
 
   void goToProfileList(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(ProfileListRoute());
+    ProfileListRoute().navigateIntoTab(context);
   }
 
   void goToAccountList(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(AccountListRoute());
+    AccountListRoute().navigateIntoTab(context);
   }
 
   void goToCategoryList(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(CategoryListRoute());
+    CategoryListRoute().navigateIntoTab(context);
   }
 
   void goToOperationList(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(OperationListRoute());
+    OperationListRoute().navigateIntoTab(context);
   }
 
   void goToPayeeList(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(PayeeListRoute());
+    PayeeListRoute().navigateIntoTab(context);
   }
 
   void goToLabelList(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(LabelListRoute());
+    LabelListRoute().navigateIntoTab(context);
   }
 
   Future goToLabelListSelection(BuildContext context) async {
-    var labelList =
-        await MainTabRouter.of(context).navigateTo(LabelSelectionRoute());
+    var labelList = await LabelSelectionRoute().navigateIntoTab(context);
     Log.i(labelList);
   }
 
   void goToImportCsv(BuildContext context) {
-    MainTabRouter.of(context).navigateTo(ImportCsvFormRoute());
+    ImportCsvFormRoute().navigateIntoTab(context);
   }
 
   void getRepositoriesGraphqlQuery() async {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
 import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
 
@@ -93,7 +92,7 @@ class CategoryFormState extends State<CategoryForm> {
 
   void _selectCategory() async {
     CategoryModel categorySelected =
-        await MainTabRouter.of(context).navigateTo(CategorySelectionRoute());
+        await CategorySelectionRoute().navigateIntoTab(context);
     setState(
       () => category = category.copyWith(parent: categorySelected),
     );

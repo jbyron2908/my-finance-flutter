@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_route_mixin.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/screen/category_list_screen.dart';
 
-class CategoryListRoute extends BaseRoute<CategoryListScreenArgs> {
+class CategoryListRoute extends BaseRoute<CategoryListScreenArgs>
+    with MainTabRoute {
+  CategoryListRoute.forRouter();
+
   CategoryListRoute({CategoryListScreenArgs argument})
       : super(argument: argument);
 
