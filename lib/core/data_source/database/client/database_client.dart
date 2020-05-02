@@ -5,6 +5,8 @@ import 'package:moor/moor.dart';
 import 'package:moor_ffi/moor_ffi.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/account_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/account_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/bookmark_operation/bookmark_operation_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/bookmark_operation/bookmark_operation_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/label/label_dao.dart';
@@ -28,6 +30,7 @@ part 'database_client.g.dart';
     AccountTable,
     CategoryTable,
     OperationTable,
+    BookmarkOperationTable,
     PayeeTable,
     LabelTable,
   ],
@@ -36,6 +39,7 @@ part 'database_client.g.dart';
     AccountDao,
     CategoryDao,
     OperationDao,
+    BookmarkOperationDao,
     PayeeDao,
     LabelDao,
   ],

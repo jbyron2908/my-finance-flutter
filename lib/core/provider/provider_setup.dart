@@ -5,6 +5,7 @@ import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/bookmark_operation/bookmark_operation_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
@@ -13,6 +14,7 @@ import 'package:my_finance_flutter/core/model/operation/operation_type_model.dar
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/bookmark_operation/bookmark_operation_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repo_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/label/label_repository.dart';
@@ -45,6 +47,7 @@ List<SingleChildWidget> repositoryDependecies = [
   AccountRepository.buildProvider(),
   CategoryRepository.buildProvider(),
   OperationRepository.buildProvider(),
+  BookmarkOperationRepository.buildProvider(),
   OperationTypeRepository.buildProvider(),
   OperationStateRepository.buildProvider(),
   PayeeRepository.buildProvider(),
@@ -64,8 +67,9 @@ List<SingleChildWidget> dataProviders(BuildContext context) => [
         value: CategoryRepository.of(context).categoryListStream,
         initialData: List(),
       ),
-      StreamProvider<List<OperationModel>>.value(
-        value: OperationRepository.of(context).operationListStream,
+      StreamProvider<List<BookmarkOperationModel>>.value(
+        value:
+            BookmarkOperationRepository.of(context).bookmarkOperationListStream,
         initialData: List(),
       ),
       Provider<List<OperationTypeModel>>.value(
