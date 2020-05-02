@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/label/index.dart';
+import 'package:my_finance_flutter/core/model/label/label_model.dart';
 
 class LabelItem extends StatelessWidget {
   LabelItem({Key key, this.label}) : super(key: key);

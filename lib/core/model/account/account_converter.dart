@@ -1,6 +1,6 @@
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
-import 'package:my_finance_flutter/core/model/account/index.dart';
-import 'package:my_finance_flutter/core/model/profile/index.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_converter.dart';
 
 class AccountConverter {
   static AccountEntity toEntity(AccountModel model) {

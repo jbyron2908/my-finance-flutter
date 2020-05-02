@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/account/index.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/widget/account_item.dart';
 import 'package:provider/provider.dart';
 

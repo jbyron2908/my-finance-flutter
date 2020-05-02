@@ -1,5 +1,5 @@
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
-import 'package:my_finance_flutter/core/model/profile/index.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 
 class ProfileConverter {
   static ProfileEntity toEntity(ProfileModel model) {

@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/data_source/storage/client/storage_client.dart';
-import 'package:my_finance_flutter/core/model/operation/index.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 
 extension OperationModelExtra on OperationModel {

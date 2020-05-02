@@ -1,7 +1,8 @@
 import 'package:moor/moor.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/label/label_table.dart';
-import 'package:my_finance_flutter/core/model/label/index.dart';
+import 'package:my_finance_flutter/core/model/label/label_converter.dart';
+import 'package:my_finance_flutter/core/model/label/label_model.dart';
 
 part 'label_dao.g.dart';
 

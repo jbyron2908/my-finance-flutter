@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:my_finance_flutter/core/model/operation/index.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 
 class OperationItem extends StatelessWidget {

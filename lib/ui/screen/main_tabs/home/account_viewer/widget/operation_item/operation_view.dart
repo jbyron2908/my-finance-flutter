@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_finance_flutter/core/model/operation/index.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:provider/provider.dart';
 
 class OperationView extends StatelessWidget {

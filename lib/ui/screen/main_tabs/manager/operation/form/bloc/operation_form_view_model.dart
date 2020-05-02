@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/operation/index.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:provider/src/provider.dart';
 
 class OperationFormViewModel extends ChangeNotifier {

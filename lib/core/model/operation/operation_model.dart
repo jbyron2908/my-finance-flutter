@@ -2,12 +2,16 @@ import 'dart:convert';
 
 import 'package:auto_data/auto_data.dart';
 import 'package:meta/meta.dart';
-import 'package:my_finance_flutter/core/model/account/index.dart';
-import 'package:my_finance_flutter/core/model/category/index.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
-import 'package:my_finance_flutter/core/model/payee/index.dart';
-import 'package:my_finance_flutter/core/model/profile/index.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
+import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
+
+export 'operation_model_extra.dart';
+export 'operation_state_model.dart';
+export 'operation_type_model.dart';
 
 part 'operation_model.g.dart';
 

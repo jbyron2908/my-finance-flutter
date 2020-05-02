@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:provider/provider.dart';
 
-abstract class BaseScreen<BB extends BaseBloc, BA> extends StatefulWidget {
+abstract class BaseScreen<BB extends BaseBloc, BA extends Object>
+    extends StatefulWidget {
   BaseScreen({Key key}) : super(key: key);
 
   BB buildBloc(BuildContext context);
