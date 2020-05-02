@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/ui/common/text_input_formatter/currency_formatter.dart';
+import 'package:my_finance_flutter/ui/common/text_input_validator/currency_validator.dart';
+import 'package:my_finance_flutter/ui/common/text_input_validator/object_validator.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
@@ -66,13 +69,7 @@ class OperationFormState extends State<OperationForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Required";
-          }
-
-          return null;
-        },
+        validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           bloc.updateOperation(title: value);
           FocusScope.of(context).requestFocus(_valueNode);
@@ -101,13 +98,10 @@ class OperationFormState extends State<OperationForm> {
                 prefixIcon: Icon(Icons.monetization_on),
                 border: OutlineInputBorder(),
               ),
-              validator: (value) {
-                if (value == null || double.parse(value) == 0) {
-                  return "Required";
-                }
-
-                return null;
-              },
+              validator: MultiValidator([
+                RequiredValidator(errorText: "Required"),
+                CurrencyNotZeroValidator(errorText: "Required"),
+              ]),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   bloc.updateOperation(value: double.parse(value));
@@ -129,13 +123,7 @@ class OperationFormState extends State<OperationForm> {
               prefixIcon: Icon(Icons.sort),
               initialValue: operation.type,
               buildText: (value) => value.title,
-              validator: (value) {
-                if (value == null) {
-                  return "Required";
-                }
-
-                return null;
-              },
+              validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   bloc.updateOperation(type: value);
@@ -162,13 +150,7 @@ class OperationFormState extends State<OperationForm> {
               prefixIcon: Icon(Icons.access_time),
               initialValue: operation.date,
               buildText: (value) => _getDateString(value),
-              validator: (value) {
-                if (value == null) {
-                  return "Required";
-                }
-
-                return null;
-              },
+              validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   bloc.updateOperation(date: value);
@@ -191,13 +173,7 @@ class OperationFormState extends State<OperationForm> {
               prefixIcon: Icon(Icons.access_time),
               initialValue: operation.date,
               buildText: (value) => _getTimeString(value),
-              validator: (value) {
-                if (value == null) {
-                  return "Required";
-                }
-
-                return null;
-              },
+              validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   bloc.updateOperation(date: value);
@@ -224,13 +200,7 @@ class OperationFormState extends State<OperationForm> {
               prefixIcon: Icon(Icons.person),
               initialValue: operation.payee,
               buildText: (value) => (value == null) ? "Unknown" : value.name,
-              validator: (value) {
-                if (value == null) {
-                  return "Required";
-                }
-
-                return null;
-              },
+              validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   bloc.updateOperation(payee: value);
@@ -253,13 +223,7 @@ class OperationFormState extends State<OperationForm> {
               prefixIcon: Icon(Icons.check_circle),
               initialValue: operation.state,
               buildText: (value) => (value == null) ? "Unknown" : value.title,
-              validator: (value) {
-                if (value == null) {
-                  return "Required";
-                }
-
-                return null;
-              },
+              validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   bloc.updateOperation(state: value);
@@ -283,13 +247,7 @@ class OperationFormState extends State<OperationForm> {
         prefixIcon: Icon(Icons.category),
         initialValue: operation.category,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
-        validator: (value) {
-          if (value == null) {
-            return "Required";
-          }
-
-          return null;
-        },
+        validator: ObjectRequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
             bloc.updateOperation(category: value);
@@ -310,13 +268,7 @@ class OperationFormState extends State<OperationForm> {
         prefixIcon: Icon(Icons.account_balance),
         initialValue: operation.account,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
-        validator: (value) {
-          if (value == null) {
-            return "Required";
-          }
-
-          return null;
-        },
+        validator: ObjectRequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
             bloc.updateOperation(

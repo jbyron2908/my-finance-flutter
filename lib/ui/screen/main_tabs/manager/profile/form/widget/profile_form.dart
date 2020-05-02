@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_bloc.dart';
@@ -47,13 +48,7 @@ class ProfileFormState extends State<ProfileForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Required";
-          }
-
-          return null;
-        },
+        validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) => _currencyNode.requestFocus(),
         onSaved: (value) => setState(
           () => profile = profile.copyWith(name: value),
@@ -71,13 +66,7 @@ class ProfileFormState extends State<ProfileForm> {
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Required";
-          }
-
-          return null;
-        },
+        validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
           FocusNode(),
         ),
