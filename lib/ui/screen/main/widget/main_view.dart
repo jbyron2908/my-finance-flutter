@@ -24,7 +24,7 @@ class MainView extends StatelessWidget {
         TabItem(
           id: "management",
           title: "Management",
-          iconData: Icons.category,
+          iconData: Icons.business,
           rootPath: managementRootPath,
         ),
       ],
