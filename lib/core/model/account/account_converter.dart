@@ -10,7 +10,6 @@ class AccountConverter {
       deleted: model.deleted,
       name: model.name,
       type: model.type,
-      initialValue: model.initialValue,
       profile: model.profile?.id,
     );
   }
@@ -22,7 +21,6 @@ class AccountConverter {
       deleted: entity.deleted,
       name: entity.name,
       type: entity.type,
-      initialValue: entity.initialValue,
       profile: profile != null ? ProfileConverter.toModel(profile) : null,
     );
   }

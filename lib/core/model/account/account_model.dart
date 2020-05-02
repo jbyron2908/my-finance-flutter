@@ -21,7 +21,5 @@ class $AccountModel {
   @nullable
   String type;
   @nullable
-  double initialValue;
-  @nullable
   ProfileModel profile;
 }

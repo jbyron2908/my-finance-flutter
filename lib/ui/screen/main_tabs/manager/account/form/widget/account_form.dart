@@ -93,24 +93,6 @@ class AccountFormState extends State<AccountForm> {
         ),
       ),
       UIHelper.verticalSpaceSmall,
-      TextFormField(
-        focusNode: _initialValueNode,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.done,
-        decoration: InputDecoration(
-          hintText: "Initial value",
-          labelText: "Initial value",
-          prefixIcon: Icon(Icons.confirmation_number),
-          border: OutlineInputBorder(),
-        ),
-        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
-          FocusNode(),
-        ),
-        onSaved: (value) => setState(
-          () => account = account.copyWith(initialValue: double.parse(value)),
-        ),
-      ),
-      UIHelper.verticalSpaceSmall,
       FormFieldDecorator(
         text: Text(
           (account?.profile == null) ? "Unknown" : account.profile.name,
