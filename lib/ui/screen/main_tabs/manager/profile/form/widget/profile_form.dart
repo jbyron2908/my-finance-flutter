@@ -41,13 +41,13 @@ class ProfileFormState extends State<ProfileForm> {
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
-        initialValue: profile.name,
         decoration: InputDecoration(
           hintText: "Name",
           labelText: "Name",
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
+        initialValue: profile.name,
         validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -66,13 +66,13 @@ class ProfileFormState extends State<ProfileForm> {
         focusNode: _currencyNode,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
-        initialValue: profile.currency,
         decoration: InputDecoration(
           hintText: "Currency",
           labelText: "Currency",
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
+        initialValue: profile.currency,
         validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {

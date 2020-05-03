@@ -12,19 +12,19 @@ class ProfileListBloc extends BaseBloc {
       Provider.of<ProfileListBloc>(context, listen: false);
 
   final BuildContext context;
-  ProfileRepository profileRepository;
+  ProfileRepository _profileRepository;
 
   ProfileListBloc({
     @required this.context,
   }) {
-    profileRepository = ProfileRepository.of(context);
+    _profileRepository = ProfileRepository.of(context);
   }
 
   @override
   List<SingleChildWidget> get dependencies => [];
 
   Future deleteProfile(ProfileModel profile) {
-    return profileRepository.delete(profile);
+    return _profileRepository.delete(profile);
   }
 
   void editProfile(ProfileModel profile) {
