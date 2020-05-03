@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 
 class OperationStateItem extends StatelessWidget {
   OperationStateItem({
@@ -11,18 +12,11 @@ class OperationStateItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            operationState.title,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
+    return ListTile(
+      title: Text(
+        operationState.title,
       ),
+      onTap: () => MainTabRouter.of(context).pop(operationState),
     );
   }
 }
