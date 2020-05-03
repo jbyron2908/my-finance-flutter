@@ -44,6 +44,7 @@ class PayeeFormState extends State<PayeeForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
+        initialValue: payee.name,
         validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {

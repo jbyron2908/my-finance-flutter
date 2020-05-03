@@ -12,7 +12,9 @@ class PayeeListScreen extends BaseScreen<PayeeListBloc, PayeeListScreenArgs> {
 
   @override
   PayeeListBloc buildBloc(BuildContext context) {
-    return PayeeListBloc();
+    return PayeeListBloc(
+      context: context,
+    );
   }
 }
 
