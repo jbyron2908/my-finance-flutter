@@ -16,12 +16,9 @@ class ProfileItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider.value(
-      value: profile,
-      child: ListTile(
-        title: Text(profile.name),
-        onTap: () => MainTabRouter.of(context).pop(profile),
-      ),
+    return ListTile(
+      title: Text(profile.name),
+      onTap: () => MainTabRouter.of(context).pop(profile),
     );
   }
 }
