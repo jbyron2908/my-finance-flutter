@@ -96,18 +96,10 @@ class AccountFormState extends State<AccountForm> {
         },
       ),
       UIHelper.verticalSpaceSmall,
-      // FormFieldDecorator(
-      //   text: Text(
-      //     (account?.profile == null) ? "Unknown" : account.profile.name,
-      //   ),
-      //   labelText: "Profile",
-      //   prefixIcon: Icon(Icons.person),
-      //   onTap: _selectProfile,
-      // ),
       CustomFormField<ProfileModel>(
         labelText: "Profile",
         focusNode: _profileNode,
-        prefixIcon: Icon(Icons.person),
+        prefixIcon: Icon(Icons.account_circle),
         initialValue: account.profile,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
         validator: ObjectRequiredValidator(errorText: "Required"),
