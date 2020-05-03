@@ -12,19 +12,18 @@ class ProfileFormBloc extends BaseBloc {
   static ProfileFormBloc of(BuildContext context) =>
       Provider.of<ProfileFormBloc>(context, listen: false);
 
-  ProfileFormViewModel viewModel;
+  ProfileFormViewModel _viewModel;
+  ProfileRepository _profileRepository;
 
   final BuildContext context;
-  ProfileRepository _profileRepository;
   final formKey = GlobalKey<FormState>();
 
   ProfileFormBloc(
     this.context, {
     ProfileModel profile,
-    ProfileRepository profileRepository,
   }) {
-    _profileRepository = profileRepository;
-    viewModel = ProfileFormViewModel(profile);
+    _profileRepository = ProfileRepository.of(context);
+    _viewModel = ProfileFormViewModel(profile);
   }
 
   void submit() async {
@@ -32,7 +31,7 @@ class ProfileFormBloc extends BaseBloc {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await _profileRepository.save(viewModel.profile);
+      await _profileRepository.save(_viewModel.profile);
       MainTabRouter.of(context).pop();
     }
   }
@@ -44,7 +43,7 @@ class ProfileFormBloc extends BaseBloc {
   @override
   List<SingleChildWidget> get dependencies => [
         ChangeNotifierProvider.value(
-          value: viewModel,
+          value: _viewModel,
         )
       ];
 }

@@ -49,10 +49,17 @@ class ProfileFormState extends State<ProfileForm> {
           border: OutlineInputBorder(),
         ),
         validator: RequiredValidator(errorText: "Required"),
-        onFieldSubmitted: (value) => _currencyNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => profile = profile.copyWith(name: value),
-        ),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+            _currencyNode.requestFocus();
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+          }
+        },
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -67,12 +74,17 @@ class ProfileFormState extends State<ProfileForm> {
           border: OutlineInputBorder(),
         ),
         validator: RequiredValidator(errorText: "Required"),
-        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
-          FocusNode(),
-        ),
-        onSaved: (value) => setState(
-          () => profile = profile.copyWith(currency: value),
-        ),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(currency: value);
+            FocusScope.of(context).requestFocus(FocusNode());
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(currency: value);
+          }
+        },
       )
     ];
   }

@@ -18,4 +18,14 @@ class ProfileFormViewModel extends ChangeNotifier {
     _profile = profile;
     notifyListeners();
   }
+
+  void update({
+    String name,
+    String currency,
+  }) {
+    profile = profile.copyWith(
+      name: name,
+      currency: currency,
+    );
+  }
 }
