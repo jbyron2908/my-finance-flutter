@@ -20,9 +20,6 @@ class ProfileListBloc extends BaseBloc {
     _profileRepository = ProfileRepository.of(context);
   }
 
-  @override
-  List<SingleChildWidget> get dependencies => [];
-
   Future deleteProfile(ProfileModel profile) {
     return _profileRepository.delete(profile);
   }
@@ -32,4 +29,7 @@ class ProfileListBloc extends BaseBloc {
       argument: ProfileFormScreenArgs.edit(profile: profile),
     ).navigateIntoTab(context);
   }
+
+  @override
+  List<SingleChildWidget> get dependencies => [];
 }
