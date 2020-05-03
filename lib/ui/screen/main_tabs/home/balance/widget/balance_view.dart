@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/balance_list.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_screen.dart';
 
 class BalanceView extends StatelessWidget {
   @override
@@ -20,6 +21,8 @@ class BalanceView extends StatelessWidget {
   }
 
   void _navigateToAccountForm(BuildContext context) {
-    AccountFormRoute().navigateIntoTab(context);
+    AccountFormRoute(
+      argument: AccountFormScreenArgs.create(),
+    ).navigateIntoTab(context);
   }
 }

@@ -21,5 +21,5 @@ class $AccountModel {
   @nullable
   String type;
   @nullable
-  ProfileModel profile;
+  $ProfileModel profile;
 }

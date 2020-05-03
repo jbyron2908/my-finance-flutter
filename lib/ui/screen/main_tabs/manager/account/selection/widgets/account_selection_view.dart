@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/widgets/account_selection.dart';
 
 class AccountSelectionView extends StatelessWidget {
@@ -20,6 +21,8 @@ class AccountSelectionView extends StatelessWidget {
   }
 
   void _navigateToAccountForm(BuildContext context) {
-    AccountFormRoute().navigateIntoTab(context);
+    AccountFormRoute(
+      argument: AccountFormScreenArgs.create(),
+    ).navigateIntoTab(context);
   }
 }

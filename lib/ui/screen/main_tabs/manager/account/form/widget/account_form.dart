@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
+import 'package:my_finance_flutter/ui/common/text_input_validator/object_validator.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/bloc/account_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
-import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/bloc/account_form_view_model.dart';
+import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 
 class AccountForm extends StatefulWidget {
   @override
@@ -14,35 +15,29 @@ class AccountForm extends StatefulWidget {
 }
 
 class AccountFormState extends State<AccountForm> {
-  AccountModel account = AccountModel();
-  final _formKey = GlobalKey<FormState>();
-
-  final FocusNode _nameNode = FocusNode();
   final FocusNode _typeNode = FocusNode();
   final FocusNode _initialValueNode = FocusNode();
+  final FocusNode _profileNode = FocusNode();
+
+  AccountFormBloc bloc;
+  AccountFormViewModel viewModel;
+  AccountModel account;
 
   @override
   Widget build(BuildContext context) {
+    bloc = AccountFormBloc.of(context);
+    viewModel = AccountFormViewModel.of(context);
+    account = viewModel.account;
+
     return SingleChildScrollView(
       child: Container(
         child: Form(
-          key: this._formKey,
+          key: bloc.formKey,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
                 ...buildFormFields(),
-                UIHelper.verticalSpaceSmall,
-                RaisedButton(
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    submit();
-                  },
-                  color: Colors.green,
-                ),
               ],
             ),
           ),
@@ -51,17 +46,9 @@ class AccountFormState extends State<AccountForm> {
     );
   }
 
-  void submit() async {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _formKey.currentState.save();
-    await AccountFormBloc.of(context).saveAccount(account);
-    MainTabRouter.of(context).pop();
-  }
-
   List<Widget> buildFormFields() {
     return <Widget>[
       TextFormField(
-        focusNode: _nameNode,
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
@@ -71,10 +58,18 @@ class AccountFormState extends State<AccountForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => _typeNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => account = account.copyWith(name: value),
-        ),
+        validator: RequiredValidator(errorText: "Required"),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+            _typeNode.requestFocus();
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+          }
+        },
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -87,28 +82,47 @@ class AccountFormState extends State<AccountForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => _initialValueNode.requestFocus(),
-        onSaved: (value) => setState(
-          () => account = account.copyWith(type: value),
-        ),
+        validator: RequiredValidator(errorText: "Required"),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(type: value);
+            _initialValueNode.requestFocus();
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(type: value);
+          }
+        },
       ),
       UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(
-          (account?.profile == null) ? "Unknown" : account.profile.name,
-        ),
+      // FormFieldDecorator(
+      //   text: Text(
+      //     (account?.profile == null) ? "Unknown" : account.profile.name,
+      //   ),
+      //   labelText: "Profile",
+      //   prefixIcon: Icon(Icons.person),
+      //   onTap: _selectProfile,
+      // ),
+      CustomFormField<ProfileModel>(
         labelText: "Profile",
+        focusNode: _profileNode,
         prefixIcon: Icon(Icons.person),
-        onTap: _selectProfile,
+        initialValue: account.profile,
+        buildText: (value) => (value == null) ? "Unknown" : value.name,
+        validator: ObjectRequiredValidator(errorText: "Required"),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(profile: value);
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(profile: value);
+          }
+        },
+        onTapOrFocus: () => bloc.selectProfile(),
       ),
     ];
-  }
-
-  void _selectProfile() async {
-    ProfileModel profileSelected =
-        await ProfileSelectionRoute().navigateIntoTab(context);
-    setState(() {
-      account = account.copyWith(profile: profileSelected);
-    });
   }
 }

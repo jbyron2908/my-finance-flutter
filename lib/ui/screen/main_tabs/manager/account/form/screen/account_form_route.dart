@@ -7,8 +7,9 @@ class AccountFormRoute extends BaseRoute<AccountFormScreenArgs>
     with MainTabRoute {
   AccountFormRoute.forRouter();
 
-  AccountFormRoute({AccountFormScreenArgs argument})
-      : super(argument: argument);
+  AccountFormRoute({
+    @required AccountFormScreenArgs argument,
+  }) : super(argument: argument);
 
   @override
   String get routePath => "/manager/account/create";
