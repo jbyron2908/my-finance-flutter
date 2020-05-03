@@ -71,11 +71,11 @@ class OperationFormState extends State<OperationForm> {
         ),
         validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
-          bloc.updateOperation(title: value);
+          viewModel.update(title: value);
           FocusScope.of(context).requestFocus(_valueNode);
         },
         onSaved: (value) {
-          bloc.updateOperation(title: value);
+          viewModel.update(title: value);
         },
       ),
       UIHelper.verticalSpaceSmall,
@@ -104,13 +104,13 @@ class OperationFormState extends State<OperationForm> {
               ]),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  bloc.updateOperation(value: double.parse(value));
+                  viewModel.update(value: double.parse(value));
                   FocusScope.of(context).requestFocus(_typeNode);
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  bloc.updateOperation(value: double.parse(value));
+                  viewModel.update(value: double.parse(value));
                 }
               },
             ),
@@ -126,13 +126,13 @@ class OperationFormState extends State<OperationForm> {
               validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  bloc.updateOperation(type: value);
+                  viewModel.update(type: value);
                   FocusScope.of(context).requestFocus(_dateNode);
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  bloc.updateOperation(type: value);
+                  viewModel.update(type: value);
                 }
               },
               onTapOrFocus: () => bloc.selectOperationType(),
@@ -153,13 +153,13 @@ class OperationFormState extends State<OperationForm> {
               validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  bloc.updateOperation(date: value);
+                  viewModel.update(date: value);
                   FocusScope.of(context).requestFocus(_timeNode);
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  bloc.updateOperation(date: value);
+                  viewModel.update(date: value);
                 }
               },
               onTapOrFocus: () => bloc.selectDate(),
@@ -176,13 +176,13 @@ class OperationFormState extends State<OperationForm> {
               validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  bloc.updateOperation(date: value);
+                  viewModel.update(date: value);
                   FocusScope.of(context).requestFocus(_payeeNode);
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  bloc.updateOperation(date: value);
+                  viewModel.update(date: value);
                 }
               },
               onTapOrFocus: () => bloc.selectTime(),
@@ -203,13 +203,13 @@ class OperationFormState extends State<OperationForm> {
               validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  bloc.updateOperation(payee: value);
+                  viewModel.update(payee: value);
                   FocusScope.of(context).requestFocus(_stateNode);
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  bloc.updateOperation(payee: value);
+                  viewModel.update(payee: value);
                 }
               },
               onTapOrFocus: () => bloc.selectPayee(),
@@ -226,13 +226,13 @@ class OperationFormState extends State<OperationForm> {
               validator: ObjectRequiredValidator(errorText: "Required"),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  bloc.updateOperation(state: value);
+                  viewModel.update(state: value);
                   FocusScope.of(context).requestFocus(_categoryNode);
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  bloc.updateOperation(state: value);
+                  viewModel.update(state: value);
                 }
               },
               onTapOrFocus: () => bloc.selectOperationState(),
@@ -250,13 +250,13 @@ class OperationFormState extends State<OperationForm> {
         validator: ObjectRequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
-            bloc.updateOperation(category: value);
+            viewModel.update(category: value);
             FocusScope.of(context).requestFocus(_accountNode);
           }
         },
         onSaved: (value) {
           if (value != null) {
-            bloc.updateOperation(category: value);
+            viewModel.update(category: value);
           }
         },
         onTapOrFocus: () => bloc.selectCategory(),
@@ -271,7 +271,7 @@ class OperationFormState extends State<OperationForm> {
         validator: ObjectRequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
-            bloc.updateOperation(
+            viewModel.update(
               account: value,
               profile: value.profile,
             );
@@ -280,7 +280,7 @@ class OperationFormState extends State<OperationForm> {
         },
         onSaved: (value) {
           if (value != null) {
-            bloc.updateOperation(
+            viewModel.update(
               account: value,
               profile: value.profile,
             );
@@ -302,13 +302,13 @@ class OperationFormState extends State<OperationForm> {
         ),
         onFieldSubmitted: (value) {
           if (value != null) {
-            bloc.updateOperation(description: value);
+            viewModel.update(description: value);
             FocusScope.of(context).requestFocus(FocusNode());
           }
         },
         onSaved: (value) {
           if (value != null) {
-            bloc.updateOperation(description: value);
+            viewModel.update(description: value);
           }
         },
       ),

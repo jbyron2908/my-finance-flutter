@@ -5,7 +5,6 @@ import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_state_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/core/util/date_util.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
@@ -24,44 +23,18 @@ class OperationFormBloc extends BaseBloc {
   static OperationFormBloc of(BuildContext context) =>
       Provider.of<OperationFormBloc>(context, listen: false);
 
-  OperationFormViewModel viewModel;
-
   final BuildContext context;
-  OperationRepository operationRepository;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  OperationFormViewModel _viewModel;
+  OperationRepository _operationRepository;
 
   OperationFormBloc({
     @required this.context,
     @required OperationModel operation,
   }) {
-    operationRepository = OperationRepository.of(context);
-    viewModel = OperationFormViewModel(operation);
-  }
-
-  void updateOperation({
-    String title,
-    double value,
-    OperationTypeModel type,
-    DateTime date,
-    OperationStateModel state,
-    String description,
-    PayeeModel payee,
-    CategoryModel category,
-    AccountModel account,
-    ProfileModel profile,
-  }) {
-    viewModel.operation = viewModel.operation.copyWith(
-      title: title,
-      value: value,
-      type: type,
-      date: date,
-      state: state,
-      description: description,
-      payee: payee,
-      category: category,
-      account: account,
-      profile: profile,
-    );
+    _operationRepository = OperationRepository.of(context);
+    _viewModel = OperationFormViewModel(operation);
   }
 
   Future<OperationTypeModel> selectOperationType() {
@@ -71,7 +44,7 @@ class OperationFormBloc extends BaseBloc {
   Future<DateTime> selectDate() async {
     var date = await showDatePicker(
       context: context,
-      initialDate: viewModel.operation.date,
+      initialDate: _viewModel.operation.date,
       firstDate: DateTime(1990),
       lastDate: DateTime(2050),
     );
@@ -79,8 +52,8 @@ class OperationFormBloc extends BaseBloc {
     if (date != null) {
       return DateUtil.setDateTime(
         date,
-        viewModel.operation.date.hour,
-        viewModel.operation.date.minute,
+        _viewModel.operation.date.hour,
+        _viewModel.operation.date.minute,
       );
     } else {
       return null;
@@ -90,11 +63,11 @@ class OperationFormBloc extends BaseBloc {
   Future<DateTime> selectTime() async {
     var time = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.fromDateTime(viewModel.operation.date),
+      initialTime: TimeOfDay.fromDateTime(_viewModel.operation.date),
     );
 
     if (time != null) {
-      return DateUtil.mergeDateAndTime(viewModel.operation.date, time);
+      return DateUtil.mergeDateAndTime(_viewModel.operation.date, time);
     } else {
       return null;
     }
@@ -121,7 +94,7 @@ class OperationFormBloc extends BaseBloc {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await operationRepository.save(viewModel.operation);
+      await _operationRepository.save(_viewModel.operation);
       MainTabRouter.of(context).pop();
     }
   }
@@ -133,7 +106,7 @@ class OperationFormBloc extends BaseBloc {
   @override
   List<SingleChildWidget> get dependencies => [
         ChangeNotifierProvider.value(
-          value: viewModel,
+          value: _viewModel,
         )
       ];
 }

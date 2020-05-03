@@ -9,6 +9,6 @@ class CurrencyNotZeroValidator extends TextFieldValidator {
   @override
   bool isValid(String value) {
     var currencyValue = double.parse(value);
-    return currencyValue <= 0;
+    return currencyValue > 0;
   }
 }
