@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/widgets/payee_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/widget/item/payee_item.dart';
 import 'package:provider/provider.dart';
 
 class PayeeSelection extends StatelessWidget {
@@ -10,13 +9,13 @@ class PayeeSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<List<PayeeModel>>(
-      builder: (_, payeeList, child) => ListView.builder(
+      builder: (_, payeeList, child) => ListView.separated(
         itemCount: payeeList.length,
-        itemBuilder: (context, index) => InkWell(
-          onTap: () => MainTabRouter.of(context).pop(payeeList[index]),
-          child: PayeeItem(
-            payee: payeeList[index],
-          ),
+        itemBuilder: (context, index) => PayeeItem(
+          payee: payeeList[index],
+        ),
+        separatorBuilder: (context, index) => Divider(
+          color: Colors.grey,
         ),
       ),
     );
