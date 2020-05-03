@@ -22,7 +22,10 @@ class AccountItem extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 flex: 2,
-                child: Text(account.name),
+                child: Text(
+                  account.name,
+                  style: Theme.of(context).textTheme.subhead,
+                ),
               ),
               VerticalDivider(
                 color: Colors.grey,
@@ -30,7 +33,10 @@ class AccountItem extends StatelessWidget {
               // TODO Get total of each account
               Expanded(
                 flex: 1,
-                child: Text("Total"),
+                child: Text(
+                  "Total",
+                  style: Theme.of(context).textTheme.subhead,
+                ),
               ),
             ],
           ),

@@ -8,19 +8,16 @@ class BalanceList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<List<ProfileModel>>(
       builder: (_, list, child) {
-        return SingleChildScrollView(
-          child: ListView.separated(
-            padding: EdgeInsets.symmetric(
-              vertical: 16.0,
-            ),
-            shrinkWrap: true,
-            itemCount: list.length,
-            separatorBuilder: (context, index) => Divider(
-              color: Colors.grey,
-            ),
-            itemBuilder: (context, index) => ProfileItem(
-              profile: list[index],
-            ),
+        return ListView.separated(
+          padding: EdgeInsets.symmetric(
+            vertical: 16.0,
+          ),
+          itemCount: list.length,
+          separatorBuilder: (context, index) => Divider(
+            color: Colors.grey,
+          ),
+          itemBuilder: (context, index) => ProfileItem(
+            profile: list[index],
           ),
         );
       },

@@ -31,19 +31,19 @@ class ProfileItem extends StatelessWidget {
                 ),
                 child: Text(
                   profile.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.subhead.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Divider(
-                  color: Colors.grey,
-                ),
+              Divider(
+                indent: 8,
+                endIndent: 8,
+                color: Colors.grey,
               ),
               ListView.separated(
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: profileAccountList.length,
                 separatorBuilder: (context, index) => Container(
                   padding: EdgeInsets.symmetric(
