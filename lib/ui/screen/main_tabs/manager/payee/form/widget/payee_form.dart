@@ -21,13 +21,20 @@ class PayeeFormState extends State<PayeeForm> {
     viewModel = PayeeFormViewModel.of(context);
     payee = viewModel.payee;
 
-    return Form(
-      key: bloc.formKey,
-      child: ListView(
-        padding: const EdgeInsets.all(8.0),
-        children: <Widget>[
-          ...buildFormFields(),
-        ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (_) {
+        // Hide keyboard when scroll
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Form(
+        key: bloc.formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: <Widget>[
+            ...buildFormFields(),
+          ],
+        ),
       ),
     );
   }

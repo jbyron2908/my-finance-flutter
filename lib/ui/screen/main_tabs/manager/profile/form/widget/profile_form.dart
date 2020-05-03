@@ -24,13 +24,20 @@ class ProfileFormState extends State<ProfileForm> {
     viewModel = ProfileFormViewModel.of(context);
     profile = viewModel.profile;
 
-    return Form(
-      key: bloc.formKey,
-      child: ListView(
-        padding: const EdgeInsets.all(8.0),
-        children: <Widget>[
-          ...buildFormFields(),
-        ],
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (_) {
+        // Hide keyboard when scroll
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Form(
+        key: bloc.formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: <Widget>[
+            ...buildFormFields(),
+          ],
+        ),
       ),
     );
   }

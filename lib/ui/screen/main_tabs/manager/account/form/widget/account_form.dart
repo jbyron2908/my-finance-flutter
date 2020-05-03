@@ -29,18 +29,19 @@ class AccountFormState extends State<AccountForm> {
     viewModel = AccountFormViewModel.of(context);
     account = viewModel.account;
 
-    return SingleChildScrollView(
-      child: Container(
-        child: Form(
-          key: bloc.formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ...buildFormFields(),
-              ],
-            ),
-          ),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (_) {
+        // Hide keyboard when scroll
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Form(
+        key: bloc.formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: <Widget>[
+            ...buildFormFields(),
+          ],
         ),
       ),
     );
