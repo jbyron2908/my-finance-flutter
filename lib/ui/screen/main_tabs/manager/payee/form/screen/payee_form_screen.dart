@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/widget/payee_form_view.dart';
@@ -12,7 +13,12 @@ class PayeeFormScreen extends BaseScreen<PayeeFormBloc, PayeeFormScreenArgs> {
 
   @override
   PayeeFormBloc buildBloc(BuildContext context) {
-    return PayeeFormBloc();
+    var argument = getArgument(context);
+
+    return PayeeFormBloc(
+      context,
+      payee: argument.payee,
+    );
   }
 }
 
@@ -20,9 +26,25 @@ class PayeeFormScreenArgs {
   static PayeeFormScreenArgs of(BuildContext context) =>
       Provider.of<PayeeFormScreenArgs>(context, listen: false);
 
-  int field1;
+  PayeeModel payee;
 
   PayeeFormScreenArgs({
-    this.field1,
+    this.payee,
   });
+
+  static PayeeFormScreenArgs create() {
+    var payee = PayeeModel();
+
+    return PayeeFormScreenArgs(
+      payee: payee,
+    );
+  }
+
+  static PayeeFormScreenArgs edit({
+    PayeeModel payee,
+  }) {
+    return PayeeFormScreenArgs(
+      payee: payee,
+    );
+  }
 }

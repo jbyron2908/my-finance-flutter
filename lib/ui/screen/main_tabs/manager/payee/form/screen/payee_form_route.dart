@@ -6,7 +6,9 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen
 class PayeeFormRoute extends BaseRoute<PayeeFormScreenArgs> with MainTabRoute {
   PayeeFormRoute.forRouter();
 
-  PayeeFormRoute({PayeeFormScreenArgs argument}) : super(argument: argument);
+  PayeeFormRoute({
+    @required PayeeFormScreenArgs argument,
+  }) : super(argument: argument);
 
   @override
   String get routePath => "/manager/payee/create";

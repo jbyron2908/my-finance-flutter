@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/widget/payee_selection.dart';
 
 class PayeeSelectionView extends StatelessWidget {
@@ -20,6 +21,8 @@ class PayeeSelectionView extends StatelessWidget {
   }
 
   _navigateToPayeeForm(BuildContext context) {
-    PayeeFormRoute().navigateIntoTab(context);
+    PayeeFormRoute(
+      argument: PayeeFormScreenArgs.create(),
+    ).navigateIntoTab(context);
   }
 }

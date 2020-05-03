@@ -1,58 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_view_model.dart';
 
 class PayeeForm extends StatefulWidget {
-  PayeeForm({Function(PayeeModel payee) onSubmit}) : onSubmit = onSubmit;
-
-  final Function(PayeeModel payee) onSubmit;
-
   @override
-  PayeeFormState createState() => PayeeFormState(onSubmit: onSubmit);
+  PayeeFormState createState() => PayeeFormState();
 }
 
 class PayeeFormState extends State<PayeeForm> {
-  PayeeFormState({Function(PayeeModel payee) onSubmit}) : onSubmit = onSubmit;
-
-  final Function(PayeeModel payee) onSubmit;
-  PayeeModel payee = PayeeModel();
-  final _formKey = GlobalKey<FormState>();
+  PayeeFormBloc bloc;
+  PayeeFormViewModel viewModel;
+  PayeeModel payee;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Form(
-          key: this._formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ...buildFormFields(),
-                UIHelper.verticalSpaceSmall,
-                RaisedButton(
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    submit();
-                  },
-                  color: Colors.green,
-                ),
-              ],
-            ),
-          ),
-        ),
+    bloc = PayeeFormBloc.of(context);
+    viewModel = PayeeFormViewModel.of(context);
+    payee = viewModel.payee;
+
+    return Form(
+      key: bloc.formKey,
+      child: ListView(
+        padding: const EdgeInsets.all(8.0),
+        children: <Widget>[
+          ...buildFormFields(),
+        ],
       ),
     );
-  }
-
-  void submit() {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _formKey.currentState.save();
-    onSubmit(payee);
   }
 
   List<Widget> buildFormFields() {
@@ -67,12 +44,17 @@ class PayeeFormState extends State<PayeeForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
-          FocusNode(),
-        ),
-        onSaved: (value) => setState(
-          () => payee = payee.copyWith(name: value),
-        ),
+        validator: RequiredValidator(errorText: "Required"),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+          }
+        },
       ),
     ];
   }
