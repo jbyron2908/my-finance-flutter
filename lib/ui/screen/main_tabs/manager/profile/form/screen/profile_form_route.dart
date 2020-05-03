@@ -7,8 +7,9 @@ class ProfileFormRoute extends BaseRoute<ProfileFormScreenArgs>
     with MainTabRoute {
   ProfileFormRoute.forRouter();
 
-  ProfileFormRoute({ProfileFormScreenArgs argument})
-      : super(argument: argument);
+  ProfileFormRoute({
+    @required ProfileFormScreenArgs argument,
+  }) : super(argument: argument);
 
   @override
   String get routePath => "/manager/profile/form";

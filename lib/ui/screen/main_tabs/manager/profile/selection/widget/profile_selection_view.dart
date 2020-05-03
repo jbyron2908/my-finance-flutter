@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/widget/profile_selection.dart';
 
 class ProfileSelectionView extends StatelessWidget {
@@ -20,6 +21,8 @@ class ProfileSelectionView extends StatelessWidget {
   }
 
   void _navigateToProfileForm(BuildContext context) {
-    ProfileFormRoute().navigateIntoTab(context);
+    ProfileFormRoute(
+      argument: ProfileFormScreenArgs.create(),
+    ).navigateIntoTab(context);
   }
 }
