@@ -1,62 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
-import 'package:my_finance_flutter/ui/widgets/form/form_field_decorator.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/bloc/category_form_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/bloc/category_form_view_model.dart';
+import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 
 class CategoryForm extends StatefulWidget {
-  CategoryForm({Function(CategoryModel category) onSubmit})
-      : onSubmit = onSubmit;
-
-  final Function(CategoryModel category) onSubmit;
-
   @override
-  CategoryFormState createState() => CategoryFormState(onSubmit: onSubmit);
+  CategoryFormState createState() => CategoryFormState();
 }
 
 class CategoryFormState extends State<CategoryForm> {
-  CategoryFormState({Function(CategoryModel category) onSubmit})
-      : onSubmit = onSubmit;
+  final FocusNode _parentNode = FocusNode();
 
-  final Function(CategoryModel category) onSubmit;
-  CategoryModel category = CategoryModel();
-  final _formKey = GlobalKey<FormState>();
+  CategoryFormBloc bloc;
+  CategoryFormViewModel viewModel;
+  CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Form(
-          key: this._formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
-                ...buildFormFields(),
-                UIHelper.verticalSpaceSmall,
-                RaisedButton(
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    submit();
-                  },
-                  color: Colors.green,
-                ),
-              ],
-            ),
-          ),
+    bloc = CategoryFormBloc.of(context);
+    viewModel = CategoryFormViewModel.of(context);
+    category = viewModel.category;
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onPanDown: (_) {
+        // Hide keyboard when scroll
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Form(
+        key: bloc.formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: <Widget>[
+            ...buildFormFields(),
+          ],
         ),
       ),
     );
-  }
-
-  void submit() {
-    FocusScope.of(context).requestFocus(FocusNode());
-    _formKey.currentState.save();
-    onSubmit(category);
   }
 
   List<Widget> buildFormFields() {
@@ -71,30 +55,39 @@ class CategoryFormState extends State<CategoryForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
-          FocusNode(),
-        ),
-        onSaved: (value) => setState(
-          () => category = category.copyWith(name: value),
-        ),
+        initialValue: category.name,
+        validator: RequiredValidator(errorText: "Required"),
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+            _parentNode.requestFocus();
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(name: value);
+          }
+        },
       ),
       UIHelper.verticalSpaceSmall,
-      FormFieldDecorator(
-        text: Text(
-          (category?.parent == null) ? "Unknown" : category.parent.name,
-        ),
+      CustomFormField<CategoryModel>(
         labelText: "Parent",
+        focusNode: _parentNode,
         prefixIcon: Icon(Icons.category),
-        onTap: _selectCategory,
+        initialValue: category.parent,
+        buildText: (value) => (value == null) ? "No parent" : value.name,
+        onFieldSubmitted: (value) {
+          if (value != null) {
+            viewModel.update(parent: value);
+          }
+        },
+        onSaved: (value) {
+          if (value != null) {
+            viewModel.update(parent: value);
+          }
+        },
+        onTapOrFocus: () => bloc.selectCategory(),
       ),
     ];
-  }
-
-  void _selectCategory() async {
-    CategoryModel categorySelected =
-        await CategorySelectionRoute().navigateIntoTab(context);
-    setState(
-      () => category = category.copyWith(parent: categorySelected),
-    );
   }
 }

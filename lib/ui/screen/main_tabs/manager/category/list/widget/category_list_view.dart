@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/widget/category_list.dart';
 
 class CategoryListView extends StatelessWidget {
@@ -20,6 +21,8 @@ class CategoryListView extends StatelessWidget {
   }
 
   void _navigateToCategoryForm(BuildContext context) {
-    CategoryFormRoute().navigateIntoTab(context);
+    CategoryFormRoute(
+      argument: CategoryFormScreenArgs.create(),
+    ).navigateIntoTab(context);
   }
 }

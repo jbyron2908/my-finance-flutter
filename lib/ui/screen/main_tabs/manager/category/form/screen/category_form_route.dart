@@ -7,8 +7,9 @@ class CategoryFormRoute extends BaseRoute<CategoryFormScreenArgs>
     with MainTabRoute {
   CategoryFormRoute.forRouter();
 
-  CategoryFormRoute({CategoryFormScreenArgs argument})
-      : super(argument: argument);
+  CategoryFormRoute({
+    @required CategoryFormScreenArgs argument,
+  }) : super(argument: argument);
 
   @override
   String get routePath => "/manager/category/create";
