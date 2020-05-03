@@ -58,6 +58,7 @@ class AccountFormState extends State<AccountForm> {
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
+        initialValue: account.name,
         validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -82,6 +83,7 @@ class AccountFormState extends State<AccountForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
+        initialValue: account.type,
         validator: RequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -100,8 +102,8 @@ class AccountFormState extends State<AccountForm> {
         labelText: "Profile",
         focusNode: _profileNode,
         prefixIcon: Icon(Icons.account_circle),
-        initialValue: account.profile,
         buildText: (value) => (value == null) ? "Unknown" : value.name,
+        initialValue: account.profile,
         validator: ObjectRequiredValidator(errorText: "Required"),
         onFieldSubmitted: (value) {
           if (value != null) {
