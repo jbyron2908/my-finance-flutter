@@ -9,7 +9,11 @@ class CategorySelectionScreen
     extends BaseScreen<CategorySelectionBloc, CategorySelectionScreenArgs> {
   @override
   Widget build(BuildContext context) {
-    return CategorySelectionView();
+    var argument = getArgument(context);
+
+    return CategorySelectionView(
+      selectParent: argument.selectParent,
+    );
   }
 
   @override
@@ -24,9 +28,9 @@ class CategorySelectionScreenArgs {
   static CategorySelectionScreenArgs of(BuildContext context) =>
       Provider.of<CategorySelectionScreenArgs>(context, listen: false);
 
-  int field1;
+  bool selectParent;
 
   CategorySelectionScreenArgs({
-    this.field1,
+    this.selectParent = false,
   });
 }

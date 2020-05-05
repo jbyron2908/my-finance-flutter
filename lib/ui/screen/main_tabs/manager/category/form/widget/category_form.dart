@@ -75,6 +75,7 @@ class CategoryFormState extends State<CategoryForm> {
         focusNode: _parentNode,
         prefixIcon: Icon(Icons.category),
         initialValue: category.parent,
+        enabled: !(category.id != null && category.parent == null),
         buildText: (value) => (value == null) ? "No parent" : value.name,
         onFieldSubmitted: (value) {
           if (value != null) {

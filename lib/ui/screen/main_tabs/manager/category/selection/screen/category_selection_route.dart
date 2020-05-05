@@ -8,8 +8,9 @@ class CategorySelectionRoute extends BaseRoute<CategorySelectionScreenArgs>
     with MainTabRoute {
   CategorySelectionRoute.forRouter();
 
-  CategorySelectionRoute({CategorySelectionScreenArgs argument})
-      : super(argument: argument);
+  CategorySelectionRoute({
+    @required CategorySelectionScreenArgs argument,
+  }) : super(argument: argument);
 
   @override
   String get routePath => "/manager/category/selection";

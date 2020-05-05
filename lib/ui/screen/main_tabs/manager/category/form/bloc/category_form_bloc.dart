@@ -5,6 +5,7 @@ import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/bloc/category_form_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
@@ -42,7 +43,9 @@ class CategoryFormBloc extends BaseBloc {
   }
 
   Future<CategoryModel> selectCategory() {
-    return CategorySelectionRoute().navigateIntoTab(context);
+    return CategorySelectionRoute(
+      argument: CategorySelectionScreenArgs(selectParent: true),
+    ).navigateIntoTab(context);
   }
 
   @override

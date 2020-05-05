@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/widget/category_list.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/widget/category_list_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_list.dart';
 
 class CategoryListView extends StatelessWidget {
   @override
@@ -11,7 +12,14 @@ class CategoryListView extends StatelessWidget {
         title: Text("Categories"),
       ),
       body: Container(
-        child: CategoryList(),
+        child: CategoryList(
+          parentBuilder: (context, category) => CategoryListItem(
+            category: category,
+          ),
+          childBuilder: (context, category) => CategoryListItem(
+            category: category,
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
