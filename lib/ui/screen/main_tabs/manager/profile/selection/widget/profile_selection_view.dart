@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/widget/list/profile_selection.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/widget/profile_selection_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/widget/profile_list.dart';
 
 class ProfileSelectionView extends StatelessWidget {
   @override
@@ -11,7 +12,11 @@ class ProfileSelectionView extends StatelessWidget {
         title: Text("Profiles"),
       ),
       body: Container(
-        child: ProfileSelection(),
+        child: ProfileList(
+          itemBuilder: (context, profile) => ProfileSelectionItem(
+            profile: profile,
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
