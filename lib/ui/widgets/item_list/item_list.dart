@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class ItemList<T> extends StatelessWidget {
   const ItemList({
     Key key,
-    this.modelList,
-    this.itemBuilder,
+    @required this.modelList,
+    @required this.itemBuilder,
     this.shrinkWrap = false,
     this.physics,
   }) : super(key: key);
