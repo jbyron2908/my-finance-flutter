@@ -5,15 +5,21 @@ class ItemList<T> extends StatelessWidget {
     Key key,
     this.modelList,
     this.itemBuilder,
+    this.shrinkWrap = false,
+    this.physics,
   }) : super(key: key);
 
   final List<T> modelList;
   final Widget Function(BuildContext, T model) itemBuilder;
+  final bool shrinkWrap;
+  final ScrollPhysics physics;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.separated(
+        shrinkWrap: shrinkWrap,
+        physics: physics,
         itemCount: modelList.length,
         itemBuilder: (context, index) => Item<T>(
           model: modelList[index],
