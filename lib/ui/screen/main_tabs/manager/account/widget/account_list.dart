@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/widget/list/account_list_item.dart';
 import 'package:my_finance_flutter/ui/widgets/item_list/item_list.dart';
 import 'package:provider/provider.dart';
 
 class AccountList extends StatelessWidget {
+  const AccountList({
+    Key key,
+    @required this.itemBuilder,
+  }) : super(key: key);
+
+  final Widget Function(BuildContext, AccountModel model) itemBuilder;
+
   @override
   Widget build(BuildContext context) {
     return Consumer<List<AccountModel>>(
@@ -12,7 +18,7 @@ class AccountList extends StatelessWidget {
         list.sort(_sortAccount);
         return ItemList(
           modelList: list,
-          itemBuilder: (context, model) => AccountListItem(account: model),
+          itemBuilder: itemBuilder,
         );
       },
     );
