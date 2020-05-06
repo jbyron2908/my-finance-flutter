@@ -12,6 +12,7 @@ class CustomFormField<T> extends StatefulWidget {
   final Icon prefixIcon;
   final String Function(T) buildText;
   final CustomFormFieldTapCallback<T> onTapOrFocus;
+  final bool enabled;
 
   CustomFormField({
     Key key,
@@ -24,6 +25,7 @@ class CustomFormField<T> extends StatefulWidget {
     this.prefixIcon,
     this.buildText,
     this.onTapOrFocus,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -42,23 +44,29 @@ class _CustomFormFieldState<T> extends State<CustomFormField<T>> {
         builder: (fieldState) {
           return InkWell(
             focusNode: widget.focusNode,
-            highlightColor: Colors.transparent,
+            highlightColor: widget.enabled ? null : Colors.transparent,
+            splashColor: widget.enabled ? null : Colors.transparent,
             onFocusChange: (value) async {
-              if (value) {
+              if (widget.enabled && value) {
                 await _executeAction(context, fieldState);
               }
             },
             onTap: () async {
-              await _executeAction(context, fieldState);
+              if (widget.enabled) {
+                await _executeAction(context, fieldState);
+              }
             },
             onHighlightChanged: (value) {
-              setState(() {
-                isFocused = value;
-              });
+              if (widget.enabled) {
+                setState(() {
+                  isFocused = value;
+                });
+              }
             },
             child: InputDecorator(
               isFocused: isFocused,
               decoration: InputDecoration(
+                enabled: widget.enabled,
                 labelText: widget.labelText,
                 prefixIcon: widget.prefixIcon,
                 border: OutlineInputBorder(),
