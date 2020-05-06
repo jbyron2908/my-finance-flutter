@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
-import 'package:provider/provider.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/widget/profile_item_view.dart';
 
-class ProfileItem extends StatelessWidget {
-  static ProfileModel profileOf(BuildContext context) =>
-      Provider.of<ProfileModel>(context, listen: false);
-
-  ProfileItem({
+class ProfileSelectionItem extends StatelessWidget {
+  ProfileSelectionItem({
     Key key,
     this.profile,
   }) : super(key: key);
@@ -16,8 +13,8 @@ class ProfileItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(profile.name),
+    return ProfileItemView(
+      profile: profile,
       onTap: () => MainTabRouter.of(context).pop(profile),
     );
   }
