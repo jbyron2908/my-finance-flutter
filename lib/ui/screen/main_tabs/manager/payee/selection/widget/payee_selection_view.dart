@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/widget/list/payee_selection.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/widget/payee_selection_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/widget/payee_list.dart';
 
 class PayeeSelectionView extends StatelessWidget {
   @override
@@ -11,7 +12,11 @@ class PayeeSelectionView extends StatelessWidget {
         title: Text("Select Payee"),
       ),
       body: Container(
-        child: PayeeSelection(),
+        child: PayeeList(
+          itemBuilder: (context, payee) => PayeeSelectionItem(
+            payee: payee,
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
