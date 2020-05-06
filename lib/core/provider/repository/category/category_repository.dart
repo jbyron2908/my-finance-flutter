@@ -19,7 +19,7 @@ class CategoryRepository {
     _categoryListStream = _databaseClient.categoryDao.watchAll();
   }
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   Stream<List<CategoryModel>> _categoryListStream;
   Stream<List<CategoryModel>> get categoryListStream => _categoryListStream;

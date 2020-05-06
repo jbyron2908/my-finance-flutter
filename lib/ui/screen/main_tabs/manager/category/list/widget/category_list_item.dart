@@ -24,7 +24,7 @@ class CategoryListItem extends StatelessWidget {
     );
   }
 
-  _edit(BuildContext context) {
+  void _edit(BuildContext context) {
     final bloc = CategoryListBloc.of(context);
     bloc.editCategory(category);
   }
@@ -32,10 +32,10 @@ class CategoryListItem extends StatelessWidget {
   Future _delete(BuildContext context) async {
     var confirmation = await DialogHelper.showAlertDialog(
       context,
-      title: "Delete category",
-      content: "Do you want to delete this category?",
-      confirmText: "Yes",
-      cancelText: "No",
+      title: 'Delete category',
+      content: 'Do you want to delete this category?',
+      confirmText: 'Yes',
+      cancelText: 'No',
     );
 
     if (confirmation == true) {

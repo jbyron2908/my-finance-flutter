@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
 
-@DataClassName("BookmarkOperationEntity")
+@DataClassName('BookmarkOperationEntity')
 class BookmarkOperationTable extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get remoteId => integer().nullable()();

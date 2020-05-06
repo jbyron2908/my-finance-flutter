@@ -24,7 +24,7 @@ class OperationView extends StatelessWidget {
           ),
           OperationRow(
             rightText: operation.getCategoryWithParent(),
-            leftText: DateFormat("dd/MM/yyyy HH:mm").format(operation.date),
+            leftText: DateFormat('dd/MM/yyyy HH:mm').format(operation.date),
           ),
           Divider(
             color: Colors.grey,
@@ -36,7 +36,7 @@ class OperationView extends StatelessWidget {
           Divider(
             color: Colors.grey,
           ),
-          Text("Total: R\$ 0,00"),
+          Text('Total: R\$ 0,00'),
         ],
       ),
     );

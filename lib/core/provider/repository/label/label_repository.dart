@@ -19,7 +19,7 @@ class LabelRepository {
     _labelListStream = _databaseClient.labelDao.watchAll();
   }
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   Stream<List<LabelModel>> _labelListStream;
   Stream<List<LabelModel>> get labelListStream => _labelListStream;

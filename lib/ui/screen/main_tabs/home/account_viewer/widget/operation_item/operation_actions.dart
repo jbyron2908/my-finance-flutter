@@ -78,7 +78,7 @@ class OperationActionRight extends StatelessWidget {
     );
   }
 
-  _edit(BuildContext context) {
+  void _edit(BuildContext context) {
     var operation = OperationItem.operationOf(context);
 
     OperationFormRoute(
@@ -88,7 +88,7 @@ class OperationActionRight extends StatelessWidget {
     ).navigateIntoTab(context);
   }
 
-  _copy(BuildContext context) {
+  void _copy(BuildContext context) {
     var operation = OperationItem.operationOf(context);
 
     OperationFormRoute(
@@ -113,7 +113,7 @@ class OperationActionLeft extends StatelessWidget {
               color: Colors.white70,
             ),
             onPressed: () {
-              _showSnackBar(context, "Bookmark");
+              _showSnackBar(context, 'Bookmark');
               Slidable.of(context).close();
             },
           ),
@@ -142,10 +142,10 @@ class OperationActionLeft extends StatelessWidget {
   Future _delete(BuildContext context) async {
     var confirmation = await DialogHelper.showAlertDialog(
       context,
-      title: "Delete operation",
-      content: "Do you want to delete this operation?",
-      confirmText: "Yes",
-      cancelText: "No",
+      title: 'Delete operation',
+      content: 'Do you want to delete this operation?',
+      confirmText: 'Yes',
+      cancelText: 'No',
     );
 
     if (confirmation == true) {
@@ -155,7 +155,7 @@ class OperationActionLeft extends StatelessWidget {
     }
   }
 
-  _showSnackBar(BuildContext context, String message) {
+  void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     Scaffold.of(context).showSnackBar(snackBar);
   }

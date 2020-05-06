@@ -11,7 +11,7 @@ class LabelListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Labels"),
+        title: Text('Labels'),
       ),
       body: Container(
         child: _LabelList(),

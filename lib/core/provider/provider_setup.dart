@@ -57,20 +57,20 @@ List<SingleChildWidget> repositoryDependecies = [
 List<SingleChildWidget> dataProviders(BuildContext context) => [
       StreamProvider<List<ProfileModel>>.value(
         value: ProfileRepository.of(context).profileListStream,
-        initialData: List(),
+        initialData: [],
       ),
       StreamProvider<List<AccountModel>>.value(
         value: AccountRepository.of(context).accountListStream,
-        initialData: List(),
+        initialData: [],
       ),
       StreamProvider<List<CategoryModel>>.value(
         value: CategoryRepository.of(context).categoryListStream,
-        initialData: List(),
+        initialData: [],
       ),
       StreamProvider<List<BookmarkOperationModel>>.value(
         value:
             BookmarkOperationRepository.of(context).bookmarkOperationListStream,
-        initialData: List(),
+        initialData: [],
       ),
       Provider<List<OperationTypeModel>>.value(
         value: OperationTypeConstants.operationTypeList,
@@ -80,10 +80,10 @@ List<SingleChildWidget> dataProviders(BuildContext context) => [
       ),
       StreamProvider<List<PayeeModel>>.value(
         value: PayeeRepository.of(context).payeeListStream,
-        initialData: List(),
+        initialData: [],
       ),
       StreamProvider<List<LabelModel>>.value(
         value: LabelRepository.of(context).labelListStream,
-        initialData: List(),
+        initialData: [],
       ),
     ];

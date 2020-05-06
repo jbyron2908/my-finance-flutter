@@ -2,7 +2,7 @@ import 'package:logger/logger.dart';
 import 'package:my_finance_flutter/core/config/flavor/index.dart';
 
 class Log {
-  static Logger _logger = _getLogger(Flavor.type);
+  static final Logger _logger = _getLogger(Flavor.type);
 
   static void v(dynamic message) {
     _logger.v(message);

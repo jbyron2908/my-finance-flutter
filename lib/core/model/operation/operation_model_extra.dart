@@ -14,67 +14,67 @@ extension OperationModelExtra on OperationModel {
         id: null,
         remoteId: null,
         date: DateUtil.today(),
-        deleted: deleted ?? this.deleted,
-        title: title ?? this.title,
-        value: value ?? this.value,
-        type: type ?? this.type,
-        state: state ?? this.state,
-        description: description ?? this.description,
-        payee: payee ?? this.payee,
-        category: category ?? this.category,
-        account: account ?? this.account,
-        profile: profile ?? this.profile,
+        deleted: deleted ?? deleted,
+        title: title ?? title,
+        value: value ?? value,
+        type: type ?? type,
+        state: state ?? state,
+        description: description ?? description,
+        payee: payee ?? payee,
+        category: category ?? category,
+        account: account ?? account,
+        profile: profile ?? profile,
       );
 
   String getTypeString() {
-    return (type == null) ? "Unknown" : type.title;
+    return (type == null) ? 'Unknown' : type.title;
   }
 
   String getStateString() {
-    return (state == null) ? "Unknown" : state.title;
+    return (state == null) ? 'Unknown' : state.title;
   }
 
   String getDateString() {
-    return date == null ? "Unknown" : DateFormat("dd/MM/yyyy").format(date);
+    return date == null ? 'Unknown' : DateFormat('dd/MM/yyyy').format(date);
   }
 
   String getTimeString() {
-    return date == null ? "Unknown" : DateFormat("HH:mm").format(date);
+    return date == null ? 'Unknown' : DateFormat('HH:mm').format(date);
   }
 
   String getAccountString() {
-    return account == null ? "Unknown" : account.name;
+    return account == null ? 'Unknown' : account.name;
   }
 
   String getCategoryString() {
-    return category == null ? "Unknown" : category.name;
+    return category == null ? 'Unknown' : category.name;
   }
 
   String getCategoryWithParent() {
     final parentName =
-        category.parent == null ? "Unknown" : category.parent.name;
+        category.parent == null ? 'Unknown' : category.parent.name;
     final categoryName = category.name;
-    return "$parentName: $categoryName";
+    return '$parentName: $categoryName';
   }
 
   String getPayeeString() {
-    return payee == null ? "Unknown" : payee.name;
+    return payee == null ? 'Unknown' : payee.name;
   }
 
   String getPayeeWithStatus() {
     final payeeName = payee.name;
     final stateTitle = state.title;
-    return "$payeeName: $stateTitle";
+    return '$payeeName: $stateTitle';
   }
 
   String getValue() {
-    final formarter = NumberFormat("00.00");
+    final formarter = NumberFormat('00.00');
     return formarter.format(value);
   }
 
   String getValueWithCurrency() {
-    String currency = profile.currency;
-    String valueString = getValue();
-    return "$currency $valueString";
+    var currency = profile.currency;
+    var valueString = getValue();
+    return '$currency $valueString';
   }
 }

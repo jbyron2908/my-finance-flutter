@@ -12,7 +12,7 @@ class AccountSelectionRoute extends BaseRoute<AccountSelectionScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/account/selection";
+  String get routePath => '/manager/account/selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

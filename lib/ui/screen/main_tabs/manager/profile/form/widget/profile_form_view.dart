@@ -8,7 +8,7 @@ class ProfileFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form Profile"),
+        title: Text('Form Profile'),
       ),
       body: BottomActionBar(
         child: ProfileForm(),

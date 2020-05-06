@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
 
-@DataClassName("OperationEntity")
+@DataClassName('OperationEntity')
 class OperationTable extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get remoteId => integer().nullable()();

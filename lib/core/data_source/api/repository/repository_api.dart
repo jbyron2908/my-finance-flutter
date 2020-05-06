@@ -14,7 +14,7 @@ class RepositoryApi {
 
   RepositoryApi(this._client);
 
-  GraphQLClient _client;
+  final GraphQLClient _client;
 
   Future<List<Repository>> getRepositories(int limit) async {
     var queryResult = await _client.query(QueryOptions(
@@ -24,7 +24,7 @@ class RepositoryApi {
       },
     ));
 
-    var list = queryResult.data["viewer"]["repositories"]["nodes"] as List;
+    var list = queryResult.data['viewer']['repositories']['nodes'] as List;
     return list.map((item) => Repository.fromJson(item)).toList();
   }
 }

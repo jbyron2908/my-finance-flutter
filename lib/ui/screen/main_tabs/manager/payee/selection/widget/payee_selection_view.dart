@@ -9,7 +9,7 @@ class PayeeSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Payee"),
+        title: Text('Select Payee'),
       ),
       body: Container(
         child: PayeeList(
@@ -25,7 +25,7 @@ class PayeeSelectionView extends StatelessWidget {
     );
   }
 
-  _navigateToPayeeForm(BuildContext context) {
+  void _navigateToPayeeForm(BuildContext context) {
     PayeeFormRoute(
       argument: PayeeFormScreenArgs.create(),
     ).navigateIntoTab(context);

@@ -67,14 +67,14 @@ class AppRouter extends BaseRouter {
 }
 
 mixin AppRoute<T> on BaseRoute<T> {
-  Future<T> navigateTo<T>(BuildContext context) {
+  Future navigateTo(BuildContext context) {
     return Navigator.of(context, rootNavigator: true).pushNamed<T>(
       routePath,
       arguments: argument,
     );
   }
 
-  Future<T> replaceTo<T>(BuildContext context) {
+  Future replaceTo(BuildContext context) {
     return Navigator.of(context, rootNavigator: true).pushReplacementNamed(
       routePath,
       arguments: argument,

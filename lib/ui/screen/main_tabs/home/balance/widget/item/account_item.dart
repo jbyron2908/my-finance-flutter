@@ -24,7 +24,7 @@ class AccountItem extends StatelessWidget {
                 flex: 2,
                 child: Text(
                   account.name,
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
               VerticalDivider(
@@ -34,8 +34,8 @@ class AccountItem extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Text(
-                  "Total",
-                  style: Theme.of(context).textTheme.subhead,
+                  'Total',
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
             ],
@@ -45,7 +45,7 @@ class AccountItem extends StatelessWidget {
     );
   }
 
-  _navigateToOperationList(BuildContext context) {
+  void _navigateToOperationList(BuildContext context) {
     AccountViewerRoute(
       argument: AccountViewerScreenArgs(account),
     ).navigateIntoTab(context);

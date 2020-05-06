@@ -8,7 +8,7 @@ class LabelSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Label"),
+        title: Text('Select Label'),
       ),
       body: Container(
         child: LabelSelection(),

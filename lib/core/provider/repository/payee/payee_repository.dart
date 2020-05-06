@@ -19,7 +19,7 @@ class PayeeRepository {
     _payeeListStream = _databaseClient.payeeDao.watchAll();
   }
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   Stream<List<PayeeModel>> _payeeListStream;
   Stream<List<PayeeModel>> get payeeListStream => _payeeListStream;

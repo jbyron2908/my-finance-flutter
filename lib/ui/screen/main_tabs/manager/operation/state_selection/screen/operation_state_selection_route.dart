@@ -12,7 +12,7 @@ class OperationStateSelectionRoute
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/operation/state_selection";
+  String get routePath => '/manager/operation/state_selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

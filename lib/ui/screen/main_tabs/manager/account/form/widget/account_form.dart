@@ -54,13 +54,13 @@ class AccountFormState extends State<AccountForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          hintText: "Name",
-          labelText: "Name",
+          hintText: 'Name',
+          labelText: 'Name',
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
         initialValue: account.name,
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(name: value);
@@ -79,13 +79,13 @@ class AccountFormState extends State<AccountForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          hintText: "Type",
-          labelText: "Type",
+          hintText: 'Type',
+          labelText: 'Type',
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
         initialValue: account.type,
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(type: value);
@@ -100,12 +100,12 @@ class AccountFormState extends State<AccountForm> {
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<ProfileModel>(
-        labelText: "Profile",
+        labelText: 'Profile',
         focusNode: _profileNode,
         prefixIcon: Icon(Icons.account_circle),
-        buildText: (value) => (value == null) ? "Unknown" : value.name,
+        buildText: (value) => (value == null) ? 'Unknown' : value.name,
         initialValue: account.profile,
-        validator: ObjectRequiredValidator(errorText: "Required"),
+        validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(profile: value);

@@ -16,7 +16,7 @@ class CategorySelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Category"),
+        title: Text('Select Category'),
       ),
       body: Container(
         child: CategoryList(

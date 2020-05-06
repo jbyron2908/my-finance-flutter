@@ -11,7 +11,7 @@ class CategoryListRoute extends BaseRoute<CategoryListScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/category/list";
+  String get routePath => '/manager/category/list';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

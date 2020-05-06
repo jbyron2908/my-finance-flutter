@@ -11,7 +11,7 @@ class ImportCsvResultRoute extends BaseRoute<ImportCsvResultScreenArgs>
       : super(argument: arguments);
 
   @override
-  String get routePath => "/importCsv/result";
+  String get routePath => '/importCsv/result';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

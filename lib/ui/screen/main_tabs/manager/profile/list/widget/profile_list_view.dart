@@ -9,7 +9,7 @@ class ProfileListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profiles"),
+        title: Text('Profiles'),
       ),
       body: Container(
         child: ProfileList(

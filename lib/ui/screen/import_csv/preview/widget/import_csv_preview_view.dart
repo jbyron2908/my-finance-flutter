@@ -5,7 +5,6 @@ import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/bloc/import_csv_preview_model.dart';
 
@@ -34,21 +33,21 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Import CSV"),
+        title: Text('Import CSV'),
       ),
       body: Center(
         child: loading
             ? Column(
                 children: <Widget>[
                   CircularProgressIndicator(),
-                  Text("Loading"),
+                  Text('Loading'),
                 ],
               )
             : Column(
                 children: <Widget>[
                   _buildFileContainer(),
                   RaisedButton(
-                    child: Text("Submit"),
+                    child: Text('Submit'),
                     onPressed: _submit,
                   ),
                 ],
@@ -61,12 +60,12 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
     return ListView(
       shrinkWrap: true,
       children: [
-        Text("Title : ${operationPreview.title}"),
-        Text("Date : ${operationPreview.date}"),
-        Text("Value : ${operationPreview.value}"),
-        Text("Payee : ${operationPreview.payee}"),
-        Text("Category : ${operationPreview.parentCategory}"),
-        Text("Subcategory : ${operationPreview.subCategory}"),
+        Text('Title : ${operationPreview.title}'),
+        Text('Date : ${operationPreview.date}'),
+        Text('Value : ${operationPreview.value}'),
+        Text('Payee : ${operationPreview.payee}'),
+        Text('Category : ${operationPreview.parentCategory}'),
+        Text('Subcategory : ${operationPreview.subCategory}'),
       ],
     );
   }
@@ -82,12 +81,12 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
     csvFields = await widget.csvFile
         .openRead()
         .transform(utf8.decoder)
-        .transform(CsvToListConverter(fieldDelimiter: ",", eol: "\n"))
+        .transform(CsvToListConverter(fieldDelimiter: ',', eol: '\n'))
         .toList();
 
-    List<dynamic> firstRow = csvFields.first;
+    var firstRow = csvFields.first;
 
-    OperationPreviewModel preview = createPreview(firstRow);
+    var preview = createPreview(firstRow);
 
     setState(() {
       loading = false;
@@ -112,7 +111,7 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
 
     for (var row in csvFields) {
       var preview = createPreview(row);
-      PayeeModel payee = await payeeRepository.getOrAdd(preview.payee);
+      var payee = await payeeRepository.getOrAdd(preview.payee);
       Log.i(payee.toJson());
     }
   }

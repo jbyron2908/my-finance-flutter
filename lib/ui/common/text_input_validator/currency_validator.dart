@@ -1,7 +1,7 @@
 import 'package:form_field_validator/form_field_validator.dart';
 
 class CurrencyNotZeroValidator extends TextFieldValidator {
-  CurrencyNotZeroValidator({String errorText = "Required"}) : super(errorText);
+  CurrencyNotZeroValidator({String errorText = 'Required'}) : super(errorText);
 
   @override
   bool get ignoreEmptyValues => true;

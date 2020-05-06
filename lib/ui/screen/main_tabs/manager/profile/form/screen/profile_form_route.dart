@@ -12,7 +12,7 @@ class ProfileFormRoute extends BaseRoute<ProfileFormScreenArgs>
   }) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/profile/form";
+  String get routePath => '/manager/profile/form';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

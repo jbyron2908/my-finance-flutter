@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
 
-@DataClassName("ProfileEntity")
+@DataClassName('ProfileEntity')
 class ProfileTable extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get remoteId => integer().nullable()();

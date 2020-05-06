@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
 
-@DataClassName("LabelEntity")
+@DataClassName('LabelEntity')
 class LabelTable extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get remoteId => integer().nullable()();

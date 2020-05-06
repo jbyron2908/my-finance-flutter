@@ -24,7 +24,7 @@ class PayeeListItem extends StatelessWidget {
     );
   }
 
-  _edit(BuildContext context) {
+  void _edit(BuildContext context) {
     final bloc = PayeeListBloc.of(context);
     bloc.editPayee(payee);
   }
@@ -32,10 +32,10 @@ class PayeeListItem extends StatelessWidget {
   Future _delete(BuildContext context) async {
     var confirmation = await DialogHelper.showAlertDialog(
       context,
-      title: "Delete payee",
-      content: "Do you want to delete this payee?",
-      confirmText: "Yes",
-      cancelText: "No",
+      title: 'Delete payee',
+      content: 'Do you want to delete this payee?',
+      confirmText: 'Yes',
+      cancelText: 'No',
     );
 
     if (confirmation == true) {

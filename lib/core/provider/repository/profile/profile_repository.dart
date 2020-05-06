@@ -15,7 +15,7 @@ class ProfileRepository {
   static ProfileRepository of(BuildContext context) =>
       Provider.of<ProfileRepository>(context, listen: false);
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   ProfileRepository(this._databaseClient) {
     _profileListStream = _databaseClient.profileDao.watchAll();

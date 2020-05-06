@@ -15,15 +15,15 @@ class MainView extends StatelessWidget {
     return BottomNavigationView(
       tabList: [
         TabItem(
-          id: "home",
-          title: "Home",
+          id: 'home',
+          title: 'Home',
           iconData: Icons.home,
           rootPath: homeRootPath,
           defaultTab: true,
         ),
         TabItem(
-          id: "management",
-          title: "Management",
+          id: 'management',
+          title: 'Management',
           iconData: Icons.business,
           rootPath: managementRootPath,
         ),

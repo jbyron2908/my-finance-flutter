@@ -9,7 +9,7 @@ class LabelListRoute extends BaseRoute<LabelListScreenArgs> with MainTabRoute {
   LabelListRoute({LabelListScreenArgs argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/label/list";
+  String get routePath => '/manager/label/list';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

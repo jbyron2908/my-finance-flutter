@@ -1,5 +1,5 @@
 class StringUtil {
-  static enumName(String value) {
+  static String enumName(String value) {
     return value.toString().substring(value.toString().indexOf('.') + 1);
   }
 }

@@ -20,7 +20,7 @@ class App extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
           },
           supportedLocales: [
-            const Locale('en', "US"),
+            const Locale('en', 'US'),
           ],
           onGenerateRoute: router.generateRoutes,
         ),

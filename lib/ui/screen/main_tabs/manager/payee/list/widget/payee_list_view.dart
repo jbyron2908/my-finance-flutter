@@ -9,7 +9,7 @@ class PayeeListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Payees"),
+        title: Text('Payees'),
       ),
       body: Container(
         child: PayeeList(

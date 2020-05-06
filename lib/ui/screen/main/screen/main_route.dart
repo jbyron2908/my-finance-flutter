@@ -9,7 +9,7 @@ class MainRoute extends BaseRoute<MainScreenArgs> with AppRoute {
   MainRoute({MainScreenArgs arguments}) : super(argument: arguments);
 
   @override
-  String get routePath => "/main";
+  String get routePath => '/main';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

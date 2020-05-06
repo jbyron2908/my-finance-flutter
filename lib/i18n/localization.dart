@@ -3,7 +3,7 @@ import 'package:my_finance_flutter/i18n/languages/en_us.dart';
 import 'package:my_finance_flutter/i18n/languages/pt_br.dart';
 
 extension MyFinanceLocalization on String {
-  static var t = Translations.byLocale("en_us") + enUS + ptBR;
+  static var t = Translations.byLocale('en_us') + enUS + ptBR;
 
   String get i18n => localize(this, t);
 

@@ -64,12 +64,12 @@ class OperationFormState extends State<OperationForm> {
         textInputAction: TextInputAction.next,
         initialValue: operation.title,
         decoration: InputDecoration(
-          hintText: "Title",
-          labelText: "Title",
+          hintText: 'Title',
+          labelText: 'Title',
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           viewModel.update(title: value);
           FocusScope.of(context).requestFocus(_valueNode);
@@ -92,15 +92,15 @@ class OperationFormState extends State<OperationForm> {
               ],
               initialValue: operation.getValue(),
               decoration: InputDecoration(
-                hintText: "Value",
-                labelText: "Value",
-                prefixText: "${operation.profile.currency} ",
+                hintText: 'Value',
+                labelText: 'Value',
+                prefixText: '${operation.profile.currency} ',
                 prefixIcon: Icon(Icons.monetization_on),
                 border: OutlineInputBorder(),
               ),
               validator: MultiValidator([
-                RequiredValidator(errorText: "Required"),
-                CurrencyNotZeroValidator(errorText: "Required"),
+                RequiredValidator(errorText: 'Required'),
+                CurrencyNotZeroValidator(errorText: 'Required'),
               ]),
               onFieldSubmitted: (value) {
                 if (value != null) {
@@ -118,12 +118,12 @@ class OperationFormState extends State<OperationForm> {
           UIHelper.horizontalSpaceSmall,
           Expanded(
             child: CustomFormField<OperationTypeModel>(
-              labelText: "Type",
+              labelText: 'Type',
               focusNode: _typeNode,
               prefixIcon: Icon(Icons.sort),
               initialValue: operation.type,
               buildText: (value) => value.title,
-              validator: ObjectRequiredValidator(errorText: "Required"),
+              validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(type: value);
@@ -145,12 +145,12 @@ class OperationFormState extends State<OperationForm> {
         children: <Widget>[
           Expanded(
             child: CustomFormField<DateTime>(
-              labelText: "Date",
+              labelText: 'Date',
               focusNode: _dateNode,
               prefixIcon: Icon(Icons.access_time),
               initialValue: operation.date,
               buildText: (value) => _getDateString(value),
-              validator: ObjectRequiredValidator(errorText: "Required"),
+              validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(date: value);
@@ -168,12 +168,12 @@ class OperationFormState extends State<OperationForm> {
           UIHelper.horizontalSpaceSmall,
           Expanded(
             child: CustomFormField<DateTime>(
-              labelText: "Time",
+              labelText: 'Time',
               focusNode: _timeNode,
               prefixIcon: Icon(Icons.access_time),
               initialValue: operation.date,
               buildText: (value) => _getTimeString(value),
-              validator: ObjectRequiredValidator(errorText: "Required"),
+              validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(date: value);
@@ -195,12 +195,12 @@ class OperationFormState extends State<OperationForm> {
         children: <Widget>[
           Expanded(
             child: CustomFormField<PayeeModel>(
-              labelText: "Payee",
+              labelText: 'Payee',
               focusNode: _payeeNode,
               prefixIcon: Icon(Icons.person),
               initialValue: operation.payee,
-              buildText: (value) => (value == null) ? "Unknown" : value.name,
-              validator: ObjectRequiredValidator(errorText: "Required"),
+              buildText: (value) => (value == null) ? 'Unknown' : value.name,
+              validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(payee: value);
@@ -218,12 +218,12 @@ class OperationFormState extends State<OperationForm> {
           UIHelper.horizontalSpaceSmall,
           Expanded(
             child: CustomFormField<OperationStateModel>(
-              labelText: "State",
+              labelText: 'State',
               focusNode: _stateNode,
               prefixIcon: Icon(Icons.check_circle),
               initialValue: operation.state,
-              buildText: (value) => (value == null) ? "Unknown" : value.title,
-              validator: ObjectRequiredValidator(errorText: "Required"),
+              buildText: (value) => (value == null) ? 'Unknown' : value.title,
+              validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(state: value);
@@ -242,12 +242,12 @@ class OperationFormState extends State<OperationForm> {
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<CategoryModel>(
-        labelText: "Category",
+        labelText: 'Category',
         focusNode: _categoryNode,
         prefixIcon: Icon(Icons.category),
         initialValue: operation.category,
-        buildText: (value) => (value == null) ? "Unknown" : value.name,
-        validator: ObjectRequiredValidator(errorText: "Required"),
+        buildText: (value) => (value == null) ? 'Unknown' : value.name,
+        validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(category: value);
@@ -263,12 +263,12 @@ class OperationFormState extends State<OperationForm> {
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<AccountModel>(
-        labelText: "Account",
+        labelText: 'Account',
         focusNode: _accountNode,
         prefixIcon: Icon(Icons.account_balance),
         initialValue: operation.account,
-        buildText: (value) => (value == null) ? "Unknown" : value.name,
-        validator: ObjectRequiredValidator(errorText: "Required"),
+        buildText: (value) => (value == null) ? 'Unknown' : value.name,
+        validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(
@@ -295,8 +295,8 @@ class OperationFormState extends State<OperationForm> {
         maxLines: 3,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          hintText: "Note",
-          labelText: "Note",
+          hintText: 'Note',
+          labelText: 'Note',
           alignLabelWithHint: true,
           border: OutlineInputBorder(),
         ),
@@ -316,10 +316,10 @@ class OperationFormState extends State<OperationForm> {
   }
 
   String _getDateString(DateTime date) {
-    return date == null ? "Unknown" : DateFormat("dd/MM/yyyy").format(date);
+    return date == null ? 'Unknown' : DateFormat('dd/MM/yyyy').format(date);
   }
 
   String _getTimeString(DateTime date) {
-    return date == null ? "Unknown" : DateFormat("HH:mm").format(date);
+    return date == null ? 'Unknown' : DateFormat('HH:mm').format(date);
   }
 }

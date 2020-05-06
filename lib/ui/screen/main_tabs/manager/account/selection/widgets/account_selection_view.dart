@@ -9,7 +9,7 @@ class AccountSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select accounts"),
+        title: Text('Select accounts'),
       ),
       body: Container(
         child: AccountList(

@@ -8,7 +8,7 @@ class AccountFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form Account"),
+        title: Text('Form Account'),
       ),
       body: BottomActionBar(
         child: AccountForm(),

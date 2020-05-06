@@ -74,7 +74,7 @@ class _CustomFormFieldState<T> extends State<CustomFormField<T>> {
               ),
               child: Text(
                 widget.buildText(fieldState.value),
-                style: Theme.of(context).textTheme.subhead,
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
           );

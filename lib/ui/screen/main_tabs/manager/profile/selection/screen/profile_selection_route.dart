@@ -12,7 +12,7 @@ class ProfileSelectionRoute extends BaseRoute<ProfileSelectionScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/profile/selection";
+  String get routePath => '/manager/profile/selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

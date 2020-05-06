@@ -29,7 +29,7 @@ class AccountViewerBloc extends BaseBloc {
   List<SingleChildWidget> get dependencies => [
         StreamProvider<List<OperationModel>>.value(
           value: operationRepository.watchFilter(account.id),
-          initialData: List(),
+          initialData: [],
         )
       ];
 }

@@ -9,7 +9,7 @@ class SplashRoute extends BaseRoute<SplashScreenArgs> with AppRoute {
   SplashRoute({SplashScreenArgs argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/";
+  String get routePath => '/';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

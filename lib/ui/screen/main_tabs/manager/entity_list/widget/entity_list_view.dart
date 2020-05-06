@@ -8,12 +8,12 @@ class EntityListView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Management"),
+        title: Text('Management'),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: Text("Profiles"),
+            title: Text('Profiles'),
             leading: Icon(Icons.account_circle),
             onTap: () => bloc.goToProfileList(context),
           ),
@@ -21,7 +21,7 @@ class EntityListView extends StatelessWidget {
             color: Colors.grey,
           ),
           ListTile(
-            title: Text("Accounts"),
+            title: Text('Accounts'),
             leading: Icon(Icons.account_balance),
             onTap: () => bloc.goToAccountList(context),
           ),
@@ -29,7 +29,7 @@ class EntityListView extends StatelessWidget {
             color: Colors.grey,
           ),
           ListTile(
-            title: Text("Categories"),
+            title: Text('Categories'),
             leading: Icon(Icons.category),
             onTap: () => bloc.goToCategoryList(context),
           ),
@@ -37,7 +37,7 @@ class EntityListView extends StatelessWidget {
             color: Colors.grey,
           ),
           ListTile(
-            title: Text("Payees"),
+            title: Text('Payees'),
             leading: Icon(Icons.people),
             onTap: () => bloc.goToPayeeList(context),
           ),

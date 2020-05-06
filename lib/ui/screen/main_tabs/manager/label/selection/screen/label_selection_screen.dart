@@ -29,7 +29,7 @@ class _LabelList extends StatefulWidget {
 }
 
 class __LabelListState extends State<_LabelList> {
-  List<LabelModel> selectedLabelList = List();
+  List<LabelModel> selectedLabelList = [];
 
   @override
   Widget build(BuildContext context) {

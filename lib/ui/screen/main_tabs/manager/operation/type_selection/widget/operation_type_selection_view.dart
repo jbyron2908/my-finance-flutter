@@ -8,7 +8,7 @@ class OperationTypeSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Type"),
+        title: Text('Select Type'),
       ),
       body: _OperationTypeList(),
     );

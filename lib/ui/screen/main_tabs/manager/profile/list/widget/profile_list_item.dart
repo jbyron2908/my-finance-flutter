@@ -24,7 +24,7 @@ class ProfileListItem extends StatelessWidget {
     );
   }
 
-  _edit(BuildContext context) {
+  void _edit(BuildContext context) {
     final bloc = ProfileListBloc.of(context);
     bloc.editProfile(profile);
   }
@@ -32,10 +32,10 @@ class ProfileListItem extends StatelessWidget {
   Future _delete(BuildContext context) async {
     var confirmation = await DialogHelper.showAlertDialog(
       context,
-      title: "Delete profile",
-      content: "Do you want to delete this profile?",
-      confirmText: "Yes",
-      cancelText: "No",
+      title: 'Delete profile',
+      content: 'Do you want to delete this profile?',
+      confirmText: 'Yes',
+      cancelText: 'No',
     );
 
     if (confirmation == true) {

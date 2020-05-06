@@ -15,7 +15,7 @@ class BookmarkOperationRepository {
   static BookmarkOperationRepository of(BuildContext context) =>
       Provider.of<BookmarkOperationRepository>(context, listen: false);
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   BookmarkOperationRepository(this._databaseClient) {
     _bookmarkOperationListStream =

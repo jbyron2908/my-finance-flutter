@@ -16,8 +16,7 @@ abstract class BaseRouter {
       _routeMap;
 
   Route generateRoutes(RouteSettings routeSettings) {
-    MaterialPageRoute Function(RouteSettings routeSettings) routeGenerator =
-        _routeMap[routeSettings.name];
+    var routeGenerator = _routeMap[routeSettings.name];
 
     if (routeGenerator != null) {
       return routeGenerator(routeSettings);

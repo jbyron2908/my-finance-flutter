@@ -12,7 +12,7 @@ class CategoryFormRoute extends BaseRoute<CategoryFormScreenArgs>
   }) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/category/create";
+  String get routePath => '/manager/category/create';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

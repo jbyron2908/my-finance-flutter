@@ -24,17 +24,17 @@ class Flavor {
 
   static FlavorValues _getFlavorDevValues() {
     return FlavorValues(
-      baseUrlRest: "https://api.github.com",
-      baseUrlGraphQL: "https://api.github.com/graphql",
-      githubToken: "",
+      baseUrlRest: 'https://api.github.com',
+      baseUrlGraphQL: 'https://api.github.com/graphql',
+      githubToken: '',
     );
   }
 
   static FlavorValues _getFlavorProdValues() {
     return FlavorValues(
-      baseUrlRest: "https://api.github.com",
-      baseUrlGraphQL: "https://api.github.com/graphql",
-      githubToken: "",
+      baseUrlRest: 'https://api.github.com',
+      baseUrlGraphQL: 'https://api.github.com/graphql',
+      githubToken: '',
     );
   }
 }

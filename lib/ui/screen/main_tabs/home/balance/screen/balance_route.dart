@@ -9,7 +9,7 @@ class BalanceRoute extends BaseRoute<BalanceScreenArgs> with MainTabRoute {
   BalanceRoute({BalanceScreenArgs argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/home/main";
+  String get routePath => '/home/main';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

@@ -12,7 +12,7 @@ class LabelSelectionRoute extends BaseRoute<LabelSelectionScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/label/selection";
+  String get routePath => '/manager/label/selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

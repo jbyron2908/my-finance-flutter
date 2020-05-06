@@ -9,7 +9,7 @@ class PayeeListRoute extends BaseRoute<PayeeListRoute> with MainTabRoute {
   PayeeListRoute({PayeeListRoute argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/payee/list";
+  String get routePath => '/manager/payee/list';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

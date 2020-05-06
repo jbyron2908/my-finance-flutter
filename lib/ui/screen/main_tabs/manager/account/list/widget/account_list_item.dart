@@ -24,7 +24,7 @@ class AccountListItem extends StatelessWidget {
     );
   }
 
-  _edit(BuildContext context) {
+  void _edit(BuildContext context) {
     final bloc = AccountListBloc.of(context);
     bloc.editAccount(account);
   }
@@ -32,10 +32,10 @@ class AccountListItem extends StatelessWidget {
   Future _delete(BuildContext context) async {
     var confirmation = await DialogHelper.showAlertDialog(
       context,
-      title: "Delete account",
-      content: "Do you want to delete this account?",
-      confirmText: "Yes",
-      cancelText: "No",
+      title: 'Delete account',
+      content: 'Do you want to delete this account?',
+      confirmText: 'Yes',
+      cancelText: 'No',
     );
 
     if (confirmation == true) {

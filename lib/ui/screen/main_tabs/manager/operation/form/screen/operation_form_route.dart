@@ -12,7 +12,7 @@ class OperationFormRoute extends BaseRoute<OperationFormScreenArgs>
   }) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/operation/create";
+  String get routePath => '/manager/operation/create';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

@@ -24,7 +24,7 @@ class LabelFormState extends State<LabelForm> {
     return SingleChildScrollView(
       child: Container(
         child: Form(
-          key: this._formKey,
+          key: _formKey,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -62,8 +62,8 @@ class LabelFormState extends State<LabelForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          hintText: "Name",
-          labelText: "Name",
+          hintText: 'Name',
+          labelText: 'Name',
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),

@@ -35,7 +35,7 @@ class ImportCsvFormState extends State<ImportCsvForm> {
     return SingleChildScrollView(
       child: Container(
         child: Form(
-          key: this._formKey,
+          key: _formKey,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -59,8 +59,8 @@ class ImportCsvFormState extends State<ImportCsvForm> {
 
   List<Widget> buildFormFields() {
     _fileController.text =
-        _file == null ? "Unknown" : path.basename(_file.path);
-    _accountController.text = _account == null ? "Unknown" : _account.name;
+        _file == null ? 'Unknown' : path.basename(_file.path);
+    _accountController.text = _account == null ? 'Unknown' : _account.name;
 
     return <Widget>[
       TextFormField(
@@ -68,8 +68,8 @@ class ImportCsvFormState extends State<ImportCsvForm> {
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          hintText: "File",
-          labelText: "File",
+          hintText: 'File',
+          labelText: 'File',
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
@@ -81,8 +81,8 @@ class ImportCsvFormState extends State<ImportCsvForm> {
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          hintText: "Account",
-          labelText: "Account",
+          hintText: 'Account',
+          labelText: 'Account',
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
@@ -94,7 +94,7 @@ class ImportCsvFormState extends State<ImportCsvForm> {
   void _selectFile() async {
     final fileSelected = await FilePicker.getFile(
       type: FileType.custom,
-      allowedExtensions: ["csv"],
+      allowedExtensions: ['csv'],
     );
     setState(() {
       _file = fileSelected;
@@ -102,7 +102,7 @@ class ImportCsvFormState extends State<ImportCsvForm> {
   }
 
   void _selectAccount() async {
-    AccountModel accountSelected =
+    var accountSelected =
         await AccountSelectionRoute().navigateIntoTab(context);
     setState(() {
       _account = accountSelected;

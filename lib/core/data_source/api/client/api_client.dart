@@ -8,7 +8,7 @@ class ApiClient {
   static SingleChildWidget buildProvider() =>
       Provider.value(value: ApiClient());
 
-  static var _token = Flavor.values.githubToken;
+  static final _token = Flavor.values.githubToken;
 
   GraphQLClient get graphqlClient {
     if (_clientValueNotifier == null) {
@@ -23,7 +23,7 @@ class ApiClient {
     uri: Flavor.values.baseUrlGraphQL,
   );
 
-  final AuthLink _authLink = AuthLink(getToken: () => "Bearer $_token");
+  final AuthLink _authLink = AuthLink(getToken: () => 'Bearer $_token');
 
   void _setup() {
     var link = _authLink.concat(_httpLink);

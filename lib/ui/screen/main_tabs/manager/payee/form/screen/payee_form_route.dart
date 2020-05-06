@@ -11,7 +11,7 @@ class PayeeFormRoute extends BaseRoute<PayeeFormScreenArgs> with MainTabRoute {
   }) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/payee/create";
+  String get routePath => '/manager/payee/create';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

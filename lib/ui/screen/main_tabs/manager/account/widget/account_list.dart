@@ -25,9 +25,9 @@ class AccountList extends StatelessWidget {
   }
 
   int _sortAccount(AccountModel account1, AccountModel account2) {
-    int profileResult = account1.profile.name.compareTo(account2.profile.name);
+    var profileResult = account1.profile.name.compareTo(account2.profile.name);
     if (profileResult == 0) {
-      int nameResult = account1.name.compareTo(account2.name);
+      var nameResult = account1.name.compareTo(account2.name);
       return nameResult;
     }
     return profileResult;

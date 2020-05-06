@@ -49,13 +49,13 @@ class ProfileFormState extends State<ProfileForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          hintText: "Name",
-          labelText: "Name",
+          hintText: 'Name',
+          labelText: 'Name',
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
         initialValue: profile.name,
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(name: value);
@@ -74,13 +74,13 @@ class ProfileFormState extends State<ProfileForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          hintText: "Currency",
-          labelText: "Currency",
+          hintText: 'Currency',
+          labelText: 'Currency',
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
         initialValue: profile.currency,
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(currency: value);

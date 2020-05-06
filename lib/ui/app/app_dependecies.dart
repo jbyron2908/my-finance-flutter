@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 class AppDependencies extends StatelessWidget {
   const AppDependencies({Key key, Widget child})
-      : this.child = child,
+      : child = child,
         super(key: key);
 
   final Widget child;
@@ -21,7 +21,7 @@ class AppDependencies extends StatelessWidget {
 
 class GlobalDependencies extends StatelessWidget {
   const GlobalDependencies({Key key, Widget child})
-      : this.child = child,
+      : child = child,
         super(key: key);
 
   final Widget child;
@@ -39,7 +39,7 @@ class GlobalDependencies extends StatelessWidget {
 
 class DataDependencies extends StatelessWidget {
   const DataDependencies({Key key, Widget child})
-      : this.child = child,
+      : child = child,
         super(key: key);
 
   final Widget child;

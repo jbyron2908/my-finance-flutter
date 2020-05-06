@@ -31,7 +31,7 @@ class ProfileItem extends StatelessWidget {
                 ),
                 child: Text(
                   profile.name,
-                  style: Theme.of(context).textTheme.subhead.copyWith(
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),

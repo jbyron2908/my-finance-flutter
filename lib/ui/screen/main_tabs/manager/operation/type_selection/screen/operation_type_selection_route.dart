@@ -12,7 +12,7 @@ class OperationTypeSelectionRoute
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/operation/type_selection";
+  String get routePath => '/manager/operation/type_selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

@@ -12,7 +12,7 @@ class SplashView extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: Text("MyFinance"),
+        child: Text('MyFinance'),
       ),
     );
   }

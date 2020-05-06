@@ -10,7 +10,7 @@ class PayeeFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form Payee"),
+        title: Text('Form Payee'),
       ),
       body: BottomActionBar(
         child: PayeeForm(),

@@ -54,13 +54,13 @@ class OperationItem extends StatelessWidget {
                       ),
                       UIHelper.horizontalSpaceSmall,
                       Text(
-                        "${operation.title}",
+                        '${operation.title}',
                       )
                     ],
                   ),
                   Container(
                     child: Text(
-                      "Title: ${operation.category.name}",
+                      'Title: ${operation.category.name}',
                     ),
                   ),
                 ],
@@ -71,14 +71,14 @@ class OperationItem extends StatelessWidget {
               height: 8,
             ),
             Text(
-              "Account: ${operation.account.name}",
+              'Account: ${operation.account.name}',
             ),
             Divider(
               color: Colors.grey,
               height: 8,
             ),
             Text(
-              "Profile: ${operation.profile.name}",
+              'Profile: ${operation.profile.name}',
             ),
           ],
         ),
@@ -86,7 +86,7 @@ class OperationItem extends StatelessWidget {
     );
   }
 
-  _showSnackBar(BuildContext context, String message) {
+  void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     Scaffold.of(context).showSnackBar(snackBar);
   }
@@ -101,9 +101,9 @@ class Test extends StatelessWidget {
         Expanded(
           child: FlatButton(
             color: Colors.yellow,
-            child: Text("Edit"),
+            child: Text('Edit'),
             onPressed: () {
-              _showSnackBar(context, "Edit");
+              _showSnackBar(context, 'Edit');
               Slidable.of(context).close();
             },
           ),
@@ -114,9 +114,9 @@ class Test extends StatelessWidget {
         ),
         Expanded(
           child: FlatButton(
-            child: Text("bbb"),
+            child: Text('bbb'),
             onPressed: () {
-              _showSnackBar(context, "bbb");
+              _showSnackBar(context, 'bbb');
               Slidable.of(context).close();
             },
           ),
@@ -125,7 +125,7 @@ class Test extends StatelessWidget {
     );
   }
 
-  _showSnackBar(BuildContext context, String message) {
+  void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     Scaffold.of(context).showSnackBar(snackBar);
   }

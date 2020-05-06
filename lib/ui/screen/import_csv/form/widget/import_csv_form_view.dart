@@ -8,7 +8,7 @@ class ImportCsvFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Import Csv File"),
+        title: Text('Import Csv File'),
       ),
       body: ImportCsvForm(
         onSubmit: (account, csvFile) => ImportCsvPreviewRoute(

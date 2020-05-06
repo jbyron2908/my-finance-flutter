@@ -11,7 +11,7 @@ class AccountListRoute extends BaseRoute<AccountListScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/account/list";
+  String get routePath => '/manager/account/list';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

@@ -16,7 +16,7 @@ class GitRepoRepository {
 
   GitRepoRepository(this._repositoryApi);
 
-  RepositoryApi _repositoryApi;
+  final RepositoryApi _repositoryApi;
 
   Future<List<Repository>> getRepositoryList(int limit) async {
     return await _repositoryApi.getRepositories(limit);

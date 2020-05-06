@@ -11,7 +11,7 @@ class ProfileListRoute extends BaseRoute<ProfileListScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/profile/list";
+  String get routePath => '/manager/profile/list';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

@@ -50,13 +50,13 @@ class CategoryFormState extends State<CategoryForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          hintText: "Name",
-          labelText: "Name",
+          hintText: 'Name',
+          labelText: 'Name',
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
         initialValue: category.name,
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(name: value);
@@ -71,12 +71,12 @@ class CategoryFormState extends State<CategoryForm> {
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<CategoryModel>(
-        labelText: "Parent",
+        labelText: 'Parent',
         focusNode: _parentNode,
         prefixIcon: Icon(Icons.category),
         initialValue: category.parent,
         enabled: !(category.id != null && category.parent == null),
-        buildText: (value) => (value == null) ? "No parent" : value.name,
+        buildText: (value) => (value == null) ? 'No parent' : value.name,
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(parent: value);

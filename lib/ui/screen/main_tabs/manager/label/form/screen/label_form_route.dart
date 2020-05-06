@@ -9,7 +9,7 @@ class LabelFormRoute extends BaseRoute<LabelFormScreenArgs> with MainTabRoute {
   LabelFormRoute({LabelFormScreenArgs argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/label/create";
+  String get routePath => '/manager/label/create';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

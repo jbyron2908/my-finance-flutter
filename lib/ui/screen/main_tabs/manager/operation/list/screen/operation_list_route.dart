@@ -11,7 +11,7 @@ class OperationListRoute extends BaseRoute<OperationListScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/operation/list";
+  String get routePath => '/manager/operation/list';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

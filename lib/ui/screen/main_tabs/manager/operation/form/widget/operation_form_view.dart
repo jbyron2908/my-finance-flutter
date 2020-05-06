@@ -8,7 +8,7 @@ class OperationFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form Operation"),
+        title: Text('Form Operation'),
       ),
       body: BottomActionBar(
         child: OperationForm(),

@@ -46,13 +46,13 @@ class PayeeFormState extends State<PayeeForm> {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          hintText: "Name",
-          labelText: "Name",
+          hintText: 'Name',
+          labelText: 'Name',
           prefixIcon: Icon(Icons.title),
           border: OutlineInputBorder(),
         ),
         initialValue: payee.name,
-        validator: RequiredValidator(errorText: "Required"),
+        validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(name: value);

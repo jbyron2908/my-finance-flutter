@@ -13,7 +13,7 @@ class CategorySelectionRoute extends BaseRoute<CategorySelectionScreenArgs>
   }) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/category/selection";
+  String get routePath => '/manager/category/selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

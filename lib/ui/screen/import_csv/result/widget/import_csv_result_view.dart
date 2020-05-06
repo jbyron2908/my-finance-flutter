@@ -5,10 +5,10 @@ class ImportCsvResultView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Import CSV"),
+        title: Text('Import CSV'),
       ),
       body: Center(
-        child: Text("Done"),
+        child: Text('Done'),
       ),
     );
   }

@@ -11,7 +11,7 @@ class LabelSelection extends StatefulWidget {
 }
 
 class _LabelSelectionState extends State<LabelSelection> {
-  List<LabelModel> selectedLabelList = List();
+  List<LabelModel> selectedLabelList = [];
 
   @override
   Widget build(BuildContext context) {

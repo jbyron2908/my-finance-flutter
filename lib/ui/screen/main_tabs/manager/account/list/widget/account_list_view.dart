@@ -9,7 +9,7 @@ class AccountListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Accounts"),
+        title: Text('Accounts'),
       ),
       body: Container(
         child: AccountList(

@@ -11,7 +11,7 @@ class ImportCsvPreviewRoute extends BaseRoute<ImportCsvPreviewScreenArgs>
       : super(argument: arguments);
 
   @override
-  String get routePath => "/importCsv/preview";
+  String get routePath => '/importCsv/preview';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

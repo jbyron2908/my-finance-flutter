@@ -12,7 +12,7 @@ class AccountFormRoute extends BaseRoute<AccountFormScreenArgs>
   }) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/account/create";
+  String get routePath => '/manager/account/create';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

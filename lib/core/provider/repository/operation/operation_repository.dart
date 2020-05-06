@@ -23,7 +23,7 @@ class OperationRepository {
   Stream<List<OperationModel>> _operationListStream;
   Stream<List<OperationModel>> get operationListStream => _operationListStream;
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   Future save(OperationModel operation) async {
     operation = operation.copyWith(profile: operation.account.profile);

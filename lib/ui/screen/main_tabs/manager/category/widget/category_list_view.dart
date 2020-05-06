@@ -20,7 +20,7 @@ class CategoryListView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (categoryList.isEmpty) {
       return ListTile(
-        title: Text("No category"),
+        title: Text('No category'),
       );
     } else {
       return ItemList(

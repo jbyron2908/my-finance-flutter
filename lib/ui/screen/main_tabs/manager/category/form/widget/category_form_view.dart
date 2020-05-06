@@ -8,7 +8,7 @@ class CategoryFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Form Category"),
+        title: Text('Form Category'),
       ),
       body: BottomActionBar(
         child: CategoryForm(),

@@ -12,7 +12,7 @@ class PayeeSelectionRoute extends BaseRoute<PayeeSelectionScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/manager/payee/selection";
+  String get routePath => '/manager/payee/selection';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

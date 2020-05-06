@@ -15,7 +15,7 @@ class AccountRepository {
   static AccountRepository of(BuildContext context) =>
       Provider.of<AccountRepository>(context, listen: false);
 
-  DatabaseClient _databaseClient;
+  final DatabaseClient _databaseClient;
 
   AccountRepository(this._databaseClient) {
     _accountListStream = _databaseClient.accountDao.watchAll();

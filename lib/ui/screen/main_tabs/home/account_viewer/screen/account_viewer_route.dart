@@ -11,7 +11,7 @@ class AccountViewerRoute extends BaseRoute<AccountViewerScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/home/account_viewer";
+  String get routePath => '/home/account_viewer';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

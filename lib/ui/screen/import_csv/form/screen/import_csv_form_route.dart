@@ -11,7 +11,7 @@ class ImportCsvFormRoute extends BaseRoute<ImportCsvFormScreenArgs>
       : super(argument: argument);
 
   @override
-  String get routePath => "/importCsv/form";
+  String get routePath => '/importCsv/form';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

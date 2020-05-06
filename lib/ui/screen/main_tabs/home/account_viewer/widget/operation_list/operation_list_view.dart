@@ -16,7 +16,7 @@ class OperationList extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Text("Current month"),
+                  Text('Current month'),
                 ],
               ),
               Expanded(

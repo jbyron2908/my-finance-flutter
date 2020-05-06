@@ -10,7 +10,7 @@ class EntityListRoute extends BaseRoute<EntityListScreenArgs>
   EntityListRoute({EntityListScreenArgs argument}) : super(argument: argument);
 
   @override
-  String get routePath => "/manager/tab";
+  String get routePath => '/manager/tab';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {

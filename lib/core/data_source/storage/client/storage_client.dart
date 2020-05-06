@@ -6,9 +6,7 @@ import 'package:my_finance_flutter/core/data_source/storage/dao/operation/operat
 class StorageClient {
   static StorageClient _instance;
   static StorageClient get instance {
-    if (_instance == null) {
-      _instance = StorageClient();
-    }
+    _instance ??= StorageClient();
     return _instance;
   }
 
