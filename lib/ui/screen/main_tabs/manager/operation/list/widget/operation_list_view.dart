@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/widget/operation_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/list/widget/operation_item.dart';
 import 'package:provider/provider.dart';
 
 class OperationListView extends StatelessWidget {
