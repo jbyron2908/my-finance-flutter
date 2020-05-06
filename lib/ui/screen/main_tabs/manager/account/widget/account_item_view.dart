@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_router.dart';
 
-class AccountItem extends StatelessWidget {
-  AccountItem({
+class AccountItemView extends StatelessWidget {
+  AccountItemView({
     this.account,
+    this.onTap,
+    this.onLongPress,
   });
 
   final AccountModel account;
+  final Function() onTap;
+  final Function() onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,8 @@ class AccountItem extends StatelessWidget {
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(account.profile.name),
-      onTap: () => MainTabRouter.of(context).pop(account),
+      onTap: onTap,
+      onLongPress: onLongPress,
     );
   }
 }
