@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/router/main_tab_route_mixin.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/screen/label_selection_screen.dart';
 
 class LabelSelectionRoute extends BaseRoute<LabelSelectionScreenArgs>

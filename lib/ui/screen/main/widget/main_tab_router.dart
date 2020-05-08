@@ -88,3 +88,13 @@ class MainTabRouter extends BaseRouter {
     tabItem.navigator.currentState.pop(result);
   }
 }
+
+mixin MainTabRoute<T> on BaseRoute<T> {
+  Future navigateIntoTab(BuildContext context) {
+    return MainTabRouter.of(context).navigateTo(this);
+  }
+
+  Future replaceIntoTab(BuildContext context) {
+    return MainTabRouter.of(context).replaceTo(this);
+  }
+}
