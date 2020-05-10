@@ -27,7 +27,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/s
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
-import 'package:my_finance_flutter/ui/widgets/bottom_navigation/model.dart';
+import 'package:my_finance_flutter/ui/widgets/bottom_navigation/bottom_navigation_view.dart';
 import 'package:provider/provider.dart';
 
 class MainTabRouter extends BaseRouter {

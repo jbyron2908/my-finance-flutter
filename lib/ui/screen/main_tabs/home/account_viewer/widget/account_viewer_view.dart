@@ -14,7 +14,36 @@ class AccountViewerView extends StatelessWidget {
         title: Text(account.name),
       ),
       body: Container(
-        child: OperationList(),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: () => _showSnackBar(context, 'Month back'),
+                ),
+                Expanded(
+                  child: Text(
+                    'Current month',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.arrow_forward_ios),
+                  onPressed: () => _showSnackBar(context, 'Month forward'),
+                ),
+              ],
+            ),
+            Divider(
+              height: 0,
+              thickness: 2,
+              color: Colors.grey,
+            ),
+            OperationList(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -29,5 +58,10 @@ class AccountViewerView extends StatelessWidget {
         account: account,
       ),
     ).navigateIntoTab(context);
+  }
+
+  void _showSnackBar(BuildContext context, String text) {
+    final snackBar = SnackBar(content: Text(text));
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 }

@@ -6,35 +6,24 @@ import 'package:provider/provider.dart';
 class OperationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<List<OperationModel>>(
-      builder: (_, operationList, child) {
-        if (operationList == null) {
-          return CircularProgressIndicator();
-        } else {
-          return Column(
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Text('Current month'),
-                ],
+    return Expanded(
+      child: Consumer<List<OperationModel>>(
+        builder: (_, operationList, child) {
+          if (operationList == null) {
+            return CircularProgressIndicator();
+          } else {
+            return ListView.separated(
+              separatorBuilder: (context, index) => Divider(
+                color: Colors.black,
               ),
-              Expanded(
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) => Divider(
-                    color: Colors.black,
-                  ),
-                  itemCount: operationList.length,
-                  itemBuilder: (context, index) => OperationItem(
-                    operation: operationList[index],
-                  ),
-                ),
+              itemCount: operationList.length,
+              itemBuilder: (context, index) => OperationItem(
+                operation: operationList[index],
               ),
-            ],
-          );
-        }
-      },
+            );
+          }
+        },
+      ),
     );
   }
 }
