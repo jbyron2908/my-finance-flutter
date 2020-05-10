@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/bloc/balance_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/balance_view.dart';
-import 'package:provider/provider.dart';
 
-class BalanceScreen extends BaseScreen<BalanceBloc, BalanceScreenArgs> {
+class BalanceScreen extends BaseScreen<BalanceBloc, BalanceRouteArgs> {
   @override
   Widget build(BuildContext context) {
     return BalanceView();
@@ -14,15 +14,4 @@ class BalanceScreen extends BaseScreen<BalanceBloc, BalanceScreenArgs> {
   BalanceBloc buildBloc(BuildContext context) {
     return BalanceBloc();
   }
-}
-
-class BalanceScreenArgs {
-  static BalanceScreenArgs of(BuildContext context) =>
-      Provider.of<BalanceScreenArgs>(context, listen: false);
-
-  int field1;
-
-  BalanceScreenArgs({
-    this.field1,
-  });
 }

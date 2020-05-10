@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/bloc/account_list_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/widget/account_list_view.dart';
-import 'package:provider/provider.dart';
 
 class AccountListScreen
-    extends BaseScreen<AccountListBloc, AccountListScreenArgs> {
+    extends BaseScreen<AccountListBloc, AccountListRouteArgs> {
   @override
   Widget build(BuildContext context) {
     return AccountListView();
@@ -17,15 +17,4 @@ class AccountListScreen
       context: context,
     );
   }
-}
-
-class AccountListScreenArgs {
-  static AccountListScreenArgs of(BuildContext context) =>
-      Provider.of<AccountListScreenArgs>(context, listen: false);
-
-  int field1;
-
-  AccountListScreenArgs({
-    this.field1,
-  });
 }

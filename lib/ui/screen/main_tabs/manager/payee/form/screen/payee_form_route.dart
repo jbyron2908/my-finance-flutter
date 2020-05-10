@@ -3,7 +3,8 @@ import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_screen.dart';
 
-class PayeeFormRoute extends BaseRoute<PayeeFormScreenArgs> with MainTabRoute {
+class PayeeFormRoute extends BaseRoute<PayeeFormScreenArgs, void>
+    with MainTabRoute {
   PayeeFormRoute.forRouter();
 
   PayeeFormRoute({

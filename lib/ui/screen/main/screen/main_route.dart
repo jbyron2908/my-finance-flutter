@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/app/router/app_router.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/main/screen/main_screen.dart';
+import 'package:provider/provider.dart';
 
-class MainRoute extends BaseRoute<MainScreenArgs> with AppRoute {
+class MainRoute extends BaseRoute<MainRouteArgs, void> with AppRoute {
   MainRoute.forRouter();
 
-  MainRoute({MainScreenArgs arguments}) : super(argument: arguments);
+  MainRoute({MainRouteArgs arguments}) : super(argument: arguments);
 
   @override
   String get routePath => '/main';
@@ -18,4 +19,15 @@ class MainRoute extends BaseRoute<MainScreenArgs> with AppRoute {
       settings: routeSettings,
     );
   }
+}
+
+class MainRouteArgs {
+  static MainRouteArgs of(BuildContext context) =>
+      Provider.of<MainRouteArgs>(context, listen: false);
+
+  int field1;
+
+  MainRouteArgs({
+    this.field1,
+  });
 }

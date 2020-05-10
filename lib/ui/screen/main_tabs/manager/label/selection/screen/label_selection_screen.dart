@@ -4,12 +4,13 @@ import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/bloc/label_selection_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/screen/label_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/widget/label_selection_view.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
 
 class LabelSelectionScreen
-    extends BaseScreen<LabelSelectionBloc, LabelSelectionScreenArgs> {
+    extends BaseScreen<LabelSelectionBloc, LabelSelectionRouteArgs> {
   @override
   Widget build(BuildContext context) {
     return LabelSelectionView();
@@ -81,15 +82,4 @@ class __LabelListState extends State<_LabelList> {
           : selectedLabelList.add(item);
     });
   }
-}
-
-class LabelSelectionScreenArgs {
-  static LabelSelectionScreenArgs of(BuildContext context) =>
-      Provider.of<LabelSelectionScreenArgs>(context, listen: false);
-
-  int field1;
-
-  LabelSelectionScreenArgs({
-    this.field1,
-  });
 }

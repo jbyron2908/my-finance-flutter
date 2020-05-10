@@ -89,12 +89,12 @@ class MainTabRouter extends BaseRouter {
   }
 }
 
-mixin MainTabRoute<T> on BaseRoute<T> {
-  Future navigateIntoTab(BuildContext context) {
+mixin MainTabRoute<T, R> on BaseRoute<T, R> {
+  Future<R> navigateIntoTab(BuildContext context) {
     return MainTabRouter.of(context).navigateTo(this);
   }
 
-  Future replaceIntoTab(BuildContext context) {
+  Future<R> replaceIntoTab(BuildContext context) {
     return MainTabRouter.of(context).replaceTo(this);
   }
 }

@@ -3,7 +3,6 @@ import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_screen.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
@@ -26,7 +25,7 @@ class AccountListBloc extends BaseBloc {
 
   void editAccount(AccountModel account) {
     AccountFormRoute(
-      argument: AccountFormScreenArgs.edit(account: account),
+      argument: AccountFormRouteArgs.edit(account: account),
     ).navigateIntoTab(context);
   }
 

@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
+import 'package:provider/provider.dart';
 
-class ImportCsvPreviewRoute extends BaseRoute<ImportCsvPreviewScreenArgs>
+class ImportCsvPreviewRoute extends BaseRoute<ImportCsvPreviewRouteArgs, void>
     with MainTabRoute {
   ImportCsvPreviewRoute.forRouter();
 
-  ImportCsvPreviewRoute({ImportCsvPreviewScreenArgs arguments})
+  ImportCsvPreviewRoute({ImportCsvPreviewRouteArgs arguments})
       : super(argument: arguments);
 
   @override
@@ -20,4 +24,17 @@ class ImportCsvPreviewRoute extends BaseRoute<ImportCsvPreviewScreenArgs>
       settings: routeSettings,
     );
   }
+}
+
+class ImportCsvPreviewRouteArgs {
+  static ImportCsvPreviewRouteArgs of(BuildContext context) =>
+      Provider.of<ImportCsvPreviewRouteArgs>(context, listen: false);
+
+  final File csvFile;
+  final AccountModel account;
+
+  ImportCsvPreviewRouteArgs({
+    this.csvFile,
+    this.account,
+  });
 }

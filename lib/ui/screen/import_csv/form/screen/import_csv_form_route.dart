@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
+import 'package:provider/provider.dart';
 
-class ImportCsvFormRoute extends BaseRoute<ImportCsvFormScreenArgs>
+class ImportCsvFormRoute extends BaseRoute<ImportCsvFormRouteArgs, void>
     with MainTabRoute {
   ImportCsvFormRoute.forRouter();
 
-  ImportCsvFormRoute({ImportCsvFormScreenArgs argument})
+  ImportCsvFormRoute({ImportCsvFormRouteArgs argument})
       : super(argument: argument);
 
   @override
@@ -20,4 +21,15 @@ class ImportCsvFormRoute extends BaseRoute<ImportCsvFormScreenArgs>
       settings: routeSettings,
     );
   }
+}
+
+class ImportCsvFormRouteArgs {
+  static ImportCsvFormRouteArgs of(BuildContext context) =>
+      Provider.of<ImportCsvFormRouteArgs>(context, listen: false);
+
+  int field1;
+
+  ImportCsvFormRouteArgs({
+    this.field1,
+  });
 }

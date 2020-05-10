@@ -16,13 +16,3 @@ class {{pascalCase name}}Screen extends BaseScreen<{{pascalCase name}}Bloc, {{pa
   }
 }
 
-class {{pascalCase name}}ScreenArgs {
-  static {{pascalCase name}}ScreenArgs of(BuildContext context) =>
-    Provider.of<{{pascalCase name}}ScreenArgs>(context, listen: false);
-
-  int field1;
-
-  {{pascalCase name}}ScreenArgs({
-    this.field1,
-  });
-}

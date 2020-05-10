@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_screen.dart';
 
 class AccountItem extends StatelessWidget {
   AccountItem({Key key, this.account}) : super(key: key);
@@ -47,7 +46,7 @@ class AccountItem extends StatelessWidget {
 
   void _navigateToOperationList(BuildContext context) {
     AccountViewerRoute(
-      argument: AccountViewerScreenArgs(account),
+      argument: AccountViewerRouteArgs(account),
     ).navigateIntoTab(context);
   }
 }

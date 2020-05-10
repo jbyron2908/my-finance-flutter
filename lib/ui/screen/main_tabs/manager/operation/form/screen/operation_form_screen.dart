@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/widget/operation_form_view.dart';
-import 'package:provider/provider.dart';
 
 class OperationFormScreen
-    extends BaseScreen<OperationFormBloc, OperationFormScreenArgs> {
+    extends BaseScreen<OperationFormBloc, OperationFormRouteArgs> {
   @override
   Widget build(BuildContext context) {
     return OperationFormView();
@@ -20,48 +18,6 @@ class OperationFormScreen
     return OperationFormBloc(
       context: context,
       operation: argument.operation,
-    );
-  }
-}
-
-class OperationFormScreenArgs {
-  static OperationFormScreenArgs of(BuildContext context) =>
-      Provider.of<OperationFormScreenArgs>(context, listen: false);
-
-  OperationModel operation;
-
-  OperationFormScreenArgs({
-    this.operation,
-  });
-
-  static OperationFormScreenArgs create({
-    AccountModel account,
-  }) {
-    var operation = OperationModelExtra.buildEmpty();
-
-    operation = operation.copyWith(
-      account: account,
-      profile: account.profile,
-    );
-
-    return OperationFormScreenArgs(
-      operation: operation,
-    );
-  }
-
-  static OperationFormScreenArgs edit({
-    OperationModel operation,
-  }) {
-    return OperationFormScreenArgs(
-      operation: operation,
-    );
-  }
-
-  static OperationFormScreenArgs copy({
-    OperationModel operation,
-  }) {
-    return OperationFormScreenArgs(
-      operation: operation.buildCopy(),
     );
   }
 }

@@ -4,7 +4,6 @@ import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/bloc/account_viewer_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
 class OperationActions extends StatelessWidget {
   const OperationActions({
@@ -82,7 +81,7 @@ class OperationActionRight extends StatelessWidget {
     var operation = OperationItem.operationOf(context);
 
     OperationFormRoute(
-      argument: OperationFormScreenArgs.edit(
+      argument: OperationFormRouteArgs.edit(
         operation: operation,
       ),
     ).navigateIntoTab(context);
@@ -92,7 +91,7 @@ class OperationActionRight extends StatelessWidget {
     var operation = OperationItem.operationOf(context);
 
     OperationFormRoute(
-      argument: OperationFormScreenArgs.copy(
+      argument: OperationFormRouteArgs.copy(
         operation: operation,
       ),
     ).navigateIntoTab(context);

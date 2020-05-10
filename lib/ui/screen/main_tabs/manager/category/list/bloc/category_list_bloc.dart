@@ -3,7 +3,6 @@ import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_route.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
 
@@ -26,7 +25,7 @@ class CategoryListBloc extends BaseBloc {
 
   void editCategory(CategoryModel category) {
     CategoryFormRoute(
-      argument: CategoryFormScreenArgs.edit(category: category),
+      argument: CategoryFormRouteArgs.edit(category: category),
     ).navigateIntoTab(context);
   }
 
