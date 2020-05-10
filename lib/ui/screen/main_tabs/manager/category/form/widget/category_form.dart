@@ -52,7 +52,7 @@ class CategoryFormState extends State<CategoryForm> {
         decoration: InputDecoration(
           hintText: 'Name',
           labelText: 'Name',
-          prefixIcon: Icon(Icons.title),
+          prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
         initialValue: category.name,

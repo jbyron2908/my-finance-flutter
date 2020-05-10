@@ -51,7 +51,7 @@ class ProfileFormState extends State<ProfileForm> {
         decoration: InputDecoration(
           hintText: 'Name',
           labelText: 'Name',
-          prefixIcon: Icon(Icons.title),
+          prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
         initialValue: profile.name,

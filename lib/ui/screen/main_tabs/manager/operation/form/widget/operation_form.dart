@@ -66,7 +66,7 @@ class OperationFormState extends State<OperationForm> {
         decoration: InputDecoration(
           hintText: 'Title',
           labelText: 'Title',
-          prefixIcon: Icon(Icons.title),
+          prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
         validator: RequiredValidator(errorText: 'Required'),

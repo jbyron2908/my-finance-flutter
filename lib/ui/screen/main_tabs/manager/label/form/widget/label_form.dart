@@ -64,7 +64,7 @@ class LabelFormState extends State<LabelForm> {
         decoration: InputDecoration(
           hintText: 'Name',
           labelText: 'Name',
-          prefixIcon: Icon(Icons.title),
+          prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
         onFieldSubmitted: (value) => FocusScope.of(context).requestFocus(
