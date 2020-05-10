@@ -1,13 +1,13 @@
 import 'package:my_finance_flutter/core/constants/operation_state/operation_state_constants.dart';
 import 'package:my_finance_flutter/core/constants/operation_type/operation_type_constants.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
-import 'package:my_finance_flutter/core/model/bookmark_operation/bookmark_operation_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_converter.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_converter.dart';
+import 'package:my_finance_flutter/core/model/template_operation/template_operation_model.dart';
 
-class BookmarkOperationConverter {
-  static BookmarkOperationEntity toEntity(BookmarkOperationModel model) {
-    return BookmarkOperationEntity(
+class TemplateOperationConverter {
+  static TemplateOperationEntity toEntity(TemplateOperationModel model) {
+    return TemplateOperationEntity(
       id: model.id,
       remoteId: model.remoteId,
       deleted: model.deleted,
@@ -21,13 +21,13 @@ class BookmarkOperationConverter {
     );
   }
 
-  static BookmarkOperationModel toModel(
-    BookmarkOperationEntity entity, {
+  static TemplateOperationModel toModel(
+    TemplateOperationEntity entity, {
     PayeeEntity payee,
     CategoryEntity category,
     CategoryEntity parentCategory,
   }) {
-    return BookmarkOperationModel(
+    return TemplateOperationModel(
       id: entity.id,
       remoteId: entity.remoteId,
       deleted: entity.deleted,

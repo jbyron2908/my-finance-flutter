@@ -1,32 +1,32 @@
 import 'package:moor/moor.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/bookmark_operation/bookmark_operation_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
-import 'package:my_finance_flutter/core/model/bookmark_operation/bookmark_operation_converter.dart';
-import 'package:my_finance_flutter/core/model/bookmark_operation/bookmark_operation_model.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/template_operation/template_operation_table.dart';
+import 'package:my_finance_flutter/core/model/template_operation/template_operation_converter.dart';
+import 'package:my_finance_flutter/core/model/template_operation/template_operation_model.dart';
 
-part 'bookmark_operation_dao.g.dart';
+part 'template_operation_dao.g.dart';
 
 @UseDao(tables: [
-  BookmarkOperationTable,
+  TemplateOperationTable,
   PayeeTable,
   CategoryTable,
 ])
-class BookmarkOperationDao extends DatabaseAccessor<DatabaseClient>
-    with _$BookmarkOperationDaoMixin {
-  BookmarkOperationDao(DatabaseClient db) : super(db);
+class TemplateOperationDao extends DatabaseAccessor<DatabaseClient>
+    with _$TemplateOperationDaoMixin {
+  TemplateOperationDao(DatabaseClient db) : super(db);
 
-  Future<int> insert(BookmarkOperationEntity entity) {
-    return into(bookmarkOperationTable).insert(entity);
+  Future<int> insert(TemplateOperationEntity entity) {
+    return into(templateOperationTable).insert(entity);
   }
 
-  Stream<List<BookmarkOperationModel>> watchAll() {
+  Stream<List<TemplateOperationModel>> watchAll() {
     var query = _getBaseQuery();
 
     query
       ..where(
-        bookmarkOperationTable.deleted.equals(false),
+        templateOperationTable.deleted.equals(false),
       );
 
     return _mapQuery(query);
@@ -37,16 +37,16 @@ class BookmarkOperationDao extends DatabaseAccessor<DatabaseClient>
   $CategoryTableTable get parentCategoryAlias => alias(categoryTable, 'parent');
 
   JoinedSelectStatement _getBaseQuery() {
-    return select(bookmarkOperationTable).join(
+    return select(templateOperationTable).join(
       [
         leftOuterJoin(
           payeeTable,
-          payeeTable.id.equalsExp(bookmarkOperationTable.payee),
+          payeeTable.id.equalsExp(templateOperationTable.payee),
         ),
         leftOuterJoin(
           categoryTable,
           categoryTable.id.equalsExp(
-            bookmarkOperationTable.category,
+            templateOperationTable.category,
           ),
         ),
         leftOuterJoin(
@@ -57,12 +57,12 @@ class BookmarkOperationDao extends DatabaseAccessor<DatabaseClient>
     );
   }
 
-  Stream<List<BookmarkOperationModel>> _mapQuery(JoinedSelectStatement query) {
+  Stream<List<TemplateOperationModel>> _mapQuery(JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {
-          return BookmarkOperationConverter.toModel(
-            resultRow.readTable(bookmarkOperationTable),
+          return TemplateOperationConverter.toModel(
+            resultRow.readTable(templateOperationTable),
             payee: resultRow.readTable(payeeTable),
             category: resultRow.readTable(categoryTable),
             parentCategory: resultRow.readTable(parentCategoryAlias),

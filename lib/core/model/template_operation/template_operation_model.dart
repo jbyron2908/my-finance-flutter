@@ -6,12 +6,12 @@ import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 
-export 'bookmark_operation_model_extra.dart';
+export 'template_operation_model_extra.dart';
 
-part 'bookmark_operation_model.g.dart';
+part 'template_operation_model.g.dart';
 
 @data
-class $BookmarkOperationModel {
+class $TemplateOperationModel {
   @nullable
   int id;
   @nullable

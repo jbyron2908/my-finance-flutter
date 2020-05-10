@@ -5,7 +5,6 @@ import 'package:my_finance_flutter/core/data_source/api/client/api_client.dart';
 import 'package:my_finance_flutter/core/data_source/api/repository/repository_api.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/core/model/bookmark_operation/bookmark_operation_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
@@ -13,8 +12,8 @@ import 'package:my_finance_flutter/core/model/operation/operation_state_model.da
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
+import 'package:my_finance_flutter/core/model/template_operation/template_operation_model.dart';
 import 'package:my_finance_flutter/core/provider/repository/account/account_repository.dart';
-import 'package:my_finance_flutter/core/provider/repository/bookmark_operation/bookmark_operation_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/category/category_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repo_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/label/label_repository.dart';
@@ -23,6 +22,7 @@ import 'package:my_finance_flutter/core/provider/repository/operation_state/oper
 import 'package:my_finance_flutter/core/provider/repository/operation_type/operation_type_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/core/provider/repository/profile/profile_repository.dart';
+import 'package:my_finance_flutter/core/provider/repository/template_operation/template_operation_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -47,7 +47,7 @@ List<SingleChildWidget> repositoryDependecies = [
   AccountRepository.buildProvider(),
   CategoryRepository.buildProvider(),
   OperationRepository.buildProvider(),
-  BookmarkOperationRepository.buildProvider(),
+  TemplateOperationRepository.buildProvider(),
   OperationTypeRepository.buildProvider(),
   OperationStateRepository.buildProvider(),
   PayeeRepository.buildProvider(),
@@ -67,9 +67,9 @@ List<SingleChildWidget> dataProviders(BuildContext context) => [
         value: CategoryRepository.of(context).categoryListStream,
         initialData: [],
       ),
-      StreamProvider<List<BookmarkOperationModel>>.value(
+      StreamProvider<List<TemplateOperationModel>>.value(
         value:
-            BookmarkOperationRepository.of(context).bookmarkOperationListStream,
+            TemplateOperationRepository.of(context).templateOperationListStream,
         initialData: [],
       ),
       Provider<List<OperationTypeModel>>.value(

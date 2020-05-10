@@ -5,8 +5,6 @@ import 'package:moor/moor.dart';
 import 'package:moor_ffi/moor_ffi.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/account_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/account_table.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/bookmark_operation/bookmark_operation_dao.dart';
-import 'package:my_finance_flutter/core/data_source/database/entity/bookmark_operation/bookmark_operation_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/label/label_dao.dart';
@@ -17,6 +15,8 @@ import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_table.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/template_operation/template_operation_dao.dart';
+import 'package:my_finance_flutter/core/data_source/database/entity/template_operation/template_operation_table.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:provider/provider.dart';
@@ -30,7 +30,7 @@ part 'database_client.g.dart';
     AccountTable,
     CategoryTable,
     OperationTable,
-    BookmarkOperationTable,
+    TemplateOperationTable,
     PayeeTable,
     LabelTable,
   ],
@@ -39,7 +39,7 @@ part 'database_client.g.dart';
     AccountDao,
     CategoryDao,
     OperationDao,
-    BookmarkOperationDao,
+    TemplateOperationDao,
     PayeeDao,
     LabelDao,
   ],
