@@ -701,12 +701,12 @@ packages:
     source: hosted
     version: "0.2.15"
   time:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: time
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.0"
   timing:
     dependency: transitive
     description:
