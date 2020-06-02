@@ -12,10 +12,7 @@ class OperationList extends StatelessWidget {
           if (operationList == null) {
             return CircularProgressIndicator();
           } else {
-            return ListView.separated(
-              separatorBuilder: (context, index) => Divider(
-                color: Colors.black,
-              ),
+            return ListView.builder(
               itemCount: operationList.length,
               itemBuilder: (context, index) => OperationItem(
                 operation: operationList[index],

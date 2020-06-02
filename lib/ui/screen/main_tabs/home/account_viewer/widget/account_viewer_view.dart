@@ -36,11 +36,6 @@ class AccountViewerView extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(
-              height: 0,
-              thickness: 2,
-              color: Colors.grey,
-            ),
             OperationList(),
           ],
         ),

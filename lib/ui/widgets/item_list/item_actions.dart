@@ -15,7 +15,9 @@ class ItemActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
+      elevation: 10,
+      clipBehavior: Clip.antiAlias,
       child: Slidable(
         actionPane: SlidableScrollActionPane(),
         actionExtentRatio: 0.15,
