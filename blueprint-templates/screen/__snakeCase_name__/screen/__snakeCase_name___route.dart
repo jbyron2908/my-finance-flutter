@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_route.dart';
+import 'package:provider/provider.dart';
 
 class {{pascalCase name}}Route extends BaseRoute<{{pascalCase name}}RouteArgs, void> {
   {{pascalCase name}}Route.forRouter();
 
-  {{pascalCase name}}Route({ {{pascalCase name}}ScreenArgs argument })
+  {{pascalCase name}}Route({ {{pascalCase name}}RouteArgs argument })
       : super(argument: argument);
 
   @override
-  String get routePath => "/routeName";
+  String get routePath => '/routeName';
 
   @override
   MaterialPageRoute generateRoute(RouteSettings routeSettings) {
