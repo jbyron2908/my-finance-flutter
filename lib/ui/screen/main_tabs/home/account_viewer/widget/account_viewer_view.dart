@@ -28,6 +28,7 @@ class AccountViewerView extends StatelessWidget {
                   child: Text(
                     'Current month',
                     textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
                 IconButton(

@@ -18,6 +18,7 @@ class OperationView extends StatelessWidget {
             operation.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           Divider(
             color: Colors.grey,
@@ -36,7 +37,10 @@ class OperationView extends StatelessWidget {
           Divider(
             color: Colors.grey,
           ),
-          Text('Total: R\$ 0,00'),
+          Text(
+            'Total: R\$ 0,00',
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
         ],
       ),
     );
@@ -61,20 +65,22 @@ class OperationRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Text(
               rightText,
               overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
           VerticalDivider(
             color: Colors.grey,
           ),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Text(
               leftText,
               overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
         ],
