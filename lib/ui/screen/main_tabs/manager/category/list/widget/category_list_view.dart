@@ -10,14 +10,9 @@ class CategoryListView extends StatelessWidget {
       appBar: AppBar(
         title: Text('Categories'),
       ),
-      body: Container(
-        child: CategoryList(
-          parentBuilder: (context, category) => CategoryListItem(
-            category: category,
-          ),
-          childBuilder: (context, category) => CategoryListItem(
-            category: category,
-          ),
+      body: CategoryList(
+        itemBuilder: (context, categoryItem) => CategoryListItem(
+          categoryItem: categoryItem,
         ),
       ),
       floatingActionButton: FloatingActionButton(
