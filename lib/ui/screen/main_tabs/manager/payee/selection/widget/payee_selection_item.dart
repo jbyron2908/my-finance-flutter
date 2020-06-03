@@ -13,9 +13,13 @@ class PayeeSelectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PayeeItemView(
-      payee: payee,
-      onTap: () => MainTabRouter.of(context).pop(payee),
+    return Card(
+      elevation: 5,
+      clipBehavior: Clip.antiAlias,
+      child: PayeeItemView(
+        payee: payee,
+        onTap: () => MainTabRouter.of(context).pop(payee),
+      ),
     );
   }
 }

@@ -15,11 +15,15 @@ class ProfileListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ItemActions(
-      onDelete: () => _delete(context),
-      onEdit: () => _edit(context),
-      child: ProfileItemView(
-        profile: profile,
+    return Card(
+      elevation: 5,
+      clipBehavior: Clip.antiAlias,
+      child: ItemActions(
+        onDelete: () => _delete(context),
+        onEdit: () => _edit(context),
+        child: ProfileItemView(
+          profile: profile,
+        ),
       ),
     );
   }

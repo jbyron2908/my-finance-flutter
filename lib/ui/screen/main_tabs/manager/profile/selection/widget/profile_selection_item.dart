@@ -13,9 +13,13 @@ class ProfileSelectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProfileItemView(
-      profile: profile,
-      onTap: () => MainTabRouter.of(context).pop(profile),
+    return Card(
+      elevation: 5,
+      clipBehavior: Clip.antiAlias,
+      child: ProfileItemView(
+        profile: profile,
+        onTap: () => MainTabRouter.of(context).pop(profile),
+      ),
     );
   }
 }

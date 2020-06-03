@@ -15,12 +15,10 @@ class ProfileItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListTile(
-        title: Text(profile.name),
-        onTap: onTap,
-        onLongPress: onLongPress,
-      ),
+    return ListTile(
+      title: Text(profile.name),
+      onTap: onTap,
+      onLongPress: onLongPress,
     );
   }
 }

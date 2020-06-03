@@ -10,11 +10,9 @@ class ProfileListView extends StatelessWidget {
       appBar: AppBar(
         title: Text('Profiles'),
       ),
-      body: Container(
-        child: ProfileList(
-          itemBuilder: (context, profile) => ProfileListItem(
-            profile: profile,
-          ),
+      body: ProfileList(
+        itemBuilder: (context, profile) => ProfileListItem(
+          profile: profile,
         ),
       ),
       floatingActionButton: FloatingActionButton(

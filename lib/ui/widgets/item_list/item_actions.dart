@@ -15,28 +15,24 @@ class ItemActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 10,
-      clipBehavior: Clip.antiAlias,
-      child: Slidable(
-        actionPane: SlidableScrollActionPane(),
-        actionExtentRatio: 0.15,
-        actions: <Widget>[
-          SlideAction(
-            child: _ActionLeft(
-              onDelete: onDelete,
-            ),
+    return Slidable(
+      actionPane: SlidableScrollActionPane(),
+      actionExtentRatio: 0.15,
+      actions: <Widget>[
+        SlideAction(
+          child: _ActionLeft(
+            onDelete: onDelete,
           ),
-        ],
-        secondaryActions: <Widget>[
-          SlideAction(
-            child: _ActionRight(
-              onEdit: onEdit,
-            ),
+        ),
+      ],
+      secondaryActions: <Widget>[
+        SlideAction(
+          child: _ActionRight(
+            onEdit: onEdit,
           ),
-        ],
-        child: child,
-      ),
+        ),
+      ],
+      child: child,
     );
   }
 }

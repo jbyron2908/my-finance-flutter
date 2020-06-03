@@ -12,9 +12,13 @@ class AccountSelectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AccountItemView(
-      account: account,
-      onTap: () => MainTabRouter.of(context).pop(account),
+    return Card(
+      elevation: 5,
+      clipBehavior: Clip.antiAlias,
+      child: AccountItemView(
+        account: account,
+        onTap: () => MainTabRouter.of(context).pop(account),
+      ),
     );
   }
 }

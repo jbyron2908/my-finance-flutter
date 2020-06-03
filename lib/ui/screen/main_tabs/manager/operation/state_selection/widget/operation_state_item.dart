@@ -12,11 +12,15 @@ class OperationStateItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        operationState.title,
+    return Card(
+      elevation: 5,
+      clipBehavior: Clip.antiAlias,
+      child: ListTile(
+        title: Text(
+          operationState.title,
+        ),
+        onTap: () => MainTabRouter.of(context).pop(operationState),
       ),
-      onTap: () => MainTabRouter.of(context).pop(operationState),
     );
   }
 }

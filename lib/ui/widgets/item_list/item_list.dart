@@ -17,16 +17,13 @@ class ItemList<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.separated(
+      child: ListView.builder(
         shrinkWrap: shrinkWrap,
         physics: physics,
         itemCount: modelList.length,
         itemBuilder: (context, index) => Item<T>(
           model: modelList[index],
           builder: itemBuilder,
-        ),
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.grey,
         ),
       ),
     );
