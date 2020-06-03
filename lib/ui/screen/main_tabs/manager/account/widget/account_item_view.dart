@@ -15,10 +15,7 @@ class AccountItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(
-        account.name,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
+      title: Text(account.name),
       subtitle: Text(account.profile.name),
       onTap: onTap,
       onLongPress: onLongPress,
