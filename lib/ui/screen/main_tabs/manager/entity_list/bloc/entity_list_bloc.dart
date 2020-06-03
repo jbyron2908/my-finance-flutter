@@ -9,6 +9,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/list/screen
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/selection/screen/label_selection_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/list/screen/operation_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/list/screen/payee_list_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/playground/screen/playground_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_route.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:provider/src/provider.dart';
@@ -41,6 +42,10 @@ class EntityListBloc extends BaseBloc {
 
   void goToPayeeList(BuildContext context) {
     PayeeListRoute().navigateIntoTab(context);
+  }
+
+  void goToPlayground(BuildContext context) {
+    PlaygroundRoute().navigateIntoTab(context);
   }
 
   void goToLabelList(BuildContext context) {

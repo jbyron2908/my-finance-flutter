@@ -24,6 +24,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/type_se
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/list/screen/payee_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/screen/payee_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/playground/screen/playground_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_route.dart';
@@ -68,6 +69,7 @@ class MainTabRouter extends BaseRouter {
         ImportCsvFormRoute.forRouter(),
         ImportCsvPreviewRoute.forRouter(),
         ImportCsvResultRoute.forRouter(),
+        PlaygroundRoute.forRouter(),
       ];
 
   Future<T> navigateTo<T>(BaseRoute route) {

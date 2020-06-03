@@ -41,6 +41,14 @@ class EntityListView extends StatelessWidget {
             leading: Icon(Icons.people),
             onTap: () => bloc.goToPayeeList(context),
           ),
+          Divider(
+            color: Colors.grey,
+          ),
+          ListTile(
+            title: Text('Playground1'),
+            leading: Icon(Icons.info),
+            onTap: () => bloc.goToPlayground(context),
+          ),
         ],
       ),
     );
