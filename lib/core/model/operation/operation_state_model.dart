@@ -1,14 +1,15 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:auto_data/auto_data.dart';
-import 'package:meta/meta.dart';
-
+part 'operation_state_model.freezed.dart';
 part 'operation_state_model.g.dart';
 
-@data
-class $OperationStateModel {
-  @nullable
-  String id;
-  @nullable
-  String title;
+@freezed
+abstract class OperationStateModel implements _$OperationStateModel {
+  const factory OperationStateModel({
+    String id,
+    String title,
+  }) = _OperationStateModel;
+
+  factory OperationStateModel.fromJson(Map<String, dynamic> json) =>
+      _$OperationStateModelFromJson(json);
 }

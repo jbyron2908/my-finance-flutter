@@ -26,9 +26,9 @@ class AccountFormViewModel extends ChangeNotifier {
     ProfileModel profile,
   }) {
     account = _account.copyWith(
-      name: name,
-      type: type,
-      profile: profile,
+      name: name ?? _account.name,
+      type: type ?? _account.type,
+      profile: profile ?? _account.profile,
     );
   }
 }

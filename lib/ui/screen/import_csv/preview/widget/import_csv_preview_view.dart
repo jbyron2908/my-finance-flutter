@@ -112,7 +112,7 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
     for (var row in csvFields) {
       var preview = createPreview(row);
       var payee = await payeeRepository.getOrAdd(preview.payee);
-      Log.i(payee.toJson());
+      Log.i(payee);
     }
   }
 }

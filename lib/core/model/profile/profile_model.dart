@@ -1,22 +1,20 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:auto_data/auto_data.dart';
-import 'package:meta/meta.dart';
-
-export 'profile_model_extra.dart';
-
+part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';
 
-@data
-class $ProfileModel {
-  @nullable
-  int id;
-  @nullable
-  int remoteId;
-  @nullable
-  bool deleted;
-  @nullable
-  String name;
-  @nullable
-  String currency;
+@freezed
+abstract class ProfileModel implements _$ProfileModel {
+  const ProfileModel._();
+
+  const factory ProfileModel({
+    int id,
+    int remoteId,
+    bool deleted,
+    String name,
+    String currency,
+  }) = _ProfileModel;
+
+  factory ProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$ProfileModelFromJson(json);
 }

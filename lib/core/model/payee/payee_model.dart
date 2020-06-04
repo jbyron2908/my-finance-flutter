@@ -1,20 +1,19 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:auto_data/auto_data.dart';
-import 'package:meta/meta.dart';
-
-export 'payee_model_extra.dart';
-
+part 'payee_model.freezed.dart';
 part 'payee_model.g.dart';
 
-@data
-class $PayeeModel {
-  @nullable
-  int id;
-  @nullable
-  int remoteId;
-  @nullable
-  bool deleted;
-  @nullable
-  String name;
+@freezed
+abstract class PayeeModel implements _$PayeeModel {
+  const PayeeModel._();
+
+  const factory PayeeModel({
+    int id,
+    int remoteId,
+    bool deleted,
+    String name,
+  }) = _PayeeModel;
+
+  factory PayeeModel.fromJson(Map<String, dynamic> json) =>
+      _$PayeeModelFromJson(json);
 }

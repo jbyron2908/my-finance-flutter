@@ -1,22 +1,20 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:auto_data/auto_data.dart';
-import 'package:meta/meta.dart';
-
-export 'category_model_extra.dart';
-
+part 'category_model.freezed.dart';
 part 'category_model.g.dart';
 
-@data
-class $CategoryModel {
-  @nullable
-  int id;
-  @nullable
-  int remoteId;
-  @nullable
-  bool deleted;
-  @nullable
-  String name;
-  @nullable
-  $CategoryModel parent;
+@freezed
+abstract class CategoryModel implements _$CategoryModel {
+  const CategoryModel._();
+
+  const factory CategoryModel({
+    int id,
+    int remoteId,
+    bool deleted,
+    String name,
+    CategoryModel parent,
+  }) = _CategoryModel;
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
 }

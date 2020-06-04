@@ -39,7 +39,7 @@ class OperationFormRouteArgs {
   static OperationFormRouteArgs create({
     AccountModel account,
   }) {
-    var operation = OperationModelExtra.buildEmpty();
+    var operation = OperationModel.buildEmpty();
 
     operation = operation.copyWith(
       account: account,

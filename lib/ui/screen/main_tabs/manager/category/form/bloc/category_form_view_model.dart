@@ -24,8 +24,8 @@ class CategoryFormViewModel extends ChangeNotifier {
     CategoryModel parent,
   }) {
     category = category.copyWith(
-      name: name,
-      parent: parent,
+      name: name ?? _category.name,
+      parent: parent ?? _category.parent,
     );
   }
 }

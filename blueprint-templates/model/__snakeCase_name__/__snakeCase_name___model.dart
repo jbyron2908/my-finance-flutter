@@ -1,20 +1,19 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:auto_data/auto_data.dart';
-import 'package:meta/meta.dart';
-
-export '{{snakeCase name}}_model_extra.dart';
-
+part '{{snakeCase name}}_model.freezed.dart';
 part '{{snakeCase name}}_model.g.dart';
 
-@data
-class ${{pascalCase name}}Model {
-  @nullable
-  int id;
-  @nullable
-  int remoteId;
-  @nullable
-  bool deleted;
-  @nullable
-  String name;
+@freezed
+class {{pascalCase name}}Model implements _${{pascalCase name}}Model{
+  const {{pascalCase name}}Model._();
+
+  const factory {{pascalCase name}}Model({
+    int id,
+    int remoteId,
+    bool deleted,
+    String name,
+  }) = _{{pascalCase name}}Model;
+
+  factory {{pascalCase name}}Model.fromJson(Map<String, dynamic> json) =>
+    _${{pascalCase name}}ModelFromJson(json);
 }

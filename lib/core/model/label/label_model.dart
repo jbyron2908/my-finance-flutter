@@ -1,20 +1,19 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:auto_data/auto_data.dart';
-import 'package:meta/meta.dart';
-
-export 'label_model_extra.dart';
-
+part 'label_model.freezed.dart';
 part 'label_model.g.dart';
 
-@data
-class $LabelModel {
-  @nullable
-  int id;
-  @nullable
-  int remoteId;
-  @nullable
-  bool deleted;
-  @nullable
-  String name;
+@freezed
+abstract class LabelModel implements _$LabelModel {
+  const LabelModel._();
+
+  const factory LabelModel({
+    int id,
+    int remoteId,
+    bool deleted,
+    String name,
+  }) = _LabelModel;
+
+  factory LabelModel.fromJson(Map<String, dynamic> json) =>
+      _$LabelModelFromJson(json);
 }
