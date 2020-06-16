@@ -80,8 +80,8 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   Widget _buildOffstageNavigator(TabItem tabItem) {
     return Provider.value(
       value: MainTabRouter(tabItem: tabItem),
-      child: Offstage(
-        offstage: _currentTab != tabItem,
+      child: Visibility(
+        visible: _currentTab == tabItem,
         child: Navigator(
           key: tabItem.navigator,
           initialRoute: tabItem.rootPath,
