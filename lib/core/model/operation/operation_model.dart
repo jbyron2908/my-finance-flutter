@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/data_source/storage/client/storage_client.dart';
@@ -16,7 +17,9 @@ part 'operation_model.freezed.dart';
 part 'operation_model.g.dart';
 
 @freezed
-abstract class OperationModel implements _$OperationModel {
+abstract class OperationModel
+    with DiagnosticableTreeMixin
+    implements _$OperationModel {
   const OperationModel._();
 
   const factory OperationModel({
@@ -97,7 +100,7 @@ abstract class OperationModel implements _$OperationModel {
   }
 
   String getValueWithCurrency() {
-    var currency = profile.currency;
+    var currency = this.profile.currency;
     var valueString = getValue();
     return '$currency $valueString';
   }

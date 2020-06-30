@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'profile_model.freezed.dart';
 part 'profile_model.g.dart';
 
 @freezed
-abstract class ProfileModel implements _$ProfileModel {
+abstract class ProfileModel
+    with DiagnosticableTreeMixin
+    implements _$ProfileModel {
   const ProfileModel._();
 
   const factory ProfileModel({

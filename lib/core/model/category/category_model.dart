@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'category_model.freezed.dart';
 part 'category_model.g.dart';
 
 @freezed
-abstract class CategoryModel implements _$CategoryModel {
+abstract class CategoryModel
+    with DiagnosticableTreeMixin
+    implements _$CategoryModel {
   const CategoryModel._();
 
   const factory CategoryModel({
