@@ -5,7 +5,7 @@ part 'operation_type_model.g.dart';
 
 @freezed
 abstract class OperationTypeModel implements _$OperationTypeModel {
-  const factory OperationTypeModel({
+  factory OperationTypeModel({
     String id,
     String title,
   }) = _OperationTypeModel;

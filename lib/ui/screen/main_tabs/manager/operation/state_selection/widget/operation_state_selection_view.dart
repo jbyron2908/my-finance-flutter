@@ -19,13 +19,10 @@ class _OperationStateList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<List<OperationStateModel>>(
-      builder: (_, operationStateList, child) => ListView.separated(
+      builder: (_, operationStateList, child) => ListView.builder(
         itemCount: operationStateList.length,
         itemBuilder: (context, index) => OperationStateItem(
           operationState: operationStateList[index],
-        ),
-        separatorBuilder: (context, index) => Divider(
-          color: Colors.grey,
         ),
       ),
     );

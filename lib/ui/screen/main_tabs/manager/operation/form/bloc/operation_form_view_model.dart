@@ -36,16 +36,16 @@ class OperationFormViewModel extends ChangeNotifier {
     ProfileModel profile,
   }) {
     operation = operation.copyWith(
-      title: title,
-      value: value,
-      type: type,
-      date: date,
-      state: state,
-      description: description,
-      payee: payee,
-      category: category,
-      account: account,
-      profile: profile,
+      title: title ?? operation.title,
+      value: value ?? operation.value,
+      type: type ?? operation.type,
+      date: date ?? operation.date,
+      state: state ?? operation.state,
+      description: description ?? operation.description,
+      payee: payee ?? operation.payee,
+      category: category ?? operation.category,
+      account: account ?? operation.account,
+      profile: profile ?? operation.profile,
     );
   }
 }

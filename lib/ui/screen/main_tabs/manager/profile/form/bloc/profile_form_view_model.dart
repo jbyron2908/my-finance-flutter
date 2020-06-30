@@ -24,8 +24,8 @@ class ProfileFormViewModel extends ChangeNotifier {
     String currency,
   }) {
     profile = profile.copyWith(
-      name: name,
-      currency: currency,
+      name: name ?? profile.name,
+      currency: currency ?? profile.currency,
     );
   }
 }
