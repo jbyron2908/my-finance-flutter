@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/provider_setup.dart';
+import 'package:my_finance_flutter/core/dependencies/dependencies_setup.dart';
 import 'package:provider/provider.dart';
 
 class AppDependencies extends StatelessWidget {
@@ -30,7 +30,7 @@ class GlobalDependencies extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ...appProviders,
+        ...dependenciesProviders,
       ],
       child: child,
     );

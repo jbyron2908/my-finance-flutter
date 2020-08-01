@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
-import 'package:my_finance_flutter/core/provider/repository/profile/profile_repository.dart';
+import 'package:my_finance_flutter/core/repository/profile/profile_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_route.dart';
 import 'package:provider/single_child_widget.dart';

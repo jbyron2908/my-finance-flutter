@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/core/provider/repository/git_repo/git_repo_repository.dart';
+import 'package:my_finance_flutter/core/repository/git_repo/git_repo_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_route.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';

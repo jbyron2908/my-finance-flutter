@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/provider/repository/operation/operation_repository.dart';
+import 'package:my_finance_flutter/core/repository/operation/operation_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/list/bloc/operation_list_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/list/screen/operation_list_route.dart';

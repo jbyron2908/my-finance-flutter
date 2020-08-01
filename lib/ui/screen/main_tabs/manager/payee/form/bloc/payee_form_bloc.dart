@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/core/provider/repository/payee/payee_repository.dart';
+import 'package:my_finance_flutter/core/repository/payee/payee_repository.dart';
 import 'package:my_finance_flutter/ui/common/base/bloc/base_bloc.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_view_model.dart';
