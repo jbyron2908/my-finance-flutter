@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/bloc/category_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/bloc/category_form_view_model.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/controller/category_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/controller/category_form_view_model.dart';
 import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 
-class CategoryForm extends StatefulWidget {
-  @override
-  CategoryFormState createState() => CategoryFormState();
-}
-
-class CategoryFormState extends State<CategoryForm> {
+class CategoryForm extends StatelessWidget {
   final FocusNode _parentNode = FocusNode();
 
-  CategoryFormBloc bloc;
-  CategoryFormViewModel viewModel;
-  CategoryModel category;
+  final CategoryFormController controller = Get.find();
+  final CategoryFormViewModel viewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    bloc = CategoryFormBloc.of(context);
-    viewModel = CategoryFormViewModel.of(context);
-    category = viewModel.category;
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
@@ -32,7 +23,7 @@ class CategoryFormState extends State<CategoryForm> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Form(
-        key: bloc.formKey,
+        key: controller.formKey,
         child: ListView(
           padding: const EdgeInsets.all(8.0),
           children: <Widget>[
@@ -55,7 +46,7 @@ class CategoryFormState extends State<CategoryForm> {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: category.name,
+        initialValue: viewModel.category.name,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -74,8 +65,9 @@ class CategoryFormState extends State<CategoryForm> {
         labelText: 'Parent',
         focusNode: _parentNode,
         prefixIcon: Icon(Icons.category),
-        initialValue: category.parent,
-        enabled: !(category.id != null && category.parent == null),
+        initialValue: viewModel.category.parent,
+        enabled: !(viewModel.category.id != null &&
+            viewModel.category.parent == null),
         buildText: (value) => (value == null) ? 'No parent' : value.name,
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -87,7 +79,7 @@ class CategoryFormState extends State<CategoryForm> {
             viewModel.update(parent: value);
           }
         },
-        onTapOrFocus: () => bloc.selectCategory(),
+        onTapOrFocus: () => controller.selectCategory(),
       ),
     ];
   }

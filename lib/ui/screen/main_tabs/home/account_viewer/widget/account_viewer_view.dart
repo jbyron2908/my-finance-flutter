@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_list/operation_list_view.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
 class AccountViewerView extends StatelessWidget {
+  final AccountViewerArg argument = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    var account = AccountViewerRouteArgs.of(context).account;
+    var account = argument.account;
 
     return Scaffold(
       appBar: AppBar(
@@ -22,7 +25,7 @@ class AccountViewerView extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () => _showSnackBar(context, 'Month back'),
+                  onPressed: () => _showSnackBar('Month back'),
                 ),
                 Expanded(
                   child: Text(
@@ -33,7 +36,7 @@ class AccountViewerView extends StatelessWidget {
                 ),
                 IconButton(
                   icon: Icon(Icons.arrow_forward_ios),
-                  onPressed: () => _showSnackBar(context, 'Month forward'),
+                  onPressed: () => _showSnackBar('Month forward'),
                 ),
               ],
             ),
@@ -43,21 +46,16 @@ class AccountViewerView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToOperationForm(context, account),
+        onPressed: () => _navigateToOperationForm(account),
       ),
     );
   }
 
-  void _navigateToOperationForm(BuildContext context, AccountModel account) {
-    OperationFormRoute(
-      argument: OperationFormRouteArgs.create(
-        account: account,
-      ),
-    ).navigateIntoTab(context);
+  void _navigateToOperationForm(AccountModel account) {
+    OperationFormScreen.navigateTo(OperationFormArg.create(account));
   }
 
-  void _showSnackBar(BuildContext context, String text) {
-    final snackBar = SnackBar(content: Text(text));
-    Scaffold.of(context).showSnackBar(snackBar);
+  void _showSnackBar(String text) {
+    Get.rawSnackbar(title: text);
   }
 }

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/bloc/profile_list_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/controller/profile_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/widget/profile_item_view.dart';
 import 'package:my_finance_flutter/ui/widgets/item_list/item_actions.dart';
 
 class ProfileListItem extends StatelessWidget {
-  ProfileListItem({
+  ProfileListItem(
+    this.profile, {
     Key key,
-    this.profile,
   }) : super(key: key);
 
   final ProfileModel profile;
+  final ProfileListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class ProfileListItem extends StatelessWidget {
       elevation: 5,
       clipBehavior: Clip.antiAlias,
       child: ItemActions(
-        onDelete: () => _delete(context),
-        onEdit: () => _edit(context),
+        onDelete: () => _delete(),
+        onEdit: () => _edit(),
         child: ProfileItemView(
           profile: profile,
         ),
@@ -28,14 +30,13 @@ class ProfileListItem extends StatelessWidget {
     );
   }
 
-  void _edit(BuildContext context) {
-    final bloc = ProfileListBloc.of(context);
-    bloc.editProfile(profile);
+  void _edit() {
+    controller.editProfile(profile);
   }
 
-  Future _delete(BuildContext context) async {
+  Future _delete() async {
     var confirmation = await DialogHelper.showAlertDialog(
-      context,
+      Get.context,
       title: 'Delete profile',
       content: 'Do you want to delete this profile?',
       confirmText: 'Yes',
@@ -43,8 +44,7 @@ class ProfileListItem extends StatelessWidget {
     );
 
     if (confirmation == true) {
-      final bloc = ProfileListBloc.of(context);
-      await bloc.deleteProfile(profile);
+      await controller.deleteProfile(profile);
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/balance_list.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_screen.dart';
 
 class BalanceView extends StatelessWidget {
   @override
@@ -14,14 +14,12 @@ class BalanceView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToAccountForm(context),
+        onPressed: () => _navigateToAccountForm(),
       ),
     );
   }
 
-  void _navigateToAccountForm(BuildContext context) {
-    AccountFormRoute(
-      argument: AccountFormRouteArgs.create(),
-    ).navigateIntoTab(context);
+  void _navigateToAccountForm() {
+    AccountFormScreen.navigateTo(AccountFormArg.create());
   }
 }

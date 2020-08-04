@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/bloc/account_viewer_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/controller/account_viewer_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
 class OperationActions extends StatelessWidget {
   const OperationActions({
@@ -82,21 +83,15 @@ class OperationActionRight extends StatelessWidget {
   void _edit(BuildContext context) {
     var operation = OperationItem.operationOf(context);
 
-    OperationFormRoute(
-      argument: OperationFormRouteArgs.edit(
-        operation: operation,
-      ),
-    ).navigateIntoTab(context);
+    OperationFormScreen.navigateTo(OperationFormArg.edit(operation));
   }
 
   void _copy(BuildContext context) {
     var operation = OperationItem.operationOf(context);
 
-    OperationFormRoute(
-      argument: OperationFormRouteArgs.copy(
-        operation: operation,
-      ),
-    ).navigateIntoTab(context);
+    OperationFormScreen.navigateTo(
+      OperationFormArg.copy(operation),
+    );
   }
 }
 
@@ -151,8 +146,8 @@ class OperationActionLeft extends StatelessWidget {
 
     if (confirmation == true) {
       final operation = OperationItem.operationOf(context);
-      final bloc = AccountViewerBloc.of(context);
-      await bloc.deleteOperation(operation);
+      var controller = Get.find<AccountViewerController>();
+      await controller.deleteOperation(operation);
     }
   }
 

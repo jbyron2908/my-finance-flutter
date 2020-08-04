@@ -19,7 +19,7 @@ class OperationTypeItem extends StatelessWidget {
         title: Text(
           operationType.title,
         ),
-        onTap: () => MainTabRouter.of(context).pop(operationType),
+        onTap: () => MainTabRouter.pop(operationType),
       ),
     );
   }

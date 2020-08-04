@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/bloc/account_list_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/screen/account_list_route.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/controller/account_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/widget/account_list_view.dart';
 
-class AccountListScreen
-    extends BaseScreen<AccountListBloc, AccountListRouteArgs> {
+class AccountListScreen extends StatelessWidget {
+  static String get _routePath => '/manager/account/list';
+  static GetPageRoute get route => GetPageRoute(
+        settings: RouteSettings(
+          name: _routePath,
+        ),
+        page: () => AccountListScreen(),
+        binding: AccountListBinding(),
+      );
+
+  static void navigateTo() {
+    AppRouter.navigateTo(_routePath);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AccountListView();
   }
+}
 
+class AccountListBinding implements Bindings {
   @override
-  AccountListBloc buildBloc(BuildContext context) {
-    return AccountListBloc(
-      context: context,
-    );
+  void dependencies() {
+    Get.put(AccountListController());
   }
 }

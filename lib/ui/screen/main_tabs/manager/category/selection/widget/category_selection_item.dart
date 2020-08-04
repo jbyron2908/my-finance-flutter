@@ -46,7 +46,7 @@ class ChildCategory extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: CategoryItemView(
         category: child,
-        onTap: () => MainTabRouter.of(context).pop(child),
+        onTap: () => MainTabRouter.pop(child),
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/selection/screen/account_selection_screen.dart';
 import 'package:path/path.dart' as path;
 
 class ImportCsvForm extends StatefulWidget {
@@ -102,8 +102,7 @@ class ImportCsvFormState extends State<ImportCsvForm> {
   }
 
   void _selectAccount() async {
-    var accountSelected =
-        await AccountSelectionRoute().navigateIntoTab(context);
+    var accountSelected = await AccountSelectionScreen.navigateTo();
     setState(() {
       _account = accountSelected;
     });

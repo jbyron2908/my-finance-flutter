@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/widget/category_parent_selection_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/widget/category_selection_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_list.dart';
 
 class CategorySelectionView extends StatelessWidget {
-  const CategorySelectionView({
+  CategorySelectionView(
+    this.selectParent, {
     Key key,
-    @required this.selectParent,
   }) : super(key: key);
 
   final bool selectParent;
@@ -29,14 +29,12 @@ class CategorySelectionView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToCategoryForm(context),
+        onPressed: () => _navigateToCategoryForm(),
       ),
     );
   }
 
-  void _navigateToCategoryForm(BuildContext context) {
-    CategoryFormRoute(
-      argument: CategoryFormRouteArgs.create(),
-    ).navigateIntoTab(context);
+  void _navigateToCategoryForm() {
+    CategoryFormScreen.navigateTo(CategoryFormArg.create());
   }
 }

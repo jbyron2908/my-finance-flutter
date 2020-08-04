@@ -1,24 +1,20 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/repository/payee/payee_repository.dart';
-import 'package:my_finance_flutter/ui/screen/import_csv/preview/bloc/import_csv_preview_model.dart';
+import 'package:my_finance_flutter/ui/screen/import_csv/preview/controller/import_csv_preview_model.dart';
+import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_screen.dart';
 
 class ImportCsvPreviewView extends StatefulWidget {
-  ImportCsvPreviewView({Key key, this.csvFile, this.account}) : super(key: key);
-
-  final File csvFile;
-  final AccountModel account;
-
   @override
   _ImportCsvPreviewViewState createState() => _ImportCsvPreviewViewState();
 }
 
 class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
+  final PayeeRepository payeeRepository = Get.find();
   OperationPreviewModel operationPreview;
   bool loading = true;
   List<List<dynamic>> csvFields;
@@ -78,7 +74,8 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
   final titleColumn = 6;
 
   void getPreview() async {
-    csvFields = await widget.csvFile
+    ImportCsvPreviewArg argument = Get.arguments;
+    csvFields = await argument.csvFile
         .openRead()
         .transform(utf8.decoder)
         .transform(CsvToListConverter(fieldDelimiter: ',', eol: '\n'))
@@ -107,8 +104,6 @@ class _ImportCsvPreviewViewState extends State<ImportCsvPreviewView> {
   }
 
   void _submit() async {
-    var payeeRepository = PayeeRepository.of(context);
-
     for (var row in csvFields) {
       var preview = createPreview(row);
       var payee = await payeeRepository.getOrAdd(preview.payee);

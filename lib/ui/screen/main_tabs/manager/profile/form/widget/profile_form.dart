@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/bloc/profile_form_view_model.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/controller/profile_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/controller/profile_form_view_model.dart';
 
 class ProfileForm extends StatefulWidget {
   @override
@@ -14,16 +14,11 @@ class ProfileForm extends StatefulWidget {
 class ProfileFormState extends State<ProfileForm> {
   final FocusNode _currencyNode = FocusNode();
 
-  ProfileFormBloc bloc;
-  ProfileFormViewModel viewModel;
-  ProfileModel profile;
+  final ProfileFormController controller = Get.find();
+  final ProfileFormViewModel viewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    bloc = ProfileFormBloc.of(context);
-    viewModel = ProfileFormViewModel.of(context);
-    profile = viewModel.profile;
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
@@ -31,7 +26,7 @@ class ProfileFormState extends State<ProfileForm> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Form(
-        key: bloc.formKey,
+        key: controller.formKey,
         child: ListView(
           padding: const EdgeInsets.all(8.0),
           children: <Widget>[
@@ -54,17 +49,17 @@ class ProfileFormState extends State<ProfileForm> {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: profile.name,
+        initialValue: viewModel.name.value,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.name.value = value;
             _currencyNode.requestFocus();
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.name.value = value;
           }
         },
       ),
@@ -79,17 +74,17 @@ class ProfileFormState extends State<ProfileForm> {
           prefixIcon: Icon(Icons.monetization_on),
           border: OutlineInputBorder(),
         ),
-        initialValue: profile.currency,
+        initialValue: viewModel.currency.value,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(currency: value);
+            viewModel.currency.value = value;
             FocusScope.of(context).requestFocus(FocusNode());
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(currency: value);
+            viewModel.currency.value = value;
           }
         },
       )

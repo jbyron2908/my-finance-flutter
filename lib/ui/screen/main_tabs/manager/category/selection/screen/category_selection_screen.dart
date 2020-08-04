@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/repository/category/category_repository.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/bloc/category_selection_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/screen/category_selection_route.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/core/model/category/category_model.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/controller/category_selection_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/widget/category_selection_view.dart';
 
-class CategorySelectionScreen
-    extends BaseScreen<CategorySelectionBloc, CategorySelectionRouteArgs> {
+class CategorySelectionScreen extends StatelessWidget {
+  static String get _routePath => '/manager/account/selection';
+  static GetPageRoute get route => GetPageRoute<CategoryModel>(
+        settings: RouteSettings(
+          name: _routePath,
+        ),
+        page: () => CategorySelectionScreen(),
+        binding: CategorySelectionBinding(),
+      );
+
+  static Future<CategoryModel> navigateTo(CategorySelectionArg arg) {
+    return AppRouter.navigateTo(_routePath, arg);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var argument = getArgument(context);
-
-    return CategorySelectionView(
-      selectParent: argument.selectParent,
-    );
+    CategorySelectionArg argument = Get.arguments;
+    return CategorySelectionView(argument.selectParent);
   }
+}
 
+class CategorySelectionBinding implements Bindings {
   @override
-  CategorySelectionBloc buildBloc(BuildContext context) {
-    return CategorySelectionBloc(
-      categoryRepository: CategoryRepository.of(context),
-    );
+  void dependencies() {
+    Get.put(CategorySelectionController());
   }
+}
+
+class CategorySelectionArg {
+  bool selectParent;
+
+  CategorySelectionArg([this.selectParent = false]);
 }

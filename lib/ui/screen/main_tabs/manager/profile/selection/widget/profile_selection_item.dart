@@ -18,7 +18,7 @@ class ProfileSelectionItem extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: ProfileItemView(
         profile: profile,
-        onTap: () => MainTabRouter.of(context).pop(profile),
+        onTap: () => MainTabRouter.pop(profile),
       ),
     );
   }

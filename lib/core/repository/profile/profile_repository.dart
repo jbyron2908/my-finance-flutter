@@ -1,23 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_converter.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
 
 class ProfileRepository {
-  static SingleChildWidget buildProvider() =>
-      ProxyProvider<DatabaseClient, ProfileRepository>(
-        update: (context, databaseClient, profileRepository) =>
-            ProfileRepository(databaseClient),
-      );
+  final DatabaseClient _databaseClient = Get.find();
 
-  static ProfileRepository of(BuildContext context) =>
-      Provider.of<ProfileRepository>(context, listen: false);
-
-  final DatabaseClient _databaseClient;
-
-  ProfileRepository(this._databaseClient) {
+  ProfileRepository() {
     _profileListStream = _databaseClient.profileDao.watchAll();
   }
 

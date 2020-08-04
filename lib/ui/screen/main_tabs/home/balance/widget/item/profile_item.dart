@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
+import 'package:my_finance_flutter/ui/app/app_data_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/item/account_item.dart';
-import 'package:provider/provider.dart';
 
 class ProfileItem extends StatelessWidget {
-  ProfileItem({Key key, this.profile}) : super(key: key);
+  ProfileItem(
+    this.profile, {
+    Key key,
+  }) : super(key: key);
 
   final ProfileModel profile;
+  final AppDataController appDataController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<List<AccountModel>>(
-      builder: (context, accountList, child) {
+    return Obx(
+      () {
+        var accountList = appDataController.accountList.value;
         final profileAccountList = accountList
             .where(
               (account) => account.profile.id == profile.id,

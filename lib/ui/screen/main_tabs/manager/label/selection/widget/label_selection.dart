@@ -43,7 +43,7 @@ class _LabelSelectionState extends State<LabelSelection> {
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              MainTabRouter.of(context).pop(selectedLabelList);
+              MainTabRouter.pop(selectedLabelList);
             },
             color: Colors.green,
           ),

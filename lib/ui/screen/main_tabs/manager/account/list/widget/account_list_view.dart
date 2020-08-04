@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/widget/account_list_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/widget/account_list.dart';
 
@@ -19,14 +19,12 @@ class AccountListView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToAccountForm(context),
+        onPressed: () => _navigateToAccountForm(),
       ),
     );
   }
 
-  void _navigateToAccountForm(BuildContext context) {
-    AccountFormRoute(
-      argument: AccountFormRouteArgs.create(),
-    ).navigateIntoTab(context);
+  void _navigateToAccountForm() {
+    AccountFormScreen.navigateTo(AccountFormArg.create());
   }
 }

@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_view_model.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/controller/payee_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/controller/payee_form_view_model.dart';
 
-class PayeeForm extends StatefulWidget {
-  @override
-  PayeeFormState createState() => PayeeFormState();
-}
-
-class PayeeFormState extends State<PayeeForm> {
-  PayeeFormBloc bloc;
-  PayeeFormViewModel viewModel;
-  PayeeModel payee;
+class PayeeForm extends StatelessWidget {
+  final PayeeFormController controller = Get.find();
+  final PayeeFormViewModel viewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    bloc = PayeeFormBloc.of(context);
-    viewModel = PayeeFormViewModel.of(context);
-    payee = viewModel.payee;
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
@@ -28,7 +18,7 @@ class PayeeFormState extends State<PayeeForm> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Form(
-        key: bloc.formKey,
+        key: controller.formKey,
         child: ListView(
           padding: const EdgeInsets.all(8.0),
           children: <Widget>[
@@ -51,16 +41,16 @@ class PayeeFormState extends State<PayeeForm> {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: payee.name,
+        initialValue: viewModel.payee.name,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.updatePayee(name: value);
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.updatePayee(name: value);
           }
         },
       ),

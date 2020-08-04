@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
+import 'package:my_finance_flutter/ui/app/app_data_controller.dart';
 import 'package:my_finance_flutter/ui/widgets/item_list/item_list.dart';
-import 'package:provider/provider.dart';
 
 class ProfileList extends StatelessWidget {
-  const ProfileList({
+  ProfileList({
     Key key,
     @required this.itemBuilder,
   }) : super(key: key);
 
   final Widget Function(BuildContext, ProfileModel model) itemBuilder;
 
+  final AppDataController appDataController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<List<ProfileModel>>(
-      builder: (_, list, child) => ItemList(
-        modelList: list,
+    return Obx(
+      () => ItemList(
+        modelList: appDataController.profileList.value,
         itemBuilder: itemBuilder,
       ),
     );

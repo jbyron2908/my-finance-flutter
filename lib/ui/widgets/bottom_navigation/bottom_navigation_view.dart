@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
-import 'package:provider/provider.dart';
 
 class BottomNavigationView extends StatefulWidget {
   BottomNavigationView({
-    this.tabList,
-    this.routeGenerator,
+    @required this.tabList,
+    @required this.routeGenerator,
+    this.onCurrentTabChange,
   });
 
   final List<TabItem> tabList;
   final Route Function(RouteSettings routeSettings) routeGenerator;
+  final Function(TabItem) onCurrentTabChange;
 
   @override
   State<StatefulWidget> createState() => _BottomNavigationViewState();
@@ -38,9 +38,14 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
 
   void _selectTab(TabItem tabItem) {
     if (tabItem == _currentTab) {
-      _currentTab.navigator.currentState.popUntil((route) => route.isFirst);
+      _currentTab.navigatorKey.currentState.popUntil((route) => route.isFirst);
     } else {
-      setState(() => _currentTab = tabItem);
+      setState(() {
+        _currentTab = tabItem;
+        if (widget.onCurrentTabChange != null) {
+          widget.onCurrentTabChange(_currentTab);
+        }
+      });
     }
   }
 
@@ -49,7 +54,7 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
     return WillPopScope(
       onWillPop: () async {
         final isFirstRouteInCurrentTab =
-            !await _currentTab.navigator.currentState.maybePop();
+            !await _currentTab.navigatorKey.currentState.maybePop();
 
         if (isFirstRouteInCurrentTab) {
           if (_currentTab != _defaultTab) {
@@ -78,15 +83,13 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   }
 
   Widget _buildOffstageNavigator(TabItem tabItem) {
-    return Provider.value(
-      value: MainTabRouter(tabItem: tabItem),
-      child: Visibility(
-        visible: _currentTab == tabItem,
-        child: Navigator(
-          key: tabItem.navigator,
-          initialRoute: tabItem.rootPath,
-          onGenerateRoute: routeGenerator,
-        ),
+    return Visibility(
+      maintainState: true,
+      visible: _currentTab == tabItem,
+      child: Navigator(
+        key: tabItem.navigatorKey,
+        initialRoute: tabItem.rootPath,
+        onGenerateRoute: widget.routeGenerator,
       ),
     );
   }
@@ -154,5 +157,7 @@ class TabItem {
   final IconData iconData;
   final Color activeColor;
   final bool defaultTab;
-  final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  NavigatorState get navigator => navigatorKey.currentState;
 }

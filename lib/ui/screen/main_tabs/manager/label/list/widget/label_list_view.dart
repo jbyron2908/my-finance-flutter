@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/label/label_model.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/form/screen/label_form_route.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/form/screen/label_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/widgets/label_item.dart';
 import 'package:provider/provider.dart';
 
@@ -18,13 +18,13 @@ class LabelListView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _navigateToLabelForm(context),
+        onPressed: () => _navigateToLabelForm(),
       ),
     );
   }
 
-  void _navigateToLabelForm(BuildContext context) {
-    LabelFormRoute().navigateIntoTab(context);
+  void _navigateToLabelForm() {
+    LabelFormScreen.navigateTo();
   }
 }
 

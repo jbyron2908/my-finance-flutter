@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/bloc/entity_list_bloc.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/controller/entity_list_controller.dart';
 
 class EntityListView extends StatelessWidget {
+  final EntityListController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    var bloc = EntityListBloc.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Management'),
@@ -15,7 +16,7 @@ class EntityListView extends StatelessWidget {
           ListTile(
             title: Text('Profiles'),
             leading: Icon(Icons.account_circle),
-            onTap: () => bloc.goToProfileList(context),
+            onTap: () => controller.goToProfileList(),
           ),
           Divider(
             color: Colors.grey,
@@ -23,7 +24,7 @@ class EntityListView extends StatelessWidget {
           ListTile(
             title: Text('Accounts'),
             leading: Icon(Icons.account_balance),
-            onTap: () => bloc.goToAccountList(context),
+            onTap: () => controller.goToAccountList(),
           ),
           Divider(
             color: Colors.grey,
@@ -31,7 +32,7 @@ class EntityListView extends StatelessWidget {
           ListTile(
             title: Text('Categories'),
             leading: Icon(Icons.category),
-            onTap: () => bloc.goToCategoryList(context),
+            onTap: () => controller.goToCategoryList(),
           ),
           Divider(
             color: Colors.grey,
@@ -39,7 +40,7 @@ class EntityListView extends StatelessWidget {
           ListTile(
             title: Text('Payees'),
             leading: Icon(Icons.people),
-            onTap: () => bloc.goToPayeeList(context),
+            onTap: () => controller.goToPayeeList(),
           ),
           Divider(
             color: Colors.grey,
@@ -47,7 +48,7 @@ class EntityListView extends StatelessWidget {
           ListTile(
             title: Text('Playground1'),
             leading: Icon(Icons.info),
-            onTap: () => bloc.goToPlayground(context),
+            onTap: () => controller.goToPlayground(),
           ),
         ],
       ),

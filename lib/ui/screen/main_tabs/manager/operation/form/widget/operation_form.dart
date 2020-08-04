@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
@@ -10,16 +11,11 @@ import 'package:my_finance_flutter/ui/common/text_input_formatter/currency_forma
 import 'package:my_finance_flutter/ui/common/text_input_validator/currency_validator.dart';
 import 'package:my_finance_flutter/ui/common/text_input_validator/object_validator.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_view_model.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/controller/operation_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/controller/operation_form_view_model.dart';
 import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 
-class OperationForm extends StatefulWidget {
-  @override
-  OperationFormState createState() => OperationFormState();
-}
-
-class OperationFormState extends State<OperationForm> {
+class OperationForm extends StatelessWidget {
   final FocusNode _valueNode = FocusNode();
   final FocusNode _typeNode = FocusNode();
   final FocusNode _dateNode = FocusNode();
@@ -30,24 +26,19 @@ class OperationFormState extends State<OperationForm> {
   final FocusNode _accountNode = FocusNode();
   final FocusNode _noteNode = FocusNode();
 
-  OperationFormBloc bloc;
-  OperationFormViewModel viewModel;
-  OperationModel operation;
+  final OperationFormController controller = Get.find();
+  final OperationFormViewModel viewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    bloc = OperationFormBloc.of(context);
-    viewModel = OperationFormViewModel.of(context);
-    operation = viewModel.operation;
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
         // Hide keyboard when scroll
-        FocusScope.of(context).requestFocus(FocusNode());
+        Get.focusScope.requestFocus(FocusNode());
       },
       child: Form(
-        key: bloc.formKey,
+        key: controller.formKey,
         child: ListView(
           padding: const EdgeInsets.all(8.0),
           children: buildFormFields(),
@@ -62,7 +53,7 @@ class OperationFormState extends State<OperationForm> {
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
-        initialValue: operation.title,
+        initialValue: viewModel.operation.title,
         decoration: InputDecoration(
           hintText: 'Title',
           labelText: 'Title',
@@ -72,7 +63,7 @@ class OperationFormState extends State<OperationForm> {
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           viewModel.update(title: value);
-          FocusScope.of(context).requestFocus(_valueNode);
+          Get.focusScope.requestFocus(_valueNode);
         },
         onSaved: (value) {
           viewModel.update(title: value);
@@ -90,11 +81,11 @@ class OperationFormState extends State<OperationForm> {
                 WhitelistingTextInputFormatter.digitsOnly,
                 CurrencyFormatter.build(),
               ],
-              initialValue: operation.getValue(),
+              initialValue: viewModel.operation.getValue(),
               decoration: InputDecoration(
                 hintText: 'Value',
                 labelText: 'Value',
-                prefixText: '${operation.profile.currency} ',
+                prefixText: '${viewModel.operation.profile.currency} ',
                 prefixIcon: Icon(Icons.monetization_on),
                 border: OutlineInputBorder(),
               ),
@@ -105,7 +96,7 @@ class OperationFormState extends State<OperationForm> {
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(value: double.parse(value));
-                  FocusScope.of(context).requestFocus(_typeNode);
+                  Get.focusScope.requestFocus(_typeNode);
                 }
               },
               onSaved: (value) {
@@ -121,13 +112,13 @@ class OperationFormState extends State<OperationForm> {
               labelText: 'Type',
               focusNode: _typeNode,
               prefixIcon: Icon(Icons.sort),
-              initialValue: operation.type,
+              initialValue: viewModel.operation.type,
               buildText: (value) => value.title,
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(type: value);
-                  FocusScope.of(context).requestFocus(_dateNode);
+                  Get.focusScope.requestFocus(_dateNode);
                 }
               },
               onSaved: (value) {
@@ -135,7 +126,7 @@ class OperationFormState extends State<OperationForm> {
                   viewModel.update(type: value);
                 }
               },
-              onTapOrFocus: () => bloc.selectOperationType(),
+              onTapOrFocus: () => controller.selectOperationType(),
             ),
           ),
         ],
@@ -148,13 +139,13 @@ class OperationFormState extends State<OperationForm> {
               labelText: 'Date',
               focusNode: _dateNode,
               prefixIcon: Icon(Icons.access_time),
-              initialValue: operation.date,
+              initialValue: viewModel.operation.date,
               buildText: (value) => _getDateString(value),
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(date: value);
-                  FocusScope.of(context).requestFocus(_timeNode);
+                  Get.focusScope.requestFocus(_timeNode);
                 }
               },
               onSaved: (value) {
@@ -162,7 +153,7 @@ class OperationFormState extends State<OperationForm> {
                   viewModel.update(date: value);
                 }
               },
-              onTapOrFocus: () => bloc.selectDate(),
+              onTapOrFocus: () => controller.selectDate(),
             ),
           ),
           UIHelper.horizontalSpaceSmall,
@@ -171,13 +162,13 @@ class OperationFormState extends State<OperationForm> {
               labelText: 'Time',
               focusNode: _timeNode,
               prefixIcon: Icon(Icons.access_time),
-              initialValue: operation.date,
+              initialValue: viewModel.operation.date,
               buildText: (value) => _getTimeString(value),
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(date: value);
-                  FocusScope.of(context).requestFocus(_payeeNode);
+                  Get.focusScope.requestFocus(_payeeNode);
                 }
               },
               onSaved: (value) {
@@ -185,7 +176,7 @@ class OperationFormState extends State<OperationForm> {
                   viewModel.update(date: value);
                 }
               },
-              onTapOrFocus: () => bloc.selectTime(),
+              onTapOrFocus: () => controller.selectTime(),
             ),
           ),
         ],
@@ -198,13 +189,13 @@ class OperationFormState extends State<OperationForm> {
               labelText: 'Payee',
               focusNode: _payeeNode,
               prefixIcon: Icon(Icons.person),
-              initialValue: operation.payee,
+              initialValue: viewModel.operation.payee,
               buildText: (value) => (value == null) ? 'Unknown' : value.name,
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(payee: value);
-                  FocusScope.of(context).requestFocus(_stateNode);
+                  Get.focusScope.requestFocus(_stateNode);
                 }
               },
               onSaved: (value) {
@@ -212,7 +203,7 @@ class OperationFormState extends State<OperationForm> {
                   viewModel.update(payee: value);
                 }
               },
-              onTapOrFocus: () => bloc.selectPayee(),
+              onTapOrFocus: () => controller.selectPayee(),
             ),
           ),
           UIHelper.horizontalSpaceSmall,
@@ -221,13 +212,13 @@ class OperationFormState extends State<OperationForm> {
               labelText: 'State',
               focusNode: _stateNode,
               prefixIcon: Icon(Icons.check_circle),
-              initialValue: operation.state,
+              initialValue: viewModel.operation.state,
               buildText: (value) => (value == null) ? 'Unknown' : value.title,
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
                   viewModel.update(state: value);
-                  FocusScope.of(context).requestFocus(_categoryNode);
+                  Get.focusScope.requestFocus(_categoryNode);
                 }
               },
               onSaved: (value) {
@@ -235,7 +226,7 @@ class OperationFormState extends State<OperationForm> {
                   viewModel.update(state: value);
                 }
               },
-              onTapOrFocus: () => bloc.selectOperationState(),
+              onTapOrFocus: () => controller.selectOperationState(),
             ),
           ),
         ],
@@ -245,13 +236,13 @@ class OperationFormState extends State<OperationForm> {
         labelText: 'Category',
         focusNode: _categoryNode,
         prefixIcon: Icon(Icons.category),
-        initialValue: operation.category,
+        initialValue: viewModel.operation.category,
         buildText: (value) => (value == null) ? 'Unknown' : value.name,
         validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(category: value);
-            FocusScope.of(context).requestFocus(_accountNode);
+            Get.focusScope.requestFocus(_accountNode);
           }
         },
         onSaved: (value) {
@@ -259,14 +250,14 @@ class OperationFormState extends State<OperationForm> {
             viewModel.update(category: value);
           }
         },
-        onTapOrFocus: () => bloc.selectCategory(),
+        onTapOrFocus: () => controller.selectCategory(),
       ),
       UIHelper.verticalSpaceSmall,
       CustomFormField<AccountModel>(
         labelText: 'Account',
         focusNode: _accountNode,
         prefixIcon: Icon(Icons.account_balance),
-        initialValue: operation.account,
+        initialValue: viewModel.operation.account,
         buildText: (value) => (value == null) ? 'Unknown' : value.name,
         validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
@@ -275,7 +266,7 @@ class OperationFormState extends State<OperationForm> {
               account: value,
               profile: value.profile,
             );
-            FocusScope.of(context).requestFocus(_noteNode);
+            Get.focusScope.requestFocus(_noteNode);
           }
         },
         onSaved: (value) {
@@ -286,7 +277,7 @@ class OperationFormState extends State<OperationForm> {
             );
           }
         },
-        onTapOrFocus: () => bloc.selectAccount(),
+        onTapOrFocus: () => controller.selectAccount(),
       ),
       UIHelper.verticalSpaceSmall,
       TextFormField(
@@ -303,7 +294,7 @@ class OperationFormState extends State<OperationForm> {
         onFieldSubmitted: (value) {
           if (value != null) {
             viewModel.update(description: value);
-            FocusScope.of(context).requestFocus(FocusNode());
+            Get.focusScope.requestFocus(FocusNode());
           }
         },
         onSaved: (value) {

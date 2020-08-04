@@ -1,49 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/bloc/payee_form_bloc.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/controller/payee_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/controller/payee_form_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/widget/payee_form_view.dart';
-import 'package:provider/provider.dart';
 
-class PayeeFormScreen extends BaseScreen<PayeeFormBloc, PayeeFormScreenArgs> {
+class PayeeFormScreen extends StatelessWidget {
+  static String get _routePath => '/manager/payee/form';
+  static GetPageRoute get route => GetPageRoute(
+        settings: RouteSettings(
+          name: _routePath,
+        ),
+        page: () => PayeeFormScreen(),
+        binding: PayeeFormBinding(),
+      );
+
+  static void navigateTo(PayeeFormArg argument) {
+    AppRouter.navigateTo(_routePath, argument);
+  }
+
   @override
   Widget build(BuildContext context) {
     return PayeeFormView();
   }
+}
 
+class PayeeFormBinding implements Bindings {
   @override
-  PayeeFormBloc buildBloc(BuildContext context) {
-    var argument = getArgument(context);
-
-    return PayeeFormBloc(
-      context,
-      payee: argument.payee,
-    );
+  void dependencies() {
+    Get.put(PayeeFormController());
+    PayeeFormArg arguments = Get.arguments;
+    Get.put(PayeeFormViewModel(arguments.payee));
   }
 }
 
-class PayeeFormScreenArgs {
-  static PayeeFormScreenArgs of(BuildContext context) =>
-      Provider.of<PayeeFormScreenArgs>(context, listen: false);
-
+class PayeeFormArg {
   PayeeModel payee;
 
-  PayeeFormScreenArgs({
+  PayeeFormArg({
     this.payee,
   });
 
-  static PayeeFormScreenArgs create() {
+  static PayeeFormArg create() {
     var payee = PayeeModel();
 
-    return PayeeFormScreenArgs(
+    return PayeeFormArg(
       payee: payee,
     );
   }
 
-  static PayeeFormScreenArgs edit({
+  static PayeeFormArg edit(
     PayeeModel payee,
-  }) {
-    return PayeeFormScreenArgs(
+  ) {
+    return PayeeFormArg(
       payee: payee,
     );
   }

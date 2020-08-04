@@ -100,7 +100,7 @@ abstract class OperationModel
   }
 
   String getValueWithCurrency() {
-    var currency = this.profile.currency;
+    var currency = profile.currency;
     var valueString = getValue();
     return '$currency $valueString';
   }

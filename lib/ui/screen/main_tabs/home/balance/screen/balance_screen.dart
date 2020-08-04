@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/bloc/balance_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_route.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/controller/balance_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/balance_view.dart';
 
-class BalanceScreen extends BaseScreen<BalanceBloc, BalanceRouteArgs> {
+class BalanceScreen extends StatelessWidget {
+  static String get _routePath => '/home/main';
+  static GetPageRoute get route => GetPageRoute(
+        settings: RouteSettings(
+          name: _routePath,
+        ),
+        page: () => BalanceScreen(),
+        binding: BalanceBinding(),
+      );
+
   @override
   Widget build(BuildContext context) {
     return BalanceView();
   }
+}
 
+class BalanceBinding implements Bindings {
   @override
-  BalanceBloc buildBloc(BuildContext context) {
-    return BalanceBloc();
+  void dependencies() {
+    Get.put(BalanceController());
   }
 }

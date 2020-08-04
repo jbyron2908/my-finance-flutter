@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/bloc/category_list_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/controller/category_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_item_view.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_list.dart';
 import 'package:my_finance_flutter/ui/widgets/item_list/item_actions.dart';
@@ -13,6 +14,8 @@ class CategoryListItem extends StatelessWidget {
   }) : super(key: key);
 
   final CategoryItemModel categoryItem;
+
+  final CategoryListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +40,7 @@ class CategoryListItem extends StatelessWidget {
   }
 
   void _edit(BuildContext context, CategoryModel category) {
-    final bloc = CategoryListBloc.of(context);
-    bloc.editCategory(category);
+    controller.editCategory(category);
   }
 
   Future _delete(BuildContext context, CategoryModel category) async {
@@ -51,19 +53,19 @@ class CategoryListItem extends StatelessWidget {
     );
 
     if (confirmation == true) {
-      final bloc = CategoryListBloc.of(context);
-      await bloc.deleteCategory(category);
+      await controller.deleteCategory(category);
     }
   }
 }
 
 class ChildCategory extends StatelessWidget {
-  const ChildCategory({
+  ChildCategory({
     Key key,
     @required this.child,
   }) : super(key: key);
 
   final CategoryModel child;
+  final CategoryListController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +83,7 @@ class ChildCategory extends StatelessWidget {
   }
 
   void _edit(BuildContext context, CategoryModel category) {
-    final bloc = CategoryListBloc.of(context);
-    bloc.editCategory(category);
+    controller.editCategory(category);
   }
 
   Future _delete(BuildContext context, CategoryModel category) async {
@@ -95,8 +96,7 @@ class ChildCategory extends StatelessWidget {
     );
 
     if (confirmation == true) {
-      final bloc = CategoryListBloc.of(context);
-      await bloc.deleteCategory(category);
+      await controller.deleteCategory(category);
     }
   }
 }

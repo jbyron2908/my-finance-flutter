@@ -1,23 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/bloc/operation_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_route.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
+import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/controller/operation_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/controller/operation_form_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/widget/operation_form_view.dart';
 
-class OperationFormScreen
-    extends BaseScreen<OperationFormBloc, OperationFormRouteArgs> {
+class OperationFormScreen extends StatelessWidget {
+  static String get _routePath => '/manager/operation/form';
+  static GetPageRoute get route => GetPageRoute(
+        settings: RouteSettings(
+          name: _routePath,
+        ),
+        page: () => OperationFormScreen(),
+        binding: OperationFormBinding(),
+      );
+
+  static void navigateTo(OperationFormArg argument) {
+    AppRouter.navigateTo(_routePath, argument);
+  }
+
   @override
   Widget build(BuildContext context) {
     return OperationFormView();
   }
+}
 
+class OperationFormBinding implements Bindings {
   @override
-  OperationFormBloc buildBloc(BuildContext context) {
-    var argument = getArgument(context);
+  void dependencies() {
+    Get.put(OperationFormController());
+    OperationFormArg arguments = Get.arguments;
+    Get.put(OperationFormViewModel(arguments.model));
+  }
+}
 
-    return OperationFormBloc(
-      context: context,
-      operation: argument.operation,
+class OperationFormArg {
+  final OperationModel model;
+
+  OperationFormArg(this.model);
+
+  static OperationFormArg create(AccountModel account) {
+    var model = OperationModel(account: account);
+
+    return OperationFormArg(model);
+  }
+
+  static OperationFormArg copy(OperationModel operation) {
+    var model = operation.copyWith(
+      id: null,
+      date: DateTime.now(),
     );
+
+    return OperationFormArg(model);
+  }
+
+  static OperationFormArg edit(OperationModel model) {
+    return OperationFormArg(model);
   }
 }

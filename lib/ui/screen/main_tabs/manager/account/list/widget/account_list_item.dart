@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/bloc/account_list_bloc.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/controller/account_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/widget/account_item_view.dart';
 import 'package:my_finance_flutter/ui/widgets/item_list/item_actions.dart';
 
@@ -11,6 +12,7 @@ class AccountListItem extends StatelessWidget {
     this.account,
   }) : super(key: key);
 
+  final AccountListController controller = Get.find();
   final AccountModel account;
 
   @override
@@ -29,8 +31,7 @@ class AccountListItem extends StatelessWidget {
   }
 
   void _edit(BuildContext context) {
-    final bloc = AccountListBloc.of(context);
-    bloc.editAccount(account);
+    controller.editAccount(account);
   }
 
   Future _delete(BuildContext context) async {
@@ -43,8 +44,7 @@ class AccountListItem extends StatelessWidget {
     );
 
     if (confirmation == true) {
-      final bloc = AccountListBloc.of(context);
-      await bloc.deleteAccount(account);
+      await controller.deleteAccount(account);
     }
   }
 }

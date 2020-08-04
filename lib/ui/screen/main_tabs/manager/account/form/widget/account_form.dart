@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:my_finance_flutter/core/model/account/account_model.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/profile/profile_model.dart';
 import 'package:my_finance_flutter/ui/common/text_input_validator/object_validator.dart';
 import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/bloc/account_form_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/bloc/account_form_view_model.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/controller/account_form_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/controller/account_form_view_model.dart';
 import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 
-class AccountForm extends StatefulWidget {
-  @override
-  AccountFormState createState() => AccountFormState();
-}
-
-class AccountFormState extends State<AccountForm> {
+class AccountForm extends StatelessWidget {
   final FocusNode _typeNode = FocusNode();
   final FocusNode _initialValueNode = FocusNode();
   final FocusNode _profileNode = FocusNode();
 
-  AccountFormBloc bloc;
-  AccountFormViewModel viewModel;
-  AccountModel account;
+  final AccountFormController controller = Get.find();
+  final AccountFormViewModel viewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    bloc = AccountFormBloc.of(context);
-    viewModel = AccountFormViewModel.of(context);
-    account = viewModel.account;
-
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
@@ -36,7 +26,7 @@ class AccountFormState extends State<AccountForm> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Form(
-        key: bloc.formKey,
+        key: controller.formKey,
         child: ListView(
           padding: const EdgeInsets.all(8.0),
           children: <Widget>[
@@ -59,7 +49,7 @@ class AccountFormState extends State<AccountForm> {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: account.name,
+        initialValue: viewModel.account.name,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -84,7 +74,7 @@ class AccountFormState extends State<AccountForm> {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        initialValue: account.type,
+        initialValue: viewModel.account.type,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -104,7 +94,7 @@ class AccountFormState extends State<AccountForm> {
         focusNode: _profileNode,
         prefixIcon: Icon(Icons.account_circle),
         buildText: (value) => (value == null) ? 'Unknown' : value.name,
-        initialValue: account.profile,
+        initialValue: viewModel.account.profile,
         validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
@@ -116,7 +106,7 @@ class AccountFormState extends State<AccountForm> {
             viewModel.update(profile: value);
           }
         },
-        onTapOrFocus: () => bloc.selectProfile(),
+        onTapOrFocus: () => controller.selectProfile(),
       ),
     ];
   }

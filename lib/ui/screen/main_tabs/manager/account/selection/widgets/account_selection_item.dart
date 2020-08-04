@@ -17,7 +17,7 @@ class AccountSelectionItem extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: AccountItemView(
         account: account,
-        onTap: () => MainTabRouter.of(context).pop(account),
+        onTap: () => MainTabRouter.pop(account),
       ),
     );
   }

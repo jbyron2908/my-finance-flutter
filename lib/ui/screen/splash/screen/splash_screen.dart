@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/common/base/screen/base_screen.dart';
-import 'package:my_finance_flutter/ui/screen/splash/bloc/splash_bloc.dart';
-import 'package:my_finance_flutter/ui/screen/splash/screen/splash_route.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/screen/splash/controller/splash_controller.dart';
 import 'package:my_finance_flutter/ui/screen/splash/widget/splash_view.dart';
 
-class SplashScreen extends BaseScreen<SplashBloc, SplashRouteArgs> {
-  @override
-  Widget build(BuildContext context) {
-    return SplashView();
-  }
+class SplashScreen extends StatelessWidget {
+  static String get _routePath => '/';
+  static GetPageRoute get route => GetPageRoute(
+        settings: RouteSettings(
+          name: _routePath,
+        ),
+        page: () => SplashScreen(),
+        binding: SplashBinding(),
+      );
 
   @override
-  SplashBloc buildBloc(BuildContext context) {
-    return SplashBloc();
+  Widget build(BuildContext context) {
+    return Container(
+      child: SplashView(),
+    );
+  }
+}
+
+class SplashBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put(SplashController());
   }
 }
