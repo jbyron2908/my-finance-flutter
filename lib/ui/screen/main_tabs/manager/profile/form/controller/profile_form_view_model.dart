@@ -5,19 +5,18 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/scre
 class ProfileFormViewModel extends GetxController {
   final RxString name = ''.obs;
   final RxString currency = ''.obs;
+  ProfileFormArg argument;
 
-  @override
-  void onInit() {
-    ProfileFormArg arguments = Get.arguments;
-    var profile = arguments.profile;
+  void setArgument(ProfileFormArg argument) {
+    this.argument = argument;
+    var profile = argument.profile;
 
     name.value = profile.name;
     currency.value = profile.currency;
   }
 
-  ProfileModel buildProfile() {
-    ProfileFormArg arguments = Get.arguments;
-    var profile = arguments.profile;
+  ProfileModel buildGorm() {
+    var profile = argument.profile;
 
     return profile.copyWith(
       name: name.value,

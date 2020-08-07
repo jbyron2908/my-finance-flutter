@@ -6,7 +6,7 @@ class NavigationHandler {
 
   final List<GetPageRoute> routeList;
 
-  Route<dynamic> routeGenerator(RouteSettings settings) {
+  Route routeGenerator(RouteSettings settings) {
     var matchRoute = routeList.firstWhere(
       (route) => route.settings.name == settings.name,
       orElse: () => null,
@@ -19,23 +19,20 @@ class NavigationHandler {
     return null;
   }
 
-  GetPageRoute _buildGetPageRoute(
-    GetPageRoute route,
+  GetPageRoute<T> _buildGetPageRoute<T>(
+    GetPageRoute<T> route,
     RouteSettings settings,
   ) {
-    return GetPageRoute(
+    return GetPageRoute<T>(
       page: route.page,
       parameter: route.parameter,
-      settings: RouteSettings(
-        name: settings.name,
-        arguments: settings.arguments,
-      ),
+      settings: settings,
       curve: route.curve,
       opaque: route.opaque,
       customTransition: route.customTransition,
       binding: route.binding,
       bindings: route.bindings,
-      transitionDuration: (route.transitionDuration),
+      transitionDuration: route.transitionDuration,
       transition: route.transition,
       popGesture: route.popGesture,
       fullscreenDialog: route.fullscreenDialog,

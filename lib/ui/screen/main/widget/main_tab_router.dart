@@ -60,7 +60,11 @@ class MainTabRouter {
 
   MainTabRouter(
     this.tabItemList,
-  );
+  ) {
+    currentTab = tabItemList.firstWhere(
+      (tabItem) => tabItem.defaultTab,
+    );
+  }
 
   final List<TabItem> tabItemList;
   TabItem currentTab;
@@ -69,7 +73,7 @@ class MainTabRouter {
   NavigatorState get navigator => currentTab?.navigator;
 
   static Future<T> navigateTo<T>(String path, [Object argument]) {
-    return _instance.navigator?.pushNamed(
+    return _instance.navigator?.pushNamed<T>(
       path,
       arguments: argument,
     );

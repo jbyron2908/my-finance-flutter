@@ -49,17 +49,17 @@ class AccountForm extends StatelessWidget {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: viewModel.account.name,
+        initialValue: viewModel.name.value,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.name.value = value;
             _typeNode.requestFocus();
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.name.value = value;
           }
         },
       ),
@@ -74,17 +74,17 @@ class AccountForm extends StatelessWidget {
           prefixIcon: Icon(Icons.category),
           border: OutlineInputBorder(),
         ),
-        initialValue: viewModel.account.type,
+        initialValue: viewModel.type.value,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(type: value);
+            viewModel.type.value = value;
             _initialValueNode.requestFocus();
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(type: value);
+            viewModel.type.value = value;
           }
         },
       ),
@@ -94,16 +94,16 @@ class AccountForm extends StatelessWidget {
         focusNode: _profileNode,
         prefixIcon: Icon(Icons.account_circle),
         buildText: (value) => (value == null) ? 'Unknown' : value.name,
-        initialValue: viewModel.account.profile,
+        initialValue: viewModel.profile.value,
         validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(profile: value);
+            viewModel.profile.value = value;
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(profile: value);
+            viewModel.profile.value = value;
           }
         },
         onTapOrFocus: () => controller.selectProfile(),

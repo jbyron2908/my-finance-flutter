@@ -16,7 +16,7 @@ class ProfileSelectionScreen extends StatelessWidget {
       );
 
   static Future<ProfileModel> navigateTo() {
-    return MainTabRouter.navigateTo(_routePath);
+    return MainTabRouter.navigateTo<ProfileModel>(_routePath);
   }
 
   @override

@@ -11,6 +11,6 @@ class ProfileListController extends GetxController {
   }
 
   void editProfile(ProfileModel profile) {
-    ProfileFormScreen.navigateTo(ProfileFormArg.edit(profile: profile));
+    ProfileFormScreen.navigateTo(ProfileFormArg.edit(profile));
   }
 }

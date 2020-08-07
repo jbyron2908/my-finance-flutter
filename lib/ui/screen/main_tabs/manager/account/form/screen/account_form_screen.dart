@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/controller/account_form_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/controller/account_form_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/widget/account_form_view.dart';
@@ -17,7 +17,7 @@ class AccountFormScreen extends StatelessWidget {
       );
 
   static void navigateTo(AccountFormArg argument) {
-    AppRouter.navigateTo(_routePath, argument);
+    MainTabRouter.navigateTo(_routePath, argument);
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/controller/account_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/widget/account_list_view.dart';
 
@@ -15,7 +15,7 @@ class AccountListScreen extends StatelessWidget {
       );
 
   static void navigateTo() {
-    AppRouter.navigateTo(_routePath);
+    MainTabRouter.navigateTo(_routePath);
   }
 
   @override

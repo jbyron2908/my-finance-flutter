@@ -20,8 +20,12 @@ class ProfileFormScreen extends StatelessWidget {
     MainTabRouter.navigateTo(_routePath, argument);
   }
 
+  final ProfileFormViewModel viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var arguments = ModalRoute.of(context).settings.arguments;
+    viewModel.setArgument(arguments);
     return ProfileFormView();
   }
 }
@@ -37,23 +41,15 @@ class ProfileFormBinding implements Bindings {
 class ProfileFormArg {
   ProfileModel profile;
 
-  ProfileFormArg({
-    this.profile,
-  });
+  ProfileFormArg(this.profile);
 
   static ProfileFormArg create() {
     var profile = ProfileModel();
 
-    return ProfileFormArg(
-      profile: profile,
-    );
+    return ProfileFormArg(profile);
   }
 
-  static ProfileFormArg edit({
-    ProfileModel profile,
-  }) {
-    return ProfileFormArg(
-      profile: profile,
-    );
+  static ProfileFormArg edit(ProfileModel profile) {
+    return ProfileFormArg(profile);
   }
 }

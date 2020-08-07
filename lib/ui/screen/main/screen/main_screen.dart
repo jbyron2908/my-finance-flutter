@@ -33,6 +33,7 @@ class MainBinding implements Bindings {
     Get.put(MainTabRouter([
       TabItem(
         id: 'home',
+        getId: 10,
         title: 'Home',
         iconData: Icons.home,
         rootPath: '/home/main',
@@ -40,6 +41,7 @@ class MainBinding implements Bindings {
       ),
       TabItem(
         id: 'management',
+        getId: 11,
         title: 'Management',
         iconData: Icons.business,
         rootPath: '/home/manager',

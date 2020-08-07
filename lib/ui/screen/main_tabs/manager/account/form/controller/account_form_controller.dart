@@ -22,7 +22,7 @@ class AccountFormController extends GetxController {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await _accountRepository.save(_viewModel.account);
+      await _accountRepository.save(_viewModel.buildForm());
       MainTabRouter.pop();
     }
   }
