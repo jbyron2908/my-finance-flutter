@@ -7,7 +7,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selectio
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/widget/category_selection_view.dart';
 
 class CategorySelectionScreen extends StatelessWidget {
-  static String get _routeName => '/manager/account/selection';
+  static String get _routeName => '/manager/category/selection';
   static RouteDefinition get routeDefinition => RouteDefinition(
         name: _routeName,
         routeBuilder: (routeSetting) => GetPageRoute<CategoryModel>(
@@ -21,10 +21,14 @@ class CategorySelectionScreen extends StatelessWidget {
     return MainTabRouter.navigateTo(_routeName, arg);
   }
 
+  final CategorySelectionController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    CategorySelectionArg argument = Get.arguments;
-    return CategorySelectionView(argument.selectParent);
+    var argument = ModalRoute.of(context).settings.arguments;
+    controller.setArgument(argument);
+
+    return CategorySelectionView();
   }
 }
 

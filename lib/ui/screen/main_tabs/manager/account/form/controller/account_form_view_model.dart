@@ -7,6 +7,7 @@ class AccountFormViewModel extends GetxController {
   final RxString name = ''.obs;
   final RxString type = ''.obs;
   final Rx<ProfileModel> profile = Rx();
+
   AccountFormArg argument;
 
   void setArgument(AccountFormArg argument) {

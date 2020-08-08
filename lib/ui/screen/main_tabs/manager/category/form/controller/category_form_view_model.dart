@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
-import 'package:provider/src/provider.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
 
 class CategoryFormViewModel extends ChangeNotifier {
-  static CategoryFormViewModel of(BuildContext context) =>
-      Provider.of<CategoryFormViewModel>(context);
+  final RxString name = ''.obs;
+  final Rx<CategoryModel> parent = Rx();
 
-  CategoryFormViewModel(CategoryModel category) {
-    this.category = category;
+  CategoryFormArg argument;
+
+  void setArgument(CategoryFormArg argument) {
+    this.argument = argument;
+    var category = argument.category;
+
+    name.value = category.name;
+    parent.value = category.parent;
   }
 
-  CategoryModel _category;
+  CategoryModel buildForm() {
+    var category = argument.category;
 
-  CategoryModel get category => _category;
-
-  set category(CategoryModel category) {
-    _category = category;
-    notifyListeners();
-  }
-
-  void update({
-    String name,
-    CategoryModel parent,
-  }) {
-    category = category.copyWith(
-      name: name ?? _category.name,
-      parent: parent ?? _category.parent,
+    return category.copyWith(
+      name: name.value,
+      parent: parent.value,
     );
   }
 }

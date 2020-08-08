@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
+import 'package:my_finance_flutter/ui/app/app_data_controller.dart';
 import 'package:my_finance_flutter/ui/widgets/item_list/item_list.dart';
-import 'package:provider/provider.dart';
 
 class CategoryList extends StatelessWidget {
-  const CategoryList({
+  CategoryList({
     Key key,
     @required this.itemBuilder,
   }) : super(key: key);
 
   final Widget Function(BuildContext, CategoryItemModel) itemBuilder;
+  final AppDataController appDataController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<List<CategoryModel>>(
-      builder: (context, list, child) {
-        if (list == null) {
+    return Obx(
+      () {
+        var categoryList = appDataController.categoryList.value;
+        if (categoryList == null) {
           return Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          var parentList = _buildCategoryItemList(list);
+          var parentList = _buildCategoryItemList(categoryList);
           return ItemList(
             modelList: parentList,
             itemBuilder: itemBuilder,

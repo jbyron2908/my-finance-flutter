@@ -22,8 +22,12 @@ class CategoryFormScreen extends StatelessWidget {
     MainTabRouter.navigateTo(_routeName, argument);
   }
 
+  final CategoryFormViewModel viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var argument = ModalRoute.of(context).settings.arguments;
+    viewModel.setArgument(argument);
     return CategoryFormView();
   }
 }
@@ -31,9 +35,8 @@ class CategoryFormScreen extends StatelessWidget {
 class CategoryFormBinding implements Bindings {
   @override
   void dependencies() {
+    Get.put(CategoryFormViewModel());
     Get.put(CategoryFormController());
-    CategoryFormArg arguments = Get.arguments;
-    Get.put(CategoryFormViewModel(arguments.category));
   }
 }
 

@@ -14,7 +14,6 @@ class CategoryListItem extends StatelessWidget {
   }) : super(key: key);
 
   final CategoryItemModel categoryItem;
-
   final CategoryListController controller = Get.find();
 
   @override

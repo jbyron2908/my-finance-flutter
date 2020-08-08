@@ -18,7 +18,7 @@ class CategoryFormController extends GetxController {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await _categoryRepository.save(_viewModel.category);
+      await _categoryRepository.save(_viewModel.buildForm());
       MainTabRouter.pop();
     }
   }

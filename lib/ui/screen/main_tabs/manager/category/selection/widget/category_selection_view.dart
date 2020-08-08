@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/form/screen/category_form_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/controller/category_selection_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/widget/category_parent_selection_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/selection/widget/category_selection_item.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_list.dart';
 
 class CategorySelectionView extends StatelessWidget {
-  CategorySelectionView(
-    this.selectParent, {
-    Key key,
-  }) : super(key: key);
-
-  final bool selectParent;
+  final CategorySelectionController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class CategorySelectionView extends StatelessWidget {
         title: Text('Select Category'),
       ),
       body: CategoryList(
-        itemBuilder: (context, categoryItem) => selectParent
+        itemBuilder: (context, categoryItem) => controller.argument.selectParent
             ? CategoryParentSelectionItem(
                 categoryItem: categoryItem,
               )

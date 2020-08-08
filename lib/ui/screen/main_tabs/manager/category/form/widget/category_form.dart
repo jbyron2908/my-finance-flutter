@@ -11,8 +11,8 @@ import 'package:my_finance_flutter/ui/widgets/form/custom_form_field.dart';
 class CategoryForm extends StatelessWidget {
   final FocusNode _parentNode = FocusNode();
 
-  final CategoryFormController controller = Get.find();
   final CategoryFormViewModel viewModel = Get.find();
+  final CategoryFormController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +46,17 @@ class CategoryForm extends StatelessWidget {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: viewModel.category.name,
+        initialValue: viewModel.name.value,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.name.value = value;
             _parentNode.requestFocus();
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(name: value);
+            viewModel.name.value = value;
           }
         },
       ),
@@ -65,18 +65,18 @@ class CategoryForm extends StatelessWidget {
         labelText: 'Parent',
         focusNode: _parentNode,
         prefixIcon: Icon(Icons.category),
-        initialValue: viewModel.category.parent,
-        enabled: !(viewModel.category.id != null &&
-            viewModel.category.parent == null),
+        initialValue: viewModel.parent.value,
+        enabled: !(viewModel.argument.category.id != null &&
+            viewModel.argument.category.parent == null),
         buildText: (value) => (value == null) ? 'No parent' : value.name,
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(parent: value);
+            viewModel.parent.value = value;
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(parent: value);
+            viewModel.parent.value = value;
           }
         },
         onTapOrFocus: () => controller.selectCategory(),

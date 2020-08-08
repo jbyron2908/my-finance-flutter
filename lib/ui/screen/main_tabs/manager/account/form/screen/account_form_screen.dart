@@ -22,8 +22,12 @@ class AccountFormScreen extends StatelessWidget {
     MainTabRouter.navigateTo(_routeName, argument);
   }
 
+  final AccountFormViewModel viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var argument = ModalRoute.of(context).settings.arguments;
+    viewModel.setArgument(argument);
     return AccountFormView();
   }
 }
