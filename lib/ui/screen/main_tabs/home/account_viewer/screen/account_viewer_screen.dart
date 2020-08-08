@@ -21,8 +21,12 @@ class AccountViewerScreen extends StatelessWidget {
     MainTabRouter.navigateTo(_routeName, argument);
   }
 
+  final AccountViewerController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var argument = ModalRoute.of(context).settings.arguments;
+    controller.setArgument(argument);
     return AccountViewerView();
   }
 }

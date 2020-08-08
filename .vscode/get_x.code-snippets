@@ -16,7 +16,7 @@
 	// 	"description": "Log output to console"
 	// }
 	"Get Binding": {
-		"prefix": "get_binding",
+		"prefix": "gxbinding",
 		"body": [
 			"class ${1:name}Binding implements Bindings {",
 			"  @override",
@@ -28,7 +28,7 @@
 		"description": "Get Binding"
 	},
 	"Get Route": {
-		"prefix": "get_route",
+		"prefix": "gxroute",
 		"body": [
 			"static GetPage get route => GetPage(",
 			"      name: ${1:routeName},",
@@ -39,28 +39,28 @@
 		"description": "Get Route"
 	},
 	"Get Put": {
-		"prefix": "get_put",
+		"prefix": "gxput",
 		"body": [
 			"Get.put(${1:dependency});",
 		],
 		"description": "Get Lazy Put"
 	},
 	"Get Lazy Put": {
-		"prefix": "get_put_lazy",
+		"prefix": "gxput_lazy",
 		"body": [
 			"Get.lazyPut(() => ${1:dependency});",
 		],
 		"description": "Get Lazy Put"
 	},
 	"Get find": {
-		"prefix": "get_find",
+		"prefix": "gxfind",
 		"body": [
 			"Get.find()",
 		],
 		"description": "Get find"
 	},
 	"Get find var": {
-		"prefix": "get_find_var",
+		"prefix": "gxfind_var",
 		"body": [
 			"${1:Type} dependency = Get.find();"
 		],

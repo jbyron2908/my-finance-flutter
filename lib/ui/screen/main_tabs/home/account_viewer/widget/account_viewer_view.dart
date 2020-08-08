@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/controller/account_viewer_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_list/operation_list_view.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
 class AccountViewerView extends StatelessWidget {
-  final AccountViewerArg argument = Get.find();
+  final AccountViewerController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    var account = argument.account;
+    var account = controller.argument.account;
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +51,7 @@ class AccountViewerView extends StatelessWidget {
   }
 
   void _navigateToOperationForm(AccountModel account) {
-    OperationFormScreen.navigateTo(OperationFormArg.create(account));
+    controller.navigateToOperationForm();
   }
 
   void _showSnackBar(String text) {

@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/controller/account_viewer_controller.dart';
 
 class OperationView extends StatelessWidget {
+  OperationView(
+    this.index, {
+    Key key,
+  }) : super(key: key);
+
+  final int index;
+  final AccountViewerController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    final operation = OperationItem.operationOf(context);
+    var operation = controller.getOperation(index);
 
     return Container(
       padding: EdgeInsets.all(10.0),

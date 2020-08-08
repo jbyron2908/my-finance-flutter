@@ -3,15 +3,15 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/controller/account_viewer_controller.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/widget/operation_item/operation_item.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/screen/operation_form_screen.dart';
 
 class OperationActions extends StatelessWidget {
-  const OperationActions({
+  OperationActions(
+    this.index, {
     Key key,
     this.child,
   }) : super(key: key);
 
+  final int index;
   final Widget child;
 
   @override
@@ -25,13 +25,13 @@ class OperationActions extends StatelessWidget {
         actions: <Widget>[
           SlideAction(
             color: Colors.blue,
-            child: OperationActionLeft(),
+            child: OperationActionLeft(index),
           ),
         ],
         secondaryActions: <Widget>[
           SlideAction(
             color: Colors.blue,
-            child: OperationActionRight(),
+            child: OperationActionRight(index),
           ),
         ],
         child: child,
@@ -41,6 +41,14 @@ class OperationActions extends StatelessWidget {
 }
 
 class OperationActionRight extends StatelessWidget {
+  OperationActionRight(
+    this.index, {
+    Key key,
+  }) : super(key: key);
+
+  final int index;
+  final AccountViewerController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -55,7 +63,7 @@ class OperationActionRight extends StatelessWidget {
             ),
             onPressed: () {
               Slidable.of(context).close();
-              _copy(context);
+              _copy();
             },
           ),
         ),
@@ -72,7 +80,7 @@ class OperationActionRight extends StatelessWidget {
             ),
             onPressed: () {
               Slidable.of(context).close();
-              _edit(context);
+              _edit();
             },
           ),
         ),
@@ -80,22 +88,24 @@ class OperationActionRight extends StatelessWidget {
     );
   }
 
-  void _edit(BuildContext context) {
-    var operation = OperationItem.operationOf(context);
-
-    OperationFormScreen.navigateTo(OperationFormArg.edit(operation));
+  void _edit() {
+    controller.editOperation(index);
   }
 
-  void _copy(BuildContext context) {
-    var operation = OperationItem.operationOf(context);
-
-    OperationFormScreen.navigateTo(
-      OperationFormArg.copy(operation),
-    );
+  void _copy() {
+    controller.copyOperation(index);
   }
 }
 
 class OperationActionLeft extends StatelessWidget {
+  OperationActionLeft(
+    this.index, {
+    Key key,
+  }) : super(key: key);
+
+  final int index;
+  final AccountViewerController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -145,9 +155,7 @@ class OperationActionLeft extends StatelessWidget {
     );
 
     if (confirmation == true) {
-      final operation = OperationItem.operationOf(context);
-      var controller = Get.find<AccountViewerController>();
-      await controller.deleteOperation(operation);
+      await controller.deleteOperation(index);
     }
   }
 
