@@ -15,7 +15,7 @@ class PayeeFormController extends GetxController {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await _payeeRepository.save(_viewModel.payee);
+      await _payeeRepository.save(_viewModel.buildForm());
       MainTabRouter.pop();
     }
   }

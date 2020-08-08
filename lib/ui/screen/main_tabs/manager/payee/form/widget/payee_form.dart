@@ -41,16 +41,16 @@ class PayeeForm extends StatelessWidget {
           prefixIcon: Icon(Icons.description),
           border: OutlineInputBorder(),
         ),
-        initialValue: viewModel.payee.name,
+        initialValue: viewModel.name.value,
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.updatePayee(name: value);
+            viewModel.name.value = value;
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.updatePayee(name: value);
+            viewModel.name.value = value;
           }
         },
       ),

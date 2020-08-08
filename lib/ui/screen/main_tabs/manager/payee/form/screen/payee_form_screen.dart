@@ -22,8 +22,12 @@ class PayeeFormScreen extends StatelessWidget {
     MainTabRouter.navigateTo(_routeName, argument);
   }
 
+  final PayeeFormViewModel viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var argument = ModalRoute.of(context).settings.arguments;
+    viewModel.setArgument(argument);
     return PayeeFormView();
   }
 }
@@ -31,9 +35,8 @@ class PayeeFormScreen extends StatelessWidget {
 class PayeeFormBinding implements Bindings {
   @override
   void dependencies() {
+    Get.put(PayeeFormViewModel());
     Get.put(PayeeFormController());
-    PayeeFormArg arguments = Get.arguments;
-    Get.put(PayeeFormViewModel(arguments.payee));
   }
 }
 

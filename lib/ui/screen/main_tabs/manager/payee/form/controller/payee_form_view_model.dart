@@ -1,29 +1,24 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:provider/src/provider.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_screen.dart';
 
 class PayeeFormViewModel extends GetxController {
-  static PayeeFormViewModel of(BuildContext context) =>
-      Provider.of<PayeeFormViewModel>(context);
+  final RxString name = ''.obs;
 
-  PayeeFormViewModel(PayeeModel payee) {
-    this.payee = payee;
+  PayeeFormArg argument;
+
+  void setArgument(PayeeFormArg argument) {
+    this.argument = argument;
+    var payee = argument.payee;
+
+    name.value = payee.name;
   }
 
-  PayeeModel _payee;
+  PayeeModel buildForm() {
+    var payee = argument.payee;
 
-  PayeeModel get payee => _payee;
-
-  set payee(PayeeModel payee) {
-    _payee = payee;
-  }
-
-  void updatePayee({
-    String name,
-  }) {
-    payee = payee.copyWith(
-      name: name,
+    return payee.copyWith(
+      name: name.value,
     );
   }
 }
