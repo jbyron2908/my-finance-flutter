@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/form/controller/label_form_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/label/form/widget/label_form_view.dart';
 
 class LabelFormScreen extends StatelessWidget {
-  static String get _routePath => '/manager/label/form';
-  static GetPageRoute get route => GetPageRoute(
-        settings: RouteSettings(
-          name: _routePath,
+  static String get _routeName => '/manager/label/form';
+  static RouteDefinition get routeDefinition => RouteDefinition(
+        name: _routeName,
+        routeBuilder: (routeSetting) => GetPageRoute(
+          settings: routeSetting,
+          page: () => LabelFormScreen(),
+          binding: LabelFormBinding(),
         ),
-        page: () => LabelFormScreen(),
-        binding: LabelFormBinding(),
       );
 
   static void navigateTo() {
-    AppRouter.navigateTo(_routePath);
+    MainTabRouter.navigateTo(_routeName);
   }
 
   @override

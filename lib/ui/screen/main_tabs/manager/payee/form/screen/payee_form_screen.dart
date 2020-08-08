@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/controller/payee_form_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/controller/payee_form_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/widget/payee_form_view.dart';
 
 class PayeeFormScreen extends StatelessWidget {
-  static String get _routePath => '/manager/payee/form';
-  static GetPageRoute get route => GetPageRoute(
-        settings: RouteSettings(
-          name: _routePath,
+  static String get _routeName => '/manager/payee/form';
+  static RouteDefinition get routeDefinition => RouteDefinition(
+        name: _routeName,
+        routeBuilder: (routeSetting) => GetPageRoute(
+          settings: routeSetting,
+          page: () => PayeeFormScreen(),
+          binding: PayeeFormBinding(),
         ),
-        page: () => PayeeFormScreen(),
-        binding: PayeeFormBinding(),
       );
 
   static void navigateTo(PayeeFormArg argument) {
-    AppRouter.navigateTo(_routePath, argument);
+    MainTabRouter.navigateTo(_routeName, argument);
   }
 
   @override

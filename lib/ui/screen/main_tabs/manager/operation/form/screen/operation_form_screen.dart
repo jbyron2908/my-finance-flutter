@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/core/model/operation/operation_model.dart';
-import 'package:my_finance_flutter/ui/app/app_router.dart';
+import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
+import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/controller/operation_form_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/controller/operation_form_view_model.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/form/widget/operation_form_view.dart';
 
 class OperationFormScreen extends StatelessWidget {
-  static String get _routePath => '/manager/operation/form';
-  static GetPageRoute get route => GetPageRoute(
-        settings: RouteSettings(
-          name: _routePath,
+  static String get _routeName => '/manager/operation/form';
+  static RouteDefinition get routeDefinition => RouteDefinition(
+        name: _routeName,
+        routeBuilder: (routeSetting) => GetPageRoute(
+          settings: routeSetting,
+          page: () => OperationFormScreen(),
+          binding: OperationFormBinding(),
         ),
-        page: () => OperationFormScreen(),
-        binding: OperationFormBinding(),
       );
 
   static void navigateTo(OperationFormArg argument) {
-    AppRouter.navigateTo(_routePath, argument);
+    MainTabRouter.navigateTo(_routeName, argument);
   }
 
   @override

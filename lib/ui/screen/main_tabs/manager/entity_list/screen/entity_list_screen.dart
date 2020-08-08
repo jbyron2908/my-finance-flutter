@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/controller/entity_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/entity_list/widget/entity_list_view.dart';
 
 class EntityListScreen extends StatelessWidget {
-  static String get _routePath => '/home/manager';
-  static GetPageRoute get route => GetPageRoute(
-        settings: RouteSettings(
-          name: _routePath,
+  static String get _routeName => '/home/manager';
+  static RouteDefinition get routeDefinition => RouteDefinition(
+        name: _routeName,
+        routeBuilder: (routeSetting) => GetPageRoute(
+          settings: routeSetting,
+          page: () => EntityListScreen(),
+          binding: EntityListBinding(),
         ),
-        page: () => EntityListScreen(),
-        binding: EntityListBinding(),
       );
 
   @override

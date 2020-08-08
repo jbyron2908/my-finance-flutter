@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/form/screen/import_csv_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_csv_preview_screen.dart';
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_screen.dart';
@@ -29,34 +30,34 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection
 import 'package:my_finance_flutter/ui/screen/splash/screen/splash_screen.dart';
 
 class AppRouter {
-  List<GetPageRoute> get routeList => [
-        SplashScreen.route,
-        MainScreen.route,
-        EntityListScreen.route,
-        BalanceScreen.route,
-        AccountViewerScreen.route,
-        ProfileFormScreen.route,
-        ProfileListScreen.route,
-        ProfileSelectionScreen.route,
-        AccountFormScreen.route,
-        AccountListScreen.route,
-        AccountSelectionScreen.route,
-        CategoryFormScreen.route,
-        CategoryListScreen.route,
-        CategorySelectionScreen.route,
-        PayeeFormScreen.route,
-        PayeeListScreen.route,
-        PayeeSelectionScreen.route,
-        LabelFormScreen.route,
-        LabelListScreen.route,
-        LabelSelectionScreen.route,
-        OperationFormScreen.route,
-        OperationListScreen.route,
-        OperationTypeSelectionScreen.route,
-        OperationStateSelectionScreen.route,
-        ImportCsvFormScreen.route,
-        ImportCsvPreviewScreen.route,
-        ImportCsvResultScreen.route,
+  List<RouteDefinition> get routeList => [
+        SplashScreen.routeDefinition,
+        MainScreen.routeDefinition,
+        EntityListScreen.routeDefinition,
+        BalanceScreen.routeDefinition,
+        AccountViewerScreen.routeDefinition,
+        ProfileFormScreen.routeDefinition,
+        ProfileListScreen.routeDefinition,
+        ProfileSelectionScreen.routeDefinition,
+        AccountFormScreen.routeDefinition,
+        AccountListScreen.routeDefinition,
+        AccountSelectionScreen.routeDefinition,
+        CategoryFormScreen.routeDefinition,
+        CategoryListScreen.routeDefinition,
+        CategorySelectionScreen.routeDefinition,
+        PayeeFormScreen.routeDefinition,
+        PayeeListScreen.routeDefinition,
+        PayeeSelectionScreen.routeDefinition,
+        LabelFormScreen.routeDefinition,
+        LabelListScreen.routeDefinition,
+        LabelSelectionScreen.routeDefinition,
+        OperationFormScreen.routeDefinition,
+        OperationListScreen.routeDefinition,
+        OperationTypeSelectionScreen.routeDefinition,
+        OperationStateSelectionScreen.routeDefinition,
+        ImportCsvFormScreen.routeDefinition,
+        ImportCsvPreviewScreen.routeDefinition,
+        ImportCsvResultScreen.routeDefinition,
       ];
 
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -64,14 +65,14 @@ class AppRouter {
 
   static AppRouter get _instance => Get.find();
 
-  static Future<T> navigateTo<T>(String path, [Object argument]) {
+  static Future navigateTo(String path, [Object argument]) {
     return _instance.navigator.pushNamed(
       path,
       arguments: argument,
     );
   }
 
-  static Future<T> replaceTo<T>(String path, [Object argument]) {
+  static Future replaceTo(String path, [Object argument]) {
     return _instance.navigator.pushReplacementNamed(
       path,
       arguments: argument,

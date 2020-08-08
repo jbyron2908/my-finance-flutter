@@ -1,41 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class NavigationHandler {
   NavigationHandler(this.routeList);
 
-  final List<GetPageRoute> routeList;
+  final List<RouteDefinition> routeList;
 
   Route routeGenerator(RouteSettings settings) {
-    var matchRoute = routeList.firstWhere(
-      (route) => route.settings.name == settings.name,
+    var matchRouteDefinition = routeList.firstWhere(
+      (routeDefinition) => routeDefinition.name == settings.name,
       orElse: () => null,
     );
 
-    if (matchRoute != null) {
-      return _buildGetPageRoute(matchRoute, settings);
+    if (matchRouteDefinition != null) {
+      return matchRouteDefinition.routeBuilder(settings);
     }
 
     return null;
   }
+}
 
-  GetPageRoute<T> _buildGetPageRoute<T>(
-    GetPageRoute<T> route,
-    RouteSettings settings,
-  ) {
-    return GetPageRoute<T>(
-      page: route.page,
-      parameter: route.parameter,
-      settings: settings,
-      curve: route.curve,
-      opaque: route.opaque,
-      customTransition: route.customTransition,
-      binding: route.binding,
-      bindings: route.bindings,
-      transitionDuration: route.transitionDuration,
-      transition: route.transition,
-      popGesture: route.popGesture,
-      fullscreenDialog: route.fullscreenDialog,
-    );
-  }
+class RouteDefinition {
+  final String name;
+  final Route Function(RouteSettings settings) routeBuilder;
+
+  RouteDefinition({
+    @required this.name,
+    @required this.routeBuilder,
+  });
 }

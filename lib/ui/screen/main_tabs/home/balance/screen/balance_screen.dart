@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/controller/balance_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/widget/balance_view.dart';
 
 class BalanceScreen extends StatelessWidget {
-  static String get _routePath => '/home/main';
-  static GetPageRoute get route => GetPageRoute(
-        settings: RouteSettings(
-          name: _routePath,
+  static String get _routeName => '/home/main';
+  static RouteDefinition get routeDefinition => RouteDefinition(
+        name: _routeName,
+        routeBuilder: (routeSetting) => GetPageRoute(
+          settings: routeSetting,
+          page: () => BalanceScreen(),
+          binding: BalanceBinding(),
         ),
-        page: () => BalanceScreen(),
-        binding: BalanceBinding(),
       );
 
   @override
