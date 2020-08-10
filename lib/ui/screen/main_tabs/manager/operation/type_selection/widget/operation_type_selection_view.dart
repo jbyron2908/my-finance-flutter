@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
+import 'package:get/get.dart';
+import 'package:my_finance_flutter/ui/app/app_data_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/type_selection/widget/operation_type_item.dart';
-import 'package:provider/provider.dart';
 
 class OperationTypeSelectionView extends StatelessWidget {
   @override
@@ -16,15 +16,20 @@ class OperationTypeSelectionView extends StatelessWidget {
 }
 
 class _OperationTypeList extends StatelessWidget {
+  final AppDataController appDataController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<List<OperationTypeModel>>(
-      builder: (_, operationTypeList, child) => ListView.builder(
-        itemCount: operationTypeList.length,
-        itemBuilder: (context, index) => OperationTypeItem(
-          operationType: operationTypeList[index],
-        ),
-      ),
+    return Obx(
+      () {
+        var operationTypeList = appDataController.operationTypeList.value;
+        return ListView.builder(
+          itemCount: operationTypeList.length,
+          itemBuilder: (context, index) => OperationTypeItem(
+            operationType: operationTypeList[index],
+          ),
+        );
+      },
     );
   }
 }
