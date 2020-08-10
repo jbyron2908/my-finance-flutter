@@ -29,7 +29,7 @@ class OperationFormController extends GetxController {
   Future<DateTime> selectDate() async {
     var date = await showDatePicker(
       context: Get.context,
-      initialDate: _viewModel.operation.date,
+      initialDate: _viewModel.date.value,
       firstDate: DateTime(1990),
       lastDate: DateTime(2050),
     );
@@ -37,8 +37,8 @@ class OperationFormController extends GetxController {
     if (date != null) {
       return DateUtil.setDateTime(
         date,
-        _viewModel.operation.date.hour,
-        _viewModel.operation.date.minute,
+        _viewModel.date.value.hour,
+        _viewModel.date.value.minute,
       );
     } else {
       return null;
@@ -48,11 +48,11 @@ class OperationFormController extends GetxController {
   Future<DateTime> selectTime() async {
     var time = await showTimePicker(
       context: Get.context,
-      initialTime: TimeOfDay.fromDateTime(_viewModel.operation.date),
+      initialTime: TimeOfDay.fromDateTime(_viewModel.date.value),
     );
 
     if (time != null) {
-      return DateUtil.mergeDateAndTime(_viewModel.operation.date, time);
+      return DateUtil.mergeDateAndTime(_viewModel.date.value, time);
     } else {
       return null;
     }
@@ -79,7 +79,7 @@ class OperationFormController extends GetxController {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await _operationRepository.save(_viewModel.operation);
+      await _operationRepository.save(_viewModel.buildForm());
       MainTabRouter.pop();
     }
   }

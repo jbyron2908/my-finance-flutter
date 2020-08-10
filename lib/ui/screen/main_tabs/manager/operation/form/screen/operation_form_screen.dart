@@ -23,8 +23,12 @@ class OperationFormScreen extends StatelessWidget {
     MainTabRouter.navigateTo(_routeName, argument);
   }
 
+  final OperationFormViewModel viewModel = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    var argument = ModalRoute.of(context).settings.arguments;
+    viewModel.setArgument(argument);
     return OperationFormView();
   }
 }
@@ -32,19 +36,21 @@ class OperationFormScreen extends StatelessWidget {
 class OperationFormBinding implements Bindings {
   @override
   void dependencies() {
+    Get.put(OperationFormViewModel());
     Get.put(OperationFormController());
-    OperationFormArg arguments = Get.arguments;
-    Get.put(OperationFormViewModel(arguments.model));
   }
 }
 
 class OperationFormArg {
-  final OperationModel model;
+  final OperationModel operation;
 
-  OperationFormArg(this.model);
+  OperationFormArg(this.operation);
 
   static OperationFormArg create(AccountModel account) {
-    var model = OperationModel(account: account);
+    var model = OperationModel.buildEmpty();
+    model = model.copyWith(
+      account: account,
+    );
 
     return OperationFormArg(model);
   }

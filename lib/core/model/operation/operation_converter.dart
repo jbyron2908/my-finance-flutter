@@ -48,7 +48,9 @@ class OperationConverter {
       category: category != null
           ? CategoryConverter.toModel(category, parent: parentCategory)
           : null,
-      account: account != null ? AccountConverter.toModel(account) : null,
+      account: account != null
+          ? AccountConverter.toModel(account, profile: profile)
+          : null,
       profile: profile != null ? ProfileConverter.toModel(profile) : null,
     );
   }

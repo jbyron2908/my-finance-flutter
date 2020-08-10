@@ -35,25 +35,25 @@ class OperationForm extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onPanDown: (_) {
         // Hide keyboard when scroll
-        Get.focusScope.requestFocus(FocusNode());
+        FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Form(
         key: controller.formKey,
         child: ListView(
           padding: const EdgeInsets.all(8.0),
-          children: buildFormFields(),
+          children: buildFormFields(context),
         ),
       ),
     );
   }
 
-  List<Widget> buildFormFields() {
+  List<Widget> buildFormFields(BuildContext context) {
     return <Widget>[
       TextFormField(
         autofocus: true,
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
-        initialValue: viewModel.operation.title,
+        initialValue: viewModel.title.value,
         decoration: InputDecoration(
           hintText: 'Title',
           labelText: 'Title',
@@ -62,11 +62,11 @@ class OperationForm extends StatelessWidget {
         ),
         validator: RequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
-          viewModel.update(title: value);
-          Get.focusScope.requestFocus(_valueNode);
+          viewModel.title.value = value;
+          _valueNode.requestFocus();
         },
         onSaved: (value) {
-          viewModel.update(title: value);
+          viewModel.title.value = value;
         },
       ),
       UIHelper.verticalSpaceSmall,
@@ -81,11 +81,11 @@ class OperationForm extends StatelessWidget {
                 WhitelistingTextInputFormatter.digitsOnly,
                 CurrencyFormatter.build(),
               ],
-              initialValue: viewModel.operation.getValue(),
+              initialValue: viewModel.getValue(),
               decoration: InputDecoration(
                 hintText: 'Value',
                 labelText: 'Value',
-                prefixText: '${viewModel.operation.profile.currency} ',
+                prefixText: viewModel.getCurrency(),
                 prefixIcon: Icon(Icons.monetization_on),
                 border: OutlineInputBorder(),
               ),
@@ -95,13 +95,13 @@ class OperationForm extends StatelessWidget {
               ]),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  viewModel.update(value: double.parse(value));
-                  Get.focusScope.requestFocus(_typeNode);
+                  viewModel.value.value = double.parse(value);
+                  _typeNode.requestFocus();
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  viewModel.update(value: double.parse(value));
+                  viewModel.value.value = double.parse(value);
                 }
               },
             ),
@@ -112,18 +112,18 @@ class OperationForm extends StatelessWidget {
               labelText: 'Type',
               focusNode: _typeNode,
               prefixIcon: Icon(Icons.sort),
-              initialValue: viewModel.operation.type,
+              initialValue: viewModel.type.value,
               buildText: (value) => value.title,
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  viewModel.update(type: value);
-                  Get.focusScope.requestFocus(_dateNode);
+                  viewModel.type.value = value;
+                  _dateNode.requestFocus();
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  viewModel.update(type: value);
+                  viewModel.type.value = value;
                 }
               },
               onTapOrFocus: () => controller.selectOperationType(),
@@ -139,18 +139,18 @@ class OperationForm extends StatelessWidget {
               labelText: 'Date',
               focusNode: _dateNode,
               prefixIcon: Icon(Icons.access_time),
-              initialValue: viewModel.operation.date,
+              initialValue: viewModel.date.value,
               buildText: (value) => _getDateString(value),
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  viewModel.update(date: value);
-                  Get.focusScope.requestFocus(_timeNode);
+                  viewModel.date.value = value;
+                  _timeNode.requestFocus();
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  viewModel.update(date: value);
+                  viewModel.date.value = value;
                 }
               },
               onTapOrFocus: () => controller.selectDate(),
@@ -162,18 +162,18 @@ class OperationForm extends StatelessWidget {
               labelText: 'Time',
               focusNode: _timeNode,
               prefixIcon: Icon(Icons.access_time),
-              initialValue: viewModel.operation.date,
+              initialValue: viewModel.date.value,
               buildText: (value) => _getTimeString(value),
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  viewModel.update(date: value);
-                  Get.focusScope.requestFocus(_payeeNode);
+                  viewModel.date.value = value;
+                  _payeeNode.requestFocus();
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  viewModel.update(date: value);
+                  viewModel.date.value = value;
                 }
               },
               onTapOrFocus: () => controller.selectTime(),
@@ -189,18 +189,18 @@ class OperationForm extends StatelessWidget {
               labelText: 'Payee',
               focusNode: _payeeNode,
               prefixIcon: Icon(Icons.person),
-              initialValue: viewModel.operation.payee,
+              initialValue: viewModel.payee.value,
               buildText: (value) => (value == null) ? 'Unknown' : value.name,
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  viewModel.update(payee: value);
-                  Get.focusScope.requestFocus(_stateNode);
+                  viewModel.payee.value = value;
+                  _stateNode.requestFocus();
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  viewModel.update(payee: value);
+                  viewModel.payee.value = value;
                 }
               },
               onTapOrFocus: () => controller.selectPayee(),
@@ -212,18 +212,18 @@ class OperationForm extends StatelessWidget {
               labelText: 'State',
               focusNode: _stateNode,
               prefixIcon: Icon(Icons.check_circle),
-              initialValue: viewModel.operation.state,
+              initialValue: viewModel.state.value,
               buildText: (value) => (value == null) ? 'Unknown' : value.title,
               validator: ObjectRequiredValidator(errorText: 'Required'),
               onFieldSubmitted: (value) {
                 if (value != null) {
-                  viewModel.update(state: value);
-                  Get.focusScope.requestFocus(_categoryNode);
+                  viewModel.state.value = value;
+                  _categoryNode.requestFocus();
                 }
               },
               onSaved: (value) {
                 if (value != null) {
-                  viewModel.update(state: value);
+                  viewModel.state.value = value;
                 }
               },
               onTapOrFocus: () => controller.selectOperationState(),
@@ -236,18 +236,18 @@ class OperationForm extends StatelessWidget {
         labelText: 'Category',
         focusNode: _categoryNode,
         prefixIcon: Icon(Icons.category),
-        initialValue: viewModel.operation.category,
+        initialValue: viewModel.category.value,
         buildText: (value) => (value == null) ? 'Unknown' : value.name,
         validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(category: value);
-            Get.focusScope.requestFocus(_accountNode);
+            viewModel.category.value = value;
+            _accountNode.requestFocus();
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(category: value);
+            viewModel.category.value = value;
           }
         },
         onTapOrFocus: () => controller.selectCategory(),
@@ -257,24 +257,20 @@ class OperationForm extends StatelessWidget {
         labelText: 'Account',
         focusNode: _accountNode,
         prefixIcon: Icon(Icons.account_balance),
-        initialValue: viewModel.operation.account,
+        initialValue: viewModel.account.value,
         buildText: (value) => (value == null) ? 'Unknown' : value.name,
         validator: ObjectRequiredValidator(errorText: 'Required'),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(
-              account: value,
-              profile: value.profile,
-            );
-            Get.focusScope.requestFocus(_noteNode);
+            viewModel.account.value = value;
+            viewModel.profile.value = value.profile;
+            _noteNode.requestFocus();
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(
-              account: value,
-              profile: value.profile,
-            );
+            viewModel.account.value = value;
+            viewModel.profile.value = value.profile;
           }
         },
         onTapOrFocus: () => controller.selectAccount(),
@@ -284,6 +280,7 @@ class OperationForm extends StatelessWidget {
         focusNode: _noteNode,
         keyboardType: TextInputType.text,
         maxLines: 3,
+        initialValue: viewModel.description.value,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: 'Note',
@@ -293,13 +290,13 @@ class OperationForm extends StatelessWidget {
         ),
         onFieldSubmitted: (value) {
           if (value != null) {
-            viewModel.update(description: value);
-            Get.focusScope.requestFocus(FocusNode());
+            viewModel.description.value = value;
+            FocusScope.of(context).requestFocus(FocusNode());
           }
         },
         onSaved: (value) {
           if (value != null) {
-            viewModel.update(description: value);
+            viewModel.description.value = value;
           }
         },
       ),
