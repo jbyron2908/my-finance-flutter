@@ -24,6 +24,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/manager/operation/type_se
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/form/screen/payee_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/list/screen/payee_list_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/payee/selection/screen/payee_selection_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/manager/playground/screen/playground_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/form/screen/profile_form_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/list/screen/profile_list_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/profile/selection/screen/profile_selection_screen.dart';
@@ -32,6 +33,7 @@ import 'package:my_finance_flutter/ui/screen/splash/screen/splash_screen.dart';
 class AppRouter {
   List<RouteDefinition> get routeList => [
         SplashScreen.routeDefinition,
+        PlaygroundScreen.routeDefinition,
         MainScreen.routeDefinition,
         EntityListScreen.routeDefinition,
         BalanceScreen.routeDefinition,
