@@ -15,7 +15,7 @@ class ProfileFormController extends GetxController {
 
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
-      await _profileRepository.save(_viewModel.buildGorm());
+      await _profileRepository.save(_viewModel.buildForm());
       MainTabRouter.pop();
     }
   }

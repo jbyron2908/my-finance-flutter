@@ -15,7 +15,7 @@ class ProfileFormViewModel extends GetxController {
     currency.value = profile.currency;
   }
 
-  ProfileModel buildGorm() {
+  ProfileModel buildForm() {
     var profile = argument.profile;
 
     return profile.copyWith(
