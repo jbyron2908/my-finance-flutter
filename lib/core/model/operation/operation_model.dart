@@ -41,11 +41,13 @@ abstract class OperationModel
   factory OperationModel.fromJson(Map<String, dynamic> json) =>
       _$OperationModelFromJson(json);
 
-  static OperationModel buildEmpty() => OperationModel(
-        date: DateUtil.today(),
-        type: StorageClient.instance.operationTypeDao.getLastUsed(),
-        state: StorageClient.instance.operationStateDao.getLastUsed(),
-      );
+  static OperationModel buildEmpty() {
+    return OperationModel(
+      date: DateUtil.today(),
+      type: StorageClient.instance.operationTypeDao.getLastUsed(),
+      state: StorageClient.instance.operationStateDao.getLastUsed(),
+    );
+  }
 
   OperationModel buildCopy() => copyWith(
         id: null,
