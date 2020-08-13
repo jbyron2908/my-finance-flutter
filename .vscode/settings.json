@@ -11,9 +11,7 @@
     "titleBar.inactiveForeground": "#e7e7e799",
     "statusBar.background": "#2f4f4f",
     "statusBarItem.hoverBackground": "#426f6f",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBar.border": "#2f4f4f",
-    "titleBar.border": "#2f4f4f"
+    "statusBar.foreground": "#e7e7e7"
   },
   "peacock.color": "#2f4f4f",
   "dart.analysisExcludedFolders": [
