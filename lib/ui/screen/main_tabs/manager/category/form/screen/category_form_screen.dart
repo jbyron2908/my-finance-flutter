@@ -46,7 +46,7 @@ class CategoryFormArg {
   CategoryFormArg(this.category);
 
   static CategoryFormArg create() {
-    var category = CategoryModel();
+    var category = CategoryModel.buildEmpty();
 
     return CategoryFormArg(category);
   }

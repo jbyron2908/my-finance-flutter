@@ -6,5 +6,6 @@ class CategoryTable extends Table {
   IntColumn get remoteId => integer().nullable()();
   BoolColumn get deleted => boolean().withDefault(const Constant(false))();
   TextColumn get name => text()();
+  TextColumn get icon => text()();
   IntColumn get parent => integer().nullable()();
 }

@@ -8,11 +8,13 @@ class OperationActions extends StatelessWidget {
   OperationActions(
     this.index, {
     Key key,
-    this.child,
+    @required this.child,
   }) : super(key: key);
 
   final int index;
   final Widget child;
+
+  final AccountViewerController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -20,128 +22,52 @@ class OperationActions extends StatelessWidget {
       elevation: 10,
       clipBehavior: Clip.antiAlias,
       child: Slidable(
-        actionPane: SlidableScrollActionPane(),
+        closeOnScroll: true,
+        actionPane: SlidableStrechActionPane(),
         actionExtentRatio: 0.20,
         actions: <Widget>[
-          SlideAction(
+          IconSlideAction(
+            caption: 'Bookmark',
             color: Colors.blue,
-            child: OperationActionLeft(index),
+            icon: Icons.bookmark,
+            closeOnTap: true,
+            onTap: () {
+              _showSnackBar(context, 'Bookmark');
+            },
+          ),
+          IconSlideAction(
+            caption: 'Delete',
+            color: Colors.red,
+            icon: Icons.delete,
+            closeOnTap: true,
+            onTap: () {
+              _delete(context);
+            },
           ),
         ],
         secondaryActions: <Widget>[
-          SlideAction(
+          IconSlideAction(
+            caption: 'Copy',
             color: Colors.blue,
-            child: OperationActionRight(index),
+            icon: Icons.content_copy,
+            closeOnTap: true,
+            onTap: () {
+              _copy();
+            },
+          ),
+          IconSlideAction(
+            caption: 'Edit',
+            color: Color(0xffE4A854),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            closeOnTap: true,
+            onTap: () {
+              _edit();
+            },
           ),
         ],
         child: child,
       ),
-    );
-  }
-}
-
-class OperationActionRight extends StatelessWidget {
-  OperationActionRight(
-    this.index, {
-    Key key,
-  }) : super(key: key);
-
-  final int index;
-  final AccountViewerController controller = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        Expanded(
-          child: FlatButton(
-            color: Colors.blue,
-            child: Icon(
-              Icons.content_copy,
-              color: Colors.white70,
-            ),
-            onPressed: () {
-              Slidable.of(context).close();
-              _copy();
-            },
-          ),
-        ),
-        Divider(
-          height: 0,
-          color: Colors.white,
-        ),
-        Expanded(
-          child: FlatButton(
-            color: Color(0xffE4A854),
-            child: Icon(
-              Icons.edit,
-              color: Colors.white70,
-            ),
-            onPressed: () {
-              Slidable.of(context).close();
-              _edit();
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
-  void _edit() {
-    controller.editOperation(index);
-  }
-
-  void _copy() {
-    controller.copyOperation(index);
-  }
-}
-
-class OperationActionLeft extends StatelessWidget {
-  OperationActionLeft(
-    this.index, {
-    Key key,
-  }) : super(key: key);
-
-  final int index;
-  final AccountViewerController controller = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        Expanded(
-          child: FlatButton(
-            color: Colors.green,
-            child: Icon(
-              Icons.bookmark,
-              color: Colors.white70,
-            ),
-            onPressed: () {
-              _showSnackBar(context, 'Bookmark');
-              Slidable.of(context).close();
-            },
-          ),
-        ),
-        Divider(
-          height: 0,
-          color: Colors.white,
-        ),
-        Expanded(
-          child: FlatButton(
-            color: Colors.red,
-            child: Icon(
-              Icons.delete,
-              color: Colors.white70,
-            ),
-            onPressed: () async {
-              await _delete(context);
-              Slidable.of(context).close();
-            },
-          ),
-        ),
-      ],
     );
   }
 
@@ -162,5 +88,13 @@ class OperationActionLeft extends StatelessWidget {
   void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
     Scaffold.of(context).showSnackBar(snackBar);
+  }
+
+  void _edit() {
+    controller.editOperation(index);
+  }
+
+  void _copy() {
+    controller.copyOperation(index);
   }
 }

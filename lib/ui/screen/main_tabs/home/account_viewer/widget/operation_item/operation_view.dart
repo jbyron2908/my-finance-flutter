@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import 'package:my_finance_flutter/ui/common/ui_helpers.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/controller/account_viewer_controller.dart';
+import 'package:my_finance_flutter/ui/widgets/model/category/category_icon.dart';
 
 class OperationView extends StatelessWidget {
   OperationView(
@@ -19,35 +20,93 @@ class OperationView extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Text(
-            operation.title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.subtitle1,
+          CategoryIcon(operation.category),
+          UIHelper.horizontalSpaceSmall,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        operation.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                    ),
+                    Text(
+                      operation.getValueWithCurrency(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.subtitle1,
+                    )
+                  ],
+                ),
+                UIHelper.verticalSpaceTiny,
+                Text(
+                  operation.getOperationInfo(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+                UIHelper.verticalSpaceTiny,
+                Text(
+                  operation.getAccountInfo(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
+              ],
+            ),
           ),
-          Divider(
-            color: Colors.grey,
+        ],
+      ),
+    );
+  }
+}
+
+class OperationIcon extends StatelessWidget {
+  const OperationIcon({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40,
+      height: 40,
+      child: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.all(1),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.add,
+              size: 32,
+              color: Colors.white,
+            ),
           ),
-          OperationRow(
-            rightText: operation.getCategoryWithParent(),
-            leftText: DateFormat('dd/MM/yyyy HH:mm').format(operation.date),
-          ),
-          Divider(
-            color: Colors.grey,
-          ),
-          OperationRow(
-            rightText: operation.getPayeeWithStatus(),
-            leftText: operation.getValueWithCurrency(),
-          ),
-          Divider(
-            color: Colors.grey,
-          ),
-          Text(
-            'Total: R\$ 0,00',
-            style: Theme.of(context).textTheme.subtitle1,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              padding: EdgeInsets.all(1),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.add,
+                size: 16,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
