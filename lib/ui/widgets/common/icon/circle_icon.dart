@@ -6,12 +6,10 @@ class CircleIcon extends StatelessWidget {
     this.iconModel, {
     Key key,
     this.circleSize = 40,
-    this.iconSize = 32,
   }) : super(key: key);
 
   final IconModel iconModel;
   final double circleSize;
-  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +20,22 @@ class CircleIcon extends StatelessWidget {
       decoration: BoxDecoration(
         color: iconModel.circleColor,
         shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 5,
+          ),
+        ],
       ),
-      child: Icon(
-        iconData,
-        size: iconSize,
-        color: iconModel.iconColor,
+      child: FittedBox(
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Icon(
+            iconData,
+            color: iconModel.iconColor,
+          ),
+        ),
       ),
     );
   }

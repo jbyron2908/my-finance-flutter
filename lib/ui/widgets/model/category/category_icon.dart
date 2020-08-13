@@ -20,7 +20,6 @@ class CategoryIcon extends StatelessWidget {
           CircleIcon(
             categoryModel.icon,
             circleSize: 40,
-            iconSize: 28,
           ),
           (categoryModel.parent != null)
               ? Align(
@@ -28,7 +27,6 @@ class CategoryIcon extends StatelessWidget {
                   child: CircleIcon(
                     categoryModel.parent.icon,
                     circleSize: 20,
-                    iconSize: 12,
                   ),
                 )
               : null

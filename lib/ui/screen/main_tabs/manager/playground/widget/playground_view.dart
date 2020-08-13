@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_finance_flutter/ui/widgets/item_list/item_actions.dart';
+import 'package:my_finance_flutter/core/config/log/logger.dart';
+import 'package:my_finance_flutter/ui/picker/color/color_picker.dart';
+import 'package:my_finance_flutter/ui/picker/icon/icon_picker.dart';
 
 class PlaygroundView extends StatelessWidget {
   @override
@@ -9,45 +11,29 @@ class PlaygroundView extends StatelessWidget {
         title: Text('Title'),
       ),
       body: Container(
-        child: ItemActions(
-          child: ExpansionTile(
-            title: Text('Title'),
-            children: <Widget>[
-              Card(
-                margin: EdgeInsets.all(1),
-                child: ItemActions(
-                  child: ListTile(
-                    title: Text('Title1'),
-                  ),
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.all(1),
-                child: ItemActions(
-                  child: ListTile(
-                    title: Text('Title2'),
-                  ),
-                ),
-              ),
-              ItemActions(
-                child: ListTile(
-                  title: Text('Title3'),
-                ),
-              ),
-              ItemActions(
-                child: ListTile(
-                  title: Text('Title4'),
-                ),
-              ),
-              ItemActions(
-                child: ListTile(
-                  title: Text('Title5'),
-                ),
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            RaisedButton(
+              onPressed: () => openColorPicker(context),
+              child: Text('Open color picker'),
+            ),
+            RaisedButton(
+              onPressed: () => openIconPicker(context),
+              child: Text('Open icon picker'),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void openColorPicker(BuildContext context) async {
+    var color = await ColorPicker.show(context);
+    Log.i(color);
+  }
+
+  void openIconPicker(BuildContext context) async {
+    var icon = await IconPicker.show(context);
+    Log.i(icon);
   }
 }
