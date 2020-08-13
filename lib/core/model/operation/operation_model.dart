@@ -106,4 +106,12 @@ abstract class OperationModel
     var valueString = getValue();
     return '$currency $valueString';
   }
+
+  String getOperationInfo() {
+    return '${getTimeString()}, ${payee.name}, ${state.title}';
+  }
+
+  String getAccountInfo() {
+    return '${account.name}, ${profile.name}';
+  }
 }
