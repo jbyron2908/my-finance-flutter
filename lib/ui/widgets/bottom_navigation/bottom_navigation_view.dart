@@ -22,27 +22,33 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   List<TabItem> tabList;
   Route Function(RouteSettings routeSettings) routeGenerator;
 
-  TabItem _defaultTab;
-  TabItem _currentTab;
+  int _defaultIndex;
+  int _currentIndex;
+  TabItem get _currentTab => tabList[_currentIndex];
 
   @override
   void initState() {
     tabList = widget.tabList;
     routeGenerator = widget.routeGenerator;
-    _defaultTab = tabList.firstWhere(
-      (tabItem) => tabItem.defaultTab,
-      orElse: () => tabList.first,
-    );
-    _currentTab = _defaultTab;
+
+    _defaultIndex = tabList.indexWhere((tabItem) => tabItem.defaultTab);
+    if (_defaultIndex == -1) {
+      _defaultIndex = 0;
+    }
+
+    _currentIndex = _defaultIndex;
     super.initState();
   }
 
-  void _selectTab(TabItem tabItem) {
-    if (tabItem == _currentTab) {
-      _currentTab.navigatorKey.currentState.popUntil((route) => route.isFirst);
+  void _selectTab(int tabIndex) {
+    if (tabIndex == _currentIndex) {
+      tabList[_currentIndex]
+          .navigatorKey
+          .currentState
+          .popUntil((route) => route.isFirst);
     } else {
       setState(() {
-        _currentTab = tabItem;
+        _currentIndex = tabIndex;
         if (widget.onCurrentTabChange != null) {
           widget.onCurrentTabChange(_currentTab);
         }
@@ -58,8 +64,8 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
             !await _currentTab.navigatorKey.currentState.maybePop();
 
         if (isFirstRouteInCurrentTab) {
-          if (_currentTab != _defaultTab) {
-            _selectTab(_defaultTab);
+          if (_currentIndex != _defaultIndex) {
+            _selectTab(_defaultIndex);
             return false;
           }
         }
@@ -76,7 +82,7 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
         ),
         bottomNavigationBar: BottomNavigation(
           tabList: tabList,
-          currentTab: _currentTab,
+          currentIndex: _currentIndex,
           onSelectTab: _selectTab,
         ),
       ),
@@ -102,21 +108,24 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({
     this.tabList,
+    this.currentIndex,
     this.currentTab,
     this.onSelectTab,
   });
 
   final List<TabItem> tabList;
+  final int currentIndex;
   final TabItem currentTab;
-  final ValueChanged<TabItem> onSelectTab;
+  final ValueChanged<int> onSelectTab;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
+      currentIndex: currentIndex,
       items: _buildItems(tabList: tabList),
       onTap: (index) => onSelectTab(
-        tabList[index],
+        index,
       ),
     );
   }
@@ -127,21 +136,11 @@ class BottomNavigation extends StatelessWidget {
           (tabItem) => BottomNavigationBarItem(
             icon: Icon(
               tabItem.iconData,
-              color: _colorTabMatching(tabItem),
             ),
-            title: Text(
-              tabItem.title,
-              style: TextStyle(
-                color: _colorTabMatching(tabItem),
-              ),
-            ),
+            label: tabItem.title,
           ),
         )
         .toList();
-  }
-
-  Color _colorTabMatching(TabItem tabItem) {
-    return currentTab == tabItem ? tabItem.activeColor : Colors.grey;
   }
 }
 
