@@ -78,7 +78,7 @@ class OperationForm extends StatelessWidget {
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
               inputFormatters: [
-                WhitelistingTextInputFormatter.digitsOnly,
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 CurrencyFormatter.build(),
               ],
               initialValue: viewModel.getValue(),
