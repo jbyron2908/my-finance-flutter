@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class BottomNavigationView extends StatefulWidget {
   BottomNavigationView({
@@ -73,7 +72,8 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        body: Stack(
+        body: IndexedStack(
+          index: _currentIndex,
           children: tabList
               .map(
                 (tabItem) => _buildNestedNavigator(tabItem),
@@ -90,17 +90,10 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   }
 
   Widget _buildNestedNavigator(TabItem tabItem) {
-    return Visibility(
-      maintainState: true,
-      visible: _currentTab == tabItem,
-      child: Navigator(
-        key: tabItem.navigatorKey,
-        initialRoute: tabItem.rootPath,
-        onGenerateRoute: widget.routeGenerator,
-        observers: [
-          GetObserver(null, Routing()),
-        ],
-      ),
+    return Navigator(
+      key: tabItem.navigatorKey,
+      initialRoute: tabItem.rootPath,
+      onGenerateRoute: widget.routeGenerator,
     );
   }
 }
@@ -147,7 +140,6 @@ class BottomNavigation extends StatelessWidget {
 class TabItem {
   TabItem({
     this.id,
-    this.getId,
     this.title,
     this.iconData,
     this.activeColor = Colors.blue,
@@ -156,13 +148,12 @@ class TabItem {
   });
 
   final String id;
-  final int getId;
   final String title;
   final String rootPath;
   final IconData iconData;
   final Color activeColor;
   final bool defaultTab;
-  GlobalKey<NavigatorState> get navigatorKey => Get.nestedKey(getId);
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   NavigatorState get navigator => navigatorKey.currentState;
 }
