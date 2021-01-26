@@ -10,9 +10,6 @@ class AccountViewerController extends GetxController {
 
   AccountViewerArg argument;
 
-  @override
-  void onInit() {}
-
   void setArgument(AccountViewerArg argument) {
     this.argument = argument;
     var operationStream = operationRepository.watchFilter(argument.account.id);

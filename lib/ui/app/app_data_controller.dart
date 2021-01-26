@@ -32,6 +32,7 @@ class AppDataController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     profileList.bindStream(profileRepository.profileListStream);
     accountList.bindStream(accountRepository.accountListStream);
     categoryList.bindStream(categoryRepository.categoryListStream);

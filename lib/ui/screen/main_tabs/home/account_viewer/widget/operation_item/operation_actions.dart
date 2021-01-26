@@ -87,7 +87,7 @@ class OperationActions extends StatelessWidget {
 
   void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _edit() {

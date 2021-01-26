@@ -92,7 +92,7 @@ class OperationItem extends StatelessWidget {
 
   void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
 
@@ -131,6 +131,6 @@ class Test extends StatelessWidget {
 
   void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
