@@ -60,7 +60,7 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
     return WillPopScope(
       onWillPop: () async {
         final isFirstRouteInCurrentTab =
-            !await _currentTab.navigatorKey.currentState.maybePop();
+            !await _currentTab.navigator.maybePop();
 
         if (isFirstRouteInCurrentTab) {
           if (_currentIndex != _defaultIndex) {
