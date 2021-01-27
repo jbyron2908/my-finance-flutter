@@ -13,22 +13,13 @@ class DebugToolsView extends StatelessWidget {
         title: Text('Debug tools'),
       ),
       body: ListView(
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: [
-            ListRow(
-              title: Text('Populate Demo'),
-              leading: Icon(FontAwesomeIcons.peopleArrows),
-              trailing: Icon(FontAwesomeIcons.peopleArrows),
-              onTap: () => controller.goToPopulateDemo(),
-            ),
-            ListRow(
-              title: Text('Populate Demo'),
-              leading: Icon(FontAwesomeIcons.peopleArrows),
-              onTap: () => controller.goToPopulateDemo(),
-            ),
-          ],
-        ).toList(),
+        children: [
+          ListRow(
+            title: Text('Populate Demo'),
+            leading: FaIcon(FontAwesomeIcons.fire),
+            onTap: () => controller.goToPopulateDemo(),
+          ),
+        ],
       ),
     );
   }
@@ -63,7 +54,7 @@ class ListRow extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 0),
+          bottom: BorderSide(width: 0, color: Colors.grey),
         ),
       ),
     );

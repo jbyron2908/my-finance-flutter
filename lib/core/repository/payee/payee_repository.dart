@@ -26,4 +26,8 @@ class PayeeRepository {
   Future delete(PayeeModel payee) async {
     return _databaseClient.payeeDao.markDelete(PayeeConverter.toEntity(payee));
   }
+
+  Future clearAll() {
+    return _databaseClient.payeeDao.clearAll();
+  }
 }

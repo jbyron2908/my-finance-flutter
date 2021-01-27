@@ -39,7 +39,9 @@ class EntityListView extends StatelessWidget {
           ),
           ListTile(
             title: Text('Payees'),
-            leading: Icon(Icons.people),
+            leading: Icon(
+              Icons.people,
+            ),
             onTap: () => controller.goToPayeeList(),
           ),
           Divider(

@@ -23,4 +23,8 @@ class CategoryRepository {
     return _databaseClient.categoryDao
         .markDelete(CategoryConverter.toEntity(category));
   }
+
+  Future clearAll() async {
+    return _databaseClient.categoryDao.clearAll();
+  }
 }

@@ -27,6 +27,10 @@ class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
     return update(payeeTable).replace(deletedPayee);
   }
 
+  Future clearAll() {
+    return delete(payeeTable).go();
+  }
+
   // Read
 
   Future<PayeeModel> getOrAdd(String payeeName) async {

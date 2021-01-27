@@ -14,11 +14,7 @@ class CategoryDao extends DatabaseAccessor<DatabaseClient>
   // Write
 
   Future save(CategoryEntity entity) {
-    if (entity.id == null) {
-      return into(categoryTable).insert(entity);
-    } else {
-      return update(categoryTable).replace(entity);
-    }
+    return into(categoryTable).insertOnConflictUpdate(entity);
   }
 
   Future markDelete(CategoryEntity entity) {
@@ -26,6 +22,10 @@ class CategoryDao extends DatabaseAccessor<DatabaseClient>
       deleted: true,
     );
     return update(categoryTable).replace(deletedCategory);
+  }
+
+  Future clearAll() {
+    return delete(categoryTable).go();
   }
 
   // Read

@@ -6,7 +6,7 @@ import 'package:my_finance_flutter/ui/screen/import_csv/preview/screen/import_cs
 import 'package:my_finance_flutter/ui/screen/import_csv/result/screen/import_csv_result_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main/screen/main_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/debug_tools/screen/debug_tools_screen.dart';
-import 'package:my_finance_flutter/ui/screen/main_tabs/debug/populate_demo/screen/populate_demo_screen.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/screen/demo_populate_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/account_viewer/screen/account_viewer_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/home/balance/screen/balance_screen.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/form/screen/account_form_screen.dart';
@@ -57,7 +57,7 @@ class MainTabRouter {
         OperationTypeSelectionScreen.routeDefinition,
         OperationStateSelectionScreen.routeDefinition,
         DebugToolsScreen.routeDefinition,
-        PopulateDemoScreen.routeDefinition,
+        DemoPopulateScreen.routeDefinition,
         ImportCsvFormScreen.routeDefinition,
         ImportCsvPreviewScreen.routeDefinition,
         ImportCsvResultScreen.routeDefinition,
