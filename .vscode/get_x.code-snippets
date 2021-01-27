@@ -62,7 +62,7 @@
 	"Get find var": {
 		"prefix": "gxfind_var",
 		"body": [
-			"${1:Type} dependency = Get.find();"
+			"final ${1:Type} ${2:name} = Get.find();"
 		],
 		"description": "Get find var"
 	},
