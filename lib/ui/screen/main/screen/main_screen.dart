@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/ui/app/app_router.dart';
 import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
@@ -32,22 +33,28 @@ class MainBinding implements Bindings {
   @override
   void dependencies() {
     Get.put(MainController());
-    Get.put(MainTabRouter([
-      TabItem(
-        id: 'home',
-        getId: 10,
-        title: 'Home',
-        iconData: Icons.home,
-        rootPath: '/home/main',
-        defaultTab: true,
-      ),
-      TabItem(
-        id: 'management',
-        getId: 11,
-        title: 'Management',
-        iconData: Icons.business,
-        rootPath: '/home/manager',
-      ),
-    ]));
+    Get.put(MainTabRouter(
+      [
+        TabItem(
+          id: 'debug',
+          title: 'Debug',
+          iconData: FontAwesomeIcons.bug,
+          rootPath: '/debug/main',
+        ),
+        TabItem(
+          id: 'home',
+          title: 'Home',
+          iconData: Icons.home,
+          rootPath: '/home/main',
+          defaultTab: true,
+        ),
+        TabItem(
+          id: 'management',
+          title: 'Management',
+          iconData: Icons.business,
+          rootPath: '/home/manager',
+        ),
+      ],
+    ));
   }
 }
