@@ -23,4 +23,8 @@ class AccountRepository {
     return _databaseClient.accountDao
         .markDelete(AccountConverter.toEntity(account));
   }
+
+  Future clearAll() {
+    return _databaseClient.accountDao.clearAll();
+  }
 }

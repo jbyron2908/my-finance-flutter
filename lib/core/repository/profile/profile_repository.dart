@@ -23,4 +23,8 @@ class ProfileRepository {
     return _databaseClient.profileDao
         .markDelete(ProfileConverter.toEntity(profile));
   }
+
+  Future clearAll() {
+    return _databaseClient.profileDao.clearAll();
+  }
 }

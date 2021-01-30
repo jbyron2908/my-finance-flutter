@@ -13,11 +13,7 @@ class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
   // Write
 
   Future save(PayeeEntity entity) {
-    if (entity.id == null) {
-      return into(payeeTable).insert(entity);
-    } else {
-      return update(payeeTable).replace(entity);
-    }
+    return into(payeeTable).insertOnConflictUpdate(entity);
   }
 
   Future markDelete(PayeeEntity entity) {

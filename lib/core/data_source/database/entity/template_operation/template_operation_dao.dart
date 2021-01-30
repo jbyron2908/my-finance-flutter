@@ -18,7 +18,7 @@ class TemplateOperationDao extends DatabaseAccessor<DatabaseClient>
   TemplateOperationDao(DatabaseClient db) : super(db);
 
   Future<int> insert(TemplateOperationEntity entity) {
-    return into(templateOperationTable).insert(entity);
+    return into(templateOperationTable).insertOnConflictUpdate(entity);
   }
 
   Stream<List<TemplateOperationModel>> watchAll() {

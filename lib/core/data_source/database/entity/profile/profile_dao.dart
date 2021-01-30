@@ -14,11 +14,7 @@ class ProfileDao extends DatabaseAccessor<DatabaseClient>
   // Write
 
   Future save(ProfileEntity entity) {
-    if (entity.id == null) {
-      return into(profileTable).insert(entity);
-    } else {
-      return update(profileTable).replace(entity);
-    }
+    return into(profileTable).insertOnConflictUpdate(entity);
   }
 
   Future markDelete(ProfileEntity entity) {
@@ -26,6 +22,10 @@ class ProfileDao extends DatabaseAccessor<DatabaseClient>
       deleted: true,
     );
     return update(profileTable).replace(deletedProfile);
+  }
+
+  Future clearAll() {
+    return delete(profileTable).go();
   }
 
   // Read

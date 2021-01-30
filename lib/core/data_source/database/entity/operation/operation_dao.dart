@@ -22,11 +22,7 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
   OperationDao(DatabaseClient database) : super(database);
 
   Future save(OperationEntity entity) {
-    if (entity.id == null) {
-      return into(operationTable).insert(entity);
-    } else {
-      return update(operationTable).replace(entity);
-    }
+    return into(operationTable).insertOnConflictUpdate(entity);
   }
 
   Future markDelete(OperationEntity entity) {

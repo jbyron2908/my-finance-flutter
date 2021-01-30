@@ -15,11 +15,7 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
   // Write
 
   Future save(AccountEntity entity) {
-    if (entity.id == null) {
-      return into(accountTable).insert(entity);
-    } else {
-      return update(accountTable).replace(entity);
-    }
+    return into(accountTable).insertOnConflictUpdate(entity);
   }
 
   Future markDelete(AccountEntity entity) {
@@ -27,6 +23,10 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
       deleted: true,
     );
     return update(accountTable).replace(deletedAccount);
+  }
+
+  Future clearAll() {
+    return delete(accountTable).go();
   }
 
   // Read

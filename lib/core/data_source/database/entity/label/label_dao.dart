@@ -13,11 +13,7 @@ class LabelDao extends DatabaseAccessor<DatabaseClient> with _$LabelDaoMixin {
   // Write
 
   Future save(LabelEntity entity) {
-    if (entity.id == null) {
-      return into(labelTable).insert(entity);
-    } else {
-      return update(labelTable).replace(entity);
-    }
+    return into(labelTable).insertOnConflictUpdate(entity);
   }
 
   Future markDelete(LabelEntity entity) {
