@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/ui/common/navigation/navigation_handler.dart';
 import 'package:my_finance_flutter/ui/screen/main/widget/main_tab_router.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/account_populate_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/category_populate_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/demo_populate_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/payee_populate_controller.dart';
@@ -33,6 +34,7 @@ class DemoPopulateBinding implements Bindings {
   void dependencies() {
     Get.put(CategoryPopulateController());
     Get.put(PayeePopulateController());
+    Get.put(AccountPopulateController());
     Get.put(DemoPopulateController());
   }
 }
