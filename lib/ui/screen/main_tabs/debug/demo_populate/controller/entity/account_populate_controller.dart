@@ -8,9 +8,13 @@ class AccountPopulateController extends GetxController {
   final ProfileRepository _profileRepository = Get.find();
   final AccountRepository _accountRepository = Get.find();
 
-  void populate() async {
+  Future<void> clearAll() async {
     await _accountRepository.clearAll();
     await _profileRepository.clearAll();
+  }
+
+  void populate() async {
+    await clearAll();
 
     await populateBrazilProfile();
     await populateSwedenProfile();

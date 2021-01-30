@@ -5,7 +5,7 @@ import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/list/controller/category_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_item_view.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/category/widget/category_list.dart';
-import 'package:my_finance_flutter/ui/widgets/item_list/item_actions.dart';
+import 'package:my_finance_flutter/ui/widgets/list/item_actions.dart';
 
 class CategoryListItem extends StatelessWidget {
   CategoryListItem({

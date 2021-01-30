@@ -8,8 +8,12 @@ import 'package:my_finance_flutter/core/repository/category/category_repository.
 class CategoryPopulateController extends GetxController {
   final CategoryRepository _categoryRepository = Get.find();
 
-  void populate() async {
+  Future<void> clearAll() async {
     await _categoryRepository.clearAll();
+  }
+
+  void populate() async {
+    await clearAll();
     await populateCarCategory();
     await populateShoppingCategory();
     await populateBillCategory();

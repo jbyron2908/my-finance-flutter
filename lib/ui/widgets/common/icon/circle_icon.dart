@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_finance_flutter/core/model/icon/icon_model.dart';
 
 class CircleIcon extends StatelessWidget {
@@ -31,7 +32,7 @@ class CircleIcon extends StatelessWidget {
       child: FittedBox(
         child: Padding(
           padding: EdgeInsets.all(12),
-          child: Icon(
+          child: FaIcon(
             iconData,
             color: iconModel.iconColor,
           ),

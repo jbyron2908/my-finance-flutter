@@ -4,7 +4,7 @@ import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/common/dialog_helper.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/list/controller/account_list_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/manager/account/widget/account_item_view.dart';
-import 'package:my_finance_flutter/ui/widgets/item_list/item_actions.dart';
+import 'package:my_finance_flutter/ui/widgets/list/item_actions.dart';
 
 class AccountListItem extends StatelessWidget {
   AccountListItem({

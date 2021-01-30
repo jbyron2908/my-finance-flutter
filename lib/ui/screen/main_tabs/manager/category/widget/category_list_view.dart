@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/model/category/category_model.dart';
-import 'package:my_finance_flutter/ui/widgets/item_list/item_list.dart';
+import 'package:my_finance_flutter/ui/widgets/list/item_list.dart';
 
 class CategoryListView extends StatelessWidget {
   const CategoryListView({

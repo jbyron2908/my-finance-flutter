@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_finance_flutter/core/model/account/account_model.dart';
 import 'package:my_finance_flutter/ui/app/app_data_controller.dart';
-import 'package:my_finance_flutter/ui/widgets/item_list/item_list.dart';
+import 'package:my_finance_flutter/ui/widgets/list/item_list.dart';
 
 class AccountList extends StatelessWidget {
   AccountList({

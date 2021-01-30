@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_finance_flutter/core/config/log/logger.dart';
-import 'package:my_finance_flutter/ui/picker/color/color_picker.dart';
-import 'package:my_finance_flutter/ui/picker/icon/icon_picker.dart';
+import 'package:my_finance_flutter/ui/widgets/picker/color/color_picker.dart';
+import 'package:my_finance_flutter/ui/widgets/picker/icon/icon_picker.dart';
 
 class PlaygroundView extends StatelessWidget {
   @override

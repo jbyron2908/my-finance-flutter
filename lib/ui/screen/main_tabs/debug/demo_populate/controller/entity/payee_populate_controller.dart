@@ -5,8 +5,12 @@ import 'package:my_finance_flutter/core/repository/payee/payee_repository.dart';
 class PayeePopulateController extends GetxController {
   final PayeeRepository _payeeRepository = Get.find();
 
-  void populate() async {
+  Future<void> clearAll() async {
     await _payeeRepository.clearAll();
+  }
+
+  void populate() async {
+    await clearAll();
 
     var emptyPayee = PayeeModel(
       deleted: false,
