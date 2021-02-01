@@ -1,4 +1,5 @@
 import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/base/base_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/account_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/profile/profile_table.dart';
@@ -8,15 +9,14 @@ import 'package:my_finance_flutter/core/model/account/account_model.dart';
 part 'account_dao.g.dart';
 
 @UseDao(tables: [AccountTable, ProfileTable])
-class AccountDao extends DatabaseAccessor<DatabaseClient>
+class AccountDao extends BaseDao<AccountEntity, AccountModel>
     with _$AccountDaoMixin {
   AccountDao(DatabaseClient database) : super(database);
 
-  // Write
+  @override
+  Table get table => accountTable;
 
-  Future save(AccountEntity entity) {
-    return into(accountTable).insertOnConflictUpdate(entity);
-  }
+  // Write
 
   Future markDelete(AccountEntity entity) {
     var deletedAccount = entity.copyWith(
@@ -25,26 +25,23 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
     return update(accountTable).replace(deletedAccount);
   }
 
-  Future clearAll() {
-    return delete(accountTable).go();
-  }
-
   // Read
 
   Stream<List<AccountModel>> watchAll() {
-    var query = _getBaseQuery();
+    var query = getBaseQuery();
 
     query
       ..where(
         accountTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
+    return mapQuery(query);
   }
 
   // Base
 
-  JoinedSelectStatement _getBaseQuery() {
+  @override
+  JoinedSelectStatement getBaseQuery() {
     return select(accountTable).join(
       [
         leftOuterJoin(
@@ -54,10 +51,11 @@ class AccountDao extends DatabaseAccessor<DatabaseClient>
           ),
         ),
       ],
-    );
+    )..where(accountTable.deleted.equals(false));
   }
 
-  Stream<List<AccountModel>> _mapQuery(JoinedSelectStatement query) {
+  @override
+  Stream<List<AccountModel>> mapQuery(JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {

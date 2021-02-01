@@ -1,4 +1,5 @@
 import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/base/base_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
 import 'package:my_finance_flutter/core/model/payee/payee_converter.dart';
@@ -7,24 +8,19 @@ import 'package:my_finance_flutter/core/model/payee/payee_model.dart';
 part 'payee_dao.g.dart';
 
 @UseDao(tables: [PayeeTable])
-class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
+class PayeeDao extends BaseDao<PayeeEntity, PayeeModel> with _$PayeeDaoMixin {
   PayeeDao(DatabaseClient database) : super(database);
 
-  // Write
+  @override
+  Table get table => payeeTable;
 
-  Future save(PayeeEntity entity) {
-    return into(payeeTable).insertOnConflictUpdate(entity);
-  }
+  // Write
 
   Future markDelete(PayeeEntity entity) {
     var deletedPayee = entity.copyWith(
       deleted: true,
     );
     return update(payeeTable).replace(deletedPayee);
-  }
-
-  Future clearAll() {
-    return delete(payeeTable).go();
   }
 
   // Read
@@ -53,30 +49,33 @@ class PayeeDao extends DatabaseAccessor<DatabaseClient> with _$PayeeDaoMixin {
   }
 
   Stream<List<PayeeModel>> watchAll() {
-    var query = _getBaseQuery();
+    var query = getBaseQuery();
 
     query
       ..where(
-        (payee) => payee.deleted.equals(false),
+        payeeTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
+    return mapQuery(query);
   }
 
   // Base
 
-  SimpleSelectStatement<$PayeeTableTable, PayeeEntity> _getBaseQuery() {
-    return select(payeeTable);
+  @override
+  JoinedSelectStatement getBaseQuery() {
+    return select(payeeTable).join([]);
   }
 
-  Stream<List<PayeeModel>> _mapQuery(
-      SimpleSelectStatement<$PayeeTableTable, PayeeEntity> query) {
+  @override
+  Stream<List<PayeeModel>> mapQuery(
+    JoinedSelectStatement query,
+  ) {
     return query.watch().map(
       (rows) {
         return rows.map(
           (resultRow) {
             return PayeeConverter.toModel(
-              resultRow,
+              resultRow.readTable(payeeTable),
             );
           },
         ).toList();

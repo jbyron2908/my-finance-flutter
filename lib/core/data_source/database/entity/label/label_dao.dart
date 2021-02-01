@@ -1,4 +1,5 @@
 import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/base/base_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/label/label_table.dart';
 import 'package:my_finance_flutter/core/model/label/label_converter.dart';
@@ -7,14 +8,13 @@ import 'package:my_finance_flutter/core/model/label/label_model.dart';
 part 'label_dao.g.dart';
 
 @UseDao(tables: [LabelTable])
-class LabelDao extends DatabaseAccessor<DatabaseClient> with _$LabelDaoMixin {
+class LabelDao extends BaseDao<LabelEntity, LabelModel> with _$LabelDaoMixin {
   LabelDao(DatabaseClient database) : super(database);
 
-  // Write
+  @override
+  Table get table => labelTable;
 
-  Future save(LabelEntity entity) {
-    return into(labelTable).insertOnConflictUpdate(entity);
-  }
+  // Write
 
   Future markDelete(LabelEntity entity) {
     var deletedLabel = entity.copyWith(
@@ -26,30 +26,33 @@ class LabelDao extends DatabaseAccessor<DatabaseClient> with _$LabelDaoMixin {
   // Read
 
   Stream<List<LabelModel>> watchAll() {
-    var query = _getBaseQuery();
+    var query = getBaseQuery();
 
     query
       ..where(
-        (label) => label.deleted.equals(false),
+        labelTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
+    return mapQuery(query);
   }
 
   // Base
 
-  SimpleSelectStatement<$LabelTableTable, LabelEntity> _getBaseQuery() {
-    return select(labelTable);
+  @override
+  JoinedSelectStatement getBaseQuery() {
+    return select(labelTable).join([]);
   }
 
-  Stream<List<LabelModel>> _mapQuery(
-      SimpleSelectStatement<$LabelTableTable, LabelEntity> query) {
+  @override
+  Stream<List<LabelModel>> mapQuery(
+    JoinedSelectStatement query,
+  ) {
     return query.watch().map(
       (rows) {
         return rows.map(
           (resultRow) {
             return LabelConverter.toModel(
-              resultRow,
+              resultRow.readTable(labelTable),
             );
           },
         ).toList();

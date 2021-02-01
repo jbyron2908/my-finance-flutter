@@ -1,4 +1,5 @@
 import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/base/base_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/account/account_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
@@ -17,19 +18,14 @@ part 'operation_dao.g.dart';
   AccountTable,
   ProfileTable,
 ])
-class OperationDao extends DatabaseAccessor<DatabaseClient>
+class OperationDao extends BaseDao<OperationEntity, OperationModel>
     with _$OperationDaoMixin {
   OperationDao(DatabaseClient database) : super(database);
 
-  Future save(OperationEntity entity) {
-    return into(operationTable).insertOnConflictUpdate(entity);
-  }
+  @override
+  Table get table => operationTable;
 
-  Future saveAll(List<OperationEntity> list) {
-    return batch(
-      (b) => b.insertAllOnConflictUpdate(operationTable, list),
-    );
-  }
+  // Write
 
   Future markDelete(OperationEntity entity) {
     var deletedOperation = entity.copyWith(
@@ -38,19 +34,21 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
     return update(operationTable).replace(deletedOperation);
   }
 
+  // Read
+
   Stream<List<OperationModel>> watchAll() {
-    final query = _getBaseQuery();
+    final query = getBaseQuery();
 
     query
       ..where(
         operationTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
+    return mapQuery(query);
   }
 
   Stream<List<OperationModel>> watchFilter(int accountId) {
-    final query = _getBaseQuery();
+    final query = getBaseQuery();
 
     query
       ..where(
@@ -58,18 +56,15 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
             operationTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
-  }
-
-  Future clearAll() {
-    return delete(operationTable).go();
+    return mapQuery(query);
   }
 
   // Base
 
   $CategoryTableTable get parentCategoryAlias => alias(categoryTable, 'parent');
 
-  JoinedSelectStatement _getBaseQuery() {
+  @override
+  JoinedSelectStatement getBaseQuery() {
     return select(operationTable).join(
       [
         leftOuterJoin(
@@ -98,7 +93,8 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
     );
   }
 
-  Stream<List<OperationModel>> _mapQuery(JoinedSelectStatement query) {
+  @override
+  Stream<List<OperationModel>> mapQuery(JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {

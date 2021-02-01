@@ -1,4 +1,5 @@
 import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/base/base_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/model/category/category_converter.dart';
@@ -7,15 +8,14 @@ import 'package:my_finance_flutter/core/model/category/category_model.dart';
 part 'category_dao.g.dart';
 
 @UseDao(tables: [CategoryTable])
-class CategoryDao extends DatabaseAccessor<DatabaseClient>
+class CategoryDao extends BaseDao<CategoryEntity, CategoryModel>
     with _$CategoryDaoMixin {
   CategoryDao(DatabaseClient database) : super(database);
 
-  // Write
+  @override
+  Table get table => categoryTable;
 
-  Future save(CategoryEntity entity) {
-    return into(categoryTable).insertOnConflictUpdate(entity);
-  }
+  // Write
 
   Future markDelete(CategoryEntity entity) {
     var deletedCategory = entity.copyWith(
@@ -24,28 +24,25 @@ class CategoryDao extends DatabaseAccessor<DatabaseClient>
     return update(categoryTable).replace(deletedCategory);
   }
 
-  Future clearAll() {
-    return delete(categoryTable).go();
-  }
-
   // Read
 
   Stream<List<CategoryModel>> watchAll() {
-    final query = _getBaseQuery();
+    final query = getBaseQuery();
 
     query
       ..where(
         categoryTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
+    return mapQuery(query);
   }
 
   // Base
 
   $CategoryTableTable get parentAlias => alias(categoryTable, 'parent');
 
-  JoinedSelectStatement<Table, DataClass> _getBaseQuery() {
+  @override
+  JoinedSelectStatement getBaseQuery() {
     return select(categoryTable).join(
       [
         leftOuterJoin(
@@ -56,8 +53,9 @@ class CategoryDao extends DatabaseAccessor<DatabaseClient>
     );
   }
 
-  Stream<List<CategoryModel>> _mapQuery(
-    JoinedSelectStatement<Table, DataClass> query,
+  @override
+  Stream<List<CategoryModel>> mapQuery(
+    JoinedSelectStatement query,
   ) {
     return query.watch().map((rows) {
       return rows.map(

@@ -1,4 +1,5 @@
 import 'package:moor/moor.dart';
+import 'package:my_finance_flutter/core/data_source/database/base/base_dao.dart';
 import 'package:my_finance_flutter/core/data_source/database/client/database_client.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/category/category_table.dart';
 import 'package:my_finance_flutter/core/data_source/database/entity/payee/payee_table.dart';
@@ -13,30 +14,42 @@ part 'template_operation_dao.g.dart';
   PayeeTable,
   CategoryTable,
 ])
-class TemplateOperationDao extends DatabaseAccessor<DatabaseClient>
+class TemplateOperationDao
+    extends BaseDao<TemplateOperationEntity, TemplateOperationModel>
     with _$TemplateOperationDaoMixin {
   TemplateOperationDao(DatabaseClient db) : super(db);
 
-  Future<int> insert(TemplateOperationEntity entity) {
-    return into(templateOperationTable).insertOnConflictUpdate(entity);
+  @override
+  Table get table => templateOperationTable;
+
+  // Write
+
+  Future markDelete(TemplateOperationEntity entity) {
+    var deletedProfile = entity.copyWith(
+      deleted: true,
+    );
+    return update(templateOperationTable).replace(deletedProfile);
   }
 
+  // Read
+
   Stream<List<TemplateOperationModel>> watchAll() {
-    var query = _getBaseQuery();
+    var query = getBaseQuery();
 
     query
       ..where(
         templateOperationTable.deleted.equals(false),
       );
 
-    return _mapQuery(query);
+    return mapQuery(query);
   }
 
   // Base
 
   $CategoryTableTable get parentCategoryAlias => alias(categoryTable, 'parent');
 
-  JoinedSelectStatement _getBaseQuery() {
+  @override
+  JoinedSelectStatement getBaseQuery() {
     return select(templateOperationTable).join(
       [
         leftOuterJoin(
@@ -57,7 +70,8 @@ class TemplateOperationDao extends DatabaseAccessor<DatabaseClient>
     );
   }
 
-  Stream<List<TemplateOperationModel>> _mapQuery(JoinedSelectStatement query) {
+  @override
+  Stream<List<TemplateOperationModel>> mapQuery(JoinedSelectStatement query) {
     return query.watch().map((rows) {
       return rows.map(
         (resultRow) {

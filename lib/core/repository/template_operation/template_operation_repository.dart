@@ -16,7 +16,7 @@ class TemplateOperationRepository {
       _templateOperationListStream;
 
   Future<int> save(TemplateOperationModel templateOperation) async {
-    return _databaseClient.templateOperationDao.insert(
+    return _databaseClient.templateOperationDao.save(
       TemplateOperationConverter.toEntity(templateOperation),
     );
   }
