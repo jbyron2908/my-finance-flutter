@@ -21,6 +21,18 @@ class OperationRepository {
         .save(OperationConverter.toEntity(operation));
   }
 
+  Future saveAll(List<OperationModel> list) async {
+    var entityList = list.map(
+      (model) {
+        var operation = model.copyWith(profile: model.account.profile);
+
+        return OperationConverter.toEntity(operation);
+      },
+    ).toList();
+
+    return _databaseClient.operationDao.saveAll(entityList);
+  }
+
   Future delete(OperationModel operation) async {
     return _databaseClient.operationDao
         .markDelete(OperationConverter.toEntity(operation));
@@ -34,5 +46,9 @@ class OperationRepository {
 
   Stream<List<OperationModel>> watchFilter(int accountId) {
     return _databaseClient.operationDao.watchFilter(accountId);
+  }
+
+  Future clearAll() {
+    return _databaseClient.operationDao.clearAll();
   }
 }

@@ -1,13 +1,19 @@
 import 'package:my_finance_flutter/core/model/operation/operation_type_model.dart';
 
 class OperationTypeConstants {
+  static OperationTypeModel deposit =
+      OperationTypeModel(id: 'deposit', title: 'Deposit');
+
+  static OperationTypeModel withdrawal =
+      OperationTypeModel(id: 'withdrawal', title: 'Withdrawal');
+
   static List<OperationTypeModel> operationTypeList = [
-    OperationTypeModel(id: 'deposit', title: 'Deposit'),
-    OperationTypeModel(id: 'withdrawal', title: 'Withdrawal'),
+    deposit,
+    withdrawal,
   ];
 
   static OperationTypeModel getDefault() {
-    return OperationTypeModel(id: 'deposit', title: 'Deposit');
+    return deposit;
   }
 
   static OperationTypeModel getById(String id) {

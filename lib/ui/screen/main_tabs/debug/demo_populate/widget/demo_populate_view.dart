@@ -16,9 +16,9 @@ class DemoPopulateView extends StatelessWidget {
       body: ListView(
         children: [
           ListRow(
-            title: Text('Clear all'),
+            title: Text('Clear entities'),
             leading: FaIcon(FontAwesomeIcons.clinicMedical),
-            onTap: () => controller.onClearAllTap(),
+            onTap: () => controller.onClearEntitiesTap(),
           ),
           ListRow(
             title: Text('Populate entities'),
@@ -26,7 +26,12 @@ class DemoPopulateView extends StatelessWidget {
             onTap: () => controller.onPopulateEntitiesTap(),
           ),
           ListRow(
-            title: Text('Populate entries'),
+            title: Text('Clear operations'),
+            leading: FaIcon(FontAwesomeIcons.cloudMeatball),
+            onTap: () => controller.onClearOperationsTap(),
+          ),
+          ListRow(
+            title: Text('Populate operations'),
             leading: FaIcon(FontAwesomeIcons.cloudMeatball),
             onTap: () => controller.onPopulateAccountsTap(),
           ),

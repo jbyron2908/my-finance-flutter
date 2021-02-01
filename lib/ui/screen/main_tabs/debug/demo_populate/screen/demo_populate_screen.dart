@@ -6,6 +6,7 @@ import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/contr
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/entity/account_populate_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/entity/category_populate_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/entity/payee_populate_controller.dart';
+import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/controller/operation/operation_populate_controller.dart';
 import 'package:my_finance_flutter/ui/screen/main_tabs/debug/demo_populate/widget/demo_populate_view.dart';
 
 class DemoPopulateScreen extends StatelessWidget {
@@ -35,6 +36,7 @@ class DemoPopulateBinding implements Bindings {
     Get.put(CategoryPopulateController());
     Get.put(PayeePopulateController());
     Get.put(AccountPopulateController());
+    Get.put(OperationPopulateController());
     Get.put(DemoPopulateController());
   }
 }

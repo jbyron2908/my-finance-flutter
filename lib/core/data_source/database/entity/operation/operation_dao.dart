@@ -25,6 +25,12 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
     return into(operationTable).insertOnConflictUpdate(entity);
   }
 
+  Future saveAll(List<OperationEntity> list) {
+    return batch(
+      (b) => b.insertAllOnConflictUpdate(operationTable, list),
+    );
+  }
+
   Future markDelete(OperationEntity entity) {
     var deletedOperation = entity.copyWith(
       deleted: true,
@@ -53,6 +59,10 @@ class OperationDao extends DatabaseAccessor<DatabaseClient>
       );
 
     return _mapQuery(query);
+  }
+
+  Future clearAll() {
+    return delete(operationTable).go();
   }
 
   // Base
